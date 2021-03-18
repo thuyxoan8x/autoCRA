@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "519d661d-856b-421c-a638-aa84ccf4f420",
-		"name": "HAPI - Basic Content Management Non Flatten - Cookie Ex184",
+		"_postman_id": "27246e60-dbdd-41a3-bca5-445289b7b092",
+		"name": "HAPI - Basic Content Management Non Flatten - Cookie.20210315",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -2571,11 +2571,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-807: 6. Invalid - Invalid startPublish and stopPublish format\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.startPublish\", pm.response.json().Error.Details[0].Target);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.stopPublish\", pm.response.json().Error.Details[1].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"pageBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -2788,9 +2788,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-807: Invalid - Status is not in enum\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"pageBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -2929,9 +2931,11 @@
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
+									"// test case HAPI-807: 10. Invalid - Unallowed status\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[count] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.Status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"if(count < contentBodyList.length - 1)\r",
@@ -3300,9 +3304,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: 807 22. Invalid - Set contentLink with invalid GUID format\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.contentLink.guidValue\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.contentLink.guidValue\", pm.response.json().Error.Details[0].Target);\r",
 									"Assert.IsEqual(\"Verify code\", \"InvalidModel\", pm.response.json().Error.Code);\r",
 									"\r",
 									"// Process to loop\r",
@@ -3454,9 +3460,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: 807: 24. Invalid - Set parentLink with invalid GUID format\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.parentLink.guidValue\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.parentLink.guidValue\", pm.response.json().Error.Details[0].Target);\r",
 									"Assert.IsEqual(\"Verify code\", \"InvalidModel\", pm.response.json().Error.Code);\r",
 									"\r",
 									"// Process to loop\r",
@@ -3859,9 +3867,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: 807 29. Invalid - Duplicated property but different value in request body\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsTrue(\"Verify inner error message\", pm.response.json().Error.Details[0].InnerError[0].includes(\"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'.\"));"
+									"Assert.IsTrue(\"Verify inner error message\", pm.response.json().Error.Details[0].InnerError[0].includes(\"An error has occurred.\"));"
 								],
 								"type": "text/javascript"
 							}
@@ -5188,11 +5198,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-809-968: Invalid - Move existed content to invalid guid content\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
 									"responseData = pm.response.json();\r",
-									"Assert.IsTrue(\"Verify InnerError\", responseData.Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"moveContentModel.parentLink.guidValue\", responseData.Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", responseData.Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"moveOptions.parentLink.guidValue\", responseData.Error.Details[0].Target);\r",
 									"pm.variables.unset(\"invalidParentContentGuid\")"
 								],
 								"type": "text/javascript"
@@ -7519,9 +7531,12 @@
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
+									"// test case 821: Invalid - Modify content version with unallowed status\r",
+									"// Edit Follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiPatchModel.Status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsEqual(\"Verify Target\", \"patch.Status\", pm.response.json().Error.Details[0].Target);\r",
+									"\r",
 									"\r",
 									"// Process to loop\r",
 									"if(newStatusCount < invalidStatusForPostContent.length - 1)\r",
@@ -7595,9 +7610,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-821 9. Invalid - Modify content version with status not in enum\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiPatchModel.status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"patch.status\", pm.response.json().Error.Details[0].Target);\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -8457,11 +8474,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-821 21. Create  content version with invalid startPublish stopPublish\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiPatchModel.startPublish\", pm.response.json().Error.Details[0].Target);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiPatchModel.stopPublish\", pm.response.json().Error.Details[1].Target);"
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"patch.startPublish\", pm.response.json().Error.Details[0].Target);"
 								],
 								"type": "text/javascript"
 							}
@@ -9445,11 +9462,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case HAPI-1111 6. Invalid - Invalid startPublish stopPublish format\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.startPublish\", pm.response.json().Error.Details[0].Target);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.stopPublish\", pm.response.json().Error.Details[1].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.stopPublish\", pm.response.json().Error.Details[1].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"pageBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -9671,9 +9690,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case HAPI-1111 8.2. Invalid - Status is not in enum\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"pageBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -9818,9 +9839,11 @@
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
+									"// test case HAPI-1111 10. Invalid - Create content with unallowed status\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[count] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.Status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"if(count < contentBodyList.length - 1)\r",
@@ -10282,9 +10305,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case HAPI-1111 24. Invalid - Set parentLink with invalid format GUID\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.parentLink.guidValue\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.parentLink.guidValue\", pm.response.json().Error.Details[0].Target);\r",
 									"Assert.IsEqual(\"Verify code\", \"InvalidModel\", pm.response.json().Error.Code);\r",
 									"\r",
 									"// Process to loop\r",
@@ -10702,10 +10727,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case HAPI-1111: 29. Duplicated property but different value in request body\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Inner Error message\", \"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'. Path 'PageImage', line 52, position 2.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify target\", \"contentApiCreateModel.PageImage\", pm.response.json().Error.Details[0].Target);"
+									"Assert.IsEqual(\"Verify Inner Error message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify target\", \"content.PageImage\", pm.response.json().Error.Details[0].Target);"
 								],
 								"type": "text/javascript"
 							}
@@ -11703,7 +11730,9 @@
 									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
 									"// Update new contentLink.workId\r",
-									"originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> update content version \r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"//originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
 									"Assert.IsEqual(\"Check contentType\", originalRequestBody.contentType, responseBody.contentType);\r",
@@ -12188,7 +12217,9 @@
 									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
 									"// Update new contentLink.workId\r",
-									"originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> Update content version with part of properties \r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"//originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
@@ -12565,7 +12596,9 @@
 									"    verifyResponseCode(200);\r",
 									"\r",
 									"    // Update new contentLink.workId and url\r",
-									"    svContentData.contentLink.workId = responseBody.contentLink.workId;\r",
+									"    // test case: HAPI-1111 Implement PUT endpoint for update content version> 4.1. Update content version in sv\r",
+									"    // Edit follow: https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"    //svContentData.contentLink.workId = responseBody.contentLink.workId;\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        svContentData.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -12921,7 +12954,9 @@
 									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
 									"// Update new contentLink.workId\r",
-									"originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> Update content version in sv with part of properties\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"//originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
@@ -13748,11 +13783,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> 13. Invalid - Update  content version with invalid startPublish stopPublish\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.startPublish\", pm.response.json().Error.Details[0].Target);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.stopPublish\", pm.response.json().Error.Details[1].Target);"
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.stopPublish\", pm.response.json().Error.Details[1].Target);"
 								],
 								"type": "text/javascript"
 							}
@@ -13935,9 +13972,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> 15.2 Invalid - Update IVersionable content version with status not in enum\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -14001,9 +14040,11 @@
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> 16. Invalid - Update content version with unallowed status\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.Status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"if(newStatusCount < invalidStatusForPostContent.length - 1)\r",
@@ -14139,10 +14180,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> 18.1. Update content version with invalid contentLink.id and guidValue in the body\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \" + pm.variables.get(\"invalidId\") + \". Path 'ContentLink.id', line 3, position 25.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\")  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'ContentLink.guidValue', line 4, position 34.\", pm.response.json().Error.Details[1].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[1].InnerError[0]);\r",
 									"\r",
 									"pm.variables.unset(\"invalidId\");\r",
 									"pm.variables.unset(\"invalidGuid\");"
@@ -14270,9 +14313,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> Update content version with non existing contentLink.id in the body\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has a identifier '\" + pm.variables.get(\"invalidId\") + \"' that does not match the content with the unique identifier '\" + pm.variables.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has an identifier '\" + pm.variables.get(\"invalidId\") + \"' that does not match the content with the unique identifier '\" + pm.variables.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"pm.variables.unset(\"invalidId\");"
 								],
@@ -14335,9 +14380,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> 18.2. Update content version with existing but different contentLink.id in the body\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has a identifier '\" + JSON.parse(request.data).contentLink.id + \"' that does not match the content with the unique identifier '\" + pm.environment.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has an identifier '\" + JSON.parse(request.data).contentLink.id + \"' that does not match the content with the unique identifier '\" + pm.environment.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -14524,10 +14571,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version> 19.2. Update content version with invalid parentLink.id and guidValue\r",
+									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \" + JSON.parse(request.data).parentLink.id + \". Path 'parentLink.id', line 14, position 19.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + JSON.parse(request.data).parentLink.guidValue  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 15, position 26.\", pm.response.json().Error.Details[1].InnerError[0]);"
+									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[1].InnerError[0]);"
 								],
 								"type": "text/javascript"
 							}
@@ -14588,9 +14637,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(409);\r",
+									"// test case: HAPI-1111 Implement PUT endpoint for update content version > 19.3. Update content version with non existing parentLink.id\r",
+									"// Edit follow the bug: HAPI-1499\r",
+									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Error\", \"A content item with the same identifier and a different parent already exists.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + pm.environment.get(\"parentGuid\")  + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -16130,8 +16181,10 @@
 									"{\r",
 									"    verifyResponseCode(201);\r",
 									"\r",
+									"// Test case: HAPI-1425 POST new content language version > 2. Create new content version in sv\r",
 									"    // Update new contentLink.workId and url\r",
-									"    originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
+									"    //Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"    //originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -16414,7 +16467,9 @@
 									"\r",
 									"// update some added properties from response to request (for assertion and next step)\r",
 									"requestBody.contentLink.url = responseBody.contentLink.url;\r",
-									"requestBody.contentLink.workId = responseBody.contentLink.workId;\r",
+									"// Test case: HAPI-1425 POST new content language version > Create new content version in sv with part of properties\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"//requestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.language = responseBody.language;\r",
 									"delete requestBody.parentLink;\r",
@@ -16980,9 +17035,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// Test case: HAPI-1425 POST new content language version >.2. Invalid - Create content version in sv with invalid parentLink guidValue\r",
+									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\") + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 12, position 59.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -17043,9 +17100,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// Test case: HAPI-1425 POST new content language version >Invalid - Create content version in sv with invalid parentLink id\r",
+									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"Could not convert string to integer: invalid. Path 'parentLink.id', line 12, position 23.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidId\");"
 								],
 								"type": "text/javascript"
@@ -17774,9 +17833,11 @@
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
+									"// Test case: HAPI-1425 POST new content language version >12. Invalid - Create content version with unallowed status\r",
+									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.Status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"console.log(newStatusCount);\r",
@@ -17908,9 +17969,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// Test case: HAPI-1425 POST new content language version >13.2 Invalid - Create IVersionable content version with status not in enum\r",
+									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -18088,11 +18151,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// Test case: HAPI-1425 POST new content language version >15. Invalid - Create  content version with invalid startPublish stopPublish\r",
+									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.startPublish\", pm.response.json().Error.Details[0].Target);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.stopPublish\", pm.response.json().Error.Details[1].Target);"
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);"
 								],
 								"type": "text/javascript"
 							}
@@ -18244,7 +18307,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"contentLink\": {\r\n        \"id\": 61,\r\n        \"workId\": 1361,\r\n        \"providerName\": null,\r\n        \"url\": \"/globalassets/alloy-meet/alloymeet.png\",\r\n        \"expanded\": null\r\n    },\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 60,\r\n        \"workId\": 0,\r\n        \"providerName\": null,\r\n        \"url\": null,\r\n        \"expanded\": null\r\n    },\r\n    \"startPublish\": \"2020-11-17T04:02:58Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"contentLink\": {\r\n        \"id\": 61,\r\n        // test case: HAPI-1425 POST new content language version> 17. Invalid - non localizable content with language in the body\r\n        //Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r\n        //\"workId\": 1361,\r\n        \"providerName\": null,\r\n        \"url\": \"/globalassets/alloy-meet/alloymeet.png\",\r\n        \"expanded\": null\r\n    },\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 60,\r\n        \"workId\": 0,\r\n        \"providerName\": null,\r\n        \"url\": null,\r\n        \"expanded\": null\r\n    },\r\n    \"startPublish\": \"2020-11-17T04:02:58Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -18864,7 +18927,9 @@
 									"    verifyResponseCode(201);\r",
 									"\r",
 									"    // Update new contentLink.workId and url\r",
-									"    originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
+									"    // test case: HAPI-1425 PUT new content language version> Create new content version in sv using PUT\r",
+									"    //Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"    //originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -19145,7 +19210,9 @@
 									"\r",
 									"// update some added properties from response to request (for assertion and next step)\r",
 									"requestBody.contentLink.url = responseBody.contentLink.url;\r",
-									"requestBody.contentLink.workId = responseBody.contentLink.workId;\r",
+									"// test case: HAPI-1425 PUT new content language version> Create new content version in sv with part of properties\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
+									"//requestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.language = responseBody.language;\r",
 									"delete requestBody.parentLink;\r",
@@ -19543,11 +19610,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT new content language version> 5.1. Invalid - Create  language content version with invalid contentLink.id and guidValue\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"\r",
-									"\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \" + JSON.parse(request.data).contentLink.id + \". Path 'contentLink.id', line 3, position 25.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + JSON.parse(request.data).contentLink.guidValue  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'contentLink.guidValue', line 4, position 26.\", pm.response.json().Error.Details[1].InnerError[0]);"
+									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[1].InnerError[0]);"
 								],
 								"type": "text/javascript"
 							}
@@ -19607,9 +19674,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT new content language version> Invalid - Create  language content version with non existing contentLink.id\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Message\", \"Cannot get parent content\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + pm.environment.get(\"contentGuid\")  + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -20038,9 +20107,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT new content language version> .2. Invalid - Create content version in sv with invalid parentLink guidValue\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\") + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 12, position 59.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -20101,9 +20172,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT new content language version> Invalid - Create content version in sv with invalid parentLink id\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"Could not convert string to integer: invalid. Path 'parentLink.id', line 12, position 23.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidId\");"
 								],
 								"type": "text/javascript"
@@ -20843,10 +20916,11 @@
 								"exec": [
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
-									"\r",
+									"// test case: HAPI-1425 PUT new content language version> 11. Invalid - Create content version with unallowed status\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.Status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
 									"console.log(newStatusCount);\r",
@@ -21045,9 +21119,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT new content language version> Invalid - Create IVersionable content version with status not in enum\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.status\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -21234,11 +21310,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT new content language version> 15. Invalid - Create  content version with invalid startPublish stopPublish\r",
+									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.startPublish\", pm.response.json().Error.Details[0].Target);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"contentApiCreateModel.stopPublish\", pm.response.json().Error.Details[1].Target);"
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);"
 								],
 								"type": "text/javascript"
 							}
@@ -21828,11 +21904,11 @@
 					"                if (!lodash.isEqual(expectedValue, actualValue))",
 					"                {",
 					"                    console.log(\"----- expectedValue -----\");",
-					"                    console.log(expectedValue);",
-					"                    //console.log(JSON.stringify(expectedValue));",
+					"                    //console.log(expectedValue);",
+					"                    console.log(JSON.stringify(expectedValue));",
 					"                    console.log(\"----- actualValue -----\");",
-					"                    console.log(actualValue);",
-					"                    //console.log(JSON.stringify(actualValue));",
+					"                    //console.log(actualValue);",
+					"                    console.log(JSON.stringify(actualValue));",
 					"                }",
 					"            }",
 					"            else",
