@@ -14666,9 +14666,11 @@
 								"exec": [
 									"// test case: HAPI-1111 Implement PUT endpoint for update content version > 19.3. Update content version with non existing parentLink.id\r",
 									"// Edit follow the bug: HAPI-1499\r",
+									"// Edit forllow Ms Minh comment\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + pm.environment.get(\"parentGuid\")  + \"'.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + JSON.parse(request.data).parentLink.guidValue + \"'.\", pm.response.json().Error.Message);\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -15703,72 +15705,6 @@
 							],
 							"path": [
 								"{{parentFolderId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Invalid - Update non localizable content with language in the body Copy",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// test case: HAPI-1111 for new content items > Invalid - Update non localizable content with language in the body\r",
-									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1496\r",
-									"verifyResponseCode(400);\r",
-									"\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
-									"pm.environment.unset(\"imageId\");\r",
-									"pm.environment.unset(\"imageGuid\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept-encoding": true,
-							"connection": true,
-							"user-agent": true
-						}
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept-Language",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"startPublish\": \"2020-11-17T04:02:58Z\",\r\n    \"stopPublish\": null,\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"status\": \"Published\",\r\n        \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{imageGuid}}",
-							"host": [
-								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
-							],
-							"path": [
-								"{{imageGuid}}"
 							]
 						}
 					},
@@ -22001,11 +21937,11 @@
 					"                if (!lodash.isEqual(expectedValue, actualValue))",
 					"                {",
 					"                    console.log(\"----- expectedValue -----\");",
-					"                    //console.log(expectedValue);",
-					"                    console.log(JSON.stringify(expectedValue));",
+					"                    console.log(expectedValue);",
+					"                    //console.log(JSON.stringify(expectedValue));",
 					"                    console.log(\"----- actualValue -----\");",
-					"                    //console.log(actualValue);",
-					"                    console.log(JSON.stringify(actualValue));",
+					"                    console.log(actualValue);",
+					"                    //console.log(JSON.stringify(actualValue));",
 					"                }",
 					"            }",
 					"            else",
