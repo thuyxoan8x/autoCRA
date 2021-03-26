@@ -9036,6 +9036,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// check email account\r",
 									"verifyResponseCode(201);\r",
 									"\r",
 									"requestBody = SortJson(JSON.parse(request.data));\r",
