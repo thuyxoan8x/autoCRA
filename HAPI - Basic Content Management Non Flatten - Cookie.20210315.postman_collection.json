@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "27246e60-dbdd-41a3-bca5-445289b7b092",
-		"name": "HAPI - Basic Content Management Non Flatten - Cookie.20210315",
+		"_postman_id": "519d661d-856b-421c-a638-aa84ccf4f420",
+		"name": "HAPI - Basic Content Management Non Flatten - Cookie Ex184",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -12621,9 +12621,6 @@
 									"    verifyResponseCode(200);\r",
 									"\r",
 									"    // Update new contentLink.workId and url\r",
-									"    // test case: HAPI-1111 Implement PUT endpoint for update content version> 4.1. Update content version in sv\r",
-									"    // Edit follow: https://jira.sso.episerver.net/browse/HAPI-1473\r",
-									"    //svContentData.contentLink.workId = responseBody.contentLink.workId;\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        svContentData.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -12979,9 +12976,6 @@
 									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
 									"// Update new contentLink.workId\r",
-									"// test case: HAPI-1111 Implement PUT endpoint for update content version> Update content version in sv with part of properties\r",
-									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1473\r",
-									"//originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
@@ -16214,10 +16208,7 @@
 									"{\r",
 									"    verifyResponseCode(201);\r",
 									"\r",
-									"// Test case: HAPI-1425 POST new content language version > 2. Create new content version in sv\r",
 									"    // Update new contentLink.workId and url\r",
-									"    //Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
-									"    //originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -16500,9 +16491,6 @@
 									"\r",
 									"// update some added properties from response to request (for assertion and next step)\r",
 									"requestBody.contentLink.url = responseBody.contentLink.url;\r",
-									"// Test case: HAPI-1425 POST new content language version > Create new content version in sv with part of properties\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
-									"//requestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.language = responseBody.language;\r",
 									"delete requestBody.parentLink;\r",
@@ -18960,9 +18948,6 @@
 									"    verifyResponseCode(201);\r",
 									"\r",
 									"    // Update new contentLink.workId and url\r",
-									"    // test case: HAPI-1425 PUT new content language version> Create new content version in sv using PUT\r",
-									"    //Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
-									"    //originalRequestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -19243,9 +19228,6 @@
 									"\r",
 									"// update some added properties from response to request (for assertion and next step)\r",
 									"requestBody.contentLink.url = responseBody.contentLink.url;\r",
-									"// test case: HAPI-1425 PUT new content language version> Create new content version in sv with part of properties\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r",
-									"//requestBody.contentLink.workId = responseBody.contentLink.workId;\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.language = responseBody.language;\r",
 									"delete requestBody.parentLink;\r",
@@ -19708,10 +19690,10 @@
 							"script": {
 								"exec": [
 									"// test case: HAPI-1425 PUT new content language version> Invalid - Create  language content version with non existing contentLink.id\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
+									"//Edit flow Ms Minh comment\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + pm.environment.get(\"contentGuid\")  + \"'.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + JSON.parse(request.data).contentLink.guidValue  + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
