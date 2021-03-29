@@ -21954,10 +21954,6 @@
 	],
 	"variable": [
 		{
-			"key": "contentBodyList",
-			"value": "jsonPageBody,jsonAllPropertyPageBody,jsonBlockBody,jsonLocalFolderBody"
-		},
-		{
 			"key": "count",
 			"value": "0"
 		},
