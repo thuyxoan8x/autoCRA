@@ -14663,7 +14663,7 @@
 									"// Edit forllow Ms Minh comment\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + JSON.parse(request.data).parentLink.guidValue + \"'.\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '\" + JSON.parse(request.data).parentLink.id  + \"' that does not match the content with unique identifier '\" + JSON.parse(request.data).parentLink.guidValue + \"'.\", pm.response.json().Error.Message);\r",
 									""
 								],
 								"type": "text/javascript"
@@ -19693,7 +19693,7 @@
 									"//Edit flow Ms Minh comment\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '-1' that does not match the content with unique identifier '\" + JSON.parse(request.data).contentLink.guidValue  + \"'.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '\" + JSON.parse(request.data).contentLink.id  + \"' that does not match the content with unique identifier '\" + pm.environment.get(\"contentGuid\")  + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
