@@ -3388,10 +3388,17 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test case: HAPI-807: 23. Invalid - Set contentLink with existing guid\r",
-									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1496\r",
+									"// test case: HAPI-821: 4.1. Patch content version in sv by id\r",
+									" // Edit follow: HAPI-1426\r",
 									"verifyResponseCode(409);\r",
-									"Assert.IsEqual(\"Verify Message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentGuid\") + \"' and language 'en' already exists.\", pm.response.json().Error.Message);\r",
+									"if(JSON.parse(request.data).language == undefined)\r",
+									"{\r",
+									" pm.environment.set(\"language\", \"\")\r",
+									"}\r",
+									"else\r",
+									"pm.environment.set(\"language\",JSON.parse(request.data).language.name)\r",
+									"\r",
+									"Assert.IsEqual(\"Verify Message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentGuid\") + \"' and language '\"+ pm.environment.get(\"language\") +\"' already exists.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -5684,7 +5691,9 @@
 									"if(originalRequestData.status === \"Published\" && requestData.status !== \"Published\")\r",
 									"{\r",
 									"    verifyResponseCode(400);\r",
-									"    Assert.IsEqual(\"Verify error message\", \"A content item cannot be created with status '\" + requestData.status + \"'.\", pm.response.json().Error.Message);\r",
+									"    // test case: HAPI-821: 1.1. Patch content version by id\r",
+									"    // Edit follow: HAPI-1426\r",
+									"    Assert.IsEqual(\"Verify error message\", \"Cannot transition from status 'Published' to '\" + requestData.status + \"'.\", pm.response.json().Error.Message);\r",
 									"    postman.setNextRequest(\"1.2. Patch content version by guid\");\r",
 									"}\r",
 									"else\r",
@@ -5872,7 +5881,9 @@
 									"if(originalRequestData.status === \"Published\" && requestData.status !== \"Published\")\r",
 									"{\r",
 									"    verifyResponseCode(400);\r",
-									"    Assert.IsEqual(\"Verify error message\", \"A content item cannot be created with status '\" + requestData.status + \"'.\", pm.response.json().Error.Message);\r",
+									"        // test case: HAPI-821: 1.2. Patch content version by guid\r",
+									"    // Edit follow: HAPI-1426\r",
+									"    Assert.IsEqual(\"Verify error message\", \"Cannot transition from status 'Published' to '\" + requestData.status + \"'.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"    // Process to loop\r",
 									"    contentBodyList = pm.variables.get(\"contentBodyList\").split(',');\r",
@@ -6911,7 +6922,9 @@
 									"    }\r",
 									"    else\r",
 									"    {\r",
-									"        Assert.IsEqual(\"Verify error message\", \"A content item cannot be created with status '\" + requestData.status + \"'.\", pm.response.json().Error.Message);\r",
+									"    // test case: HAPI-821: 4.1. Patch content version in sv by id\r",
+									"    // Edit follow: HAPI-1426\r",
+									"        Assert.IsEqual(\"Verify error message\", \"Cannot transition from status 'Published' to '\" + requestData.status + \"'.\", pm.response.json().Error.Message);\r",
 									"    }\r",
 									"\r",
 									"    if(newStatusCount < availableStatusList.length - 1)\r",
@@ -12898,8 +12911,10 @@
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.contentLink = responseBody.contentLink;\r",
 									"requestBody.language = responseBody.language;\r",
+									"// test case: HAPI-1111 update content version > Preparation - create new content version in sv\r",
 									"// parentLink is null as parent page content doesn't have non master language version\r",
-									"delete requestBody.parentLink;\r",
+									"//delete requestBody.parentLink;\r",
+									"requestBody.parentLink = responseBody.parentLink;\r",
 									"requestBody.existingLanguages = responseBody.existingLanguages;\r",
 									"requestBody.masterLanguage = responseBody.masterLanguage;\r",
 									"requestBody.changed = responseBody.changed;\r",
@@ -12985,7 +13000,8 @@
 									"requestBody.contentLink = responseBody.contentLink;\r",
 									"requestBody.language = responseBody.language;\r",
 									"requestBody.category = responseBody.category;\r",
-									"delete requestBody.parentLink;\r",
+									"//delete requestBody.parentLink;\r",
+									"requestBody.parentLink = responseBody.parentLink;\r",
 									"requestBody.existingLanguages = responseBody.existingLanguages;\r",
 									"requestBody.masterLanguage = responseBody.masterLanguage;\r",
 									"requestBody.changed = responseBody.changed;\r",
@@ -13873,7 +13889,7 @@
 									"// test case: HAPI-1111 for new content items > 14. Invalid - Update DelayedPublished content version without startPublish\r",
 									"// Edit follow: https://jira.sso.episerver.net/browse/HAPI-1496\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"StartPublish must be set when content item is set for scheduled publishing\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"A start publishing date must be set when content item is set for scheduled publishing.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -14207,8 +14223,8 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \\\" + pm.variables.get(\\\"invalidId\\\") + \\\". Path 'ContentLink.id', line 3, position 25.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\\\\\"\\\" + pm.variables.get(\\\"invalidGuid\\\")  + \\\"\\\\\\\" to type 'System.Nullable`1[System.Guid]'. Path 'ContentLink.guidValue', line 4, position 34.\", pm.response.json().Error.Details[1].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \"+ pm.variables.get(\"invalidId\") + \". Path 'ContentLink.id', line 3, position 25.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\")  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'ContentLink.guidValue', line 4, position 34.\", pm.response.json().Error.Details[1].InnerError[0]);\r",
 									"\r",
 									"pm.variables.unset(\"invalidId\");\r",
 									"pm.variables.unset(\"invalidGuid\");"
@@ -14596,8 +14612,8 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \\\" + JSON.parse(request.data).parentLink.id + \\\". Path 'parentLink.id', line 14, position 19.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\\\\\"\\\" + JSON.parse(request.data).parentLink.guidValue  + \\\"\\\\\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 15, position 26\", pm.response.json().Error.Details[1].InnerError[0]);"
+									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \" + JSON.parse(request.data).parentLink.id + \". Path 'parentLink.id', line 14, position 19.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + JSON.parse(request.data).parentLink.guidValue  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 15, position 26.\", pm.response.json().Error.Details[1].InnerError[0]);"
 								],
 								"type": "text/javascript"
 							}
@@ -16493,7 +16509,10 @@
 									"requestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.language = responseBody.language;\r",
-									"delete requestBody.parentLink;\r",
+									"// test case: HAPI-1425 POST: Create new content version in sv with part of properties\r",
+									"//delete requestBody.parentLink;\r",
+									"// Edit follow Ms Minh comment\r",
+									"requestBody.parentLink = responseBody.parentLink;\r",
 									"requestBody.existingLanguages = responseBody.existingLanguages;\r",
 									"requestBody.masterLanguage = responseBody.masterLanguage;\r",
 									"requestBody.changed = responseBody.changed;\r",
@@ -16817,9 +16836,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > 5.2 Invalid - ContentValidation - Create content without required properties\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
 									"response = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify error code\", \"ContentValidation\", response.Error.Code);\r",
+									"Assert.IsEqual(\"Verify error code\", \"InvalidContent\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property 'Unique selling points' is required.\", response.Error.Message);"
 								],
 								"type": "text/javascript"
@@ -16877,9 +16898,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST: 6. Invalid - Create  language content version with invalid contentLink (guid already has language version)\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(409);\r",
-									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link \" + pm.environment.get(\"guidValue\") + \" already exists.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"  + pm.environment.get(\"guidValue\") + \"' and language '\" + JSON.parse(request.data).language.name  + \"' already exists.\" \r",
+									", pm.response.json().Error.Message);\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -16936,9 +16960,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST: Invalid - Create  language content version with invalid contentLink (id already has language version)\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(409);\r",
-									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link \" + pm.environment.get(\"contentId\") + \" already exists.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentId\") + \"' and language '\"+ JSON.parse(request.data).language.name +\"' already exists.\", pm.response.json().Error.Message);\r",
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -16995,8 +17021,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > Invalid - Create content version in sv with non existing parentLink id\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot get parent content\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -17056,11 +17084,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Test case: HAPI-1425 POST new content language version >.2. Invalid - Create content version in sv with invalid parentLink guidValue\r",
-									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\") + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 12, position 59.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -17121,11 +17147,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Test case: HAPI-1425 POST new content language version >Invalid - Create content version in sv with invalid parentLink id\r",
-									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"Could not convert string to integer: invalid. Path 'parentLink.id', line 12, position 23.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidId\");"
 								],
 								"type": "text/javascript"
@@ -17186,8 +17210,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > .3. Invalid - Create content version in sv with non existing parentLink guidValue\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot get parent content\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);\r",
 									"pm.variables.unset(\"nonExistingGuid\");"
 								],
 								"type": "text/javascript"
@@ -17248,8 +17274,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > Invalid - Create content version in sv with non existing parentLink id\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot get parent content\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);\r",
 									"pm.variables.unset(\"nonExistingId\");"
 								],
 								"type": "text/javascript"
@@ -17616,8 +17644,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > 9. Invalid - Create  localizable content version without Language in body\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language should not be null when content type is localizable\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Language should not be null when content type is localizable.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -17854,8 +17884,6 @@
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
-									"// Test case: HAPI-1425 POST new content language version >12. Invalid - Create content version with unallowed status\r",
-									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
@@ -17932,8 +17960,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > 13.1. Invalid - Create IVersionable content version with status null or empty\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Missing status value on IVersionable content\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Content is missing a value for 'status'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -17990,10 +18020,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Test case: HAPI-1425 POST new content language version >13.2 Invalid - Create IVersionable content version with status not in enum\r",
-									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
@@ -18172,11 +18200,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Test case: HAPI-1425 POST new content language version >15. Invalid - Create  content version with invalid startPublish stopPublish\r",
-									"// Edit follow by https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);"
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.stopPublish\", pm.response.json().Error.Details[1].Target);"
 								],
 								"type": "text/javascript"
 							}
@@ -18233,8 +18261,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > 16. Invalid - Create DelayedPublished content version without startPublish\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"StartPublish must be set when content item is set for scheduled publishing\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"A start publishing date must be set when content item is set for scheduled publishing.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -18291,9 +18321,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > 17. Invalid - non localizable content with language in the body\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(409);\r",
-									"\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link \" +pm.environment.get(\"imageId\") + \" already exists.\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"+pm.environment.get(\"imageId\")+\"' and language '\"+JSON.parse(request.data).language.name+\"' already exists.\", pm.response.json().Error.Message);\r",
 									"pm.environment.unset(\"imageId\");"
 								],
 								"type": "text/javascript"
@@ -18328,7 +18359,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"contentLink\": {\r\n        \"id\": 61,\r\n        // test case: HAPI-1425 POST new content language version> 17. Invalid - non localizable content with language in the body\r\n        //Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1473\r\n        //\"workId\": 1361,\r\n        \"providerName\": null,\r\n        \"url\": \"/globalassets/alloy-meet/alloymeet.png\",\r\n        \"expanded\": null\r\n    },\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 60,\r\n        \"workId\": 0,\r\n        \"providerName\": null,\r\n        \"url\": null,\r\n        \"expanded\": null\r\n    },\r\n    \"startPublish\": \"2020-11-17T04:02:58Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"contentLink\": {\r\n        \"id\": 61,\r\n        \"providerName\": null,\r\n        \"url\": \"/globalassets/alloy-meet/alloymeet.png\",\r\n        \"expanded\": null\r\n    },\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 60,\r\n        \"workId\": 0,\r\n        \"providerName\": null,\r\n        \"url\": null,\r\n        \"expanded\": null\r\n    },\r\n    \"startPublish\": \"2020-11-17T04:02:58Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -18351,9 +18382,16 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > 18. Invalid - create content version for non versionable content\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(409);\r",
-									"\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link \" +pm.environment.get(\"parentFolderId\") + \" already exists.\", pm.response.json().Error.Message);"
+									"if(JSON.parse(request.data).language == undefined)\r",
+									"{\r",
+									" pm.environment.set(\"language\", \"\")\r",
+									"}\r",
+									"else\r",
+									"pm.environment.set(\"language\",JSON.parse(request.data).language.name)\r",
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"+pm.environment.get(\"parentFolderId\")+\"' and language '\"+ pm.environment.get(\"language\")+\"' already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -18410,8 +18448,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 POST > 19. Invalid - Create content version with invalid property in body\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Property definition for '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"Property '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
 									"pm.environment.unset(\"invalidProperty\");"
 								],
 								"type": "text/javascript"
@@ -19230,7 +19270,8 @@
 									"requestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.language = responseBody.language;\r",
-									"delete requestBody.parentLink;\r",
+									"//delete requestBody.parentLink;\r",
+									"requestBody.parentLink= responseBody.parentLink;\r",
 									"requestBody.existingLanguages = responseBody.existingLanguages;\r",
 									"requestBody.masterLanguage = responseBody.masterLanguage;\r",
 									"requestBody.changed = responseBody.changed;\r",
@@ -19562,9 +19603,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > Invalid - Create content version in sv with non existing parentLink id\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
 									"response = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify error code\", \"ContentValidation\", response.Error.Code);\r",
+									"Assert.IsEqual(\"Verify error code\", \"InvalidContent\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property 'Unique selling points' is required.\", response.Error.Message);"
 								],
 								"type": "text/javascript"
@@ -19625,11 +19668,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test case: HAPI-1425 PUT new content language version> 5.1. Invalid - Create  language content version with invalid contentLink.id and guidValue\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"An error has occurred.\", pm.response.json().Error.Details[1].InnerError[0]);"
+									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \" + JSON.parse(request.data).contentLink.id + \". Path 'contentLink.id', line 3, position 25.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + JSON.parse(request.data).contentLink.guidValue  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'contentLink.guidValue', line 4, position 26.\", pm.response.json().Error.Details[1].InnerError[0]);"
 								],
 								"type": "text/javascript"
 							}
@@ -20061,8 +20102,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > Invalid - Create content version in sv with non existing parentLink id\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot get parent content\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -20122,11 +20165,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test case: HAPI-1425 PUT new content language version> .2. Invalid - Create content version in sv with invalid parentLink guidValue\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\") + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 12, position 59.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -20187,11 +20228,9 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test case: HAPI-1425 PUT new content language version> Invalid - Create content version in sv with invalid parentLink id\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
 									"responseBody = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"An error has occurred.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify message\", \"Could not convert string to integer: invalid. Path 'parentLink.id', line 12, position 23.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"pm.variables.unset(\"invalidId\");"
 								],
 								"type": "text/javascript"
@@ -20252,8 +20291,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > Invalid - Create content version in sv with non existing parentLink id\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot get parent content\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);\r",
 									"pm.variables.unset(\"nonExistingGuid\");"
 								],
 								"type": "text/javascript"
@@ -20314,8 +20355,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > Invalid - Create content version in sv with non existing parentLink id\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot get parent content\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -20682,8 +20725,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > 8. Invalid - Create  localizable content version without Language in body\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language should not be null when content type is localizable\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Language should not be null when content type is localizable.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -21012,8 +21057,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > 12. Invalid - Create IVersionable content version with status empty\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Missing status value on IVersionable content\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Content is missing a value for 'status'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -21073,8 +21120,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > Invalid - Create IVersionable content version with status null\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Missing status value on IVersionable content\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Content is missing a value for 'status'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -21134,10 +21183,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test case: HAPI-1425 PUT new content language version> Invalid - Create IVersionable content version with status not in enum\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
@@ -21325,11 +21372,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test case: HAPI-1425 PUT new content language version> 15. Invalid - Create  content version with invalid startPublish stopPublish\r",
-									"//Edit flow bug https://jira.sso.episerver.net/browse/HAPI-1427\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"An error has occurred.\"));\r",
-									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);"
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);\r",
+									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
+									"Assert.IsEqual(\"Verify Target\", \"content.stopPublish\", pm.response.json().Error.Details[1].Target);"
 								],
 								"type": "text/javascript"
 							}
@@ -21389,8 +21436,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > 16. Invalid - Create DelayedPublished content version without startPublish\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"StartPublish must be set when content item is set for scheduled publishing\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"A start publishing date must be set when content item is set for scheduled publishing.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -21500,9 +21549,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > Invalid - Create non localizable content with language in the body\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
 									"pm.environment.unset(\"imageId\");\r",
 									"pm.environment.unset(\"imageGuid\");"
 								],
@@ -21564,9 +21615,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > 18. Invalid - create content version for non versionable content\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
 									"\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -21626,8 +21679,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// test case: HAPI-1425 PUT > 19. Invalid - Create content version with invalid property in body\r",
+									"// Edit follow: HAPI-1426\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Property definition for '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"Property '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
 									"pm.environment.unset(\"invalidProperty\");"
 								],
 								"type": "text/javascript"
