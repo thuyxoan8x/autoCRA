@@ -6,7 +6,7 @@
 	},
 	"item": [
 		{
-			"name": "HAPI-710 ContentManagement API - Rest API to create tabs groups",
+			"name": "HAPI-710 Property Group",
 			"item": [
 				{
 					"name": "Create Property Group",
@@ -12971,6 +12971,9 @@
 				"exec": [
 					"console.log(\"===== \" + request.name + \" =====\");    //Write test name",
 					"",
+					"/////////////////////////////////////////////////////",
+					"// This method is to generate a random string with specific length",
+					"/////////////////////////////////////////////////////",
 					"getRandomString = (length) => {",
 					"    var randomChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';",
 					"    var result = 'a';",
@@ -12980,6 +12983,9 @@
 					"    return result;",
 					"}",
 					"",
+					"/////////////////////////////////////////////////////",
+					"// This method is to generate a random string includes special characters with specific length",
+					"/////////////////////////////////////////////////////",
 					"getRandomStringIncludeSpecialCharacter = (length) => {",
 					"    var randomChars = ' ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789~`!@#$%^&*()-_+=[]{}\\|:;\\',./<>?';",
 					"    var result = 'a';",
@@ -13153,24 +13159,6 @@
 					"}"
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "PropertyGroupEndpoint",
-			"value": "api/episerver/v2.0/propertygroups"
-		},
-		{
-			"key": "PropertyGroupEndpoint_ContentType",
-			"value": "api/episerver/v2.0/contenttypes"
-		},
-		{
-			"key": "testContainerPageId",
-			"value": "1189"
-		},
-		{
-			"key": "contentManagementEndpoint",
-			"value": "/api/episerver/v2.0/contentmanagement"
 		}
 	]
 }
