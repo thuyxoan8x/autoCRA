@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2935a883-1a8f-4e42-a51b-0524fdee5caf",
+		"_postman_id": "f3a65a8b-427d-4dc0-89dc-47f574b27b6e",
 		"name": "HAPI - Basic Content Management Non Flatten - Cookie",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -15,9 +15,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"parentGuid\", guid);"
+									"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -67,8 +65,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"parentFolderId\", responseData.contentLink.id);"
+									"pm.environment.set(\"parentFolderId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -347,8 +344,7 @@
 							"script": {
 								"exec": [
 									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"deleteContentId\", responseData.contentLink.id);\r",
-									""
+									"pm.environment.set(\"deleteContentId\", responseData.contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -1318,8 +1314,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"responseData = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"The content item is already in the recycle bin. Deleting it would meant that it would be permanently deleted.\", responseData.Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"The content item is already in the recycle bin. Deleting it would meant that it would be permanently deleted.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -1373,8 +1368,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"responseData = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"The content item is already in the recycle bin. Deleting it would meant that it would be permanently deleted.\", responseData.Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"The content item is already in the recycle bin. Deleting it would meant that it would be permanently deleted.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -2026,9 +2020,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"parentGuid\", guid);"
+									"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -2085,8 +2077,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"parentFolderId\", responseData.contentLink.id);"
+									"pm.environment.set(\"parentFolderId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -2576,6 +2567,7 @@
 									"Assert.IsEqual(\"Verify Target\", \"content.startPublish\", pm.response.json().Error.Details[0].Target);\r",
 									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[1].InnerError[0].startsWith(\"Could not convert string to DateTimeOffset:\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.stopPublish\", pm.response.json().Error.Details[1].Target);\r",
+									"\r",
 									"// Process to loop\r",
 									"pageBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
@@ -2924,11 +2916,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"verifyResponseCode(400);\r",
+									"\r",
 									"contentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
-									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[count] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
@@ -3079,11 +3072,11 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
-									"if(requestBody.language.name === \"\")\r",
+									"languageName = SortJson(JSON.parse(request.data)).language.name;\r",
+									"if(languageName === \"\")\r",
 									"    Assert.IsEqual(\"Verify InnerError\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"else\r",
-									"    Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + requestBody.language.name +\"' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"    Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + languageName +\"' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -3160,9 +3153,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + requestBody.language.name + \"' is not enabled in CMS.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + SortJson(JSON.parse(request.data)).language.name + \"' is not enabled in CMS.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -3378,14 +3369,15 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"if(JSON.parse(request.data).language == undefined)\r",
-									"{\r",
-									"    pm.environment.set(\"language\", \"\")\r",
-									"}\r",
-									"else\r",
-									"    pm.environment.set(\"language\",JSON.parse(request.data).language.name)\r",
 									"\r",
-									"Assert.IsEqual(\"Verify Message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentGuid\") + \"' and language '\"+ pm.environment.get(\"language\") +\"' already exists.\", pm.response.json().Error.Message);\r",
+									"if(JSON.parse(request.data).language == undefined)\r",
+									"    pm.environment.set(\"language\", \"\");\r",
+									"else\r",
+									"    pm.environment.set(\"language\",JSON.parse(request.data).language.name);\r",
+									"\r",
+									"Assert.IsEqual(\"Verify Message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentGuid\") + \"' and language '\" + pm.environment.get(\"language\") + \"' already exists.\", pm.response.json().Error.Message);\r",
+									"\r",
+									"pm.environment.unset(\"language\");\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -3727,6 +3719,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify Message\", \"Content type \\\"StartPage\\\" is not allowed to be created under parent of content type \\\"StandardPage\\\"\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"standardPageGuid\");"
 								],
 								"type": "text/javascript"
@@ -3788,6 +3781,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
@@ -3866,7 +3860,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsTrue(\"Verify inner error message\", pm.response.json().Error.Details[0].InnerError[0].includes(\"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'.\"));"
 								],
 								"type": "text/javascript"
@@ -3925,6 +3918,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
@@ -4035,7 +4029,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\t\t\"ContentLink\": {},\r\n\t\t\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\t\t\"Language\": {\r\n\t\t\t\t\"Name\": \"en\"\r\n\t\t\t},\r\n\t\t\t\"ContentType\": [\r\n\t\t\t\t\"Page\",\r\n\t\t\t\t\"ProductPage\"\r\n\t\t\t],\r\n\t\t\t\"ParentLink\": {\r\n\t\t\t\t\"GuidValue\": \"{{parentGuid}}\"\r\n\t\t\t},\r\n\t\t\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\t\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\t\t\"StopPublish\": null,\r\n\t\t\t\"Status\": \"CheckedOut\",\r\n\t\t\t\"MetaTitle\": {\r\n\t\t\t\t\"Value\": \"Alloy Plan, online project management\",\r\n\t\t\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t\t\t}\r\n\t\t}",
+							"raw": "{\r\n\t\"ContentLink\": {},\r\n\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\"Language\": {\r\n\t\t\"Name\": \"en\"\r\n\t},\r\n\t\"ContentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"ParentLink\": {\r\n\t\t\"GuidValue\": \"{{parentGuid}}\"\r\n\t},\r\n\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"StopPublish\": null,\r\n\t\"Status\": \"CheckedOut\",\r\n\t\"MetaTitle\": {\r\n\t\t\"Value\": \"Alloy Plan, online project management\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -4233,8 +4227,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"parentGuid\", responseData.contentLink.guidValue);"
+									"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -4291,8 +4284,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"parentFolderId\", responseData.contentLink.id);"
+									"pm.environment.set(\"parentFolderId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -4883,9 +4875,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(404);\r",
-									"\r",
 									"responseData = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"NotFound\", responseData.Error.Message);\r",
 									"\r",
 									"pm.variables.unset(\"nonExistedGuid\");"
 								],
@@ -4962,6 +4952,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify Message\", \"'\" + pm.variables.get(\"invalidGuid\") + \"' is incorrect format.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -4971,8 +4962,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.variables.set(\"invalidGuid\", \"21z13b4e-f716-4ff8-b693-03b175d19abc\");\r",
-									""
+									"pm.variables.set(\"invalidGuid\", \"21z13b4e-f716-4ff8-b693-03b175d19abc\");"
 								],
 								"type": "text/javascript"
 							}
@@ -5036,9 +5026,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(404);\r",
-									"\r",
-									"responseData = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"NotFound\", responseData.Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"NotFound\", pm.response.json().Error.Message);\r",
 									"\r",
 									"pm.variables.unset(\"nonExistedParentContentGuid\");\r",
 									"pm.variables.unset(\"nonExistedGuid\");"
@@ -5051,8 +5039,7 @@
 							"script": {
 								"exec": [
 									"pm.variables.set(\"nonExistedGuid\", \"79aa6008-8431-4af9-952f-18f2a92973f2\");\r",
-									"pm.variables.set(\"nonExistedParentContentGuid\", \"79aabb08-8431-4af9-952f-18f2a92973f2\");\r",
-									""
+									"pm.variables.set(\"nonExistedParentContentGuid\", \"79aabb08-8431-4af9-952f-18f2a92973f2\");"
 								],
 								"type": "text/javascript"
 							}
@@ -5116,12 +5103,9 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(404);\r",
+									"Assert.IsEqual(\"Verify message\", \"NotFound\", pm.response.json().Error.Message);\r",
 									"\r",
-									"responseData = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"NotFound\", responseData.Error.Message);\r",
-									"\r",
-									"pm.variables.unset(\"nonExistedParentContentGuid\")\r",
-									""
+									"pm.variables.unset(\"nonExistedParentContentGuid\")"
 								],
 								"type": "text/javascript"
 							}
@@ -5130,8 +5114,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.variables.set(\"nonExistedParentContentGuid\", \"79aabb08-8431-4af9-952f-18f2a92973f2\");\r",
-									""
+									"pm.variables.set(\"nonExistedParentContentGuid\", \"79aabb08-8431-4af9-952f-18f2a92973f2\");"
 								],
 								"type": "text/javascript"
 							}
@@ -5197,8 +5180,10 @@
 									"verifyResponseCode(400);\r",
 									"\r",
 									"responseData = pm.response.json();\r",
+									"\r",
 									"Assert.IsTrue(\"Verify InnerError\", responseData.Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"moveOptions.parentLink.guidValue\", responseData.Error.Details[0].Target);\r",
+									"\r",
 									"pm.variables.unset(\"invalidParentContentGuid\")"
 								],
 								"type": "text/javascript"
@@ -5208,8 +5193,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.variables.set(\"invalidParentContentGuid\", \"216z3b4e-f716-4ff8-b693-03b175d19abc\");\r",
-									""
+									"pm.variables.set(\"invalidParentContentGuid\", \"216z3b4e-f716-4ff8-b693-03b175d19abc\");"
 								],
 								"type": "text/javascript"
 							}
@@ -5441,9 +5425,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"parentGuid\", guid);"
+									"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -5500,8 +5482,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"parentFolderId\", responseData.contentLink.id);"
+									"pm.environment.set(\"parentFolderId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -6244,7 +6225,7 @@
 									"\r",
 									"responseData = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"originalRequestData\");\r",
-									"// update Saved and Changed info\r",
+									"// update Saved info\r",
 									"expectedData.saved = responseData.saved;\r",
 									"\r",
 									"// update guid value\r",
@@ -6375,7 +6356,7 @@
 									"\r",
 									"responseData = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"originalRequestData\");\r",
-									"// update Saved and Changed info\r",
+									"// update Saved info\r",
 									"expectedData.saved = responseData.saved;\r",
 									"\r",
 									"// update guid value\r",
@@ -6736,9 +6717,7 @@
 								"exec": [
 									"verifyResponseCode(201);\r",
 									"\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
 									"responseBody = pm.response.json();\r",
-									"\r",
 									"pm.environment.set(\"contentId\", responseBody.contentLink.id);\r",
 									"pm.environment.set(\"contentGuid\", responseBody.contentLink.guidValue);"
 								],
@@ -7028,7 +7007,7 @@
 									"statusCount = parseInt(pm.variables.get(\"statusCount\"));\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
-									"// update Saved and Changed info\r",
+									"// update Saved info\r",
 									"expectedData.saved = responseData.saved;\r",
 									"// update properties related to url/link\r",
 									"if(contentBodyList[count] === \"jsonPageBody\")\r",
@@ -7036,10 +7015,8 @@
 									"    expectedData.contentLink.url = responseData.contentLink.url;\r",
 									"    expectedData.language.link = responseData.language.link;\r",
 									"    expectedData.existingLanguages[1].link = responseData.existingLanguages[1].link;\r",
-									"    //if(responseData.url !== undefined)\r",
-									"        expectedData.url = responseData.url;\r",
-									"    //if(responseData.relatedContentArea !== undefined)\r",
-									"        delete responseData.relatedContentArea.value[0].contentLink.guidValue;\r",
+									"    expectedData.url = responseData.url;\r",
+									"    delete responseData.relatedContentArea.value[0].contentLink.guidValue;\r",
 									"}\r",
 									"else\r",
 									"{\r",
@@ -7208,10 +7185,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"verifyResponseCode(204);\r",
+									"\r",
 									"requestData = JSON.parse(request.data);\r",
 									"originalRequestData = pm.environment.get(\"originalRequestData\");\r",
-									"\r",
-									"verifyResponseCode(204);\r",
 									"\r",
 									"// add other field e.g metadata to requestData to compare in next step\r",
 									"originalRequestData.name = requestData.name;\r",
@@ -7343,7 +7320,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify inner error message\",  \"Language cannot be set when content type is not localizable\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -7522,10 +7498,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"verifyResponseCode(400);\r",
+									"\r",
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
-									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify Target\", \"patch.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
@@ -7604,6 +7581,7 @@
 									"verifyResponseCode(400);\r",
 									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"patch.status\", pm.response.json().Error.Details[0].Target);\r",
+									"\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -7666,6 +7644,7 @@
 								"exec": [
 									"verifyResponseCode(404);\r",
 									"Assert.IsEqual(\"Verify message\", \"The content with id (\"+ pm.environment.get(\"invalidContentId\") +\") does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidContentId\");"
 								],
 								"type": "text/javascript"
@@ -7728,6 +7707,7 @@
 								"exec": [
 									"verifyResponseCode(404);\r",
 									"Assert.IsEqual(\"Verify message\", \"The content with id (\"+ pm.environment.get(\"invalidContentId\") +\") does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidContentId\");"
 								],
 								"type": "text/javascript"
@@ -7790,6 +7770,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"'\"+ pm.environment.get(\"invalidContentId\") +\"' is incorrect format.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidContentId\");"
 								],
 								"type": "text/javascript"
@@ -8400,7 +8381,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify inner error message\", \"'Name' has exceeded its limit of 255 characters.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
 									"pm.environment.unset(\"longName\");"
@@ -8529,6 +8509,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidProperty\");"
 								],
 								"type": "text/javascript"
@@ -8652,6 +8633,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify Message\", \"Action RequestApproval requires that an approval definition is defined\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"unAllowedStatus\");"
 								],
 								"type": "text/javascript"
@@ -8892,9 +8874,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"parentGuid\", guid);"
+									"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -8951,8 +8931,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"parentFolderId\", responseData.contentLink.id);"
+									"pm.environment.set(\"parentFolderId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -9061,10 +9040,7 @@
 									"statusCount = parseInt(pm.variables.get(\"statusCount\"));\r",
 									"pm.environment.set(\"contentStatus\", availableStatusList[statusCount]);\r",
 									"\r",
-									"//uuid = require(\"uuid\");\r",
-									"\r",
 									"var body = data[contentBodyList[count]];\r",
-									"//body.contentLink.guidValue = uuid.v4();\r",
 									"if(contentBodyList[count] !== \"jsonLocalFolderBody\")\r",
 									"{\r",
 									"    body.status = availableStatusList[statusCount];\r",
@@ -9128,8 +9104,11 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
+									"\r",
+									"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);\r",
 									"\r",
 									"// Process to loop\r",
 									"contentBodyList = pm.variables.get(\"contentBodyList\").split(',');\r",
@@ -9820,11 +9799,12 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"verifyResponseCode(400);\r",
+									"\r",
 									"contentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
-									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[count] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
@@ -9981,7 +9961,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
+									"requestBody = JSON.parse(request.data);\r",
 									"if(requestBody.language.name === \"\")\r",
 									"    Assert.IsEqual(\"Verify InnerError\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"else\r",
@@ -10065,9 +10045,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
-									"Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + requestBody.language.name + \"' is not enabled in CMS.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + SortJson(JSON.parse(request.data)).language.name + \"' is not enabled in CMS.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -10512,9 +10490,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"standardPageGuid\", guid);"
+									"pm.environment.set(\"standardPageGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -10564,6 +10540,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify Message\", \"Content type \\\"StartPage\\\" is not allowed to be created under parent of content type \\\"StandardPage\\\"\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"standardPageGuid\");"
 								],
 								"type": "text/javascript"
@@ -10628,6 +10605,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
@@ -10709,7 +10687,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Inner Error message\", \"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'. Path 'PageImage', line 52, position 2.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify target\", \"content.PageImage\", pm.response.json().Error.Details[0].Target);"
 								],
@@ -10772,6 +10749,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
@@ -10885,7 +10863,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\t\t\"ContentLink\": {},\r\n\t\t\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\t\t\"Language\": {\r\n\t\t\t\t\"Name\": \"en\"\r\n\t\t\t},\r\n\t\t\t\"ContentType\": [\r\n\t\t\t\t\"Page\",\r\n\t\t\t\t\"ProductPage\"\r\n\t\t\t],\r\n\t\t\t\"ParentLink\": {\r\n\t\t\t\t\"GuidValue\": \"{{parentGuid}}\"\r\n\t\t\t},\r\n\t\t\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\t\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\t\t\"StopPublish\": null,\r\n\t\t\t\"Status\": \"CheckedOut\",\r\n\t\t\t\"MetaTitle\": {\r\n\t\t\t\t\"Value\": \"Alloy Plan, online project management\",\r\n\t\t\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t\t\t}\r\n\t\t}",
+							"raw": "{\r\n\t\"ContentLink\": {},\r\n\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\"Language\": {\r\n\t\t\"Name\": \"en\"\r\n\t},\r\n\t\"ContentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"ParentLink\": {\r\n\t\t\"GuidValue\": \"{{parentGuid}}\"\r\n\t},\r\n\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"StopPublish\": null,\r\n\t\"Status\": \"CheckedOut\",\r\n\t\"MetaTitle\": {\r\n\t\t\"Value\": \"Alloy Plan, online project management\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -11034,6 +11012,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(201);\r",
+									"\r",
 									"expectedContentLink = {\r",
 									"                    \"id\": 0,\r",
 									"                    \"workId\": 0,\r",
@@ -11042,6 +11021,7 @@
 									"                    \"url\": null,\r",
 									"                    \"expanded\": null\r",
 									"                };\r",
+									"\r",
 									"Assert.IsEqual(\"Verify Content Area value\", expectedContentLink, pm.response.json().contentAreaProp.value[0].contentLink);"
 								],
 								"type": "text/javascript"
@@ -11226,6 +11206,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(201);\r",
+									"\r",
 									"expectedContentLink = {\r",
 									"\t\t\t\t\t\"id\": 6,\r",
 									"\t\t\t\t\t\"workId\": 0,\r",
@@ -11233,9 +11214,9 @@
 									"\t\t\t\t\t\"url\": \"/en/alloy-plan/\",\r",
 									"\t\t\t\t\t\"expanded\": null\r",
 									"\t\t\t\t};\r",
-									"\r",
 									"responseBody = pm.response.json();\r",
 									"delete responseBody.linkItemCollectionProp.value[0].contentLink.guidValue;\r",
+									"\r",
 									"Assert.IsEqual(\"Verify Link Item Collection contentLink value\", expectedContentLink, responseBody.linkItemCollectionProp.value[0].contentLink);"
 								],
 								"type": "text/javascript"
@@ -11708,7 +11689,6 @@
 									"requestBody = SortJson(JSON.parse(request.data));\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
-									"// Update new contentLink.workId\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
 									"Assert.IsEqual(\"Check contentType\", originalRequestBody.contentType, responseBody.contentType);\r",
@@ -11761,7 +11741,6 @@
 									"\r",
 									"var body = data[contentBodyList[count]];\r",
 									"body.status = availableStatusList[newStatusCount];\r",
-									"//body.contentLink.id = pm.environment.get(\"contentId\");\r",
 									"if(body.contentType[0] == \"Page\")\r",
 									"    body.parentLink.id = pm.environment.get(\"parentId\");\r",
 									"else\r",
@@ -11975,7 +11954,9 @@
 									"    requestBody.url = responseBody.url;\r",
 									"\r",
 									"requestBody = SortJson(requestBody);\r",
+									"\r",
 									"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+									"\r",
 									"pm.environment.unset(\"mediaGuidValue\");\r",
 									"pm.environment.unset(\"mediaParentId\");\r",
 									"pm.environment.unset(\"mediaId\");"
@@ -12192,7 +12173,6 @@
 									"requestBody = SortJson(JSON.parse(request.data));\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
-									"// Update new contentLink.workId\r",
 									"originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
@@ -12236,6 +12216,7 @@
 									"requestBody = SortJson(requestBody);\r",
 									"\r",
 									"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+									"\r",
 									"pm.environment.set(\"requestData\", requestBody);"
 								],
 								"type": "text/javascript"
@@ -12306,6 +12287,7 @@
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
 									"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);\r",
+									"\r",
 									"pm.environment.unset(\"requestData\");"
 								],
 								"type": "text/javascript"
@@ -12539,6 +12521,7 @@
 									"if(requestBody.status === \"Published\" && pm.environment.get(\"contentStatus\") !== \"Published\")\r",
 									"{\r",
 									"    verifyResponseCode(400);\r",
+									"\r",
 									"    if(requestBody.contentType[0] === \"Page\")\r",
 									"        Assert.IsEqual(\"Verify message\", \"The original language (en) for this product has not yet been published. The original language must be published before the product can be published in other languages.\", pm.response.json().Error.Message)\r",
 									"    else\r",
@@ -12568,7 +12551,7 @@
 									"{\r",
 									"    verifyResponseCode(200);\r",
 									"\r",
-									"    // Update new contentLink.workId and url\r",
+									"    // Update new contentLink.url\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        svContentData.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -12774,9 +12757,7 @@
 								"exec": [
 									"verifyResponseCode(201);\r",
 									"\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
 									"responseBody = pm.response.json();\r",
-									"\r",
 									"pm.environment.set(\"contentId\", responseBody.contentLink.id);\r",
 									"pm.environment.set(\"contentGuid\", responseBody.contentLink.guidValue);"
 								],
@@ -12836,11 +12817,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"requestBody = SortJson(JSON.parse(request.data));\r",
-									"originalRequestBody = pm.environment.get(\"requestData\");\r",
-									"responseBody = SortJson(pm.response.json());\r",
-									"\r",
 									"verifyResponseCode(201);\r",
+									"\r",
+									"requestBody = SortJson(JSON.parse(request.data));\r",
+									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
 									"// update some added properties from response to request (for assertion and next step)\r",
 									"requestBody.category = responseBody.category;\r",
@@ -12858,6 +12838,7 @@
 									"requestBody = SortJson(requestBody);\r",
 									"\r",
 									"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+									"\r",
 									"pm.environment.set(\"requestData\", requestBody);"
 								],
 								"type": "text/javascript"
@@ -12952,6 +12933,7 @@
 									"requestBody = SortJson(requestBody);\r",
 									"\r",
 									"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+									"\r",
 									"pm.environment.set(\"requestData\", requestBody);"
 								],
 								"type": "text/javascript"
@@ -13017,10 +12999,12 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
 									"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);\r",
+									"\r",
 									"pm.environment.unset(\"requestData\");"
 								],
 								"type": "text/javascript"
@@ -13259,7 +13243,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The Language 'Invalid' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -13321,7 +13304,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -13383,7 +13365,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The Language 'fr' is not enabled in CMS.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -13495,8 +13476,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"imageId\");\r",
 									"pm.environment.unset(\"imageGuid\");"
 								],
@@ -13559,7 +13540,9 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"response = pm.response.json();\r",
+									"\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidModel\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify inner error\", \"The Name field is required.\", response.Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify inner error\", \"The ParentLink field is required.\", response.Error.Details[1].InnerError[0]);"
@@ -13623,7 +13606,9 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"response = pm.response.json();\r",
+									"\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidContent\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property 'Unique selling points' is required.\", response.Error.Message);"
 								],
@@ -13686,7 +13671,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify inner error message\", \"'Name' has exceeded its limit of 255 characters.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
 									"pm.environment.unset(\"longName\");"
@@ -13876,6 +13860,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Content is missing a value for 'status'.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidContentId\");"
 								],
 								"type": "text/javascript"
@@ -13939,6 +13924,7 @@
 									"verifyResponseCode(400);\r",
 									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
+									"\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -13999,10 +13985,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"verifyResponseCode(400);\r",
+									"\r",
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
-									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
@@ -14080,6 +14067,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidProperty\");"
 								],
 								"type": "text/javascript"
@@ -14141,7 +14129,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \"+ pm.variables.get(\"invalidId\") + \". Path 'ContentLink.id', line 3, position 25.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\")  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'ContentLink.guidValue', line 4, position 34.\", pm.response.json().Error.Details[1].InnerError[0]);\r",
 									"\r",
@@ -14209,7 +14196,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"The guid value '\" + JSON.parse(request.data).contentLink.guidValue + \"' on the provided content does not match the resource location and cannot be changed.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14272,7 +14258,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has an identifier '\" + pm.variables.get(\"invalidId\") + \"' that does not match the content with the unique identifier '\" + pm.variables.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"pm.variables.unset(\"invalidId\");"
@@ -14337,7 +14322,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has an identifier '\" + JSON.parse(request.data).contentLink.id + \"' that does not match the content with the unique identifier '\" + pm.environment.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14400,7 +14384,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"The guid value '\" + JSON.parse(request.data).contentLink.guidValue + \"' on the provided content does not match the resource location and cannot be changed.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14463,7 +14446,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify error\", \"A content item with the same identifier and a different parent already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14526,7 +14508,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"Could not convert string to integer: \" + JSON.parse(request.data).parentLink.id + \". Path 'parentLink.id', line 14, position 19.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"Error converting value \\\"\" + JSON.parse(request.data).parentLink.guidValue  + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 15, position 26.\", pm.response.json().Error.Details[1].InnerError[0]);"
 								],
@@ -14590,7 +14571,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '\" + JSON.parse(request.data).parentLink.id  + \"' that does not match the content with unique identifier '\" + JSON.parse(request.data).parentLink.guidValue + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14653,7 +14633,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"A content item with the same identifier and a different parent already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14716,7 +14695,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"A content item with the same identifier and a different parent already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14779,7 +14757,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"A content item with the same identifier and a different parent already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14843,8 +14820,8 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"\r",
-									"requestBody = JSON.parse(request.data);\r",
-									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has a unique identifier '\" + requestBody.parentLink.guidValue + \"' that does not match the content with id '\" + requestBody.parentLink.id + \"'.\", pm.response.json().Error.Message);"
+									"parentLink = JSON.parse(request.data).parentLink;\r",
+									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has a unique identifier '\" + parentLink.guidValue + \"' that does not match the content with id '\" + parentLink.id + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -14906,7 +14883,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"requestBody = JSON.parse(request.data);\r",
 									"Assert.IsEqual(\"Verify Error\", \"Content type 'invalidContentType' does not exist.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -14969,7 +14945,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"A content item with the same id and a different content type already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -15033,6 +15008,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify Message\", \"Action RequestApproval requires that an approval definition is defined\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"unAllowedStatus\");"
 								],
 								"type": "text/javascript"
@@ -15094,7 +15070,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(405);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The requested resource does not support http method 'PUT'.\", pm.response.json().Message);"
 								],
 								"type": "text/javascript"
@@ -15156,8 +15131,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(405);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The requested resource does not support http method 'PUT'.\", pm.response.json().Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -15219,7 +15194,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(405);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The requested resource does not support http method 'PUT'.\", pm.response.json().Message);"
 								],
 								"type": "text/javascript"
@@ -15278,8 +15252,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
-									"Assert.IsEqual(\"Verify message\", \"The guid value '\" + requestBody.contentLink.guidValue + \"' on the provided content does not match the resource location and cannot be changed.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"The guid value '\" + JSON.parse(request.data).contentLink.guidValue + \"' on the provided content does not match the resource location and cannot be changed.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -15313,7 +15286,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"ContentLink\": {\r\n        \"guidValue\": \"{{contentGuid}}\"\r\n    },\r\n\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"ContentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"ParentLink\": {\r\n\t\t\"id\": \"{{parentId}}\"\r\n\t},\r\n\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"StopPublish\": null,\r\n\t\"status\": \"CheckedOut\",\r\n\t\"Category\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"Id\": 3,\r\n\t\t\t\t\"Name\": \"Plan\",\r\n\t\t\t\t\"Description\": \"New Product Page {{$randomInt}}\"\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyCategory\"\r\n\t},\r\n\t\"MetaTitle\": {\r\n\t\t\"Value\": \"Alloy Plan, New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"PageImage\": {\r\n\t\t\"Value\": {\r\n\t\t\t\"Id\": 43,\r\n\t\t\t\"WorkId\": 0,\r\n\t\t\t\"ProviderName\": null,\r\n\t\t\t\"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r\n\t\t\t\"Expanded\": null\r\n\t\t},\r\n\t\t\"PropertyDataType\": \"PropertyContentReference\"\r\n\t},\r\n\t\"TeaserText\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteHeader\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"MetaDescription\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteFooter\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"UniqueSellingPoints\": {\r\n\t\t\"Value\": [\r\n\t\t\t\"New Product Page {{$randomInt}}\",\r\n\t\t\t\"Reporting and statistics\",\r\n\t\t\t\"Email handling of tasks\",\r\n\t\t\t\"Risk calculations\",\r\n\t\t\t\"Direct communication to members\"\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyStringList\"\r\n\t},\r\n\t\"MainBody\": {\r\n\t\t\"Value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n\t\t\"PropertyDataType\": \"PropertyXhtmlString\"\r\n\t},\r\n\t\"MainContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 46,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"RelatedContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 47,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"DisableIndexing\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t}\r\n}",
+							"raw": "{\r\n\t\"contentLink\": {\r\n        \"guidValue\": \"{{contentGuid}}\"\r\n    },\r\n\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"ContentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"ParentLink\": {\r\n\t\t\"id\": \"{{parentId}}\"\r\n\t},\r\n\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"StopPublish\": null,\r\n\t\"status\": \"CheckedOut\",\r\n\t\"Category\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"Id\": 3,\r\n\t\t\t\t\"Name\": \"Plan\",\r\n\t\t\t\t\"Description\": \"New Product Page {{$randomInt}}\"\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyCategory\"\r\n\t},\r\n\t\"MetaTitle\": {\r\n\t\t\"Value\": \"Alloy Plan, New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"PageImage\": {\r\n\t\t\"Value\": {\r\n\t\t\t\"Id\": 43,\r\n\t\t\t\"WorkId\": 0,\r\n\t\t\t\"ProviderName\": null,\r\n\t\t\t\"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r\n\t\t\t\"Expanded\": null\r\n\t\t},\r\n\t\t\"PropertyDataType\": \"PropertyContentReference\"\r\n\t},\r\n\t\"TeaserText\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteHeader\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"MetaDescription\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteFooter\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"UniqueSellingPoints\": {\r\n\t\t\"Value\": [\r\n\t\t\t\"New Product Page {{$randomInt}}\",\r\n\t\t\t\"Reporting and statistics\",\r\n\t\t\t\"Email handling of tasks\",\r\n\t\t\t\"Risk calculations\",\r\n\t\t\t\"Direct communication to members\"\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyStringList\"\r\n\t},\r\n\t\"MainBody\": {\r\n\t\t\"Value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n\t\t\"PropertyDataType\": \"PropertyXhtmlString\"\r\n\t},\r\n\t\"MainContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 46,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"RelatedContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 47,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"DisableIndexing\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -15340,8 +15313,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"requestBody = SortJson(JSON.parse(request.data));\r",
-									"Assert.IsEqual(\"Verify message\", \"The guid value '\" + requestBody.contentLink.guidValue + \"' on the provided content does not match the resource location and cannot be changed.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"The guid value '\" + JSON.parse(request.data).contentLink.guidValue + \"' on the provided content does not match the resource location and cannot be changed.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -15375,7 +15347,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"ContentLink\": {\r\n        \"guidValue\": \"{{$guid}}\"\r\n    },\r\n\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"ContentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"ParentLink\": {\r\n\t\t\"id\": \"{{parentId}}\"\r\n\t},\r\n\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"StopPublish\": null,\r\n\t\"status\": \"CheckedOut\",\r\n\t\"Category\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"Id\": 3,\r\n\t\t\t\t\"Name\": \"Plan\",\r\n\t\t\t\t\"Description\": \"New Product Page {{$randomInt}}\"\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyCategory\"\r\n\t},\r\n\t\"MetaTitle\": {\r\n\t\t\"Value\": \"Alloy Plan, New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"PageImage\": {\r\n\t\t\"Value\": {\r\n\t\t\t\"Id\": 43,\r\n\t\t\t\"WorkId\": 0,\r\n\t\t\t\"ProviderName\": null,\r\n\t\t\t\"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r\n\t\t\t\"Expanded\": null\r\n\t\t},\r\n\t\t\"PropertyDataType\": \"PropertyContentReference\"\r\n\t},\r\n\t\"TeaserText\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteHeader\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"MetaDescription\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteFooter\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"UniqueSellingPoints\": {\r\n\t\t\"Value\": [\r\n\t\t\t\"New Product Page {{$randomInt}}\",\r\n\t\t\t\"Reporting and statistics\",\r\n\t\t\t\"Email handling of tasks\",\r\n\t\t\t\"Risk calculations\",\r\n\t\t\t\"Direct communication to members\"\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyStringList\"\r\n\t},\r\n\t\"MainBody\": {\r\n\t\t\"Value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n\t\t\"PropertyDataType\": \"PropertyXhtmlString\"\r\n\t},\r\n\t\"MainContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 46,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"RelatedContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 47,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"DisableIndexing\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t}\r\n}",
+							"raw": "{\r\n\t\"contentLink\": {\r\n        \"guidValue\": \"{{$guid}}\"\r\n    },\r\n\t\"Name\": \"New Product Page {{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"ContentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"ParentLink\": {\r\n\t\t\"id\": \"{{parentId}}\"\r\n\t},\r\n\t\"RouteSegment\": \"new-Product-page-{{$randomInt}}\",\r\n\t\"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"StopPublish\": null,\r\n\t\"status\": \"CheckedOut\",\r\n\t\"Category\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"Id\": 3,\r\n\t\t\t\t\"Name\": \"Plan\",\r\n\t\t\t\t\"Description\": \"New Product Page {{$randomInt}}\"\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyCategory\"\r\n\t},\r\n\t\"MetaTitle\": {\r\n\t\t\"Value\": \"Alloy Plan, New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"PageImage\": {\r\n\t\t\"Value\": {\r\n\t\t\t\"Id\": 43,\r\n\t\t\t\"WorkId\": 0,\r\n\t\t\t\"ProviderName\": null,\r\n\t\t\t\"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r\n\t\t\t\"Expanded\": null\r\n\t\t},\r\n\t\t\"PropertyDataType\": \"PropertyContentReference\"\r\n\t},\r\n\t\"TeaserText\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}}\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteHeader\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"MetaDescription\": {\r\n\t\t\"Value\": \"New Product Page {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n\t\t\"PropertyDataType\": \"PropertyLongString\"\r\n\t},\r\n\t\"HideSiteFooter\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t},\r\n\t\"UniqueSellingPoints\": {\r\n\t\t\"Value\": [\r\n\t\t\t\"New Product Page {{$randomInt}}\",\r\n\t\t\t\"Reporting and statistics\",\r\n\t\t\t\"Email handling of tasks\",\r\n\t\t\t\"Risk calculations\",\r\n\t\t\t\"Direct communication to members\"\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyStringList\"\r\n\t},\r\n\t\"MainBody\": {\r\n\t\t\"Value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n\t\t\"PropertyDataType\": \"PropertyXhtmlString\"\r\n\t},\r\n\t\"MainContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 46,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"RelatedContentArea\": {\r\n\t\t\"Value\": [\r\n\t\t\t{\r\n\t\t\t\t\"DisplayOption\": \"\",\r\n\t\t\t\t\"Tag\": null,\r\n\t\t\t\t\"ContentLink\": {\r\n\t\t\t\t\t\"Id\": 47,\r\n\t\t\t\t\t\"WorkId\": 0,\r\n\t\t\t\t\t\"ProviderName\": null,\r\n\t\t\t\t\t\"Url\": null,\r\n\t\t\t\t\t\"Expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t],\r\n\t\t\"PropertyDataType\": \"PropertyContentArea\"\r\n\t},\r\n\t\"DisableIndexing\": {\r\n\t\t\"Value\": null,\r\n\t\t\"PropertyDataType\": \"PropertyBoolean\"\r\n\t}\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -15605,9 +15577,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"parentGuid\", guid);"
+									"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -15664,8 +15634,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"parentFolderId\", responseData.contentLink.id);"
+									"pm.environment.set(\"parentFolderId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -15730,7 +15699,6 @@
 									"pm.environment.set(\"contentId\", responseBody.contentLink.id);\r",
 									"\r",
 									"// update some added properties from response to request (for assertion and next step)\r",
-									"//if(responseBody.category !== undefined)\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.contentLink = responseBody.contentLink;\r",
 									"requestBody.language = responseBody.language;\r",
@@ -15976,6 +15944,7 @@
 									"if(requestBody.status === \"Published\" && pm.environment.get(\"contentStatus\") !== \"Published\")\r",
 									"{\r",
 									"    verifyResponseCode(400);\r",
+									"\r",
 									"    if(requestBody.contentType[0] === \"Page\")\r",
 									"        Assert.IsEqual(\"Verify message\", \"The original language (en) for this product has not yet been published. The original language must be published before the product can be published in other languages.\", pm.response.json().Error.Message)\r",
 									"    else\r",
@@ -16014,7 +15983,7 @@
 									"{\r",
 									"    verifyResponseCode(201);\r",
 									"\r",
-									"    // Update new contentLink.workId and url\r",
+									"    // Update new contentLink.url\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -16070,7 +16039,6 @@
 									"var body = data[contentBodyList[count] + \"Sv\"];\r",
 									"originalRequestBody = pm.environment.get(\"requestData\");\r",
 									"\r",
-									"//body.language.name = \"sv\";\r",
 									"body.status = availableStatusList[newStatusCount];\r",
 									"body.contentLink = originalRequestBody.contentLink;\r",
 									"body.parentLink = originalRequestBody.parentLink;\r",
@@ -16130,6 +16098,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
@@ -16319,8 +16288,8 @@
 									"requestBody = SortJson(requestBody);\r",
 									"\r",
 									"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
-									"pm.environment.set(\"requestData\", requestBody);\r",
 									"\r",
+									"pm.environment.set(\"requestData\", requestBody);\r",
 									"pm.environment.unset(\"contentLink\");\r",
 									"pm.environment.unset(\"parentLink\");"
 								],
@@ -16387,10 +16356,12 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
 									"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);\r",
+									"\r",
 									"pm.environment.unset(\"requestData\");"
 								],
 								"type": "text/javascript"
@@ -16564,6 +16535,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"response = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidModel\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify inner error\", \"The Name field is required.\", response.Error.Details[0].InnerError[0]);"
@@ -16624,6 +16596,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"response = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidContent\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property 'Unique selling points' is required.\", response.Error.Message);"
@@ -16684,9 +16657,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"  + pm.environment.get(\"guidValue\") + \"' and language '\" + JSON.parse(request.data).language.name  + \"' already exists.\" \r",
-									", pm.response.json().Error.Message);\r",
-									""
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"  + pm.environment.get(\"guidValue\") + \"' and language '\" + JSON.parse(request.data).language.name  + \"' already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -16744,7 +16715,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentId\") + \"' and language '\"+ JSON.parse(request.data).language.name +\"' already exists.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentId\") + \"' and language '\" + JSON.parse(request.data).language.name + \"' already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -16863,8 +16834,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\") + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 12, position 59.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -16926,8 +16897,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"Could not convert string to integer: invalid. Path 'parentLink.id', line 12, position 23.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"\r",
 									"pm.variables.unset(\"invalidId\");"
 								],
 								"type": "text/javascript"
@@ -16990,6 +16961,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.variables.unset(\"nonExistingGuid\");"
 								],
 								"type": "text/javascript"
@@ -17052,6 +17024,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.variables.unset(\"nonExistingId\");"
 								],
 								"type": "text/javascript"
@@ -17122,7 +17095,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"//pm.environment.set(\"guidValue\", pm.environment.get(\"contentLink\").guidValue);"
+									""
 								],
 								"type": "text/javascript"
 							}
@@ -17297,6 +17270,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\",  \"Content type '\" + pm.variables.get(\"invalidContentType\") + \"' does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.variables.unset(\"invalidContentType\")"
 								],
 								"type": "text/javascript"
@@ -17477,7 +17451,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The Language 'invalid' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -17536,7 +17509,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -17595,7 +17567,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The Language 'bs' is not enabled in CMS.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -17653,10 +17624,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"verifyResponseCode(400);\r",
+									"\r",
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
 									"\r",
-									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
@@ -17793,6 +17765,7 @@
 									"verifyResponseCode(400);\r",
 									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
+									"\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -17852,6 +17825,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify Message\", \"Action RequestApproval requires that an approval definition is defined\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"unAllowedStatus\");"
 								],
 								"type": "text/javascript"
@@ -17910,7 +17884,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify inner error message\", \"'Name' has exceeded its limit of 255 characters.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
 									"pm.environment.unset(\"longName\");"
@@ -18090,7 +18063,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"+pm.environment.get(\"imageId\")+\"' and language '\"+JSON.parse(request.data).language.name+\"' already exists.\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"+pm.environment.get(\"imageId\") + \"' and language '\" + JSON.parse(request.data).language.name + \"' already exists.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"imageId\");"
 								],
 								"type": "text/javascript"
@@ -18149,13 +18123,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"if(JSON.parse(request.data).language == undefined)\r",
-									"{\r",
-									"    pm.environment.set(\"language\", \"\")\r",
-									"}\r",
-									"else\r",
-									"    pm.environment.set(\"language\",JSON.parse(request.data).language.name)\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\"+pm.environment.get(\"parentFolderId\")+\"' and language '\"+ pm.environment.get(\"language\")+\"' already exists.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\" + pm.environment.get(\"parentFolderId\") + \"' and language '' already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -18214,6 +18182,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidProperty\");"
 								],
 								"type": "text/javascript"
@@ -18343,8 +18312,7 @@
 									"pm.environment.unset(\"body\");\r",
 									"pm.environment.unset(\"contentStatus\");\r",
 									"pm.environment.unset(\"contentLink\");\r",
-									"pm.environment.unset(\"parentLink\");\r",
-									""
+									"pm.environment.unset(\"parentLink\");"
 								],
 								"type": "text/javascript"
 							}
@@ -18476,9 +18444,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"parentGuid\", guid);"
+									"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -18603,7 +18569,6 @@
 									"pm.environment.set(\"contentGuid\", responseBody.contentLink.guidValue);\r",
 									"\r",
 									"// update some added properties from response to request (for assertion and next step)\r",
-									"//if(responseBody.category !== undefined)\r",
 									"requestBody.category = responseBody.category;\r",
 									"requestBody.contentLink = responseBody.contentLink;\r",
 									"requestBody.language = responseBody.language;\r",
@@ -18711,6 +18676,7 @@
 									"if(requestBody.status === \"Published\" && pm.environment.get(\"contentStatus\") !== \"Published\")\r",
 									"{\r",
 									"    verifyResponseCode(400);\r",
+									"\r",
 									"    if(requestBody.contentType[0] === \"Page\")\r",
 									"        Assert.IsEqual(\"Verify message\", \"The original language (en) for this product has not yet been published. The original language must be published before the product can be published in other languages.\", pm.response.json().Error.Message)\r",
 									"    else\r",
@@ -18749,7 +18715,7 @@
 									"{\r",
 									"    verifyResponseCode(201);\r",
 									"\r",
-									"    // Update new contentLink.workId and url\r",
+									"    // Update new contentLink.url\r",
 									"    if(responseBody.contentLink.url !== undefined)\r",
 									"        originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
 									"\r",
@@ -18863,6 +18829,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
@@ -19024,7 +18991,6 @@
 								"exec": [
 									"verifyResponseCode(201);\r",
 									"\r",
-									"originalRequestBody = pm.environment.get(\"requestData\");\r",
 									"requestBody = SortJson(JSON.parse(request.data));\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"\r",
@@ -19052,8 +19018,8 @@
 									"requestBody = SortJson(requestBody);\r",
 									"\r",
 									"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
-									"pm.environment.set(\"requestData\", requestBody);\r",
 									"\r",
+									"pm.environment.set(\"requestData\", requestBody);\r",
 									"pm.environment.unset(\"contentLink\");\r",
 									"pm.environment.unset(\"parentLink\");"
 								],
@@ -19124,6 +19090,7 @@
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
 									"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);\r",
+									"\r",
 									"pm.environment.unset(\"requestData\");"
 								],
 								"type": "text/javascript"
@@ -19302,6 +19269,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"response = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidModel\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify inner error\", \"The Name field is required.\", response.Error.Details[0].InnerError[0]);"
@@ -19365,6 +19333,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"response = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidContent\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property 'Unique selling points' is required.\", response.Error.Message);"
@@ -19490,7 +19459,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Message\", \"The provided content reference has id '\" + JSON.parse(request.data).contentLink.id  + \"' that does not match the content with unique identifier '\" + pm.environment.get(\"contentGuid\")  + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -19552,7 +19520,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Message\", \"The guid value '\" + JSON.parse(request.data).contentLink.guidValue  + \"' on the provided content does not match the resource location and cannot be changed.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -19737,7 +19704,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The provided content reference has a unique identifier '\" + pm.environment.get(\"contentGuid\") + \"' that does not match the content with id '\" + JSON.parse(request.data).contentLink.id + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -19921,8 +19887,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"Error converting value \\\"\" + pm.variables.get(\"invalidGuid\") + \"\\\" to type 'System.Nullable`1[System.Guid]'. Path 'parentLink.guidValue', line 12, position 59.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -19984,8 +19950,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"Could not convert string to integer: invalid. Path 'parentLink.id', line 12, position 23.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"\r",
 									"pm.variables.unset(\"invalidId\");"
 								],
 								"type": "text/javascript"
@@ -20048,6 +20014,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Parent doesn't exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.variables.unset(\"nonExistingGuid\");"
 								],
 								"type": "text/javascript"
@@ -20292,8 +20259,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"requestBody = JSON.parse(request.data);\r",
-									"Assert.IsEqual(\"Verify message\",  \"The provided content reference has a unique identifier '\" + requestBody.parentLink.guidValue + \"' that does not match the content with id '\" + requestBody.parentLink.id + \"'.\", pm.response.json().Error.Message);"
+									"parentLink = JSON.parse(request.data).parentLink;\r",
+									"Assert.IsEqual(\"Verify message\",  \"The provided content reference has a unique identifier '\" + parentLink.guidValue + \"' that does not match the content with id '\" + parentLink.id + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -20355,6 +20322,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\",  \"Content type '\" + pm.variables.get(\"invalidContentType\") + \"' does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.variables.unset(\"invalidContentType\")"
 								],
 								"type": "text/javascript"
@@ -20538,7 +20506,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The Language 'invalid' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -20600,7 +20567,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -20662,7 +20628,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify message\", \"The Language 'bs' is not enabled in CMS.\", pm.response.json().Error.Details[0].InnerError[0]);"
 								],
 								"type": "text/javascript"
@@ -20723,18 +20688,17 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"verifyResponseCode(400);\r",
+									"\r",
 									"invalidStatusForPostContent = pm.variables.get(\"invalidStatusForPostContent\").split(',');\r",
 									"newStatusCount = parseInt(pm.variables.get(\"newStatusCount\"));\r",
-									"verifyResponseCode(400);\r",
+									"\r",
 									"Assert.IsEqual(\"Verify InnerError\", \"The status '\" + invalidStatusForPostContent[newStatusCount] + \"' is invalid.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
-									"console.log(newStatusCount);\r",
-									"console.log(invalidStatusForPostContent.length - 1);\r",
 									"if(newStatusCount < invalidStatusForPostContent.length - 1)\r",
 									"{\r",
-									"    console.log(\"come here\");\r",
 									"    pm.variables.set('newStatusCount', newStatusCount + 1);\r",
 									"    postman.setNextRequest(\"11. Invalid - Create content version with unallowed status\");\r",
 									"}\r",
@@ -20929,6 +20893,7 @@
 									"verifyResponseCode(400);\r",
 									"Assert.IsTrue(\"Verify InnerError\", pm.response.json().Error.Details[0].InnerError[0].startsWith(\"Error converting value\"));\r",
 									"Assert.IsEqual(\"Verify Target\", \"content.status\", pm.response.json().Error.Details[0].Target);\r",
+									"\r",
 									"pm.environment.unset(\"invalidStatus\")"
 								],
 								"type": "text/javascript"
@@ -20991,6 +20956,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify Message\", \"Action RequestApproval requires that an approval definition is defined\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"unAllowedStatus\");"
 								],
 								"type": "text/javascript"
@@ -21052,7 +21018,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"responseBody = pm.response.json();\r",
 									"Assert.IsEqual(\"Verify inner error message\", \"'Name' has exceeded its limit of 255 characters.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
 									"pm.environment.unset(\"longName\");"
@@ -21291,8 +21256,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"imageId\");\r",
 									"pm.environment.unset(\"imageGuid\");"
 								],
@@ -21355,7 +21320,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
 									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -21418,6 +21382,7 @@
 								"exec": [
 									"verifyResponseCode(400);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
+									"\r",
 									"pm.environment.unset(\"invalidProperty\");"
 								],
 								"type": "text/javascript"
@@ -21551,8 +21516,7 @@
 									"pm.environment.unset(\"body\");\r",
 									"pm.environment.unset(\"contentStatus\");\r",
 									"pm.environment.unset(\"contentLink\");\r",
-									"pm.environment.unset(\"parentLink\");\r",
-									""
+									"pm.environment.unset(\"parentLink\");"
 								],
 								"type": "text/javascript"
 							}
