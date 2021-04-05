@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "40dbcb6c-bf03-42e4-bdc4-5eeb7f85a9b8",
+		"_postman_id": "f4fe5627-8b9d-4253-92d4-f04b6038f51d",
 		"name": "HAPI - Basic Content Management Flatten - Cookie",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -3378,12 +3378,16 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"if(JSON.parse(request.data).language == undefined)\r",
-									"    pm.environment.set(\"language\", \"\")\r",
+									"\r",
+									"language = JSON.parse(request.data).language;\r",
+									"if(language == undefined)\r",
+									"    pm.environment.set(\"language\", \"\");\r",
 									"else\r",
-									"    pm.environment.set(\"language\",JSON.parse(request.data).language.name)\r",
+									"    pm.environment.set(\"language\", language.name);\r",
 									"\r",
 									"Assert.IsEqual(\"Verify Message\", \"A content item with the provided content link '\" + pm.environment.get(\"contentGuid\") + \"' and language '\"+ pm.environment.get(\"language\") +\"' already exists.\", pm.response.json().Error.Message);\r",
+									"\r",
+									"pm.environment.unset(\"language\");\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -10928,7 +10932,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"New Product Page\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"startPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"stopPublish\": null,\r\n\t\"status\": \"checkedout\",\r\n\t\"contentLink\": {},\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n\t\"contentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"category\": [\r\n\t\t{\r\n\t\t\t\"id\": 3,\r\n\t\t\t\"name\": \"Plan\",\r\n\t\t\t\"description\": \"Alloy Plan\"\r\n\t\t}\r\n\t],\r\n    \"pageImage\": {\r\n        \"id\": {{$randomInt}}{{$randomInt}}{{$randomInt}},\r\n        \"workId\": 0,\r\n        \"guidValue\": \"1a764444-13a7-463a-ba6b-c5e54faad79a\",\r\n        \"providerName\": null,\r\n        \"url\": \"/globalassets/alloy-meet/alloymeet.png\",\r\n        \"expanded\": null\r\n    },\r\n    \"teaserText\": \"\",\r\n    \"hideSiteHeader\": null,\r\n    \"metaDescription\": \"\",\r\n    \"hideSiteFooter\": null,\r\n    \"uniqueSellingPoints\": [\r\n        \"abc\"\r\n    ],\r\n    \"mainBody\": null,\r\n    \"mainContentArea\": null,\r\n    \"relatedContentArea\": null,\r\n    \"disableIndexing\": null\r\n}\r\n",
+							"raw": "{\r\n\t\"name\": \"New Product Page\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"startPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"stopPublish\": null,\r\n\t\"status\": \"checkedout\",\r\n\t\"contentLink\": {},\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n\t\"contentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ProductPage\"\r\n\t],\r\n\t\"category\": [\r\n\t\t{\r\n\t\t\t\"id\": 3,\r\n\t\t\t\"name\": \"Plan\",\r\n\t\t\t\"description\": \"Alloy Plan\"\r\n\t\t}\r\n\t],\r\n    \"pageImage\": {\r\n        \"id\": {{$randomInt}}{{$randomInt}},\r\n        \"workId\": 0,\r\n        \"guidValue\": \"1a764444-13a7-463a-ba6b-c5e54faad79a\",\r\n        \"providerName\": null,\r\n        \"url\": \"/globalassets/alloy-meet/alloymeet.png\",\r\n        \"expanded\": null\r\n    },\r\n    \"teaserText\": \"\",\r\n    \"hideSiteHeader\": null,\r\n    \"metaDescription\": \"\",\r\n    \"hideSiteFooter\": null,\r\n    \"uniqueSellingPoints\": [\r\n        \"abc\"\r\n    ],\r\n    \"mainBody\": null,\r\n    \"mainContentArea\": null,\r\n    \"relatedContentArea\": null,\r\n    \"disableIndexing\": null\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -18073,15 +18077,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(409);\r",
-									"\r",
-									"if(JSON.parse(request.data).language == undefined)\r",
-									"    pm.environment.set(\"language\", \"\");\r",
-									"else\r",
-									"    pm.environment.set(\"language\", JSON.parse(request.data).language.name);\r",
-									"\r",
-									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\" + pm.environment.get(\"parentFolderId\") + \"' and language '\" + pm.environment.get(\"language\") + \"' already exists.\", pm.response.json().Error.Message);\r",
-									"\r",
-									"pm.environment.unset(\"language\");"
+									"Assert.IsEqual(\"Verify message\", \"A content item with the provided content link '\" + pm.environment.get(\"parentFolderId\") + \"' and language '' already exists.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
