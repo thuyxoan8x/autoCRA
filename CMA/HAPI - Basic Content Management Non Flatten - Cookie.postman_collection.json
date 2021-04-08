@@ -738,9 +738,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"Assert.IsEqual(\"Verify message\", \"Cannot delete system content.\", pm.response.json().Error.Message);\r",
 									"\r",
-									"responseData = pm.response.json();\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot delete system content.\", responseData.Error.Message);\r",
 									"pm.environment.unset(\"deleteContentGuid\");"
 								],
 								"type": "text/javascript"
@@ -1480,8 +1479,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"pm.environment.set(\"childId\", responseData.contentLink.id);"
+									"pm.environment.set(\"childId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
 							}
@@ -1639,6 +1637,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(404);\r",
+									"\r",
 									"pm.environment.unset(\"childId\");\r",
 									"pm.environment.unset(\"parentGuid\");"
 								],
@@ -1688,8 +1687,6 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"var childrenList = [];\r",
 									"if(pm.environment.get(\"childrenGuidList\") !== undefined)\r",
 									"    pm.environment.set(\"childrenGuidList\", pm.response.json().contentLink.guidValue);\r",
 									"else\r",
@@ -1700,7 +1697,7 @@
 									"if(count < contentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"2.2. Prepare for deleting parent folder content - Create child content\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -1870,7 +1867,7 @@
 									"if(count < childrenGuidList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"Get and verify deleted child content of folder\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"{\r",
@@ -2247,6 +2244,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
@@ -2575,7 +2573,7 @@
 									"if(count < pageBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"6. Invalid - Invalid startPublish and stopPublish format\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -2713,7 +2711,7 @@
 									"if(count < pageBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"8. Invalid - Status is null\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -2790,7 +2788,7 @@
 									"if(count < pageBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"Invalid - Status is not in enum\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -2929,7 +2927,7 @@
 									"if(count < contentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"10. Invalid - Unallowed status\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3005,7 +3003,7 @@
 									"\r",
 									"if (count < contentBodyList.length - 1) {\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"13. Invalid - Set status AwaitingApproval in case Parent content does not have approval sequence defined\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3070,14 +3068,17 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(400);\r",
-									"\r",
 									"languageName = SortJson(JSON.parse(request.data)).language.name;\r",
-									"if(languageName === \"\")\r",
-									"    Assert.IsEqual(\"Verify InnerError\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"else\r",
-									"    Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + languageName +\"' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
 									"\r",
+									"if(languageName === \"\")\r",
+									"    // Due to change in HAPI-1521, when language = \"\" system will take default language\r",
+									"    verifyResponseCode(201);\r",
+									"else\r",
+									"{\r",
+									"    verifyResponseCode(400);\r",
+									"    Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + languageName +\"' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"}\r",
+									"    \r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
@@ -3085,7 +3086,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"20. Invalid - Language is empty or non-standard\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3162,7 +3163,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"21.1 Invalid - Language is not enabled in CMS\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3229,7 +3230,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type has no locale.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -3302,7 +3303,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"22. Invalid - Set contentLink with invalid GUID format\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3386,7 +3387,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"23. Invalid - Set contentLink with existing guid\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3464,7 +3465,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"24. Invalid - Set parentLink with invalid GUID format\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3540,7 +3541,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"25. Invalid - parentLink is not existed\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3667,9 +3668,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"responseData = pm.response.json();\r",
-									"guid = responseData.contentLink.guidValue;\r",
-									"pm.environment.set(\"standardPageGuid\", guid);"
+									"pm.environment.set(\"standardPageGuid\", pm.response.json().contentLink.guidValue);"
 								],
 								"type": "text/javascript"
 							}
@@ -3794,7 +3793,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"28. Invalid - routeSegment is invalid\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -3928,7 +3927,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"30. Invalid - Extra-property in request body\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -4360,7 +4359,7 @@
 									"if(count < contentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"1. Loop: Preparation - Create parent contents\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"{\r",
@@ -4875,7 +4874,6 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(404);\r",
-									"responseData = pm.response.json();\r",
 									"\r",
 									"pm.variables.unset(\"nonExistedGuid\");"
 								],
@@ -4886,8 +4884,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.variables.set(\"nonExistedGuid\", \"79aa6008-8431-4af9-952f-18f2a92973f2\");\r",
-									""
+									"pm.variables.set(\"nonExistedGuid\", \"79aa6008-8431-4af9-952f-18f2a92973f2\");"
 								],
 								"type": "text/javascript"
 							}
@@ -6789,6 +6786,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(201);\r",
+									"\r",
 									"pm.environment.set(\"originalSvRequestData\", SortJson(pm.response.json()));"
 								],
 								"type": "text/javascript"
@@ -6882,7 +6880,7 @@
 									"    if(newStatusCount < availableStatusList.length - 1)\r",
 									"    {\r",
 									"        pm.variables.set('newStatusCount', newStatusCount + 1);\r",
-									"        postman.setNextRequest(\"4.1. Patch content version in sv by id\");\r",
+									"        postman.setNextRequest(request.name);\r",
 									"    }\r",
 									"    else\r",
 									"    {\r",
@@ -7023,6 +7021,7 @@
 									"    expectedData.image.value.url = responseData.image.value.url;\r",
 									"    expectedData.image.value.guidValue = responseData.image.value.guidValue;\r",
 									"}\r",
+									"\r",
 									"Assert.IsEqual(\"Verify get content\", SortJson(expectedData), responseData);\r",
 									"\r",
 									"// Process to loop\r",
@@ -7320,7 +7319,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify inner error message\",  \"Language cannot be set when content type is not localizable\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify inner error message\",  \"Language cannot be set when content type has no locale.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -7510,7 +7509,7 @@
 									"if(newStatusCount < invalidStatusForPostContent.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('newStatusCount', newStatusCount + 1);\r",
-									"    postman.setNextRequest(\"Invalid - Modify content version with unallowed status\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"{\r",
@@ -7886,14 +7885,14 @@
 					"response": []
 				},
 				{
-					"name": "13.1. Invalid - Modify content version which has non-branch specific property without language",
+					"name": "13.1. Valid - Modify content version which has non-branch specific property without language",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot provide non-branch specific property 'PageImage' when not passing the master language.\", pm.response.json().Error.Message);"
+									"// Due to change in HAPI-1521, no language passed in the body -> default language is updated\r",
+									"verifyResponseCode(204);"
 								],
 								"type": "text/javascript"
 							}
@@ -9443,7 +9442,7 @@
 									"if(count < pageBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"6. Invalid - Invalid startPublish stopPublish format\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -9587,7 +9586,7 @@
 									"if(count < pageBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"8.1. Invalid - Status is null\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -9667,7 +9666,7 @@
 									"if(count < pageBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"8.2. Invalid - Status is not in enum\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -9812,7 +9811,7 @@
 									"if(count < contentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"10. Invalid - Create content with unallowed status\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -9891,7 +9890,7 @@
 									"\r",
 									"if (count < contentBodyList.length - 1) {\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"13. Invalid - Set status AwaitingApproval in case Parent content doesn't have approval sequence defined\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -9959,13 +9958,16 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(400);\r",
-									"\r",
 									"requestBody = JSON.parse(request.data);\r",
+									"\r",
 									"if(requestBody.language.name === \"\")\r",
-									"    Assert.IsEqual(\"Verify InnerError\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"    // Due to change in HAPI-1521, when language = \"\" system will take default language\r",
+									"    verifyResponseCode(201);\r",
 									"else\r",
+									"{\r",
+									"    verifyResponseCode(400);\r",
 									"    Assert.IsEqual(\"Verify InnerError\", \"The Language '\" + requestBody.language.name +\"' doesn't exist.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"}\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -9974,7 +9976,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"20. Invalid - Language is empty or non standard\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -10054,7 +10056,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"21.1 Invalid - Language not enabled in CMS\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -10124,7 +10126,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type has no locale.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -10198,7 +10200,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"22. Invalid - Set contentLink with invalid format GUID\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -10278,7 +10280,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"24. Invalid - Set parentLink with invalid format GUID\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -10357,7 +10359,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"25.1 Invalid - parentLink is not existed\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -10618,7 +10620,7 @@
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"28. Invalid - Invalid routeSegment\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -10749,17 +10751,16 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"\r",
-									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
-									"count = parseInt(pm.variables.get(\"count\"));\r",
-									"\r",
 									"Assert.IsEqual(\"Verify Message\", \"Property 'extraProperty' does not exist.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"// Process to loop\r",
+									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
+									"count = parseInt(pm.variables.get(\"count\"));\r",
+									"\r",
 									"if(count < simpleContentBodyList.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('count', count + 1);\r",
-									"    postman.setNextRequest(\"30. Invalid - Extra property in request body\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"    pm.variables.set('count', 0);"
@@ -11724,7 +11725,9 @@
 									"}\r",
 									"\r",
 									"requestBody = SortJson(requestBody);\r",
+									"\r",
 									"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+									"\r",
 									"pm.environment.set(\"requestData\", requestBody);"
 								],
 								"type": "text/javascript"
@@ -12172,8 +12175,8 @@
 									"originalRequestBody = pm.environment.get(\"requestData\");\r",
 									"requestBody = SortJson(JSON.parse(request.data));\r",
 									"responseBody = SortJson(pm.response.json());\r",
-									"\r",
 									"originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
+									"\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
 									"Assert.IsEqual(\"Check contentType\", originalRequestBody.contentType, responseBody.contentType);\r",
@@ -12588,7 +12591,9 @@
 									"    }\r",
 									"\r",
 									"    requestBody = SortJson(requestBody);\r",
+									"\r",
 									"    Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+									"    \r",
 									"    pm.environment.set(\"requestData\", requestBody);\r",
 									"}"
 								],
@@ -12665,6 +12670,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
@@ -12905,6 +12911,7 @@
 									"\r",
 									"// Update new contentLink.workId\r",
 									"originalRequestBody.contentLink.url = responseBody.contentLink.url;\r",
+									"\r",
 									"Assert.IsEqual(\"Check contentLink\", originalRequestBody.contentLink, responseBody.contentLink);\r",
 									"Assert.IsEqual(\"Check parentLink\", originalRequestBody.parentLink, responseBody.parentLink);\r",
 									"Assert.IsEqual(\"Check contentType\", originalRequestBody.contentType, responseBody.contentType);\r",
@@ -13182,7 +13189,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Cannot provide non-branch specific property 'PageImage' when not passing the master language\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Language should not be null when content type is localizable.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -13304,7 +13311,9 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);"
+									"\r",
+									"// due to change in HAPI-1521, \"language\": {} means no language\r",
+									"Assert.IsEqual(\"Verify message\", \"The provided language '' does not exist for content with id '\" + pm.environment.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -13427,7 +13436,8 @@
 								"exec": [
 									"verifyResponseCode(200);\r",
 									"\r",
-									"pm.environment.set(\"imageGuid\", pm.response.json().contentLink.guidValue);"
+									"pm.environment.set(\"imageGuid\", pm.response.json().contentLink.guidValue);\r",
+									"pm.environment.set(\"parentLink\", JSON.stringify(pm.response.json().parentLink));"
 								],
 								"type": "text/javascript"
 							}
@@ -13475,11 +13485,15 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1570 - The request result should be updated after this bug is fixed\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
+									"\r",
+									"//Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"pm.environment.unset(\"imageId\");\r",
-									"pm.environment.unset(\"imageGuid\");"
+									"pm.environment.unset(\"imageGuid\");\r",
+									"pm.environment.unset(\"imageGuid\");\r",
+									"pm.environment.unset(\"parentLink\");"
 								],
 								"type": "text/javascript"
 							}
@@ -13513,7 +13527,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"startPublish\": \"2020-11-17T04:02:58Z\",\r\n    \"stopPublish\": null,\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"status\": \"Published\",\r\n        \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {{parentLink}},\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -13997,7 +14011,7 @@
 									"if(newStatusCount < invalidStatusForPostContent.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('newStatusCount', newStatusCount + 1);\r",
-									"    postman.setNextRequest(\"16. Invalid - Update content version with unallowed status\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"{\r",
@@ -14821,6 +14835,7 @@
 									"verifyResponseCode(400);\r",
 									"\r",
 									"parentLink = JSON.parse(request.data).parentLink;\r",
+									"\r",
 									"Assert.IsEqual(\"Verify Error\", \"The provided content reference has a unique identifier '\" + parentLink.guidValue + \"' that does not match the content with id '\" + parentLink.id + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -16020,7 +16035,9 @@
 									"    }\r",
 									"\r",
 									"    requestBody = SortJson(requestBody);\r",
+									"\r",
 									"    Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+									"    \r",
 									"    pm.environment.set(\"requestData\", requestBody);\r",
 									"}"
 								],
@@ -16537,6 +16554,7 @@
 									"verifyResponseCode(400);\r",
 									"\r",
 									"response = pm.response.json();\r",
+									"\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidModel\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify inner error\", \"The Name field is required.\", response.Error.Details[0].InnerError[0]);"
 								],
@@ -16598,6 +16616,7 @@
 									"verifyResponseCode(400);\r",
 									"\r",
 									"response = pm.response.json();\r",
+									"\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidContent\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property 'Unique selling points' is required.\", response.Error.Message);"
 								],
@@ -17508,8 +17527,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);"
+									"// due to change in HAPI-1521, \"language\": {} will get default language\r",
+									"verifyResponseCode(201);"
 								],
 								"type": "text/javascript"
 							}
@@ -17633,13 +17652,10 @@
 									"Assert.IsEqual(\"Verify Target\", \"content.Status\", pm.response.json().Error.Details[0].Target);\r",
 									"\r",
 									"// Process to loop\r",
-									"console.log(newStatusCount);\r",
-									"console.log(invalidStatusForPostContent.length - 1);\r",
 									"if(newStatusCount < invalidStatusForPostContent.length - 1)\r",
 									"{\r",
-									"    console.log(\"come here\");\r",
 									"    pm.variables.set('newStatusCount', newStatusCount + 1);\r",
-									"    postman.setNextRequest(\"12. Invalid - Create content version with unallowed status\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"{\r",
@@ -19086,6 +19102,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
+									"\r",
 									"responseBody = SortJson(pm.response.json());\r",
 									"expectedData = pm.environment.get(\"requestData\");\r",
 									"\r",
@@ -19271,6 +19288,7 @@
 									"verifyResponseCode(400);\r",
 									"\r",
 									"response = pm.response.json();\r",
+									"\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidModel\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify inner error\", \"The Name field is required.\", response.Error.Details[0].InnerError[0]);"
 								],
@@ -19335,6 +19353,7 @@
 									"verifyResponseCode(400);\r",
 									"\r",
 									"response = pm.response.json();\r",
+									"\r",
 									"Assert.IsEqual(\"Verify error code\", \"InvalidContent\", response.Error.Code);\r",
 									"Assert.IsEqual(\"Verify message\", \"Property 'Unique selling points' is required.\", response.Error.Message);"
 								],
@@ -20259,7 +20278,9 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
+									"\r",
 									"parentLink = JSON.parse(request.data).parentLink;\r",
+									"\r",
 									"Assert.IsEqual(\"Verify message\",  \"The provided content reference has a unique identifier '\" + parentLink.guidValue + \"' that does not match the content with id '\" + parentLink.id + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
@@ -20567,7 +20588,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language name cannot be null or empty.\", pm.response.json().Error.Details[0].InnerError[0]);"
+									"Assert.IsEqual(\"Verify message\", \"The provided language '' does not exist for content with id '\" + pm.environment.get(\"contentGuid\") + \"'.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -20700,7 +20721,7 @@
 									"if(newStatusCount < invalidStatusForPostContent.length - 1)\r",
 									"{\r",
 									"    pm.variables.set('newStatusCount', newStatusCount + 1);\r",
-									"    postman.setNextRequest(\"11. Invalid - Create content version with unallowed status\");\r",
+									"    postman.setNextRequest(request.name);\r",
 									"}\r",
 									"else\r",
 									"{\r",
@@ -21207,7 +21228,8 @@
 								"exec": [
 									"verifyResponseCode(200);\r",
 									"\r",
-									"pm.environment.set(\"imageGuid\", pm.response.json().contentLink.guidValue);"
+									"pm.environment.set(\"imageGuid\", pm.response.json().contentLink.guidValue);\r",
+									"pm.environment.set(\"imageParentLink\", JSON.stringify(pm.response.json().parentLink));"
 								],
 								"type": "text/javascript"
 							}
@@ -21255,11 +21277,15 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1570 - The request result should be updated after this bug is fixed\r",
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
+									"\r",
+									"//Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"pm.environment.unset(\"imageId\");\r",
-									"pm.environment.unset(\"imageGuid\");"
+									"pm.environment.unset(\"imageGuid\");\r",
+									"pm.environment.unset(\"imageGuid\");\r",
+									"pm.environment.unset(\"imageParentLink\");"
 								],
 								"type": "text/javascript"
 							}
@@ -21293,7 +21319,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"startPublish\": \"2020-11-17T04:02:58Z\",\r\n    \"stopPublish\": null,\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"status\": \"Published\",\r\n        \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {{imageParentLink}},\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -21320,7 +21346,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);"
+									"Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type has no locale.\", pm.response.json().Error.Message);"
 								],
 								"type": "text/javascript"
 							}
@@ -21381,7 +21407,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(400);\r",
-									"Assert.IsEqual(\"Verify message\", \"Property '\"+ pm.environment.get(\"invalidProperty\") +\"' does not exist.\", pm.response.json().Error.Message);\r",
+									"Assert.IsEqual(\"Verify message\", \"Property '\" + pm.environment.get(\"invalidProperty\") + \"' does not exist.\", pm.response.json().Error.Message);\r",
 									"\r",
 									"pm.environment.unset(\"invalidProperty\");"
 								],
