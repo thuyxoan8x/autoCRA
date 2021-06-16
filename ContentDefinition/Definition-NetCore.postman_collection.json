@@ -7691,9 +7691,9 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"//verifyErrorMessage(pm.environment.get(\"propertyName\"), [\"The group \"+ pm.environment.get(\"invalidGroup\") + \" is not valid.\"]);\r",
+											"verifyErrorMessageStartsWith(\"editSettings.sortOrder\", \"Could not convert string to integer: \" + pm.environment.get(\"invalidSortOrder\") + \". Path 'editSettings.sortOrder'\");\r",
 											"\r",
-											"pm.environment.unset(\"propertyName\");"
+											"pm.environment.unset(\"invalidSortOrder\");"
 										],
 										"type": "text/javascript"
 									}
@@ -7702,7 +7702,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.environment.set(\"propertyName\", getRandomString(30));"
+											"pm.environment.set(\"invalidSortOrder\", getRandomString(30));"
 										],
 										"type": "text/javascript"
 									}
@@ -7733,7 +7733,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"name\": \"PageType{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"{{propertyName}}\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"branchSpecific\": true,\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"visibility\": \"default\",\r\n\t\t\t\t\"displayName\": \"{{propertyName}}\",\r\n\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\"helpText\": \"Help text\",\r\n\t\t\t\t\"sortOrder\": \"abc\",\r\n\t\t\t\t\"hint\": \"textarea\"\r\n\t\t\t}\r\n\t\t}\r\n\t]\r\n}",
+									"raw": "{\r\n\t\"name\": \"PageType{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"PropertyName{{$randomInt}}\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"branchSpecific\": true,\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"visibility\": \"default\",\r\n\t\t\t\t\"displayName\": \"PropertyName\",\r\n\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\"helpText\": \"Help text\",\r\n\t\t\t\t\"sortOrder\": \"{{invalidSortOrder}}\",\r\n\t\t\t\t\"hint\": \"textarea\"\r\n\t\t\t}\r\n\t\t}\r\n\t]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -7760,10 +7760,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"//verifyErrorMessage(pm.environment.get(\"propertyName\"), [\"The group \"+ pm.environment.get(\"invalidGroup\") + \" is not valid.\"]);\r",
-											"\r",
-											"pm.environment.unset(\"propertyName\");\r",
-											"pm.environment.unset(\"invalidVisibility\");"
+											"verifyErrorMessageStartsWith(\"editSettings.visibility\", \"Unexpected token Boolean when parsing enum. Path 'editSettings.visibility'\");"
 										],
 										"type": "text/javascript"
 									}
@@ -7772,8 +7769,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.environment.set(\"propertyName\", getRandomString(30));\r",
-											"pm.environment.set(\"invalidVisibility\", getRandomString(30));"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -7804,7 +7800,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"name\": \"PageType{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"{{propertyName}}\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"branchSpecific\": true,\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"visibility\": true,\r\n\t\t\t\t\"displayName\": \"{{propertyName}}\",\r\n\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\"helpText\": \"Help text\",\r\n\t\t\t\t\"sortOrder\": 1,\r\n\t\t\t\t\"hint\": \"textarea\"\r\n\t\t\t}\r\n\t\t}\r\n\t]\r\n}",
+									"raw": "{\r\n\t\"name\": \"PageType{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"PropertyName{{$randomInt}}\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"branchSpecific\": true,\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"visibility\": true,\r\n\t\t\t\t\"displayName\": \"PropertyName\",\r\n\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\"helpText\": \"Help text\",\r\n\t\t\t\t\"sortOrder\": 1,\r\n\t\t\t\t\"hint\": \"textarea\"\r\n\t\t\t}\r\n\t\t}\r\n\t]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -8640,7 +8636,8 @@
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
 											"// Update visibility\r",
-											"requestBody.properties[0].editSettings.visibility = pm.environment.get(\"updatedData\").properties[0].editSettings.visibility;\r",
+											"requestBody.properties[0].editSettings.visibility = \"default\";\r",
+											"requestBody.properties[0].editSettings.groupName = \"Information\";\r",
 											"requestBody = SortJson(requestBody);\r",
 											"responseBody = SortJson(responseBody);\r",
 											"\r",
@@ -9594,7 +9591,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w+]\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00\", \r\n          \"maximum\": \"2022-12-31T00:00:00\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+							"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00\", \r\n          \"maximum\": \"2022-12-31T00:00:00\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -11651,7 +11648,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"Heading\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"This is the updated customized message. The heading length should be bettween 2 and 100.\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^episerver\\\\w+\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\"dataType\": \"PropertyIntegerList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRange\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"minimum\": 1,\r\n\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\"dataType\": \"PropertyDate\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Range\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"minimum\": \"2020-01-01T00:00:00\",\r\n\t\t\t\t\t\"maximum\": \"2023-12-31T00:00:00\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n        {\r\n\t\t\t\"name\": \"StringList\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^stringlist\\\\w+\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+							"raw": "{\r\n\t\"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"Heading\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"This is the updated customized message. The heading length should be bettween 2 and 100.\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^episerver[\\\\w ]+\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\"dataType\": \"PropertyIntegerList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRange\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"minimum\": 1,\r\n\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\"dataType\": \"PropertyDate\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Range\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"minimum\": \"2020-01-01T00:00:00\",\r\n\t\t\t\t\t\"maximum\": \"2023-12-31T00:00:00\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n        {\r\n\t\t\t\"name\": \"StringList\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^stringlist\\\\w+\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -11787,6 +11784,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(201);\r",
+									"\r",
 									"pm.environment.set(\"contentId\", pm.response.json().contentLink.id);"
 								],
 								"type": "text/javascript"
@@ -12120,7 +12118,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"warning\",\r\n          \"pattern\": \"^epi[\\\\w+]\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"info\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"warning\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00\", \r\n          \"maximum\": \"2022-12-31T00:00:00\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+							"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"warning\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"info\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"warning\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00\", \r\n          \"maximum\": \"2022-12-31T00:00:00\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -12917,7 +12915,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"Heading\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^epi[\\\\w+]\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\"dataType\": \"PropertyIntegerList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"\",\r\n\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRange\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": null,\r\n\t\t\t\t\t\"minimum\": 1,\r\n\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\"dataType\": \"PropertyDate\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Range\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"minimum\": \"2020-01-01T00:00:00\",\r\n\t\t\t\t\t\"maximum\": \"2022-12-31T00:00:00\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+							"raw": "{\r\n\t\"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"Heading\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^epi[\\\\w ]+\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\"dataType\": \"PropertyIntegerList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"\",\r\n\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRange\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": null,\r\n\t\t\t\t\t\"minimum\": 1,\r\n\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\"dataType\": \"PropertyDate\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Range\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"minimum\": \"2020-01-01T00:00:00\",\r\n\t\t\t\t\t\"maximum\": \"2022-12-31T00:00:00\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -28163,7 +28161,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"contentTypes\": {\r\n\t\t\"items\": [\r\n\t\t\t{\r\n\t\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\t\"name\": \"ContentTypeTest1\",\r\n\t\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\t\"available\": false,\r\n\t\t\t\t\t\"order\": 100\r\n\t\t\t\t},\r\n\t\t\t\t\"properties\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\t\"order\": 1\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t]\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t\t}\r\n\t\t\t\t]\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"id\": \"7a00af1c-110d-4ed9-a722-9e69e9b22211\",\r\n\t\t\t\t\"name\": \"ContentTypeTest2\",\r\n\t\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\"displayName\": \"Test case 2\",\r\n\t\t\t\t\t\"description\": \"This is description 2\",\r\n\t\t\t\t\t\"available\": false,\r\n\t\t\t\t\t\"order\": 100\r\n\t\t\t\t},\r\n\t\t\t\t\"properties\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\t\"order\": 1\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t]\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t\t}\r\n\t\t]\r\n\t}\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -28279,11 +28277,11 @@
 					"};",
 					"",
 					"verifyErrorMessage = (tagName, message) => {",
-					"    Assert.IsEqual(\"Verify \" + tagName + \" error message\", message, pm.response.json().error[tagName]);",
+					"    Assert.IsEqual(\"Verify \" + tagName + \" error message\", message, pm.response.json().errors[tagName]);",
 					"}",
 					"",
 					"verifyErrorMessageStartsWith = (tagName, message) => {",
-					"    Assert.IsTrue(\"Verify \" + tagName + \" error message\", pm.response.json().error[tagName][0].startsWith(message));",
+					"    Assert.IsTrue(\"Verify \" + tagName + \" error message\", pm.response.json().errors[tagName][0].startsWith(message));",
 					"}",
 					"",
 					"verifyErrorDetailMessage = (message) =>",
@@ -28323,11 +28321,11 @@
 					"                if (!lodash.isEqual(expectedValue, actualValue))",
 					"                {",
 					"                    console.log(\"----- expectedValue -----\");",
-					"                    console.log(JSON.stringify(expectedValue));",
-					"                    //console.log(expectedValue);",
+					"                    //console.log(JSON.stringify(expectedValue));",
+					"                    console.log(expectedValue);",
 					"                    console.log(\"----- actualValue -----\");",
-					"                    console.log(JSON.stringify(actualValue));",
-					"                    //console.log(actualValue);",
+					"                    //console.log(JSON.stringify(actualValue));",
+					"                    console.log(actualValue);",
 					"                }",
 					"            }",
 					"            else",

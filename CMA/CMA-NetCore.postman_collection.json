@@ -13182,7 +13182,7 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pm.variables.set(\"simpleContentBodyList\", \"jsonSimplePageBody,jsonSimpleBlockBody,jsonLocalFolderBody\");\r",
+									"pm.variables.set(\"simpleContentBodyList\", \"jsonSimpleBlockBody,jsonSimplePageBody,jsonLocalFolderBody\");\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
 									"count = parseInt(pm.variables.get(\"count\"));\r",
 									"\r",
@@ -26705,11 +26705,11 @@
 					"};",
 					"",
 					"verifyErrorMessage = (tagName, message) => {",
-					"    Assert.IsEqual(\"Verify \" + tagName + \" error message\", message, pm.response.json().error[tagName]);",
+					"    Assert.IsEqual(\"Verify \" + tagName + \" error message\", message, pm.response.json().errors[tagName]);",
 					"}",
 					"",
 					"verifyErrorMessageStartsWith = (tagName, message) => {",
-					"    Assert.IsTrue(\"Verify \" + tagName + \" error message\", pm.response.json().error[tagName][0].startsWith(message));",
+					"    Assert.IsTrue(\"Verify \" + tagName + \" error message\", pm.response.json().errors[tagName][0].startsWith(message));",
 					"}",
 					"",
 					"verifyErrorDetailMessage = (message) =>",
