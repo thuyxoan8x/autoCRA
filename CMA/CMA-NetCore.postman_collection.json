@@ -9380,7 +9380,7 @@
 					"response": []
 				},
 				{
-					"name": "6.1. Preparation - Get media content",
+					"name": "6.1. Preparation - Get folder content",
 					"event": [
 						{
 							"listen": "test",
@@ -9388,7 +9388,6 @@
 								"exec": [
 									"responseData = pm.response.json();\r",
 									"\r",
-									"pm.environment.set(\"mediaGuidValue\", responseData.contentLink.guidValue);\r",
 									"pm.environment.set(\"originalData\", responseData);"
 								],
 								"type": "text/javascript"
@@ -9419,19 +9418,19 @@
 							}
 						],
 						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{mediaId}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"{{mediaId}}"
+								"{{parentFolderId}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Update media content",
+					"name": "Update non localizable content",
 					"event": [
 						{
 							"listen": "test",
@@ -9473,7 +9472,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AlloyPlan{{$randomInt}}{{$randomInt}}.png\",\r\n    \"routeSegment\": \"alloyplan{{$randomInt}}{{$randomInt}}.png\",\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"minhminh{{$randomInt}}{{$randomInt}}\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"Test Parent Folder {{$randomInt}}{{$randomInt}}\",\r\n    \"routeSegment\": \"test-parent-folder-{{$randomInt}}{{$randomInt}}\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -9481,19 +9480,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{mediaGuidValue}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"{{mediaGuidValue}}"
+								"{{parentFolderId}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Verify modified media content version",
+					"name": "Verify modified content version",
 					"event": [
 						{
 							"listen": "test",
@@ -9505,6 +9504,8 @@
 									"originalData = pm.environment.get(\"originalData\");\r",
 									"expectedData = pm.environment.get(\"patchedBody\");\r",
 									"\r",
+									"console.log(originalData);\r",
+									"\r",
 									"// update expected data based on original\r",
 									"expectedData.contentLink = originalData.contentLink;\r",
 									"expectedData.language = originalData.language;\r",
@@ -9513,7 +9514,7 @@
 									"expectedData.parentLink = originalData.parentLink;\r",
 									"// update contentLink.url and language.link after patching\r",
 									"expectedData.contentLink.url = responseData.contentLink.url;\r",
-									"expectedData.language.link = responseData.language.link;\r",
+									"//expectedData.language.link = responseData.language.link;\r",
 									"// delete auto changed properties in response body\r",
 									"delete responseData.url;\r",
 									"delete responseData.changed;\r",
@@ -9553,29 +9554,26 @@
 							}
 						],
 						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{mediaGuidValue}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"{{mediaGuidValue}}"
+								"{{parentFolderId}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Invalid - Update media content with language in the body",
+					"name": "Invalid - Update non locale content with language in the body",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// HAPI-1570: this request should return 400 after bug is fixed\r",
 									"verifyResponseCode(400);\r",
-									"\r",
-									"pm.environment.unset(\"mediaGuidValue\");\r",
-									"pm.environment.unset(\"mediaId\");"
+									"verifyErrorDetailMessage(\"Language cannot be set when content type has no locale.\");"
 								],
 								"type": "text/javascript"
 							}
@@ -9609,7 +9607,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AlloyPlan{{$randomInt}}{{$randomInt}}.png\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"routeSegment\": \"alloyplan{{$randomInt}}{{$randomInt}}.png\",\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"minhminh{{$randomInt}}{{$randomInt}}\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"Test Parent Folder {{$randomInt}}{{$randomInt}}\",\r\n    \"routeSegment\": \"test-parent-folder-{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -9617,12 +9615,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{mediaGuidValue}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"{{mediaGuidValue}}"
+								"{{parentFolderId}}"
 							]
 						}
 					},
@@ -13159,9 +13157,8 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Test script failed due to CMS-19192\r",
-									"verifyResponseCode(405);\r",
-									"//Assert.IsEqual(\"Verify Message\", \"The requested resource does not support http method 'PUT'.\", pm.response.json().Message);\r",
+									"// HAPI-1606 As design\r",
+									"verifyResponseCode(404);\r",
 									"\r",
 									"// Process to loop\r",
 									"simpleContentBodyList = pm.variables.get(\"simpleContentBodyList\").split(',');\r",
@@ -17669,72 +17666,14 @@
 					"response": []
 				},
 				{
-					"name": "10. Preparation - Get media content",
+					"name": "10. Invalid - Update non localizable content with language in the body",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(200);\r",
-									"\r",
-									"pm.environment.set(\"imageGuid\", pm.response.json().contentLink.guidValue);\r",
-									"pm.environment.set(\"parentLink\", JSON.stringify(pm.response.json().parentLink));"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.environment.set(\"imageId\", 62)"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{imageId}}",
-							"host": [
-								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
-							],
-							"path": [
-								"{{imageId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Invalid - Update non localizable content with language in the body",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"// HAPI-1570 - The request result should be updated after this bug is fixed\r",
 									"verifyResponseCode(400);\r",
-									"\r",
-									"//Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
-									"\r",
-									"pm.environment.unset(\"imageId\");\r",
-									"pm.environment.unset(\"imageGuid\");\r",
-									"pm.environment.unset(\"imageGuid\");\r",
-									"pm.environment.unset(\"parentLink\");"
+									"verifyErrorDetailMessage(\"Language cannot be set when content type has no locale.\");"
 								],
 								"type": "text/javascript"
 							}
@@ -17768,7 +17707,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {{parentLink}},\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"name\": \"Test Parent Folder {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Folder\",\r\n        \"SysContentFolder\"\r\n    ],\r\n    \"parentLink\": {\r\n\t\t\"id\": {{testContainerFolderId}}\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": null\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -17776,12 +17715,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{imageGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderGuid}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"{{imageGuid}}"
+								"{{parentFolderGuid}}"
 							]
 						}
 					},
@@ -19606,9 +19545,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test script is failed due to CMS-19192\r",
-									"verifyResponseCode(405);\r",
-									"//Assert.IsEqual(\"Verify message\", \"The requested resource does not support http method 'PUT'.\", pm.response.json().Message);"
+									"verifyResponseCode(404);"
 								],
 								"type": "text/javascript"
 							}
@@ -19668,9 +19605,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// test script is failed due to CMS-19192\r",
-									"verifyResponseCode(405);\r",
-									"//Assert.IsEqual(\"Verify message\", \"The requested resource does not support http method 'PUT'.\", pm.response.json().Message);\r",
+									"verifyResponseCode(404);\r",
 									"\r",
 									"pm.environment.unset(\"invalidGuid\");"
 								],
@@ -25939,58 +25874,7 @@
 					"response": []
 				},
 				{
-					"name": "17. Preparation - Get media content",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"verifyResponseCode(200);\r",
-									"\r",
-									"pm.environment.set(\"imageGuid\", pm.response.json().contentLink.guidValue);\r",
-									"pm.environment.set(\"imageParentLink\", JSON.stringify(pm.response.json().parentLink));"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"pm.environment.set(\"imageId\", 62)"
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept": true
-						}
-					},
-					"request": {
-						"method": "GET",
-						"header": [
-							{
-								"key": "Accept",
-								"type": "text",
-								"value": "application/json"
-							}
-						],
-						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{imageId}}",
-							"host": [
-								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
-							],
-							"path": [
-								"{{imageId}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Invalid - Create non localizable content with language in the body",
+					"name": "17. Invalid - Create non locale content with language in the body",
 					"event": [
 						{
 							"listen": "test",
@@ -25998,74 +25882,12 @@
 								"exec": [
 									"// HAPI-1570 - The request result should be updated after this bug is fixed\r",
 									"verifyResponseCode(400);\r",
-									"\r",
-									"//Assert.IsEqual(\"Verify message\", \"Language cannot be set when content type is not localizable.\", pm.response.json().Error.Message);\r",
+									"verifyErrorDetailMessage(\"Language cannot be set when content type has no locale.\");\r",
 									"\r",
 									"pm.environment.unset(\"imageId\");\r",
 									"pm.environment.unset(\"imageGuid\");\r",
 									"pm.environment.unset(\"imageGuid\");\r",
 									"pm.environment.unset(\"imageParentLink\");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"protocolProfileBehavior": {
-						"disabledSystemHeaders": {
-							"accept-encoding": true,
-							"connection": true,
-							"user-agent": true
-						}
-					},
-					"request": {
-						"method": "PUT",
-						"header": [
-							{
-								"key": "Accept-Language",
-								"type": "text",
-								"value": "",
-								"disabled": true
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"AlloyMeet.png\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Image\",\r\n        \"Media\",\r\n        \"ImageFile\"\r\n    ],\r\n    \"parentLink\": {{imageParentLink}},\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"copyright\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{imageGuid}}",
-							"host": [
-								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
-							],
-							"path": [
-								"{{imageGuid}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "18. Invalid - create content version for non versionable content",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"verifyResponseCode(400);\r",
-									"verifyErrorDetailMessage(\"Language cannot be set when content type has no locale.\");"
 								],
 								"type": "text/javascript"
 							}
