@@ -53,12 +53,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									]
 								}
 							},
@@ -90,12 +87,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -132,12 +128,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -182,12 +177,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									]
 								}
 							},
@@ -233,12 +225,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -283,12 +274,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -334,12 +324,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -386,12 +375,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -436,12 +424,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -486,12 +473,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -534,12 +520,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -584,12 +569,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -643,12 +627,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -681,12 +664,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -724,12 +706,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -772,12 +753,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -822,12 +802,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									]
 								}
 							},
@@ -869,12 +846,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -911,12 +887,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -966,12 +941,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									]
 								}
 							},
@@ -1007,12 +979,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1084,12 +1055,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -1136,12 +1106,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1175,12 +1144,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1227,12 +1195,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1278,12 +1245,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1330,12 +1296,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1381,12 +1346,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1433,12 +1397,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1483,12 +1446,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1531,12 +1493,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1581,12 +1542,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1630,12 +1590,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										""
 									]
 								}
@@ -1678,12 +1637,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1726,12 +1684,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1776,12 +1733,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1814,12 +1770,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1865,12 +1820,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1904,12 +1858,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1945,12 +1898,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -1997,12 +1949,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{invalidName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{invalidName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{invalidName}}"
 									]
 								}
@@ -2049,12 +2000,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2102,12 +2052,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2154,12 +2103,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2206,12 +2154,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2258,12 +2205,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2308,12 +2254,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2360,12 +2305,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2413,12 +2357,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									]
 								}
 							},
@@ -2452,12 +2393,11 @@
 								"method": "DELETE",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2481,12 +2421,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2528,12 +2467,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2580,12 +2518,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/{{propertyGroupName}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"{{propertyGroupName}}"
 									]
 								}
@@ -2628,12 +2565,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/Information",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/Information",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"Information"
 									]
 								}
@@ -2675,12 +2611,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/<@#!#!",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/<@#!#!",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_PropertyGroupEndpoint}}",
 										"<@"
 									],
 									"hash": "!#!"
@@ -2728,7 +2663,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}/@#!!#<>&*",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/@#!!#<>&*",
 							"host": [
 								"{{cmsUrl}}"
 							],
@@ -2791,12 +2726,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_PropertyGroupEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_PropertyGroupEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 							]
 						}
 					},
@@ -2891,12 +2823,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -2941,12 +2870,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -2994,12 +2922,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3063,12 +2990,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -3113,12 +3037,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3166,12 +3089,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3241,12 +3163,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -3291,12 +3210,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3344,12 +3262,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3418,12 +3335,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -3468,12 +3382,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3526,12 +3439,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3594,12 +3506,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -3645,12 +3554,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3700,12 +3608,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -3752,12 +3659,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										""
 									]
 								}
@@ -3802,12 +3708,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -3853,12 +3756,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -3902,12 +3802,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -3951,12 +3848,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4002,12 +3896,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4053,12 +3944,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4111,12 +3999,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4160,12 +4045,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4207,12 +4089,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4254,12 +4133,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4303,12 +4179,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4352,12 +4225,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4403,12 +4273,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4498,12 +4365,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -4587,12 +4451,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -4644,12 +4507,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -4719,12 +4581,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -4776,12 +4637,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -4832,12 +4692,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -4902,12 +4761,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{$guid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{$guid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{$guid}}"
 									],
 									"query": [
@@ -4959,12 +4817,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -5014,12 +4871,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -5066,12 +4922,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{$guid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{$guid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{$guid}}"
 									]
 								}
@@ -5113,12 +4968,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/a6964cee-b7eb-4443-899c-70cadba558zz",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/a6964cee-b7eb-4443-899c-70cadba558zz",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"a6964cee-b7eb-4443-899c-70cadba558zz"
 									]
 								}
@@ -5199,12 +5053,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5236,12 +5087,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -5318,12 +5168,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5355,12 +5202,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -5427,12 +5273,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5497,12 +5340,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5566,12 +5406,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5634,12 +5471,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5702,12 +5536,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5770,12 +5601,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -5849,12 +5677,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{$guid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{$guid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{$guid}}"
 									]
 								}
@@ -5918,12 +5745,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -5978,12 +5804,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -6049,12 +5874,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6068,7 +5892,7 @@
 							"response": []
 						},
 						{
-							"name": "14. Update content type with invalid EditSettings.description length > 255 Copy",
+							"name": "14. Update content type with invalid EditSettings.description length > 255",
 							"event": [
 								{
 									"listen": "test",
@@ -6127,12 +5951,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6203,12 +6026,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6278,12 +6100,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6353,12 +6174,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6428,12 +6248,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6503,12 +6322,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6563,12 +6381,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -6610,12 +6427,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -6691,12 +6507,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -6758,12 +6571,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -6827,12 +6639,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=minor",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=minor",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -6903,12 +6714,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -6943,12 +6753,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -7000,12 +6809,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7069,12 +6875,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{systemContentTypeId}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{systemContentTypeId}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{systemContentTypeId}}"
 									]
 								}
@@ -7155,12 +6960,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7207,12 +7009,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -7264,12 +7065,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7303,12 +7101,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -7386,12 +7183,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7425,12 +7219,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -7506,12 +7299,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7558,12 +7348,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -7598,12 +7387,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -7672,12 +7460,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7741,12 +7526,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7808,12 +7590,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7892,12 +7671,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -7931,12 +7707,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8005,12 +7780,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -8078,12 +7850,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -8149,12 +7918,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -8229,12 +7995,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -8281,12 +8044,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8321,12 +8083,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8393,12 +8154,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -8473,12 +8231,9 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 									"host": [
-										"{{cmsUrl}}"
-									],
-									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -8559,12 +8314,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8612,12 +8366,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8697,12 +8450,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8750,12 +8502,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8837,12 +8588,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8890,12 +8640,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -8962,12 +8711,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -9030,12 +8778,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -9100,12 +8847,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -9184,12 +8930,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									],
 									"query": [
@@ -9262,12 +9007,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -9334,12 +9078,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -9404,12 +9147,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -9444,12 +9186,11 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"{{HAPI:Definition_ContentTypeEndpoint}}",
 										"{{contentTypeGuid}}"
 									]
 								}
@@ -9457,6 +9198,136 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Preparation: Create content type",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(201);\r",
+									"responseBody = pm.response.json();\r",
+									"\r",
+									"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
+									"pm.environment.set(\"contentTypeData\", responseBody);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\": \"ContentType{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"PropertyName2{{$randomInt}}\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"branchSpecific\": true,\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"visibility\": \"default\",\r\n\t\t\t\t\"displayName\": \"~`!@#$%^&*()-_+=[]{}\\\\|:\\\";',./<>?\",\r\n\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\"helpText\": \"~`!@#$%^&*()-_+=[]{}\\\\|:\\\";',./<>?\",\r\n\t\t\t\t\"hint\": \"~`!@#$%^&*()-_+=[]{}\\\\|:\\\";',./<>?\",\r\n\t\t\t\t\"sortOrder\": {{$randomInt}}\r\n\t\t\t}\r\n\t\t}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CMS-19603 Remove analyse content type endpoint",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"body\", JSON.stringify(pm.environment.get(\"contentTypeData\")));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(405);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{{body}}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/analyze",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+							],
+							"path": [
+								"analyze"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cleanup: Delete the contentType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(204);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+							],
+							"path": [
+								"{{contentTypeGuid}}"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"event": [
@@ -9599,12 +9470,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -9652,12 +9520,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -11337,12 +11204,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -11394,12 +11260,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -11656,12 +11519,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							],
 							"query": [
@@ -12066,12 +11928,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -12126,12 +11987,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -12422,12 +12280,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -12513,12 +12370,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -12566,12 +12420,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -12862,12 +12715,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -12923,12 +12775,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13116,12 +12965,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -13176,12 +13024,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13232,12 +13077,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13288,12 +13130,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13361,12 +13200,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13415,12 +13251,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13469,12 +13302,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13509,12 +13339,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -13567,12 +13396,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13640,12 +13466,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13693,12 +13516,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -13734,12 +13556,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -13809,12 +13630,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -13862,12 +13680,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -14212,12 +14029,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -14300,12 +14116,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -14353,12 +14166,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -14808,12 +14620,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -14867,12 +14678,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -14925,12 +14733,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -15000,12 +14805,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -15053,12 +14855,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -15094,12 +14895,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -15169,12 +14969,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -15222,12 +15019,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -15671,12 +15467,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -15746,12 +15541,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -15799,12 +15591,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -15945,12 +15736,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -16020,12 +15810,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -16073,12 +15860,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -16528,12 +16314,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -16590,12 +16375,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -16651,19 +16433,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "28.2. Invalid - Create content type with invalid Range ItemRange length minimum or maximum",
+					"name": "28.2. Invalid - Create content type with invalid Range ItemRange length minimum",
 					"event": [
 						{
 							"listen": "test",
@@ -16712,19 +16491,16 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "28.2. Invalid - Create content type with invalid Range ItemRange length minimum or maximum Copy",
+					"name": "28.2. Invalid - Create content type with invalid Range ItemRange length maximum",
 					"event": [
 						{
 							"listen": "test",
@@ -16773,12 +16549,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -16829,12 +16602,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -16892,12 +16662,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -16967,12 +16734,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -17007,12 +16771,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -17174,12 +16937,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -17244,13 +17004,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17329,13 +17085,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17413,13 +17165,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17493,13 +17241,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17537,12 +17281,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -17608,12 +17351,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -17678,13 +17418,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17764,13 +17500,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17850,13 +17582,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17932,13 +17660,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -17976,12 +17700,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -18047,12 +17770,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -18117,13 +17837,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18202,13 +17918,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18288,13 +18000,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18368,13 +18076,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18412,12 +18116,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -18483,12 +18186,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -18553,13 +18253,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18639,13 +18335,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18726,13 +18418,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18808,13 +18496,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -18852,12 +18536,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -18923,12 +18606,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -18993,13 +18673,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19078,13 +18754,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19164,13 +18836,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19244,13 +18912,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19288,12 +18952,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -19359,12 +19022,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -19429,13 +19089,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19515,13 +19171,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19602,13 +19254,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19684,13 +19332,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -19728,12 +19372,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -19799,12 +19442,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -19869,12 +19509,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -19947,12 +19584,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20026,12 +19660,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20099,12 +19730,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20136,12 +19764,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -20207,12 +19834,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20277,12 +19901,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20355,12 +19976,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20434,12 +20052,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20509,12 +20124,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20546,12 +20158,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -20617,12 +20228,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -20687,13 +20295,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -20771,13 +20375,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -20856,13 +20456,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -20936,13 +20532,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -20980,12 +20572,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -21051,12 +20642,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -21121,13 +20709,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21206,13 +20790,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21292,13 +20872,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21374,13 +20950,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21451,13 +21023,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21536,13 +21104,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21622,13 +21186,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21704,13 +21264,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21781,13 +21337,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21867,13 +21419,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -21953,13 +21501,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22035,13 +21579,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22112,13 +21652,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22198,13 +21734,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22285,13 +21817,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22367,13 +21895,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22411,12 +21935,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -22482,12 +22005,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -22557,13 +22077,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22634,13 +22150,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22720,13 +22232,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22807,13 +22315,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22890,13 +22394,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=major",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=major",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -22934,12 +22434,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -23009,12 +22508,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -23084,13 +22580,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none&allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none&allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23176,13 +22668,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none&allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none&allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23270,13 +22758,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none&allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none&allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23369,13 +22853,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none&allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none&allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23468,13 +22948,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=none&allowedUpgrades=none",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=none&allowedUpgrades=none",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23554,13 +23030,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch&allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch&allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23653,13 +23125,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch&allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch&allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23743,13 +23211,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch&allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch&allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23838,13 +23302,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?allowedDowngrades=patch&allowedUpgrades=minor",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?allowedDowngrades=patch&allowedUpgrades=minor",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -23912,12 +23372,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -23982,12 +23441,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -24106,13 +23562,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?{{param}}={{paramValue}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?{{param}}={{paramValue}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -24150,12 +23602,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -24218,13 +23669,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?continueOnError=false",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?continueOnError=false",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -24296,13 +23743,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?continueOnError=true",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?continueOnError=true",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -24341,12 +23784,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -24412,13 +23854,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}/?continueOnError=true",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?continueOnError=true",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}",
-								""
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							],
 							"query": [
 								{
@@ -24493,12 +23931,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -24553,16 +23988,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
-								""
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -24616,12 +24044,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -24668,16 +24095,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
-								""
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -24757,12 +24177,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -24818,16 +24235,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
-								""
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -24886,12 +24296,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}"
 							]
 						}
@@ -24954,12 +24363,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25023,12 +24429,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25069,12 +24472,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -25138,12 +24540,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25184,12 +24583,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}"
 							]
 						}
@@ -25256,12 +24654,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25302,12 +24697,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}"
 							]
 						}
@@ -25371,12 +24765,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25417,12 +24808,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -25486,12 +24876,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25555,12 +24942,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25622,12 +25006,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25691,12 +25072,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25740,15 +25118,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
 								"{{dataType}}"
 							]
 						}
@@ -25812,12 +25186,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -25867,15 +25238,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
 								"{{dataType}}"
 							]
 						}
@@ -25926,15 +25293,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -25982,15 +25345,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/{{dataType}}/{{invalidUiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{invalidUiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
 								"{{dataType}}",
 								"{{invalidUiHint}}"
 							]
@@ -26033,12 +25392,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -26081,12 +25439,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}"
 							]
 						}
@@ -26133,15 +25490,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/{{invalidDataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{invalidDataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
 								"{{invalidDataType}}"
 							]
 						}
@@ -26205,12 +25558,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26274,12 +25624,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26329,15 +25676,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/editors/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"editors",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -26380,12 +25723,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -26450,12 +25792,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26517,12 +25856,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26563,12 +25899,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -26611,12 +25946,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{newUiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{newUiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{newUiHint}}"
 							]
@@ -26682,12 +26016,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26751,12 +26082,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26820,12 +26148,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26889,12 +26214,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -26958,12 +26280,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27027,12 +26346,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27095,12 +26411,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27163,12 +26476,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27230,12 +26540,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27299,12 +26606,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27368,12 +26672,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27414,12 +26715,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -27485,12 +26785,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27554,12 +26851,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27625,12 +26919,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27671,12 +26962,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -27719,12 +27009,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27765,12 +27052,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}"
 							]
 						}
@@ -27813,12 +27099,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -27882,12 +27167,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							]
 						}
 					},
@@ -27928,12 +27210,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}"
 							]
 						}
@@ -27976,12 +27257,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{invalidUiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{invalidUiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{invalidUiHint}}"
 							]
@@ -28024,12 +27304,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
+							"raw": "{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}/{{dataType}}/{{uiHint}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:DefinitionEditorsEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:DefinitionEditorsEndpoint}}",
 								"{{dataType}}",
 								"{{uiHint}}"
 							]
@@ -28096,12 +27375,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -28169,12 +27445,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_Manifest}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_Manifest}}"
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
 					},
@@ -28232,7 +27505,7 @@
 					"/////////////////////////////////////////////////////////",
 					"function GetToken() {",
 					"    console.log(\"===== Get valid token =====\");",
-					"    tokenUrl = pm.environment.get(\"cmsUrl\") + \"/\" + pm.environment.get(\"HAPI:tokenEndpoint\");",
+					"    tokenUrl = pm.environment.get(\"cmsUrl\") + pm.environment.get(\"HAPI:tokenEndpoint\");",
 					"    pm.sendRequest(",
 					"        {",
 					"            url: tokenUrl,",

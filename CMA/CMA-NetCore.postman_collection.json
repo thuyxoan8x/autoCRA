@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "00daf458-108e-4187-8507-447bce97f41e",
+		"_postman_id": "d3e27a2b-a58d-4aac-95f3-98c4aad54cd2",
 		"name": "CMA NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -2000,7 +2000,7 @@
 						"url": {
 							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
 								"api",
@@ -4459,12 +4459,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -4564,12 +4561,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -4634,12 +4630,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -4791,12 +4784,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -6803,15 +6795,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{nonExistedGuid}}/move/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{nonExistedGuid}}/move/",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{nonExistedGuid}}",
 								"move",
 								""
@@ -6879,15 +6867,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{invalidGuid}}/move/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{invalidGuid}}/move/",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{invalidGuid}}",
 								"move",
 								""
@@ -6955,15 +6939,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{nonExistedGuid}}/move/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{nonExistedGuid}}/move/",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{nonExistedGuid}}",
 								"move",
 								""
@@ -7031,15 +7011,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{parentGuid}}/move/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentGuid}}/move/",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{parentGuid}}",
 								"move",
 								""
@@ -7106,15 +7082,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{parentGuid}}/move/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentGuid}}/move/",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{parentGuid}}",
 								"move",
 								""
@@ -7179,15 +7151,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/1/move/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/1/move/",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"1",
 								"move",
 								""
@@ -7261,15 +7229,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{testContainerFolderId}}_{{workId}}/move/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{testContainerFolderId}}_{{workId}}/move/",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{testContainerFolderId}}_{{workId}}",
 								"move",
 								""
@@ -7354,7 +7318,7 @@
 						"url": {
 							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
 								"api",
@@ -10437,12 +10401,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -10660,12 +10621,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -11459,7 +11419,7 @@
 						"url": {
 							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
 								"api",
@@ -13905,12 +13865,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -14013,12 +13970,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -14083,12 +14039,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -14243,12 +14196,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -15601,7 +15553,7 @@
 						"url": {
 							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
 								"api",
@@ -16438,15 +16390,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{contentGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{contentGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{contentGuid}}"
 							]
 						}
@@ -17159,15 +17107,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{contentGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{contentGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{contentGuid}}"
 							]
 						}
@@ -19303,12 +19247,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -19526,12 +19467,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -20094,7 +20034,7 @@
 						"url": {
 							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
 								"api",
@@ -20855,16 +20795,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
-								""
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							]
 						}
 					},
@@ -22800,12 +22733,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -22903,12 +22833,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -23107,7 +23036,7 @@
 						"url": {
 							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
 								"api",
@@ -23745,15 +23674,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentmanagement/{{contentGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{contentGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentmanagement",
 								"{{contentGuid}}"
 							]
 						}
@@ -26061,12 +25986,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
-								"{{cmsUrl}}"
-							],
-							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							]
 						}
 					},
@@ -26284,12 +26206,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_ContentTypeEndpoint}}",
 								"{{contentTypeGuid}}"
 							]
 						}
@@ -26483,7 +26404,7 @@
 					"/////////////////////////////////////////////////////////",
 					"function GetToken() {",
 					"    console.log(\"===== Get valid token =====\");",
-					"    tokenUrl = pm.environment.get(\"cmsUrl\") + \"/\" + pm.environment.get(\"HAPI:tokenEndpoint\");",
+					"    tokenUrl = pm.environment.get(\"cmsUrl\") + pm.environment.get(\"HAPI:tokenEndpoint\");",
 					"    pm.sendRequest(",
 					"        {",
 					"            url: tokenUrl,",

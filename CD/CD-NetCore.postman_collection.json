@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5d4076db-94d4-41c8-9947-656d2c44c7dd",
+		"_postman_id": "70efb782-d6e7-4e01-830e-33e35705611e",
 		"name": "CD NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -70,13 +70,10 @@
 									]
 								},
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:tokenEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-										"{{rootUrl}}"
-									],
-									"path": [
-										"{{HAPI:tokenEndpoint}}"
-									]
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
 								}
 							},
 							"response": []
@@ -128,13 +125,10 @@
 									]
 								},
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:tokenEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-										"{{rootUrl}}"
-									],
-									"path": [
-										"{{HAPI:tokenEndpoint}}"
-									]
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
 								}
 							},
 							"response": []
@@ -158,7 +152,7 @@
 										"exec": [
 											"// Create new access token to get its refresh token",
 											"pm.sendRequest({    ",
-											"    url: `${pm.globals.get(\"rootUrl\")}` + \"/api/episerver/connect/token\",    ",
+											"    url: `${pm.globals.get(\"cmsUrl\")}` + \"/api/episerver/connect/token\",    ",
 											"    method: 'POST',    ",
 											"    body: {        ",
 											"        mode: 'urlencoded',",
@@ -219,13 +213,10 @@
 									]
 								},
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:tokenEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-										"{{rootUrl}}"
-									],
-									"path": [
-										"{{HAPI:tokenEndpoint}}"
-									]
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
 								}
 							},
 							"response": []
@@ -289,13 +280,10 @@
 									]
 								},
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:tokenEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-										"{{rootUrl}}"
-									],
-									"path": [
-										"{{HAPI:tokenEndpoint}}"
-									]
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
 								}
 							},
 							"response": []
@@ -359,13 +347,10 @@
 									]
 								},
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:tokenEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-										"{{rootUrl}}"
-									],
-									"path": [
-										"{{HAPI:tokenEndpoint}}"
-									]
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
 								}
 							},
 							"response": []
@@ -381,11 +366,9 @@
 											"commonTest.OK();",
 											"verifyAccessToken();",
 											"verifyExpiryDuration(); ",
-											"// Compare with request body key value",
-											"//verifyMatchingData(\"Authorized user\", request.data.username, responseData.getRoot().username); ",
 											"",
 											"// Save access token for all next requests of getting/searching CMS data",
-											"pm.environment.set(\"HAPI:token\", responseData.getRoot().access_token); "
+											"//pm.environment.set(\"HAPI:token\", pm.response.json().access_token); "
 										],
 										"type": "text/javascript"
 									}
@@ -424,7 +407,7 @@
 										},
 										{
 											"key": "client_id",
-											"value": "{{client_id}}",
+											"value": "test-client",
 											"description": "do not change this value",
 											"type": "text"
 										},
@@ -432,16 +415,153 @@
 											"key": "client_secret",
 											"value": "super-secret-key",
 											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "email",
+											"type": "text",
+											"disabled": true
 										}
 									]
 								},
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:tokenEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-										"{{rootUrl}}"
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1001: Create token for authorized user with user info scope",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"setTimeout(function(){}, 20000);",
+											"commonTest.OK();",
+											"verifyAccessToken();",
+											"verifyExpiryDuration(); ",
+											"",
+											"// Save access token for all next requests of getting/searching CMS data",
+											"pm.environment.set(\"HAPI:token\", pm.response.json().access_token); "
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "{{adminUser}}",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "{{adminPassword}}",
+											"type": "text"
+										},
+										{
+											"key": "grant_type",
+											"value": "password",
+											"description": "do not change this value - it's for creating new access token",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "test-info-client",
+											"description": "do not change this value",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "super-secret-key",
+											"type": "text"
+										},
+										{
+											"key": "scope",
+											"value": "email profile roles",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
+									"host": [
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get user info",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"commonTest.OK();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{HAPI:token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": []
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/api/episerver/connect/userinfo",
+									"host": [
+										"{{cmsUrl}}"
 									],
 									"path": [
-										"{{HAPI:tokenEndpoint}}"
+										"api",
+										"episerver",
+										"connect",
+										"userinfo"
 									]
 								}
 							},
@@ -504,13 +624,10 @@
 									]
 								},
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:tokenEndpoint}}",
+									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-										"{{rootUrl}}"
-									],
-									"path": [
-										"{{HAPI:tokenEndpoint}}"
-									]
+								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+							]
 								}
 							},
 							"response": []
@@ -590,12 +707,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/5",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/5",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										"5"
 									]
@@ -644,12 +760,11 @@
 								"method": "GET",
 								"header": [],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/5",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/5",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										"5"
 									]
@@ -726,12 +841,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/5",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/5",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										"5"
 									]
@@ -779,12 +893,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										""
 									]
@@ -806,7 +919,7 @@
 											"2. Message = Content was not found",
 											"*/",
 											"",
-											"failedTestContent.notFound(urls.segment(3));"
+											"failedTestContent.notFound(urls.segment(2));"
 										],
 										"type": "text/javascript"
 									}
@@ -834,12 +947,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/-111111",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/-111111",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										"-111111"
 									]
@@ -883,12 +995,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content?references=5,a",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?references=5,a",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content"
 									],
 									"query": [
@@ -937,12 +1048,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content?guids=abc, 123",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?guids=abc, 123",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content"
 									],
 									"query": [
@@ -991,12 +1101,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/1000/children",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/1000/children",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										"1000",
 										"children"
@@ -1041,12 +1150,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content?guids= Ff3eb050-8b8b-47f5-9aa7-84aa61c13ea2 ,  ,",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?guids= Ff3eb050-8b8b-47f5-9aa7-84aa61c13ea2 ,  ,",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content"
 									],
 									"query": [
@@ -1100,12 +1208,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/6900",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/6900",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										"6900"
 									]
@@ -1208,12 +1315,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site"
 									]
 								}
@@ -1254,59 +1360,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
-										"site",
-										"{{HAPI:siteId1}}"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "get a specific site Copy",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"//verify response code = 200\r",
-											"verifyResponseCode(200);\r",
-											"\r",
-											"// Verify site data structure\r",
-											"if (pm.response.code==200){\r",
-											"    testSite.specificSite(pm.environment.get(\"HAPI:siteId1\"));\r",
-											"    testSite.host(responseData.getRoot());\r",
-											"    //var singleSiteSchema = JSON.parse(pm.environment.get(\"HAPI:siteSchema\"));\r",
-											"    //pm.test(\"Single site schema is valid\", () => {\r",
-											"        //pm.response.to.have.jsonSchema(singleSiteSchema);\r",
-											"    //});\r",
-											"}"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"request": {
-								"method": "GET",
-								"header": [
-									{
-										"key": "Accept-Language",
-										"value": "en",
-										"disabled": true
-									}
-								],
-								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
-									"host": [
-										"{{rootUrl}}"
-									],
-									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site",
 										"{{HAPI:siteId1}}"
 									]
@@ -1505,12 +1563,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -1597,12 +1654,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:forallsitesId}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:forallsitesId}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:forallsitesId}}",
 												"children"
@@ -1678,12 +1734,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:contentassetsId}}",
 												"children"
@@ -1751,12 +1806,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:forthispageStartId}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:forthispageStartId}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:forthispageStartId}}",
 												"children"
@@ -1817,12 +1871,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:folderStartpageId}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:folderStartpageId}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:folderStartpageId}}",
 												"children"
@@ -1876,12 +1929,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:rootId}}/ancestors",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:rootId}}/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:rootId}}",
 												"ancestors"
@@ -1967,12 +2019,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:rootId}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:rootId}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:rootId}}",
 												"children"
@@ -2037,12 +2088,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/ancestors",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"ancestors"
@@ -2104,12 +2154,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:forallsitesId}}/ancestors",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:forallsitesId}}/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:forallsitesId}}",
 												"ancestors"
@@ -2159,12 +2208,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:recyclebinId}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:recyclebinId}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:recyclebinId}}",
 												"children"
@@ -2226,12 +2274,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:recyclebinId}}/ancestors",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:recyclebinId}}/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:recyclebinId}}",
 												"ancestors"
@@ -2293,12 +2340,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}/ancestors",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:contentassetsId}}",
 												"ancestors"
@@ -2356,12 +2402,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:forthispageStartId}}/ancestors",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:forthispageStartId}}/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:forthispageStartId}}",
 												"ancestors"
@@ -2395,7 +2440,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byIdNoLang(urls.segment(3), \"Alloy Meet\", \"SysContentFolder\");",
+													"    passTestContent.byIdNoLang(urls.segment(2), \"Alloy Meet\", \"SysContentFolder\");",
 													"}",
 													""
 												],
@@ -2428,12 +2473,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:folderAlloyMeetId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:folderAlloyMeetId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:folderAlloyMeetId}}"
 											]
@@ -2460,7 +2504,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"  passTestContent.byId(urls.segment(3), \"Alloy Plan\", \"ProductPage\", headers.language());",
+													"  passTestContent.byId(urls.segment(2), \"Alloy Plan\", \"ProductPage\", headers.language());",
 													"",
 													"/*",
 													"  // Keep content GUID for other next requests",
@@ -2500,12 +2544,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloyplanId}}"
 											]
@@ -2532,7 +2575,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byIdNoLang(urls.segment(3), \"logotype.png\", \"ImageFile\");",
+													"    passTestContent.byIdNoLang(urls.segment(2), \"logotype.png\", \"ImageFile\");",
 													"}"
 												],
 												"type": "text/javascript"
@@ -2561,12 +2604,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:logotype.pngId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:logotype.pngId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:logotype.pngId}}"
 											]
@@ -2593,7 +2635,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byId(urls.segment(3), \"Alloy Meet teaser\", \"TeaserBlock\", headers.language());",
+													"    passTestContent.byId(urls.segment(2), \"Alloy Meet teaser\", \"TeaserBlock\", headers.language());",
 													"}"
 												],
 												"type": "text/javascript"
@@ -2622,12 +2664,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloymeetteaserId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloymeetteaserId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloymeetteaserId}}"
 											]
@@ -2683,12 +2724,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content?references={{HAPI:alloyplanId}},{{HAPI:alloymeetteaserId}},{{HAPI:logotype.pngId}},{{HAPI:folderAlloyMeetId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?references={{HAPI:alloyplanId}},{{HAPI:alloymeetteaserId}},{{HAPI:logotype.pngId}},{{HAPI:folderAlloyMeetId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content"
 											],
 											"query": [
@@ -2719,7 +2759,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byId(urls.segment(3), \"Root\", \"SysRoot\", headers.language());",
+													"    passTestContent.byId(urls.segment(2), \"Root\", \"SysRoot\", headers.language());",
 													"}",
 													""
 												],
@@ -2749,12 +2789,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/1",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/1",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"1"
 											]
@@ -2781,7 +2820,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byId(urls.segment(3), \"Start\", \"StartPage\",headers.language());",
+													"    passTestContent.byId(urls.segment(2), \"Start\", \"StartPage\",headers.language());",
 													"}"
 												],
 												"type": "text/javascript"
@@ -2810,12 +2849,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}"
 											]
@@ -2841,7 +2879,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byIdNoLang(urls.segment(3), \"For All Sites\", \"SysContentFolder\");",
+													"    passTestContent.byIdNoLang(urls.segment(2), \"For All Sites\", \"SysContentFolder\");",
 													"}"
 												],
 												"type": "text/javascript"
@@ -2870,12 +2908,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:forallsitesId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:forallsitesId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:forallsitesId}}"
 											]
@@ -2901,7 +2938,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byIdNoLang(urls.segment(3), \"Content Assets\", \"SysContentFolder\");",
+													"    passTestContent.byIdNoLang(urls.segment(2), \"Content Assets\", \"SysContentFolder\");",
 													"}"
 												],
 												"type": "text/javascript"
@@ -2930,12 +2967,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:contentassetsId}}"
 											]
@@ -2962,7 +2998,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byIdNoLang(urls.segment(3), \"start\", \"SysContentAssetFolder\");",
+													"    passTestContent.byIdNoLang(urls.segment(2), \"start\", \"SysContentAssetFolder\");",
 													"}"
 												],
 												"type": "text/javascript"
@@ -2991,12 +3027,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:forthispageStartId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:forthispageStartId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:forthispageStartId}}"
 											]
@@ -3023,7 +3058,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byIdNoLang(urls.segment(3), \"Customer zone jumbotron\", \"SysContentAssetFolder\");",
+													"    passTestContent.byIdNoLang(urls.segment(2), \"Customer zone jumbotron\", \"SysContentAssetFolder\");",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3052,12 +3087,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:forthisblockCustomerZoneId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:forthisblockCustomerZoneId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:forthisblockCustomerZoneId}}"
 											]
@@ -3083,7 +3117,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byId(urls.segment(3), \"Customer Zone\", \"ContainerPage\", headers.language());",
+													"    passTestContent.byId(urls.segment(2), \"Customer Zone\", \"ContainerPage\", headers.language());",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3112,12 +3146,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:customerzoneId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:customerzoneId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:customerzoneId}}"
 											]
@@ -3169,7 +3202,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byGuid(urls.segment(3), \"Alloy Plan\", \"ProductPage\", headers.language());",
+													"    passTestContent.byGuid(urls.segment(2), \"Alloy Plan\", \"ProductPage\", headers.language());",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3198,12 +3231,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanGuid}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanGuid}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloyplanGuid}}"
 											]
@@ -3230,7 +3262,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byGuidNoLang(urls.segment(3), \"logotype.png\", \"ImageFile\");",
+													"    passTestContent.byGuidNoLang(urls.segment(2), \"logotype.png\", \"ImageFile\");",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3259,12 +3291,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:logotype.pngGuid}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:logotype.pngGuid}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:logotype.pngGuid}}"
 											]
@@ -3291,7 +3322,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byGuid(urls.segment(3), \"Alloy Meet teaser\", \"TeaserBlock\",headers.language());",
+													"    passTestContent.byGuid(urls.segment(2), \"Alloy Meet teaser\", \"TeaserBlock\",headers.language());",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3320,12 +3351,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloymeetteaserGuid}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloymeetteaserGuid}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloymeetteaserGuid}}"
 											]
@@ -3352,7 +3382,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byGuidNoLang(urls.segment(3), \"Alloy Meet\", \"SysContentFolder\");",
+													"    passTestContent.byGuidNoLang(urls.segment(2), \"Alloy Meet\", \"SysContentFolder\");",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3381,12 +3411,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:folderAlloyMeetGuid}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:folderAlloyMeetGuid}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:folderAlloyMeetGuid}}"
 											]
@@ -3441,12 +3470,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content?guids={{HAPI:alloyplanGuid}},{{HAPI:alloymeetteaserGuid}},{{HAPI:logotype.pngGuid}},{{HAPI:folderAlloyMeetGuid}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?guids={{HAPI:alloyplanGuid}},{{HAPI:alloymeetteaserGuid}},{{HAPI:logotype.pngGuid}},{{HAPI:folderAlloyMeetGuid}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content"
 											],
 											"query": [
@@ -3510,9 +3538,9 @@
 										"method": "GET",
 										"header": [],
 										"url": {
-											"raw": "{{rootUrl}}/en/alloy-plan",
+											"raw": "{{cmsUrl}}/en/alloy-plan",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -3590,9 +3618,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/children",
+											"raw": "{{cmsUrl}}/en/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -3660,9 +3688,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/ancestors",
+											"raw": "{{cmsUrl}}/en/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -3723,9 +3751,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/how-to-buy/",
+											"raw": "{{cmsUrl}}/en/how-to-buy/",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -3796,9 +3824,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/Alloy-plan/?expand=*",
+											"raw": "{{cmsUrl}}/en/Alloy-plan/?expand=*",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -3875,9 +3903,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/?expand=*",
+											"raw": "{{cmsUrl}}/?expand=*",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												""
@@ -3936,8 +3964,8 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    passTestContent.byId(getRealIdContent(3), \"Start\", \"StartPage\", headers.language());",
-													"    verifyMatchingData(\"Work id of the content\", getWorkIdContent(3), responseData.getRoot().contentLink.workId);",
+													"    passTestContent.byId(getRealIdContent(2), \"Start\", \"StartPage\", headers.language());",
+													"    verifyMatchingData(\"Work id of the content\", getWorkIdContent(2), responseData.getRoot().contentLink.workId);",
 													"    verifyMatchingData(\"content language \", \"sv\", responseData.getRoot().language.name);",
 													"}"
 												],
@@ -3968,12 +3996,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}_{{HAPI:start1SvId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}_{{HAPI:start1SvId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}_{{HAPI:start1SvId}}"
 											]
@@ -3999,7 +4026,7 @@
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
 													"    var data = responseData.getRoot();",
-													"    verifyMatchingData(\"Matched id\", urls.segment(3), data.contentLink.id.toString());",
+													"    verifyMatchingData(\"Matched id\", urls.segment(2), data.contentLink.id.toString());",
 													"    passTestContent.languageInfo(data, headers.language());",
 													"}"
 												],
@@ -4032,12 +4059,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}"
 											]
@@ -4065,7 +4091,7 @@
 													"verifyResponseCode(200);",
 													"if (pm.response.code==200){",
 													"    var data = responseData.getRoot();",
-													"    verifyMatchingData(\"Matched id\", urls.segment(3), data.contentLink.id.toString());",
+													"    verifyMatchingData(\"Matched id\", urls.segment(2), data.contentLink.id.toString());",
 													"    passTestContent.languageInfo(data, headers.language());",
 													"}"
 												],
@@ -4095,12 +4121,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}"
 											]
@@ -4149,12 +4174,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:aboutusId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:aboutusId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:aboutusId}}"
 											]
@@ -4212,9 +4236,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/alloy-meet/",
+											"raw": "{{cmsUrl}}/en/alloy-meet/",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -4278,9 +4302,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/",
+											"raw": "{{cmsUrl}}/",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												""
@@ -4327,12 +4351,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloyplanId}}"
 											]
@@ -4379,9 +4402,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/",
+											"raw": "{{cmsUrl}}/",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												""
@@ -4444,9 +4467,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/sv/",
+											"raw": "{{cmsUrl}}/sv/",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"sv",
@@ -4503,12 +4526,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}/ancestors",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloyplanId}}",
 												"ancestors"
@@ -4563,9 +4585,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/alloy-plan/ancestors",
+											"raw": "{{cmsUrl}}/en/alloy-plan/ancestors",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -4621,12 +4643,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloytrackId}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloytrackId}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloytrackId}}",
 												"children"
@@ -4681,9 +4702,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/alloy-track/children",
+											"raw": "{{cmsUrl}}/en/alloy-track/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -4732,12 +4753,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:logotype.pngId}}/",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:logotype.pngId}}/",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:logotype.pngId}}",
 												""
@@ -4784,12 +4804,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:folderAlloyMeetId}}/",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:folderAlloyMeetId}}/",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:folderAlloyMeetId}}",
 												""
@@ -4854,12 +4873,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}?expand=*",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}?expand=*",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}"
 											],
@@ -4919,12 +4937,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}?expand=",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}?expand=",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}"
 											],
@@ -4985,12 +5002,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}?expand=mainContentArea",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}?expand=mainContentArea",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}"
 											],
@@ -5050,12 +5066,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top={{HAPI:startPageChildren}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top={{HAPI:startPageChildren}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5117,9 +5132,9 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/en/children?top=3",
+											"raw": "{{cmsUrl}}/en/children?top=3",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}"
 											],
 											"path": [
 												"en",
@@ -5196,12 +5211,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5252,12 +5266,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=3",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=3",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5313,12 +5326,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=1",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=1",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5370,12 +5382,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=0",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=0",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5427,12 +5438,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=-1",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=-1",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5487,12 +5497,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top={{HAPI:OutOfRange}}",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top={{HAPI:OutOfRange}}",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5548,12 +5557,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5609,12 +5617,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=abc",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=abc",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:startId1}}",
 												"children"
@@ -5670,12 +5677,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}/children?top=5",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:contentassetsId}}/children?top=5",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:contentassetsId}}",
 												"children"
@@ -5713,7 +5719,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    var contentID= urls.segment(3).split(\"?\")[0];",
+													"    var contentID= urls.segment(2).split(\"?\")[0];",
 													"    var selectParam = urls.getQueryValue(\"select\");",
 													"    var data=responseData.getRoot();",
 													"    verifyMatchingData(\"Content ID\",contentID,data.contentLink.id);",
@@ -5749,12 +5755,11 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}?select=name,mainBody,mainContentArea",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:alloyplanId}}?select=name,mainBody,mainContentArea",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content",
 												"{{HAPI:alloyplanId}}"
 											],
@@ -5787,7 +5792,7 @@
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
-													"    //var contentID= urls.segment(3).split(\"?\")[0];",
+													"    //var contentID= urls.segment(2).split(\"?\")[0];",
 													"    //var selectParam = urls.getQueryValue(\"select\");",
 													"    var content=responseData.getRoot()[0];",
 													"    //verifyMatchingData(\"Content ID\",contentID,data.contentLink.id);",
@@ -5830,18 +5835,17 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content?contentUrl={{rootUrl}}/en/alloy-track&matchExact=true&select=mainContentArea",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?contentUrl={{cmsUrl}}/en/alloy-track&matchExact=true&select=mainContentArea",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content"
 											],
 											"query": [
 												{
 													"key": "contentUrl",
-													"value": "{{rootUrl}}/en/alloy-track"
+													"value": "{{cmsUrl}}/en/alloy-track"
 												},
 												{
 													"key": "matchExact",
@@ -5899,7 +5903,7 @@
 													"        }",
 													"        // for matching content: contentUrl parameter value compared to content url in response body",
 													"        var contentUrl = urls.getQueryValue(\"contentUrl\", false);",
-													"        contentUrl = contentUrl.replace(\"{{rootUrl}}\", pm.globals.get(\"rootUrl\"));",
+													"        contentUrl = contentUrl.replace(\"{{cmsUrl}}\", pm.globals.get(\"cmsUrl\"));",
 													"        //console.log(contentUrl);",
 													"        verifySubstring(\"Content url \", content.contentLink.url, contentUrl);",
 													"    }",
@@ -5932,18 +5936,17 @@
 											}
 										],
 										"url": {
-											"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content?contentUrl={{rootUrl}}/en/alloy-track/notFound&matchExact=false&select=mainBody&expand=mainBody",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?contentUrl={{cmsUrl}}/en/alloy-track/notFound&matchExact=false&select=mainBody&expand=mainBody",
 											"host": [
-												"{{rootUrl}}"
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
 											"path": [
-												"{{HAPI:endpointRoot}}",
 												"content"
 											],
 											"query": [
 												{
 													"key": "contentUrl",
-													"value": "{{rootUrl}}/en/alloy-track/notFound"
+													"value": "{{cmsUrl}}/en/alloy-track/notFound"
 												},
 												{
 													"key": "matchExact",
@@ -6408,12 +6411,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site"
 									]
 								}
@@ -6461,12 +6463,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site"
 									]
 								}
@@ -6518,12 +6519,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site"
 									]
 								}
@@ -6557,12 +6557,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site",
 										"{{HAPI:siteId1}}"
 									]
@@ -6605,12 +6604,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site",
 										"{{HAPI:siteId1}}"
 									]
@@ -6657,12 +6655,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"site",
 										"{{HAPI:siteId1}}"
 									]
@@ -6754,7 +6751,7 @@
 									"script": {
 										"exec": [
 											"//Note: endpoint for testing with EPiServer.ContentManagement.ContentTypeApi package\r",
-											"//{{rootUrl}}/api/contentmanagement/v1/contenttypes\r",
+											"//{{cmsUrl}}/api/contentmanagement/v1/contenttypes\r",
 											"\r",
 											"// Verify if the preflight request is allowed with different hosts in Origin request header\r",
 											"var allowOrigin = pm.response.headers.get(\"Access-Control-Allow-Origin\");\r",
@@ -6792,7 +6789,7 @@
 								"header": [
 									{
 										"key": "Origin",
-										"value": "{{rootUrl}}",
+										"value": "{{cmsUrl}}",
 										"type": "text"
 									},
 									{
@@ -6809,12 +6806,11 @@
 									}
 								],
 								"url": {
-									"raw": "{{rootUrl}}/{{HAPI:endpointRoot}}/content/5",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/5",
 									"host": [
-										"{{rootUrl}}"
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
-										"{{HAPI:endpointRoot}}",
 										"content",
 										"5"
 									]
@@ -6824,7 +6820,7 @@
 							"response": []
 						}
 					],
-					"description": "Testing story NCD-971\r\nNote: endpoint for testing ContentTypeApi\r\n{{rootUrl}}/api/contentmanagement/v1/contenttypes",
+					"description": "Testing story NCD-971\r\nNote: endpoint for testing ContentTypeApi\r\n{{cmsUrl}}/api/contentmanagement/v1/contenttypes",
 					"event": [
 						{
 							"listen": "prerequest",
@@ -6858,7 +6854,7 @@
 							"var url = pm.environment.get(\"cmsUrl\");",
 							"if (url === undefined)",
 							"    pm.environment.set(\"cmsUrl\", \"your-CMS-site-url\");",
-							"else pm.globals.set(\"rootUrl\", url);",
+							"else pm.globals.set(\"cmsUrl\", url);",
 							"",
 							"// Set the expected data format in response body",
 							"var format = pm.environment.get(\"HAPI:dataFormat\");",
@@ -7045,7 +7041,7 @@
 							"        var url = contentData.url;",
 							"        if (url !== null){",
 							"            // url is often returned as relative path e.g. /en/pagename/ or <virtual-dir>/en/pagename/",
-							"            // url is returned as obsolete path when {{rootUrl}} host is different from the main website URL in Admin UI -> automation test doesn't care this case.",
+							"            // url is returned as obsolete path when {{cmsUrl}} host is different from the main website URL in Admin UI -> automation test doesn't care this case.",
 							"            // url = \"<virtual-dir>/en/pagename/\"; // for testing",
 							"            // Get language segment",
 							"            var langPosition = url.indexOf('/' + langCode + '/');",
@@ -7208,7 +7204,7 @@
 					"// Global functions for extracting data from request.url string",
 					"urls = {",
 					"    // Extract a part of url segment based on its index in request url",
-					"    // Example: {{rootUrl}}/api/episerver/v1.0/content/{{idStart}}/children   => getSegment(url, 5) returns actual ID of Start page",
+					"    // Example: {{cmsUrl}}/api/episerver/v1.0/content/{{idStart}}/children   => getSegment(url, 5) returns actual ID of Start page",
 					"    segment(index){",
 					"        if (index < 0) return '';",
 					"        var segments = request.url.split('/');",
@@ -7240,7 +7236,7 @@
 					"    },",
 					"    ",
 					"    // Extract actual value of a specific query parameter in url",
-					"    // Example: {{rootUrl}}/get?test=123&test={{variable}}&foo=000 => getQueyValue('test') returns actual value of {{variable}}",
+					"    // Example: {{cmsUrl}}/get?test=123&test={{variable}}&foo=000 => getQueyValue('test') returns actual value of {{variable}}",
 					"    getQueryValue(name, replaced=true){",
 					"        var paramValue = pm.request.url.query.get(name); // returns {{xxx}}   ",
 					"        // Get actual values of non-global variables",
@@ -7252,7 +7248,7 @@
 					"    ",
 					"    //Known issue: request.url in pre-request script isn't replaced with variable values",
 					"    //Workaround: Replace all variables (if any) in current request url with their actual values.",
-					"    //Note: Global variable's latest value can't be returned to inside any custom function, so {{rootUrl}} should be replaced outside of this function",
+					"    //Note: Global variable's latest value can't be returned to inside any custom function, so {{cmsUrl}} should be replaced outside of this function",
 					"    updateVariableValues(url){",
 					"        var startBrace = url.indexOf(\"{{\");",
 					"        var endBrace;",
@@ -7296,7 +7292,7 @@
 					"};",
 					"",
 					"//Get correct id of content if it has version ID",
-					"//Example: {{rootUrl}}/api/episerver/v1.0/content/{{idStart_idversion}}",
+					"//Example: {{cmsUrl}}/api/episerver/v1.0/content/{{idStart_idversion}}",
 					"getRealIdContent = (index) => {",
 					"    var data = urls.segment(index).split('_');",
 					"    var contentId = data[0];",
@@ -7304,7 +7300,7 @@
 					"};",
 					"",
 					"//Get work id of content if it is using",
-					"//Example: {{rootUrl}}/api/episerver/v1.0/content/{{idStart_idversion}}",
+					"//Example: {{cmsUrl}}/api/episerver/v1.0/content/{{idStart_idversion}}",
 					"getWorkIdContent = (index) => {",
 					"    var data = urls.segment(index).split('_');",
 					"    var workId = data[1];",
