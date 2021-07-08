@@ -407,13 +407,13 @@
 										},
 										{
 											"key": "client_id",
-											"value": "test-client",
+											"value": "{{client_id}}",
 											"description": "do not change this value",
 											"type": "text"
 										},
 										{
 											"key": "client_secret",
-											"value": "super-secret-key",
+											"value": "{{client_secret}}",
 											"type": "text"
 										},
 										{
@@ -485,13 +485,13 @@
 										},
 										{
 											"key": "client_id",
-											"value": "test-info-client",
+											"value": "{{client_id}}",
 											"description": "do not change this value",
 											"type": "text"
 										},
 										{
 											"key": "client_secret",
-											"value": "super-secret-key",
+											"value": "{{client_secret}}",
 											"type": "text"
 										},
 										{
