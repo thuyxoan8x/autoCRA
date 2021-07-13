@@ -2,7 +2,7 @@
 newman run "Definition-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra
 
 2. CD:
-newman run "CD-NetCore.postman_collection.json" -e "CMS-CMA.NetCore.token.postman_environment.json" --folder "Headless API" -r htmlextra
+newman run "CD-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra
 
 3. CMA non flatten:
 newman run "CMA-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-NetCore.json" -r htmlextra
