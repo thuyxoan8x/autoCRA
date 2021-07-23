@@ -1998,15 +1998,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentTypes"
 							]
 						}
 					},
@@ -7316,15 +7312,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentTypes"
 							]
 						}
 					},
@@ -11417,15 +11409,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentTypes"
 							]
 						}
 					},
@@ -15551,15 +15539,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentTypes"
 							]
 						}
 					},
@@ -20032,15 +20016,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentTypes"
 							]
 						}
 					},
@@ -23034,15 +23014,11 @@
 							}
 						},
 						"url": {
-							"raw": "{{cmsUrl}}/api/episerver/v2.0/contentTypes",
+							"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 							],
 							"path": [
-								"api",
-								"episerver",
-								"v2.0",
-								"contentTypes"
 							]
 						}
 					},
