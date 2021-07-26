@@ -4909,7 +4909,8 @@
 													"if(pm.response.code===200){",
 													"    //Verify returned results comparing to expected data",
 													"    verifyExpandedProp();",
-													"}"
+													"}",
+													"// this case is failed regarding to CMS-19846"
 												],
 												"type": "text/javascript"
 											}
@@ -5529,7 +5530,8 @@
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
 													"    verifyTop(maxRows,\"null\");",
-													"}"
+													"}",
+													"// this case is failed regarding to CMS-19846"
 												],
 												"type": "text/javascript"
 											}
@@ -5584,12 +5586,10 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"var maxRows = urls.getQueryValue(\"top\");",
-													"//verify response code = 200",
-													"verifyResponseCode(200);",
-													"if(pm.response.code===200){",
-													"    verifyTop(maxRows,\"null\");",
-													"}"
+													"//CD NetCore > Paging > 1608: Paging - top isn't a number",
+													"// Edit follow HAPI-1823",
+													"verifyResponseCode(400);",
+													"verifyText(\"The value 'abc' is not valid.\");"
 												],
 												"type": "text/javascript"
 											}

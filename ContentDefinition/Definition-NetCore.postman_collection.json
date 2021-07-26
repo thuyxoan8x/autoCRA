@@ -4949,7 +4949,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyResponseCode(404);"
+											"//Definition NetCore > Delete ContentType > 20 Delete a contentType that id is invalid guild\r",
+											"// Edit follow HAPI-1823\r",
+											"verifyResponseCode(400);\r",
+											"verifyText(\"The value 'a6964cee-b7eb-4443-899c-70cadba558zz' is not valid.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -27786,7 +27789,12 @@
 					"            }",
 					"    obj.properties = propertyArray;",
 					"    return obj;",
-					"}"
+					"}",
+					"verifyText = (searchingText) => {",
+					"    pm.test(\"Contains text '\" + searchingText + \"'\", function () {",
+					"        pm.expect(pm.response.text()).to.include(searchingText);",
+					"    });",
+					"};"
 				]
 			}
 		}
