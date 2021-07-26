@@ -17106,8 +17106,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 1.3. Import allowedUpgrades=patch with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"pm.variables.unset(\"contentType\");"
 								],
 								"type": "text/javascript"
@@ -17186,8 +17188,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 1.4. Import allowedUpgrades=patch with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -17521,8 +17525,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 2.3. Import allowedUpgrades=patch with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -17603,8 +17609,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 2.4. Import allowedUpgrades=patch with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -18021,8 +18029,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 3.4. Import allowedUpgrades=minor with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -18439,8 +18449,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 4.4. Import allowedUpgrades=minor with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -19675,8 +19687,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 7.4. Import without allowedUpgrades with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -19916,8 +19930,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 8.2. Import without allowedDowngrades with patch change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -19991,8 +20007,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 8.3. Import without allowedDowngrades with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -20067,8 +20085,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 8.4. Import without allowedDowngrades with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -20316,8 +20336,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 9.2. Import allowedUpgrades=none with patch change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -20396,8 +20418,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 9.3. Import allowedUpgrades=none with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -20477,8 +20501,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 9.4. Import allowedUpgrades=none with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -20730,8 +20756,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 10.2. Import allowedUpgrades=none with patch change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -20811,8 +20839,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 10.3. Import allowedUpgrades=none with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -20893,8 +20923,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 10.4. Import allowedUpgrades=none with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -21044,8 +21076,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 11.2. Import allowedDowngrades=none with patch change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -21125,8 +21159,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 11.3. Import allowedDowngrades=none with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -21207,8 +21243,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 11.4. Import allowedDowngrades=none with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -21440,8 +21478,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 12.3. Import allowedDowngrades=patch with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -21522,8 +21562,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 12.3. Import allowedDowngrades=patch with minor change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -21838,8 +21880,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 13.4. Import allowedDowngrades=minor with major change\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -22020,8 +22064,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 15. Import allowedDowngrades=minor with major change but downgraded minor level\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Major' which is higher than requested 'Minor'.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Major' which is higher than requested 'Minor'.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -22523,9 +22569,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 16.1. Import allowedDowngrades=none allowedUpgrades=none case 1\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
 									"verifyManifestIsAllSuccess();\r",
-									"verifyManifestMessagesInclude(\"Imported 2 content types.\", \"Success\");\r",
+									"verifyManifestMessagesInclude(\"Imported 2 content types.\", \"success\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -22605,8 +22653,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 16.2. Import allowedDowngrades=none allowedUpgrades=none case 2\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -22694,8 +22744,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 16.3. Import allowedDowngrades=none allowedUpgrades=none case 3\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -22784,8 +22836,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 16.4. Import allowedDowngrades=none allowedUpgrades=none case 4\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -22879,8 +22933,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 16.5. Import allowedDowngrades=none allowedUpgrades=none case 5\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -23151,8 +23207,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 17.3. Import allowedDowngrades=patch allowedUpgrades=minor case 3\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -23237,8 +23295,10 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 17.3. Import allowedDowngrades=patch allowedUpgrades=minor case 3\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"error\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -23691,9 +23751,11 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"// HAPI-1089 > 21. Import continueOnError = true\r",
+									"// Edit follow: HAPI-1749\r",
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the property group 'NewGroup' failed. Cannot create the system group\", \"Error\");\r",
-									"verifyManifestMessagesInclude(\"Imported 1 content type.\", \"Success\");\r",
+									"verifyManifestMessagesInclude(\"Import of the property group 'NewGroup' failed. Cannot create the system group\", \"error\");\r",
+									"verifyManifestMessagesInclude(\"Imported 1 content type.\", \"success\");\r",
 									"\r",
 									"pm.environment.set(\"contentTypeGuid\", JSON.parse(request.data).contentTypes[0].id);"
 								],
