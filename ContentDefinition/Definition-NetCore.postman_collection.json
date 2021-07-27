@@ -4940,8 +4940,6 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"//Definition NetCore > Delete ContentType > 20 Delete a contentType that id is invalid guild\r",
-											"// Edit follow HAPI-1823\r",
 											"pm.environment.set(\"invalidGuid\", \"a6964cee-b7eb-4443-899c-70cadba558zz\");"
 										],
 										"type": "text/javascript"
@@ -4973,12 +4971,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/a6964cee-b7eb-4443-899c-70cadba558zz",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{invalidGuid}}",
 									"host": [
 										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"a6964cee-b7eb-4443-899c-70cadba558zz"
+										"{{invalidGuid}}"
 									]
 								}
 							},

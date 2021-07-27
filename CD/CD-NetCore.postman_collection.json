@@ -5586,8 +5586,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"//CD NetCore > Paging > 1608: Paging - top isn't a number",
-													"// Edit follow HAPI-1823",
 													"verifyResponseCode(400);",
 													"verifyText(\"The value '\" + pm.environment.get(\"invalidTop\") + \"' is not valid.\");",
 													"",
@@ -5600,8 +5598,6 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"//CD NetCore > Paging > 1608: Paging - top isn't a number\r",
-													"// Edit follow HAPI-1823\r",
 													"pm.environment.set(\"invalidTop\", \"abc\");"
 												],
 												"type": "text/javascript"
@@ -5621,7 +5617,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top=abc",
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}/children?top={{invalidTop}}",
 											"host": [
 												"{{cmsUrl}}{{HAPI:endpointRoot}}"
 											],
@@ -5633,7 +5629,7 @@
 											"query": [
 												{
 													"key": "top",
-													"value": "abc"
+													"value": "{{invalidTop}}"
 												}
 											]
 										},
