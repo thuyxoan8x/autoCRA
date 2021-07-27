@@ -4899,6 +4899,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
+													"// this case is failed regarding to CMS-19846",
 													"/*",
 													"Get Start page wiht expand = ''",
 													"1. Status code =200",
@@ -4909,8 +4910,7 @@
 													"if(pm.response.code===200){",
 													"    //Verify returned results comparing to expected data",
 													"    verifyExpandedProp();",
-													"}",
-													"// this case is failed regarding to CMS-19846"
+													"}"
 												],
 												"type": "text/javascript"
 											}
@@ -5525,13 +5525,13 @@
 											"listen": "test",
 											"script": {
 												"exec": [
+													"// this case is failed regarding to CMS-19846",
 													"var maxRows = urls.getQueryValue(\"top\");",
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
 													"if(pm.response.code===200){",
 													"    verifyTop(maxRows,\"null\");",
-													"}",
-													"// this case is failed regarding to CMS-19846"
+													"}"
 												],
 												"type": "text/javascript"
 											}
@@ -5589,7 +5589,9 @@
 													"//CD NetCore > Paging > 1608: Paging - top isn't a number",
 													"// Edit follow HAPI-1823",
 													"verifyResponseCode(400);",
-													"verifyText(\"The value 'abc' is not valid.\");"
+													"verifyText(\"The value '\" + pm.environment.get(\"invalidTop\") + \"' is not valid.\");",
+													"",
+													"pm.environment.unset(\"invalidTop\");"
 												],
 												"type": "text/javascript"
 											}
@@ -5598,7 +5600,9 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													""
+													"//CD NetCore > Paging > 1608: Paging - top isn't a number\r",
+													"// Edit follow HAPI-1823\r",
+													"pm.environment.set(\"invalidTop\", \"abc\");"
 												],
 												"type": "text/javascript"
 											}
