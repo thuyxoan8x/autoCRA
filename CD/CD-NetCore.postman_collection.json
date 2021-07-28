@@ -19,6 +19,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"// This is failed regarding HAPI-1826\r",
 											"commonTest.failed(400, \"invalid_grant\", \"The username or password is invalid.\");"
 										],
 										"type": "text/javascript"
