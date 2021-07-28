@@ -4940,7 +4940,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											""
+											"pm.environment.set(\"invalidGuid\", \"a6964cee-b7eb-4443-899c-70cadba558zz\");"
 										],
 										"type": "text/javascript"
 									}
@@ -4949,7 +4949,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyResponseCode(404);"
+											"verifyResponseCode(400);\r",
+											"verifyErrorMessage(\"id\", [\"The value '\"  + pm.environment.get(\"invalidGuid\") + \"' is not valid.\"]);\r",
+											"\r",
+											"pm.environment.unset(\"invalidGuid\");"
 										],
 										"type": "text/javascript"
 									}
@@ -4968,12 +4971,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/a6964cee-b7eb-4443-899c-70cadba558zz",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{invalidGuid}}",
 									"host": [
 										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
 									"path": [
-										"a6964cee-b7eb-4443-899c-70cadba558zz"
+										"{{invalidGuid}}"
 									]
 								}
 							},
@@ -17107,7 +17110,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
 								"type": "text/javascript"
@@ -17187,7 +17191,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -17522,7 +17526,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -17604,7 +17608,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -18022,7 +18026,7 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\", \"Error\");\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType\");"
 								],
@@ -22525,7 +22529,7 @@
 								"exec": [
 									"verifyResponseCode(200);\r",
 									"verifyManifestIsAllSuccess();\r",
-									"verifyManifestMessagesInclude(\"Imported 2 content types.\", \"Success\");\r",
+									"verifyManifestMessagesInclude(\"Imported 2 content types.\", \"success\");\r",
 									"\r",
 									"pm.variables.unset(\"contentType1\");\r",
 									"pm.variables.unset(\"contentType2\");"
@@ -23692,8 +23696,8 @@
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
-									"verifyManifestMessagesInclude(\"Import of the property group 'NewGroup' failed. Cannot create the system group\", \"Error\");\r",
-									"verifyManifestMessagesInclude(\"Imported 1 content type.\", \"Success\");\r",
+									"verifyManifestMessagesInclude(\"Import of the property group 'NewGroup' failed. Cannot create the system group\");\r",
+									"verifyManifestMessagesInclude(\"Imported 1 content type.\", \"success\");\r",
 									"\r",
 									"pm.environment.set(\"contentTypeGuid\", JSON.parse(request.data).contentTypes[0].id);"
 								],
@@ -27562,7 +27566,7 @@
 					"    Assert.IsEqual(\"Verify error detail message\", message, pm.response.json().detail);",
 					"}",
 					"",
-					"verifyManifestMessagesInclude = (message, severity = \"Error\") =>",
+					"verifyManifestMessagesInclude = (message, severity = \"error\") =>",
 					"{",
 					"    pm.test(\"Message '\" + message + \"' should be included in response body.\", function()",
 					"    {",
