@@ -72,8 +72,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -127,8 +127,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -215,8 +215,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -282,8 +282,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -349,8 +349,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -427,8 +427,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -504,8 +504,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -626,8 +626,8 @@
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:tokenEndpoint}}",
 									"host": [
-								"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
-							]
+										"{{cmsUrl}}{{HAPI:tokenEndpoint}}"
+									]
 								}
 							},
 							"response": []
@@ -1395,65 +1395,28 @@
 									"testSite = {",
 									"    // Test data structure of a site",
 									"    rootNodes(siteData){",
-									"        var endpointVer = pm.request.url.path[3];",
-									"        //debug.log(endpointVer);",
-									"        switch(endpointVer) {",
-									"            case \"v2.0\":",
-									"                verifyDataNotNull(\"contentAssetsRoot\", siteData.contentRoots.contentAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"globalAssetsRoot\", siteData.contentRoots.globalAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"rootPage\", siteData.contentRoots.rootPage.guidValue);",
-									"                verifyDataNotNull(\"wasteBasket\", siteData.contentRoots.wasteBasket.guidValue);",
-									"                verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
-									"                //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
-									"                //verifyDataNotNull(\"siteAssetsRoot\", siteData.contentRoots.siteAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"languages\", siteData.languages);",
-									"                verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,5);",
-									"                break;",
-									"            case \"v3\":",
-									"                verifyDataNotNull(\"globalAssetsRoot\", siteData.contentRoots.globalAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
-									"                //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
-									"                //verifyDataNotNull(\"siteAssetsRoot\", siteData.contentRoots.siteAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"languages\", siteData.languages);",
-									"                verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,2);",
-									"                break;",
-									"            default:",
-									"                // code block",
-									"            }",
+									"        verifyDataNotNull(\"contentAssetsRoot\", siteData.contentRoots.contentAssetsRoot.guidValue);",
+									"        verifyDataNotNull(\"globalAssetsRoot\", siteData.contentRoots.globalAssetsRoot.guidValue);",
+									"        verifyDataNotNull(\"rootPage\", siteData.contentRoots.rootPage.guidValue);",
+									"        verifyDataNotNull(\"wasteBasket\", siteData.contentRoots.wasteBasket.guidValue);",
+									"        verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
+									"        //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
+									"        verifyDataNotNull(\"languages\", siteData.languages);",
+									"        verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,5);",
+									"        ",
 									"        console.log(\"testSite.rootNodes\");",
 									"    },",
 									"    specificSite(siteID){",
 									"        // Verify site data structure",
 									"        var siteData = responseData.getRoot();",
-									"        var endpointVer = pm.request.url.path[3];",
-									"        console.log(endpointVer);",
-									"        //debug.log(endpointVer);",
-									"        switch(endpointVer) {",
-									"            case \"v2.0\":",
-									"                verifyDataNotNull(\"contentAssetsRoot\", siteData.contentRoots.contentAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"globalAssetsRoot\", siteData.contentRoots.globalAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"rootPage\", siteData.contentRoots.rootPage.guidValue);",
-									"                verifyDataNotNull(\"wasteBasket\", siteData.contentRoots.wasteBasket.guidValue);",
-									"                verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
-									"                //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
-									"                //verifyDataNotNull(\"siteAssetsRoot\", siteData.contentRoots.siteAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"languages\", siteData.languages);",
-									"                verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,5);",
-									"                console.log(1);",
-									"                break;",
-									"            case \"v3\":",
-									"                verifyDataNotNull(\"globalAssetsRoot\", siteData.contentRoots.globalAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
-									"                //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
-									"                //verifyDataNotNull(\"siteAssetsRoot\", siteData.contentRoots.siteAssetsRoot.guidValue);",
-									"                verifyDataNotNull(\"languages\", siteData.languages);",
-									"                verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,2);",
-									"                break;",
-									"            default:",
-									"                console.log(2);",
-									"                // code block",
-									"            }",
-									"        //console.log(\"testSite.rootNodes\");",
+									"        verifyDataNotNull(\"contentAssetsRoot\", siteData.contentRoots.contentAssetsRoot.guidValue);",
+									"        verifyDataNotNull(\"globalAssetsRoot\", siteData.contentRoots.globalAssetsRoot.guidValue);",
+									"        verifyDataNotNull(\"rootPage\", siteData.contentRoots.rootPage.guidValue);",
+									"        verifyDataNotNull(\"wasteBasket\", siteData.contentRoots.wasteBasket.guidValue);",
+									"        verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
+									"        //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
+									"        verifyDataNotNull(\"languages\", siteData.languages);",
+									"        verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,5);",
 									"    },",
 									"    // Test master language of a site",
 									"    masterLanguage(siteData, langCode, isMasterLang){",
@@ -1464,7 +1427,6 @@
 									"        ",
 									"        // Set back to original root",
 									"        responseData.setRoot(responseData.getRoot());",
-									"        //console.log(\"testSite.masterLanguage\");",
 									"    },",
 									"    host(siteData){",
 									"        // Find host section",
