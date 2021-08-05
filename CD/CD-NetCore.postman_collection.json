@@ -19,8 +19,6 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Headless API > HAPI: Token > 1005: Create token for unexistent user\r",
-											"// Edit follow: HAPI-1826\r",
 											"commonTest.failed(400, \"invalid_grant\", \"Login failed.\");"
 										],
 										"type": "text/javascript"
@@ -1255,8 +1253,6 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Headless API > HAPI: Site > get sites",
-											"// Edit follow: HAPI-1845",
 											"//verify response code = 200",
 											"verifyResponseCode(200);",
 											"",
@@ -1310,9 +1306,6 @@
 								}
 							],
 							"request": {
-								"auth": {
-									"type": "noauth"
-								},
 								"method": "GET",
 								"header": [
 									{
@@ -1340,8 +1333,6 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// Headless API > HAPI: Site > get a specific site\r",
-											"// Edit follow: HAPI-1845\r",
 											"//verify response code = 200\r",
 											"verifyResponseCode(200);\r",
 											"\r",
@@ -1360,9 +1351,6 @@
 								}
 							],
 							"request": {
-								"auth": {
-									"type": "noauth"
-								},
 								"method": "GET",
 								"header": [
 									{
