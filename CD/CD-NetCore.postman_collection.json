@@ -19,8 +19,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"// This is failed regarding HAPI-1826\r",
-											"commonTest.failed(400, \"invalid_grant\", \"The username or password is invalid.\");"
+											"commonTest.failed(400, \"invalid_grant\", \"Login failed.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -1374,6 +1373,9 @@
 							"response": []
 						}
 					],
+					"auth": {
+						"type": "noauth"
+					},
 					"event": [
 						{
 							"listen": "prerequest",
