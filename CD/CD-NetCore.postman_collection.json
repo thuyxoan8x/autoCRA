@@ -1208,13 +1208,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/6900",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{deniedPageId}}",
 									"host": [
 										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
 										"content",
-										"6900"
+										"{{deniedPageId}}"
 									]
 								},
 								"description": "Get Trash folder information by ID\n1. Status code =200\n2. Content ID = 2\n3. Content Name = Recycle Bin\n4. Content Type = SysRecycleBin"
@@ -1402,7 +1402,7 @@
 									"        verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
 									"        //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
 									"        verifyDataNotNull(\"languages\", siteData.languages);",
-									"        verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,5);",
+									"        verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,6);",
 									"        ",
 									"        console.log(\"testSite.rootNodes\");",
 									"    },",
@@ -1416,7 +1416,7 @@
 									"        verifyDataNotNull(\"startPage\", siteData.contentRoots.startPage.guidValue);",
 									"        //Incase newly-installed site, check-box \"Use site-specific assets\" is unchecked.",
 									"        verifyDataNotNull(\"languages\", siteData.languages);",
-									"        verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,5);",
+									"        verifyMatchingData(\"Number of ContentRoots items\", Object.keys(siteData.contentRoots).length,6);",
 									"    },",
 									"    // Test master language of a site",
 									"    masterLanguage(siteData, langCode, isMasterLang){",
@@ -4864,7 +4864,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// this case is failed regarding to CMS-19846",
 													"/*",
 													"Get Start page wiht expand = ''",
 													"1. Status code =200",
@@ -5490,7 +5489,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// this case is failed regarding to CMS-19846",
 													"var maxRows = urls.getQueryValue(\"top\");",
 													"//verify response code = 200",
 													"verifyResponseCode(200);",
