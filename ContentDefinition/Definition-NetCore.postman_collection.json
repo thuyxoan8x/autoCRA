@@ -23513,7 +23513,7 @@
 							"script": {
 								"exec": [
 									"pm.variables.set(\"paramList\", \"allowedDowngrades,allowedUpgrades\");\r",
-									"pm.variables.set(\"paramValueList\", \"test,,123456789\");\r",
+									"pm.variables.set(\"paramValueList\", \"test,123456789\");\r",
 									"paramList = pm.variables.get(\"paramList\").split(',');\r",
 									"paramValueList = pm.variables.get(\"paramValueList\").split(',');\r",
 									"\r",
