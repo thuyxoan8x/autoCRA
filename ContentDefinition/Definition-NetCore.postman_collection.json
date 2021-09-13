@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "d169327b-6c8b-43f7-9f74-c8740376a720",
-		"name": "Definition NetCore",
+		"_postman_id": "d9aa4822-6c25-4d11-aac9-4062a4297d9b",
+		"name": "CDA NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -2665,10 +2665,9 @@
 						"url": {
 							"raw": "{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}/@#!!#<>&*",
 							"host": [
-								"{{cmsUrl}}"
+								"{{cmsUrl}}{{HAPI:Definition_PropertyGroupEndpoint}}"
 							],
 							"path": [
-								"{{HAPI:Definition_PropertyGroupEndpoint}}",
 								"@"
 							],
 							"hash": "!!#<>&*"
@@ -9195,6 +9194,722 @@
 									],
 									"path": [
 										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "HAPI-1914 Exclude read-only system content types in manifest",
+					"item": [
+						{
+							"name": "1. Get all content types without includeSystemTypes",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"response = pm.response.json();\r",
+											"pm.environment.set(\"contentTypeNumbers\", response.length);\r",
+											"\r",
+											"Assert.IsFalse(\"Verify SysContentFolder is not returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+											"Assert.IsFalse(\"Verify SysContentAssetFolder is not returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+											"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+											"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Get all content types with includeSystemTypes is false",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"console.log(response.length);\r",
+											"Assert.IsFalse(\"Verify SysContentFolder is not returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+											"Assert.IsFalse(\"Verify SysContentAssetFolder is not returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+											"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+											"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?includeSystemTypes=false",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "includeSystemTypes",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all content types with includeSystemTypes is null",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"console.log(response.length);\r",
+											"Assert.IsFalse(\"Verify SysContentFolder is not returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+											"Assert.IsFalse(\"Verify SysContentAssetFolder is not returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+											"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+											"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?includeSystemTypes=",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "includeSystemTypes",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. Get all content types with includeSystemTypes is true",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"response = pm.response.json();\r",
+											"pm.environment.set(\"contentTypeNumbersIncludedSystem\", response.length);\r",
+											"\r",
+											"Assert.IsTrue(\"Verify SysContentFolder is returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+											"Assert.IsTrue(\"Verify SysContentAssetFolder is returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+											"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+											"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?includeSystemTypes=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "includeSystemTypes",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4. Invalid - Get all content types with includeSystemTypes is invalid",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"invalid\", \"invalid\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorMessage(\"includeSystemTypes\", [\r",
+											"            \"The value 'invalid' is not valid.\"\r",
+											"        ]);\r",
+											"\r",
+											"pm.environment.unset(\"invalid\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?includeSystemTypes={{invalid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "includeSystemTypes",
+											"value": "{{invalid}}"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5. Get all content types with top",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"\r",
+											"pm.environment.set(\"HAPI:nextToken\", postman.getResponseHeader('x-epi-continuation'));\r",
+											"pm.environment.set(\"contentTypeCount\", 1);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?top=1",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "top",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "8. Invalid - Get all content types with top and continuationToken together",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.request.headers.add({\r",
+											"    'key': \"x-epi-continuation\",\r",
+											"    'value': pm.environment.get(\"HAPI:nextToken\")    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorMessage(\"top\", [\r",
+											"            \"Parameter 'top' is not allowed when 'continuationToken' is provided.\"\r",
+											"        ]);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?top=1",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "top",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all content types next page",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.request.headers.add({\r",
+											"    'key': \"x-epi-continuation\",\r",
+											"    'value': pm.environment.get(\"HAPI:nextToken\")    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"next length \" + pm.response.json().length); \r",
+											"\r",
+											"contentTypeCount = parseInt(pm.environment.get(\"contentTypeCount\"))\r",
+											"pm.environment.set(\"contentTypeCount\", contentTypeCount + 1);\r",
+											"nextToken = postman.getResponseHeader('x-epi-continuation');\r",
+											"if(nextToken != undefined)\r",
+											"{\r",
+											"    pm.environment.set(\"HAPI:nextToken\", postman.getResponseHeader('x-epi-continuation'));\r",
+											"    postman.setNextRequest(request.name);\r",
+											"}\r",
+											"else\r",
+											"{\r",
+											"    Assert.IsEqual(\"Verify numbers of content type\", pm.environment.get(\"contentTypeNumbers\"), pm.environment.get(\"contentTypeCount\"))\r",
+											"    pm.environment.unset(\"contentTypeCount\");\r",
+											"    pm.environment.unset(\"x-epi-continuation\");\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "6. Get all content types with top and includeSystemTypes is false",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"HAPI:nextToken\", postman.getResponseHeader('x-epi-continuation'));\r",
+											"pm.environment.set(\"contentTypeCount\", 1);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?top=1&includeSystemTypes=false",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "top",
+											"value": "1"
+										},
+										{
+											"key": "includeSystemTypes",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all content types next page with includeSystemTypes is false",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.request.headers.add({\r",
+											"    'key': \"x-epi-continuation\",\r",
+											"    'value': pm.environment.get(\"HAPI:nextToken\")    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"contentTypeCount = parseInt(pm.environment.get(\"contentTypeCount\"))\r",
+											"pm.environment.set(\"contentTypeCount\", contentTypeCount + 1);\r",
+											"nextToken = postman.getResponseHeader('x-epi-continuation');\r",
+											"if(nextToken != undefined)\r",
+											"{\r",
+											"    pm.environment.set(\"HAPI:nextToken\", postman.getResponseHeader('x-epi-continuation'));\r",
+											"    postman.setNextRequest(request.name);\r",
+											"}\r",
+											"else\r",
+											"{\r",
+											"    Assert.IsEqual(\"Verify numbers of content type\", pm.environment.get(\"contentTypeNumbers\"), pm.environment.get(\"contentTypeCount\"))\r",
+											"    pm.environment.unset(\"contentTypeNumbers\");\r",
+											"    pm.environment.unset(\"contentTypeCount\");\r",
+											"    pm.environment.unset(\"x-epi-continuation\");\r",
+											"}\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7. Get all content types with top and includeSystemTypes is true",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"HAPI:nextToken\", postman.getResponseHeader('x-epi-continuation'));\r",
+											"pm.environment.set(\"contentTypeCount\", 1);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}?top=1&includeSystemTypes=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "top",
+											"value": "1"
+										},
+										{
+											"key": "includeSystemTypes",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get all content types next page with includeSystemTypes is true",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"pm.request.headers.add({\r",
+											"    'key': \"x-epi-continuation\",\r",
+											"    'value': pm.environment.get(\"HAPI:nextToken\")    \r",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"console.log(\"next length \" + pm.response.json().length); \r",
+											"\r",
+											"contentTypeCount = parseInt(pm.environment.get(\"contentTypeCount\"))\r",
+											"pm.environment.set(\"contentTypeCount\", contentTypeCount + 1);\r",
+											"nextToken = postman.getResponseHeader('x-epi-continuation');\r",
+											"if(nextToken != undefined)\r",
+											"{\r",
+											"    pm.environment.set(\"HAPI:nextToken\", postman.getResponseHeader('x-epi-continuation'));\r",
+											"    postman.setNextRequest(request.name);\r",
+											"}\r",
+											"else\r",
+											"{\r",
+											"    Assert.IsEqual(\"Verify numbers of content type includes system types\", pm.environment.get(\"contentTypeNumbersIncludedSystem\"), pm.environment.get(\"contentTypeCount\"))\r",
+											"    pm.environment.unset(\"contentTypeNumbersIncludedSystem\");\r",
+											"    pm.environment.unset(\"contentTypeCount\");\r",
+											"    pm.environment.unset(\"x-epi-continuation\");\r",
+											"}\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									]
 								}
 							},
@@ -23876,17 +24591,24 @@
 			]
 		},
 		{
-			"name": "HAPI-1371 Get definitions manifest",
+			"name": "HAPI-1914 Exclude read-only system content types in manifest",
 			"item": [
 				{
-					"name": "Get all manifest",
+					"name": "1. Get all manifest without includeSystemTypes",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"exec": [
 									"verifyResponseCode(200);\r",
-									""
+									"\r",
+									"response = pm.response.json().contentTypes;\r",
+									"pm.environment.set(\"contentTypeNumbers\", response.length);\r",
+									"\r",
+									"Assert.IsFalse(\"Verify SysContentFolder is not returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+									"Assert.IsFalse(\"Verify SysContentAssetFolder is not returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+									"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+									"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));"
 								],
 								"type": "text/javascript"
 							}
@@ -23927,7 +24649,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"contentTypes\": {\r\n\t\t\"items\": [\r\n\t\t\t{\r\n\t\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\t\"name\": \"ContentTypeTest1\",\r\n\t\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\t\"available\": false,\r\n\t\t\t\t\t\"order\": 100\r\n\t\t\t\t},\r\n\t\t\t\t\"properties\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\t\"order\": 1\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t]\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t\t}\r\n\t\t\t\t]\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"id\": \"7a00af1c-110d-4ed9-a722-9e69e9b22211\",\r\n\t\t\t\t\"name\": \"ContentTypeTest2\",\r\n\t\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\"displayName\": \"Test case 2\",\r\n\t\t\t\t\t\"description\": \"This is description 2\",\r\n\t\t\t\t\t\"available\": false,\r\n\t\t\t\t\t\"order\": 100\r\n\t\t\t\t},\r\n\t\t\t\t\"properties\": [\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\t\"order\": 1\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t\t},\r\n\t\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t\t}\r\n\t\t\t\t\t\t]\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t{\r\n\t\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t\t}\r\n\t\t\t\t],\r\n\t\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t\t}\r\n\t\t]\r\n\t}\r\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23940,6 +24662,391 @@
 								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "2. Get all manifest with includeSystemTypes is false",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(200);\r",
+									"\r",
+									"response = pm.response.json().contentTypes;\r",
+									"pm.environment.set(\"contentTypeNumbers\", response.length);\r",
+									"\r",
+									"Assert.IsFalse(\"Verify SysContentFolder is not returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+									"Assert.IsFalse(\"Verify SysContentAssetFolder is not returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+									"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+									"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept-encoding": true,
+							"connection": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": ".AspNet.ApplicationCookie={{appCookie}}",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?includeSystemTypes=false",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+							],
+							"query": [
+								{
+									"key": "includeSystemTypes",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all manifest with includeSystemTypes is null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(200);\r",
+									"\r",
+									"response = pm.response.json().contentTypes;\r",
+									"pm.environment.set(\"contentTypeNumbers\", response.length);\r",
+									"\r",
+									"Assert.IsFalse(\"Verify SysContentFolder is not returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+									"Assert.IsFalse(\"Verify SysContentAssetFolder is not returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+									"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+									"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept-encoding": true,
+							"connection": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": ".AspNet.ApplicationCookie={{appCookie}}",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?includeSystemTypes=",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+							],
+							"query": [
+								{
+									"key": "includeSystemTypes",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "3. Get all manifest with includeSystemTypes is true",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(200);\r",
+									"\r",
+									"response = pm.response.json().contentTypes;\r",
+									"pm.environment.set(\"contentTypeNumbersIncludedSystem\", response.length);\r",
+									"\r",
+									"Assert.IsTrue(\"Verify SysContentFolder is returned in response\", IsContainContentType(\"SysContentFolder\", response));\r",
+									"Assert.IsTrue(\"Verify SysContentAssetFolder is returned in response\", IsContainContentType(\"SysContentAssetFolder\", response));\r",
+									"Assert.IsFalse(\"Verify RecycleBin is not returned in response\", IsContainContentType(\"RecycleBin\", response));\r",
+									"Assert.IsFalse(\"Verify RootPage is not returned in response\", IsContainContentType(\"RootPage\", response));\r",
+									"\r",
+									"// Get system content type\r",
+									"for(i = 0; i < response.length; i++)\r",
+									"{\r",
+									"    if(response[i].name == \"SysContentFolder\")\r",
+									"        {\r",
+									"            pm.environment.set(\"SysContentFolder\", JSON.stringify(response[i]));\r",
+									"            break;\r",
+									"        }\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept-encoding": true,
+							"connection": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": ".AspNet.ApplicationCookie={{appCookie}}",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?includeSystemTypes=true",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+							],
+							"query": [
+								{
+									"key": "includeSystemTypes",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "4. Invalid - Get all manifest with includeSystemTypes is invalid",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(400);\r",
+									"verifyErrorMessage(\"includeSystemTypes\", [\r",
+									"            \"The value 'invalid' is not valid.\"\r",
+									"        ]);\r",
+									"\r",
+									"pm.environment.unset(\"invalid\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"pm.environment.set(\"invalid\", \"invalid\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {
+							"accept-encoding": true,
+							"connection": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": ".AspNet.ApplicationCookie={{appCookie}}",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?includeSystemTypes={{invalid}}",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+							],
+							"query": [
+								{
+									"key": "includeSystemTypes",
+									"value": "{{invalid}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "5. Import system content types",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"verifyResponseCode(200);\r",
+									"contentTypeGuid = JSON.parse(pm.environment.get(\"SysContentFolder\")).id;\r",
+									"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The id '\" + contentTypeGuid + \"' refers to a system content type. System types are read-only and cannot be updated\");"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept-encoding": true,
+							"connection": true,
+							"user-agent": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"type": "text",
+								"value": ".AspNet.ApplicationCookie={{appCookie}}",
+								"disabled": true
+							},
+							{
+								"key": "Accept-Language",
+								"type": "text",
+								"value": "",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{{SysContentFolder}}\r\n\t]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+							"host": [
+								"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+							]
+						},
+						"description": "Content type without version has no change.\r\nContent type with version has minor change. Version is downgraded at minor level."
 					},
 					"response": []
 				}
@@ -27728,6 +28835,22 @@
 					"            }",
 					"    obj.properties = propertyArray;",
 					"    return obj;",
+					"}",
+					"",
+					"",
+					"// This method returns true if content type name is found in the array",
+					"IsContainContentType = (typeName, array) => {",
+					"    found = false;",
+					"    for(i = 0; i < array.length; i++)",
+					"    {",
+					"        if((array[i].name == typeName) || array[i].name.includes(typeName))",
+					"\t\t{\t",
+					"\t\t\tfound = true;",
+					"\t\t\tbreak;",
+					"\t\t}",
+					"    }",
+					"",
+					"\treturn found;",
 					"}"
 				]
 			}
