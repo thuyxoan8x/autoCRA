@@ -28885,7 +28885,7 @@
 											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
 											"\r",
 											"// major change (change baseType)\r",
-											"contentTypeData.name = \"UpdatedName\";\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 											"contentTypeData.version = \"0.1.1.1\";\r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
@@ -29335,7 +29335,7 @@
 											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
 											"\r",
 											"// major change (change baseType)\r",
-											"contentTypeData.name = \"UpdatedName\";\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 											"contentTypeData.version = \"0.1.1.1\";\r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
@@ -29629,7 +29629,7 @@
 							"response": []
 						},
 						{
-							"name": "Preparation - Create new content types with version Copy",
+							"name": "Preparation - Create new content types with version",
 							"event": [
 								{
 									"listen": "test",
@@ -29719,7 +29719,7 @@
 											"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 											"\t\t\t\t\t\t\"sortOrder\": 2\r",
 											"\t\t\t\t\t};\r",
-											"contentTypeData.version = \"1.1.1.0\";\r",
+											"contentTypeData.version = \"1.1.1.1\";\r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
 										"type": "text/javascript"
@@ -29759,16 +29759,22 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
 									"host": [
 										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "Import with force=true minor change version change patch",
+							"name": "Downgrade with force=true - change minor - version change patch",
 							"event": [
 								{
 									"listen": "test",
@@ -29848,7 +29854,7 @@
 							"response": []
 						},
 						{
-							"name": "Import with force=true major change version change minor",
+							"name": "Downgrade with force=true - change major - version change minor",
 							"event": [
 								{
 									"listen": "test",
@@ -29867,7 +29873,7 @@
 											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
 											"\r",
 											"// major change (change baseType)\r",
-											"contentTypeData.name = \"UpdatedName\";\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 											"contentTypeData.version = \"1.0.1.1\";\r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
@@ -29923,7 +29929,7 @@
 							"response": []
 						},
 						{
-							"name": "9. Import with force=true change patch version same level",
+							"name": "9. Downgrade with force=true - change patch - version change patch",
 							"event": [
 								{
 									"listen": "test",
@@ -29998,7 +30004,7 @@
 							"response": []
 						},
 						{
-							"name": "Import with force=true change patch version same level - 1",
+							"name": "Downgrade with force=true - change patch - version change patch - case 2",
 							"event": [
 								{
 									"listen": "test",
@@ -30073,7 +30079,7 @@
 							"response": []
 						},
 						{
-							"name": "Import with force=true minor change version same level",
+							"name": "Downgrade with force=true - change minor - version change minor",
 							"event": [
 								{
 									"listen": "test",
@@ -30153,7 +30159,7 @@
 							"response": []
 						},
 						{
-							"name": "Import with force=true major change version same level",
+							"name": "Downgrade with force=true - change major - version change major",
 							"event": [
 								{
 									"listen": "test",
@@ -30172,7 +30178,7 @@
 											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
 											"\r",
 											"// major change (change baseType)\r",
-											"contentTypeData.name = \"UpdatedName\";\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 											"contentTypeData.version = \"0.1.1.1\";\r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
@@ -30228,7 +30234,7 @@
 							"response": []
 						},
 						{
-							"name": "10. Import with force=true change patch version change minor",
+							"name": "10. Downgrade with force=true - change patch - version change minor",
 							"event": [
 								{
 									"listen": "test",
@@ -30303,7 +30309,7 @@
 							"response": []
 						},
 						{
-							"name": "Import with force=true minor change version change major",
+							"name": "Downgrade with force=true - change minor - version change major",
 							"event": [
 								{
 									"listen": "test",
@@ -30329,6 +30335,1624 @@
 											"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 											"\t\t\t\t};\r",
 											"contentTypeData.version = \"0.1.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types with version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"ContentType_1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "11. Upgrade with force=true - change patch - no change version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"contentTypeData.properties[0].editSettings = {\r",
+											"\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r",
+											"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
+											"\t\t\t\t\t\t\"sortOrder\": 2\r",
+											"\t\t\t\t\t};\r",
+											"contentTypeData.version = \"1.1.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade with force=true - change minor - version change patch",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Minor' which is higher than requested 'Patch'.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// minor change (update available, add new  property)\r",
+											"contentTypeData.editSettings.available = !contentTypeData.editSettings.available;\r",
+											"count = contentTypeData.properties.length;\r",
+											"contentTypeData.properties[count] = {\r",
+											"\t\t\t\t\t\"name\": \"NewProperty\",\r",
+											"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
+											"\t\t\t\t};\r",
+											"contentTypeData.version = \"1.1.2.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade with force=true - change major - version change minor",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Major' which is higher than requested 'Minor'.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// major change (change baseType)\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
+											"contentTypeData.version = \"1.2.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "12. Upgrade with force=true change patch version same level",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// patch update property editSettings, update order\r",
+											"contentTypeData.editSettings.sortOrder = 1\r",
+											"contentTypeData.version = \"1.1.1.2\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade with force=true change patch version same level - case 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// patch update property editSettings, update order\r",
+											"contentTypeData.editSettings.sortOrder = 1\r",
+											"contentTypeData.version = \"1.1.2.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade with force=true minor change version same level",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// minor change (update available, add new  property)\r",
+											"contentTypeData.editSettings.available = !contentTypeData.editSettings.available;\r",
+											"count = contentTypeData.properties.length;\r",
+											"contentTypeData.properties[count] = {\r",
+											"\t\t\t\t\t\"name\": \"NewProperty\",\r",
+											"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
+											"\t\t\t\t};\r",
+											"contentTypeData.version = \"1.2.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade with force=true major change version same level",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// major change (change baseType)\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
+											"contentTypeData.version = \"2.1.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types with version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "13. Upgrade with force=true - change patch - version change minor",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// patch update property editSettings, update order\r",
+											"contentTypeData.editSettings.sortOrder = 1\r",
+											"contentTypeData.version = \"1.2.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Upgrade with force=true - change minor - version change major",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// minor change (update available, add new  property)\r",
+											"contentTypeData.editSettings.available = !contentTypeData.editSettings.available;\r",
+											"count = contentTypeData.properties.length;\r",
+											"contentTypeData.properties[count] = {\r",
+											"\t\t\t\t\t\"name\": \"NewProperty\",\r",
+											"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
+											"\t\t\t\t};\r",
+											"contentTypeData.version = \"2.1.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types without version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "14. Import without force for patch change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// patch update property editSettings, update order\r",
+											"contentTypeData.editSettings.sortOrder = 1\r",
+											"\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Import without force for minor change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// minor change (update available, add new  property)\r",
+											"contentTypeData.editSettings.available = !contentTypeData.editSettings.available;\r",
+											"count = contentTypeData.properties.length;\r",
+											"contentTypeData.properties[count] = {\r",
+											"\t\t\t\t\t\"name\": \"NewProperty\",\r",
+											"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
+											"\t\t\t\t};\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "15. Import without force for major change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// major change (change baseType)\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
+											"\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types without version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "16. Import with force=false for patch change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// patch update property editSettings, update order\r",
+											"contentTypeData.editSettings.sortOrder = 2\r",
+											"\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=false",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Import with force=false for minor change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// minor change (update available, add new  property)\r",
+											"contentTypeData.editSettings.available = !contentTypeData.editSettings.available;\r",
+											"count = contentTypeData.properties.length;\r",
+											"contentTypeData.properties[count] = {\r",
+											"\t\t\t\t\t\"name\": \"NewProperty\",\r",
+											"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
+											"\t\t\t\t};\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=false",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "17. Import with force=false for major change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// major change (change baseType)\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
+											"\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "18. Import with force=true for major change",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// major change (change baseType)\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
+											"\r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
 										"type": "text/javascript"
