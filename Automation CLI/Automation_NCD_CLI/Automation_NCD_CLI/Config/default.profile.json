@@ -1,0 +1,19 @@
+/* 
+	This file is config to run this automation test session
+*/
+{
+  "managementSiteUrl": "https://localhost:16002/",
+  "contentTypeEndpoint": "api/episerver/v3.0/contenttypes/",
+  // for token
+  "tokenEndPoint": "api/episerver/connect/token",
+  "username": "bob",
+  "password": "bob",
+  "client": "cli",
+  "secret": "cli",
+  "cliToolName": "epi-content-manifest",
+  "pushWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\push",
+  "pullWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\pull",
+  "exportWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite",
+  "mergeWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\merge"
+
+}

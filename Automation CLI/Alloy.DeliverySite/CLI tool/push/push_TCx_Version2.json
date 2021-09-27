@@ -1,0 +1,49 @@
+{
+	"contentTypes": [
+		{
+			"name": "MyContentTypeVersion2",
+			"baseType": "Page",
+			"editSettings": {
+				"available": true,
+				"sortOrder": 0
+			},
+			"properties": [
+				{
+					"name": "MetaTitle",
+					"dataType": "PropertyLongString",
+					"branchSpecific": true,
+					"editSettings": {
+						"visibility": "default",
+						"displayName": "MetaTitle",
+						"groupName": "Metadata",
+						"sortOrder": 100
+					}
+				},
+				{
+
+					"name": "MainContentArea",
+					"dataType": "PropertyContentArea",
+					"branchSpecific": true,
+					"editSettings": {
+						"visibility": "default",
+						"displayName": "MainContentArea",
+						"groupName": "Information",
+						"sortOrder": 310
+					}
+				},
+				{
+					"name": "DisableIndexing",
+					"dataType": "PropertyBoolean",
+					"branchSpecific": true,
+					"editSettings": {
+						"visibility": "default",
+						"displayName": "DisableIndexing",
+						"groupName": "Metadata",
+						"sortOrder": 400
+					}
+				}
+			],
+			"version": "1.1.1.1"
+		}
+	]
+}

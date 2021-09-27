@@ -1,0 +1,50 @@
+{
+	"contentTypes": [
+		{
+			"id": "dbed4258-8213-48db-a11f-99ccccbbbaaa",
+			"name": "MyContentTypeVersion_preparation",
+			"baseType": "Page",
+			"editSettings": {
+				"available": true,
+				"sortOrder": 0
+			},
+			"properties": [
+				{
+					"name": "MetaTitle",
+					"dataType": "PropertyLongString",
+					"branchSpecific": true,
+					"editSettings": {
+						"visibility": "default",
+						"displayName": "MetaTitle",
+						"groupName": "Metadata",
+						"sortOrder": 1
+					}
+				},
+				{
+
+					"name": "MainContentArea",
+					"dataType": "PropertyContentArea",
+					"branchSpecific": true,
+					"editSettings": {
+						"visibility": "default",
+						"displayName": "MainContentArea",
+						"groupName": "Information",
+						"sortOrder": 2
+					}
+				},
+				{
+					"name": "DisableIndexing",
+					"dataType": "PropertyBoolean",
+					"branchSpecific": true,
+					"editSettings": {
+						"visibility": "default",
+						"displayName": "DisableIndexing",
+						"groupName": "Metadata",
+						"sortOrder": 3
+					}
+				}
+			],
+			"version": "1.2.1.1"
+		}
+	]
+}

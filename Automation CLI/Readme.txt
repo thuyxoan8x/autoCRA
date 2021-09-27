@@ -1,0 +1,1 @@
+Paste Alloy.DeliverySite folder to NCD sample folder and rebuild Management site and Delivery site befor running TCs
