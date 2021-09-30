@@ -1,5 +1,5 @@
-1. Definition:
-newman run "Definition-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra
+1. CDA
+newman run "CDA-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra
 
 2. CD:
 newman run "CD-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra
