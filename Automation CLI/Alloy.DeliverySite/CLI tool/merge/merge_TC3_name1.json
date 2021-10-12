@@ -1,0 +1,59 @@
+{
+	"contentTypes": [
+		{
+			"name": "MyContentTypes_First",
+			"baseType": "Page",
+			"properties": [
+				{
+					"name": "BoolProp",
+					"dataType": "PropertyBoolean",
+					"editSettings": {
+						"visibility": "Default",
+						"displayName": "BoolProp",
+						"groupName": "Information",
+						"order": 1
+					}
+				},
+				{
+					"name": "CategoryListProp",
+					"dataType": "PropertyCategory",
+					"editSettings": {
+						"visibility": "Default",
+						"displayName": "Category",
+						"groupName": "Information",
+						"order": 2
+					}
+				}
+			],
+			"version": "1.0.0.0"
+		},
+		{
+			"id": "aaaabbbb-8213-48db-a11f-99c034bbbaaa",
+			"name": "MyContentTypes_Second",
+			"baseType": "Page",
+			"properties": [
+				{
+					"name": "BoolProp",
+					"dataType": "PropertyBoolean",
+					"editSettings": {
+						"visibility": "Default",
+						"displayName": "BoolProp",
+						"groupName": "Information",
+						"order": 1
+					}
+				},
+				{
+					"name": "CategoryListProp",
+					"dataType": "PropertyCategory",
+					"editSettings": {
+						"visibility": "Default",
+						"displayName": "Category",
+						"groupName": "Information",
+						"order": 2
+					}
+				}
+			],
+			"version": "1.0.0.0"
+		}
+	]
+}
