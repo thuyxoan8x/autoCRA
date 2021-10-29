@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "70efb782-d6e7-4e01-830e-33e35705611e",
+		"_postman_id": "d8d05fce-7bee-44b2-ad48-982ae1b49a17",
 		"name": "CD NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -1116,6 +1116,102 @@
 							"response": []
 						},
 						{
+							"name": "1105: Get content with id is an asterik",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"commonTest.failed(400, \"The request path must contain either content reference or content guid.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/*",
+									"host": [
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
+									],
+									"path": [
+										"content",
+										"*"
+									]
+								},
+								"description": "Get Start page children\n1. Status code =200\n2. 6 contents returned\n3. Common pass test vs. contents\n - Alloy Plan\n - Alloy Track\n - Alloy Meet\n - About us\n - How to buye\n - Search\n\nCommon tests: ID, Name, Content Type"
+							},
+							"response": []
+						},
+						{
+							"name": "1106: Get unpublished content",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"commonTest.failed(404, \"Content not found\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": ""
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{draftPageId}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:endpointRoot}}"
+									],
+									"path": [
+										"content",
+										"{{draftPageId}}"
+									]
+								},
+								"description": "Get Start page children\n1. Status code =200\n2. 6 contents returned\n3. Common pass test vs. contents\n - Alloy Plan\n - Alloy Track\n - Alloy Meet\n - About us\n - How to buye\n - Search\n\nCommon tests: ID, Name, Content Type"
+							},
+							"response": []
+						},
+						{
 							"name": "1108: Get content of unexistent GUID",
 							"event": [
 								{
@@ -1492,7 +1588,7 @@
 													"    //Verify returned results comparing to expected data",
 													"    verifyObjects(expectedData);",
 													"",
-													"    savedData = saveContentData(\"content\", [\"Alloy Plan\",\"Alloy Track\",\"Alloy Meet\",\"About us\"], pm.response.json(), \"HAPI\");",
+													"    savedData = saveContentData(\"content\", [\"Alloy Plan\",\"Alloy Track\",\"Alloy Meet\",\"About us\", \"Test page\"], pm.response.json(), \"HAPI\");",
 													"    saveVarToEnv(savedData);",
 													"    //pm.environment.set(\"HAPI:idPage\", responseData.getRoot().contentLink.guidValue);",
 													"    pm.environment.set(\"HAPI:createdPage\", pm.response.json()[0].created);",
@@ -2134,7 +2230,72 @@
 									"response": []
 								},
 								{
-									"name": "1320: Get Trash folder children",
+									"name": "1316: Get ancestors for this site folder",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"/*",
+													"Get For this site ancestors",
+													"1. Status code = 200",
+													"2. Root and Start are returned",
+													"*/",
+													"",
+													"verifyResponseCode(200);",
+													"if (pm.response.code===200){    ",
+													"    var data = responseData.getRoot();",
+													"    ",
+													"    //Verify number of For This Sites folder ancestors equal to 2",
+													"    verifyMatchingData(\"Number of 'For This Site' folder ancestors\", 2, data.length);",
+													"    ",
+													"    passTestContent.byIdInItemArray(data[0], pm.environment.get(\"HAPI:startId1\"), \"Start\", \"StartPage\");",
+													"    passTestContent.byIdInItemArray(data[1], pm.environment.get(\"HAPI:rootId\"), \"Root\", \"SysRoot\");",
+													"",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{forThisSiteId}}/ancestors",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{forThisSiteId}}",
+												"ancestors"
+											]
+										},
+										"description": "Get \"For All Sites\" folder ancestors\n1. Status code = 200\n2. Root is returned"
+									},
+									"response": []
+								},
+								{
+									"name": "1321: Get Trash folder children",
 									"event": [
 										{
 											"listen": "test",
@@ -2707,6 +2868,75 @@
 									"response": []
 								},
 								{
+									"name": "1109: get batch with duplicate id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"/*",
+													"Get a batch of contents by ID",
+													"1. Status code = 200",
+													"2. Common test vs. returned contents",
+													"        Content ID",
+													"*/",
+													"var batchIds = urls.getQueryValue(\"references\");",
+													"//verify response code = 200",
+													"verifyResponseCode(200);",
+													"if(pm.response.code===200){",
+													"        passTestContent.byBatchOfIds(batchIds);",
+													"}",
+													"",
+													"// Get list of id after removing duplicated items",
+													"batchIds = removeDuplicatedItem(batchIds.split(\",\"))",
+													"",
+													"Assert.IsEqual(\"Verify content list length\", batchIds.length, pm.response.json().length);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?references={{HAPI:alloyplanId}},{{HAPI:alloyplanId}},{{HAPI:alloymeetteaserId}},{{HAPI:logotype.pngId}},{{HAPI:folderAlloyMeetId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content"
+											],
+											"query": [
+												{
+													"key": "references",
+													"value": "{{HAPI:alloyplanId}},{{HAPI:alloyplanId}},{{HAPI:alloymeetteaserId}},{{HAPI:logotype.pngId}},{{HAPI:folderAlloyMeetId}}"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "1305: Get root info by ID",
 									"event": [
 										{
@@ -2880,6 +3110,65 @@
 											"path": [
 												"content",
 												"{{HAPI:forallsitesId}}"
+											]
+										},
+										"description": "Get \"For all sites\" folder information by ID\n1. Status code =200\n2. Content ID = 3\n3. Content Name = For all sites\n4. Content Type = SysContentFolder"
+									},
+									"response": []
+								},
+								{
+									"name": "1314: Get for this site folder",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"/*",
+													"Get \"For all sites\" folder information by ID",
+													"1. Status code =200",
+													"2. Content ID = 3",
+													"3. Content Name = For all sites",
+													"4. Content Type = SysContentFolder",
+													"*/",
+													"//verify response code = 200",
+													"verifyResponseCode(200);",
+													"if(pm.response.code===200){",
+													"    passTestContent.byIdNoLang(urls.segment(2), \"For This Site\", \"SysContentFolder\");",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{forThisSiteId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{forThisSiteId}}"
 											]
 										},
 										"description": "Get \"For all sites\" folder information by ID\n1. Status code =200\n2. Content ID = 3\n3. Content Name = For all sites\n4. Content Type = SysContentFolder"
@@ -3066,6 +3355,65 @@
 									"response": []
 								},
 								{
+									"name": "1333: Get info of image",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"/*",
+													"Get a container page by ID",
+													"1. Status code =200",
+													"2. Content ID = 33",
+													"3. Content Name = Customer Zone",
+													"4. Content Type = ContainerPage",
+													"*/",
+													"//verify response code = 200",
+													"verifyResponseCode(200);",
+													"if(pm.response.code===200){",
+													"    passTestContent.byId(urls.segment(2), \"logotype.png\", \"ImageFile\", headers.language());",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:logotype.pngId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{HAPI:logotype.pngId}}"
+											]
+										},
+										"description": "Get a container page by ID\n1. Status code =200\n2. Content ID = 33\n3. Content Name = Customer Zone\n4. Content Type = ContainerPage"
+									},
+									"response": []
+								},
+								{
 									"name": "1334: Get a container page",
 									"event": [
 										{
@@ -3118,6 +3466,58 @@
 											"path": [
 												"content",
 												"{{HAPI:customerzoneId}}"
+											]
+										},
+										"description": "Get a container page by ID\n1. Status code =200\n2. Content ID = 33\n3. Content Name = Customer Zone\n4. Content Type = ContainerPage"
+									},
+									"response": []
+								},
+								{
+									"name": "1336: Get content with all built-in properties",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"//verify response code = 200",
+													"verifyResponseCode(200);",
+													"if(pm.response.code===200){",
+													"    passTestContent.byId(urls.segment(2), \"Test page\", \"AllPropertiesTestPage\", headers.language());",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:testpageId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{HAPI:testpageId}}"
 											]
 										},
 										"description": "Get a container page by ID\n1. Status code =200\n2. Content ID = 33\n3. Content Name = Customer Zone\n4. Content Type = ContainerPage"
@@ -3450,6 +3850,75 @@
 											]
 										},
 										"description": "Get a batch of contents by GUID\n1. Status code\n2. Common test vs. returned contents\n- Content GUID"
+									},
+									"response": []
+								},
+								{
+									"name": "1109: get batch with duplicate guid",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"",
+													"/*",
+													"Get a batch of contents by ID",
+													"1. Status code = 200",
+													"2. Common test vs. returned contents",
+													"        Content ID",
+													"*/",
+													"var batchIds = urls.getQueryValue(\"guids\");",
+													"//verify response code = 200",
+													"verifyResponseCode(200);",
+													"if(pm.response.code===200){",
+													"        passTestContent.byBatchOfGuids(batchIds);",
+													"}",
+													"",
+													"// Get list of id after removing duplicated items",
+													"batchIds = removeDuplicatedItem(batchIds.split(\",\"))",
+													"",
+													"Assert.IsEqual(\"Verify content list length\", batchIds.length, pm.response.json().length);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content?guids={{HAPI:alloyplanGuid}},{{HAPI:alloyplanGuid}},{{HAPI:alloymeetteaserGuid}},{{HAPI:logotype.pngGuid}},{{HAPI:folderAlloyMeetGuid}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content"
+											],
+											"query": [
+												{
+													"key": "guids",
+													"value": "{{HAPI:alloyplanGuid}},{{HAPI:alloyplanGuid}},{{HAPI:alloymeetteaserGuid}},{{HAPI:logotype.pngGuid}},{{HAPI:folderAlloyMeetGuid}}"
+												}
+											]
+										}
 									},
 									"response": []
 								}
@@ -4985,6 +5454,139 @@
 										"description": "Get Start page wiht expand = mainContentArea\n1. Status code =200\n2. mainContentArea has \"expandedValue\" and it isn't null."
 									},
 									"response": []
+								},
+								{
+									"name": "1404: Get Start page with expand = non existing property name",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"/*",
+													"Get Start page wiht expand = ''",
+													"1. Status code =200",
+													"2. No property is expanded.",
+													"*/",
+													"//verify response code = 200",
+													"verifyResponseCode(200);",
+													"if(pm.response.code===200){",
+													"    //Verify returned results comparing to expected data",
+													"    verifyExpandedProp(false);",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:startId1}}?expand=nonExistingPropertyName",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{HAPI:startId1}}"
+											],
+											"query": [
+												{
+													"key": "expand",
+													"value": "nonExistingPropertyName"
+												}
+											]
+										},
+										"description": "Get Start page with expand = ''\n1. Status code =200\n2. No property is expanded."
+									},
+									"response": []
+								},
+								{
+									"name": "1405: Get all properties page with expand = *",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"/*",
+													"Get Start page with expand = *",
+													"1. Status code =200",
+													"2. Following content types will be expanded.",
+													"\tPropertyLinkCollection",
+													"\tPropertyContentReferenceList",
+													"\tPropertyContentReference",
+													"\tPropertyContentArea",
+													"*/",
+													"",
+													"//verify response code = 200",
+													"verifyResponseCode(200);;",
+													"if(pm.response.code===200){",
+													"\t//Verify returned results comparing to expected data",
+													"\tverifyExpandedProp();",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{HAPI:testpageId}}?expand=*",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{HAPI:testpageId}}"
+											],
+											"query": [
+												{
+													"key": "expand",
+													"value": "*"
+												}
+											]
+										},
+										"description": "Get Start page with expand = *\n1. Status code =200\n2. Following content types will be expanded.\n\tPropertyLinkCollection\n\tPropertyContentReferenceList\n\tPropertyContentReference\n\tPropertyContentArea"
+									},
+									"response": []
 								}
 							]
 						},
@@ -6033,13 +6635,15 @@
 									"};",
 									"//=====================================================================================================//",
 									"",
-									"verifyExpandedProp = () => {",
+									"verifyExpandedProp = (valid = true) => {",
 									"    var expandAll = ['PropertyLinkCollection',",
 									"        'PropertyContentReferenceList',",
 									"        'PropertyContentReference',",
 									"        'PropertyContentArea'];",
 									"    var data = responseData.getRoot(); ",
 									"    var expandProps=urls.getQueryValue(\"expand\");",
+									"    if(!valid)",
+									"        expandProps = \"\";",
 									"\tvar expVal = \"expandedValue\";",
 									"\tvar val = \"value\";",
 									"\tvar propType = \"propertyDataType\";",
@@ -7057,6 +7661,7 @@
 							"                }",
 							"            }",
 							"        } ",
+							"    return arr;",
 							"};",
 							"",
 							"//==============================================================// ",
@@ -7284,6 +7889,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
+					"var lodash = require(\"lodash\");  ",
 					"const CmsErrorPrefix = \"[CMS:Tests] \";",
 					"var jsonData;",
 					"",
@@ -7524,9 +8130,6 @@
 					"    });",
 					"};",
 					"",
-					"",
-					"",
-					"",
 					"// Common tests to verify results for many requests",
 					"commonTest = {",
 					"    OK() {",
@@ -7544,6 +8147,112 @@
 					"    },",
 					"};",
 					"",
+					"Assert = {",
+					"    IsEqual:function(elementName, expectedValue, actualValue)   //Assert if expectedValue == actualValue, for all types",
+					"    {",
+					"        if (typeof(expectedValue) == typeof(actualValue))",
+					"        {",
+					"            //TO DOUBLE-CHECK: In case comparing arrays, if array element contains sub-arrays, then such arrays / sub-arrays need to be sorted before comparing. Otherwise it might return false if arrays / sub-arrays order are different",
+					"            if (typeof(actualValue) == \"object\")",
+					"            {",
+					"                pm.test(elementName + \" should be correct. Expected: \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"                    pm.expect(lodash.isEqual(expectedValue, actualValue)).to.equal(true);",
+					"                });",
+					"                ",
+					"                if (!lodash.isEqual(expectedValue, actualValue))",
+					"                {",
+					"                    console.log(\"----- expectedValue -----\");",
+					"                    //console.log(expectedValue);",
+					"                    console.log(JSON.stringify(expectedValue));",
+					"                    console.log(\"----- actualValue -----\");",
+					"                    //console.log(actualValue);",
+					"                    console.log(JSON.stringify(actualValue));",
+					"                }",
+					"            }",
+					"            else",
+					"            {",
+					"                pm.test(elementName + \" should be correct. Expected: \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"                    pm.expect(expectedValue).to.equal(actualValue);",
+					"                });",
+					"",
+					"                if (!lodash.isEqual(expectedValue, actualValue))",
+					"                {",
+					"                    console.log(\"----- expectedValue -----\");",
+					"                    console.log(expectedValue);",
+					"                    console.log(\"----- actualValue -----\");",
+					"                    console.log(actualValue);",
+					"                }",
+					"            }",
+					"        }",
+					"    },",
+					"    ",
+					"    IsGreater:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue > numeric expectedValue",
+					"    {",
+					"        pm.test(elementName + \" should be larger than \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"            pm.expect(actualValue).to.be.above(expectedValue);",
+					"        });",
+					"    },",
+					"    ",
+					"    IsGreaterOrEqual:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue >= numeric expectedValue",
+					"    {",
+					"        pm.test(elementName + \" should be larger than or equal to \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"            pm.expect(actualValue).to.not.be.below(expectedValue);",
+					"        });",
+					"    },",
+					"    ",
+					"    IsLess:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue < numeric expectedValue",
+					"    {",
+					"        pm.test(elementName + \" should be less than \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"            pm.expect(actualValue).to.be.below(expectedValue);",
+					"        });",
+					"    },",
+					"    ",
+					"    IsLessOrEqual:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue <= numeric expectedValue",
+					"    {",
+					"        pm.test(elementName + \" should be less than or equal to \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"            pm.expect(actualValue).to.not.be.above(expectedValue);",
+					"        });",
+					"    },",
+					"    ",
+					"    IsNull:function(elementName, actualValue)   //Assert if actualValue is null",
+					"    {",
+					"        pm.test(elementName + \" should be null. Actual: \" + actualValue, function(){",
+					"            pm.expect(actualValue).to.equal(null);",
+					"        });",
+					"    },",
+					"    ",
+					"    IsEmpty:function(elementName, actualValue)  //Assert if actualValue is empty, that means array with no element",
+					"    {",
+					"        pm.test(elementName + \" should be empty. Actual: \" + actualValue.length, function()",
+					"        {",
+					"            pm.expect(actualValue.length).to.equal(0);",
+					"        });",
+					"    },",
+					"    ",
+					"    IsNotEmpty:function(elementName, actualValue)  //Assert if actualValue is not empty, that means array with some elements",
+					"    {",
+					"        pm.test(elementName + \" should not be empty. Actual: \" + actualValue.length, function()",
+					"        {",
+					"            pm.expect(actualValue.length).to.be.above(0);",
+					"        });",
+					"    },",
+					"    ",
+					"    IsTrue:function(elementName, actualValue)   //Assert if actualValue equals true",
+					"    {",
+					"        pm.test(elementName + \" should be true. Actual: \" + actualValue, function()",
+					"        {",
+					"            pm.expect(actualValue).to.be.true;",
+					"        });",
+					"    },",
+					"    ",
+					"    IsFalse:function(elementName, actualValue)   //Assert if actualValue equals false",
+					"    {",
+					"        pm.test(elementName + \" should be false. Actual: \" + actualValue, function()",
+					"        {",
+					"            pm.expect(actualValue).to.be.false;",
+					"        });",
+					"    }",
+					"};",
 					""
 				]
 			}

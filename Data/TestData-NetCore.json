@@ -345,7 +345,7 @@
 				"propertyDataType": "PropertyAppSettingsMultiple"
 			},
 			"blobProp": {
-				"value": "",
+				"value": {},
 				"propertyDataType": "PropertyBlob"
 			},
 			"contentAreaProp": {
@@ -561,7 +561,7 @@
 				"propertyDataType": "PropertyAppSettingsMultiple"
 			},
 			"blobProp": {
-				"value": "",
+				"value": {},
 				"propertyDataType": "PropertyBlob"
 			},
 			"editorialBlock": {
