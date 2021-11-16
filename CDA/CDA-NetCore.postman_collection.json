@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1b4f405d-c1ab-497b-b9bf-7dd74bc3341d",
+		"_postman_id": "c6393aaa-ce0d-406e-8b8e-9e794884d0a9",
 		"name": "CDA NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -6461,7 +6461,8 @@
 											"Assert.IsEqual(\"Verify response\", requestBody, responseBody);\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
-											"pm.environment.set(\"contentTypeName\", responseBody.name);"
+											"pm.environment.set(\"contentTypeName\", responseBody.name);\r",
+											"pm.environment.set(\"fromVersion\", responseBody.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -6525,7 +6526,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(409);\r",
-											"verifyErrorDetailMessage(\"The version transition is not allowed with the provided content type save options.\");"
+											"verifyErrorDetailMessage(\"The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeName\") + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).version + \"' is 'None'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -6565,7 +6566,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"name\": \"pageType{{$randomInt}}{{$randomInt}}\",\r\n\t\"baseType\": \"page\",\r\n    \"version\":\"1.0.0\",\r\n\t\"editSettings\": {\r\n\t\t\"displayName\": \"EditSetting displayName {{$randomInt}}{{$randomInt}}\",\r\n\t\t\"description\": \"EditSetting description {{$randomInt}}{{$randomInt}}\",\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": {{$randomInt}}\r\n\t},\r\n    \"properties\": []\r\n}",
+									"raw": "{\r\n\t\"name\": \"{{contentTypeName}}\",\r\n\t\"baseType\": \"page\",\r\n    \"version\":\"1.0.0\",\r\n\t\"editSettings\": {\r\n\t\t\"displayName\": \"EditSetting displayName {{$randomInt}}{{$randomInt}}\",\r\n\t\t\"description\": \"EditSetting description {{$randomInt}}{{$randomInt}}\",\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": {{$randomInt}}\r\n\t},\r\n    \"properties\": []\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -21342,7 +21343,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -21423,7 +21424,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -21539,7 +21540,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
-											"pm.environment.set(\"contentTypeRequestData\", requestData);"
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -21697,7 +21699,8 @@
 											"\t\t\t\t\t\t\"order\": 2\r",
 											"\t\t\t\t\t};\r",
 											"contentTypeData.version = \"1.1.2.1\";    \r",
-											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));\r",
+											"pm.environment.set(\"fromVersion\", contentTypeData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -21758,7 +21761,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -21840,7 +21843,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -21856,7 +21859,7 @@
 											"// major change (update property datatype, remove property, update branchSpecific, update content type name)\r",
 											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 											"contentTypeData.properties[0].branchSpecific = true;\r",
-											"contentTypeData.version = \"1.1.2.1\";  \r",
+											"contentTypeData.version = \"1.1.3.1\";  \r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
 										"type": "text/javascript"
@@ -22258,7 +22261,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -22374,7 +22377,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
-											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -22532,7 +22536,8 @@
 											"\t\t\t\t\t\t\"order\": 2\r",
 											"\t\t\t\t\t};\r",
 											"contentTypeData.version = \"1.1.2.1\";\r",
-											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));\r",
+											"pm.environment.set(\"fromVersion\", contentTypeData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -22615,7 +22620,8 @@
 											"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 											"\t\t\t\t};\r",
 											"contentTypeData.version = \"1.2.1.1\";                \r",
-											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));\r",
+											"pm.environment.set(\"fromVersion\", contentTypeData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -22676,7 +22682,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -23210,7 +23216,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
-											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -23912,7 +23919,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -24022,7 +24029,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
-											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -24153,7 +24161,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -24228,7 +24236,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -24304,7 +24312,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -24553,7 +24561,8 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Patch'.\");\r",
+											"\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -24633,7 +24642,8 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor'.\");\r",
+											"\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -24714,7 +24724,8 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
+											"\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -24830,7 +24841,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
-											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -24967,7 +24979,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -25048,7 +25060,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");"
 										],
@@ -25130,7 +25142,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType\");\r",
 											"\r",
@@ -26698,7 +26710,8 @@
 											"contentTypeGuids = [];\r",
 											"contentTypeGuids.push(requestData.contentTypes[0].id);\r",
 											"contentTypeGuids.push(requestData.contentTypes[1].id);\r",
-											"pm.environment.set(\"contentTypeGuids\", contentTypeGuids);"
+											"pm.environment.set(\"contentTypeGuids\", contentTypeGuids);\r",
+											"pm.environment.set(\"fromVersion\", requestData.contentTypes[1].version);"
 										],
 										"type": "text/javascript"
 									}
@@ -26844,7 +26857,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch'.\");\r",
 											"\r",
 											"pm.variables.unset(\"contentType1\");\r",
 											"pm.variables.unset(\"contentType2\");"
@@ -26933,7 +26946,8 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData2\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[1].version + \"' is 'Patch'.\");\r",
+											"\r",
 											"\r",
 											"pm.variables.unset(\"contentType1\");\r",
 											"pm.variables.unset(\"contentType2\");"
@@ -27023,7 +27037,8 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch'.\");\r",
+											"\r",
 											"\r",
 											"pm.variables.unset(\"contentType1\");\r",
 											"pm.variables.unset(\"contentType2\");"
@@ -27118,7 +27133,8 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch'.\");\r",
+											"\r",
 											"\r",
 											"pm.variables.unset(\"contentType1\");\r",
 											"pm.variables.unset(\"contentType2\");"
@@ -28593,7 +28609,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
-											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -28657,7 +28674,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'None', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
 											""
 										],
 										"type": "text/javascript"
@@ -28726,7 +28743,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -28799,7 +28816,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -28873,7 +28890,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -28942,7 +28959,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -29015,7 +29032,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -29089,7 +29106,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'None', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
 											""
 										],
 										"type": "text/javascript"
@@ -29164,7 +29181,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -29236,6 +29253,81 @@
 							"response": []
 						},
 						{
+							"name": "Import with force=false downgrade version major changed",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"// major change (change baseType)\r",
+											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
+											"contentTypeData.version = \"0.1.1.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=false",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "false"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Import with force=false downgrade version minor changed",
 							"event": [
 								{
@@ -29243,7 +29335,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -29316,81 +29408,6 @@
 							"response": []
 						},
 						{
-							"name": "Import with force=false downgrade version major changed",
-							"event": [
-								{
-									"listen": "test",
-									"script": {
-										"exec": [
-											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-											"\r",
-											"// major change (change baseType)\r",
-											"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
-											"contentTypeData.version = \"0.1.1.1\";\r",
-											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
-										],
-										"type": "text/javascript"
-									}
-								}
-							],
-							"protocolProfileBehavior": {
-								"disabledSystemHeaders": {
-									"accept-encoding": true,
-									"connection": true,
-									"user-agent": true
-								}
-							},
-							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Cookie",
-										"type": "text",
-										"value": ".AspNet.ApplicationCookie={{appCookie}}",
-										"disabled": true
-									},
-									{
-										"key": "Accept-Language",
-										"type": "text",
-										"value": "",
-										"disabled": true
-									}
-								],
-								"body": {
-									"mode": "raw",
-									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=false",
-									"host": [
-										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
-									],
-									"query": [
-										{
-											"key": "force",
-											"value": "false"
-										}
-									]
-								}
-							},
-							"response": []
-						},
-						{
 							"name": "6. Import with force=false downgrade minor version but patch changed",
 							"event": [
 								{
@@ -29398,7 +29415,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -29477,7 +29494,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -29550,63 +29567,24 @@
 							"response": []
 						},
 						{
-							"name": "7. Import with force=true no version changed patch changed",
+							"name": "Cleanup: Delete the contentType",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
-										],
-										"type": "text/javascript"
-									}
-								},
-								{
-									"listen": "prerequest",
-									"script": {
-										"exec": [
-											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-											"\r",
-											"// patch update property editSettings, update order\r",
-											"contentTypeData.properties[0].editSettings = {\r",
-											"\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r",
-											"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
-											"\t\t\t\t\t\t\"sortOrder\": 2\r",
-											"\t\t\t\t\t};\r",
-											"//contentTypeData.version = \"1.1.0.1\";\r",
-											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+											"verifyResponseCode(204);"
 										],
 										"type": "text/javascript"
 									}
 								}
 							],
-							"protocolProfileBehavior": {
-								"disabledSystemHeaders": {
-									"accept-encoding": true,
-									"connection": true,
-									"user-agent": true
-								}
-							},
 							"request": {
-								"method": "PUT",
-								"header": [
-									{
-										"key": "Cookie",
-										"type": "text",
-										"value": ".AspNet.ApplicationCookie={{appCookie}}",
-										"disabled": true
-									},
-									{
-										"key": "Accept-Language",
-										"type": "text",
-										"value": "",
-										"disabled": true
-									}
-								],
+								"method": "DELETE",
+								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"raw": "",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -29614,15 +29592,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=false",
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
 									"host": [
-										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
 									],
-									"query": [
-										{
-											"key": "force",
-											"value": "false"
-										}
+									"path": [
+										"{{contentTypeGuid}}"
 									]
 								}
 							},
@@ -29639,7 +29614,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
-											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -29696,14 +29672,338 @@
 							"response": []
 						},
 						{
-							"name": "8. Import with force=true change patch no change version",
+							"name": "7. Downgrade with force=true - no change - version change patch",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"contentTypeData.version = \"1.1.0.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Downgrade with force=true - no change - version change minor",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"contentTypeData.version = \"1.0.0.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Downgrade with force=true - no change - version change major",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"\r",
+											"contentTypeData.version = \"0.0.0.1\";\r",
+											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n        {{contentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types with version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "8. Downgrade with force=true - change patch - no change version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
 										],
 										"type": "text/javascript"
 									}
@@ -29781,7 +30081,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Minor' which is higher than requested 'Patch'.\");"
+											"verifyManifestIsAllSuccess();"
 										],
 										"type": "text/javascript"
 									}
@@ -29861,7 +30161,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Major' which is higher than requested 'Minor'.\");"
+											"verifyManifestIsAllSuccess();"
 										],
 										"type": "text/javascript"
 									}
@@ -29923,6 +30223,111 @@
 											"key": "force",
 											"value": "true"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types with version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 									]
 								}
 							},
@@ -30234,6 +30639,111 @@
 							"response": []
 						},
 						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types with version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"Test case 1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "10. Downgrade with force=true - change patch - version change minor",
 							"event": [
 								{
@@ -30436,7 +30946,8 @@
 											"\r",
 											"requestData = JSON.parse(request.data).contentTypes[0];\r",
 											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
-											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
 										],
 										"type": "text/javascript"
 									}
@@ -30500,7 +31011,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestIsAllSuccess();"
 										],
 										"type": "text/javascript"
 									}
@@ -30516,7 +31027,6 @@
 											"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 											"\t\t\t\t\t\t\"sortOrder\": 2\r",
 											"\t\t\t\t\t};\r",
-											"contentTypeData.version = \"1.1.1.1\";\r",
 											"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
 										],
 										"type": "text/javascript"
@@ -30578,7 +31088,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Minor' which is higher than requested 'Patch'.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -30658,7 +31168,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Major' which is higher than requested 'Minor'.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -30720,6 +31230,111 @@
 											"key": "force",
 											"value": "true"
 										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup: Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_ContentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation - Create new content types with version",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);\r",
+											"pm.environment.set(\"fromVersion\", requestData.version);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ContentType_{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"editSettings\": {\r\n\t\t\t\t\"displayName\": \"ContentType_1\",\r\n\t\t\t\t\"description\": \"This is description 1\",\r\n\t\t\t\t\"available\": false,\r\n\t\t\t\t\"sortOrder\": 1000\r\n\t\t\t},\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"branchSpecific\": false,\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"displayName\": \"Property Heading\",\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 1\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"warning\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is no good!\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"regularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"\\\\w+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\"\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\"\r\n\t\t\t\t}\r\n\t\t\t],\r\n\t\t\t\"version\": \"1.1.1.1\"\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:Definition_Manifest}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:Definition_Manifest}}"
 									]
 								}
 							},
@@ -31543,7 +32158,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -31870,7 +32485,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(200);\r",
-											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");"
+											"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major'.\");"
 										],
 										"type": "text/javascript"
 									}
