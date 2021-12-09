@@ -1,0 +1,1533 @@
+[
+	{
+		"category": "Create new content json body",
+		"jsonPageBody": {
+			"contentLink": {},
+			"Name": "New Product Page {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "en"
+			},
+			"ContentType": [
+				"Page",
+				"ProductPage"
+			],
+			"parentLink": {
+				"guidValue": "{{parentGuid}}"
+			},
+			"RouteSegment": "new-Product-page-{{contentStatus}}-{{$randomInt}}{{$randomInt}}",
+			"StartPublish": "2020-10-16T09:42:22Z",
+			"StopPublish": null,
+			"status": "CheckedOut",
+			"Category": {
+				"Value": [
+					{
+						"Id": 3,
+						"Name": "Plan",
+						"Description": "New Product Page {{contentStatus}} {{$randomInt}}"
+					}
+				],
+				"PropertyDataType": "PropertyCategory"
+			},
+			"MetaTitle": {
+				"Value": "Alloy Plan, New Product Page {{contentStatus}} {{$randomInt}}",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"metaKeywords": {
+				"value": ["string1", "string2"],
+				"propertyDataType": "PropertyStringList"
+			},
+			"PageImage": {
+				"Value": {
+					"Id": 43,
+					"WorkId": 0,
+					"ProviderName": null,
+					"Url": "/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png",
+					"Expanded": null
+				},
+				"PropertyDataType": "PropertyContentReference"
+			},
+			"TeaserText": {
+				"Value": "New Product Page {{contentStatus}} {{$randomInt}}",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"HideSiteHeader": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			},
+			"MetaDescription": {
+				"Value": "New Product Page {{contentStatus}} {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"HideSiteFooter": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			},
+			"UniqueSellingPoints": {
+				"Value": [
+					"New Product Page {{contentStatus}} {{$randomInt}}",
+					"Reporting and statistics",
+					"Email handling of tasks",
+					"Risk calculations",
+					"Direct communication to members"
+				],
+				"PropertyDataType": "PropertyStringList"
+			},
+			"MainBody": {
+				"Value": "<p><img style=\"float: left;\" src=\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\" alt=\"Alloy Plan - Efficient project planning\" /></p>\n<p>New Product Page {{contentStatus}} {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>",
+				"PropertyDataType": "PropertyXhtmlString"
+			},
+			"MainContentArea": {
+				"Value": [
+					{
+						"DisplayOption": "",
+						"Tag": null,
+						"ContentLink": {
+							"Id": 46,
+							"WorkId": 0,
+							"ProviderName": null,
+							"Url": null,
+							"Expanded": null
+						}
+					}
+				],
+				"PropertyDataType": "PropertyContentArea"
+			},
+			"RelatedContentArea": {
+				"Value": [
+					{
+						"DisplayOption": "",
+						"Tag": null,
+						"ContentLink": {
+							"Id": 47,
+							"WorkId": 0,
+							"ProviderName": null,
+							"Url": null,
+							"Expanded": null
+						}
+					}
+				],
+				"PropertyDataType": "PropertyContentArea"
+			},
+			"DisableIndexing": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			}
+		},
+		"jsonPageBodySv": {
+			"contentLink": {},
+			"name": "New Product Page {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "sv"
+			},
+			"contentType": [
+				"Page",
+				"ProductPage"
+			],
+			"parentLink": {
+				"GuidValue": "{{parentGuid}}"
+			},
+			"routeSegment": "new-Product-page-{{contentStatus}}-{{$randomInt}}{{$randomInt}}",
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "CheckedOut",
+			"metaTitle": {
+				"Value": "Alloy Plan, New Product Page sv {{contentStatus}} {{$randomInt}}",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"metaKeywords": {
+				"value": ["String3", "String4"],
+				"propertyDataType": "PropertyStringList"
+			},
+			"teaserText": {
+				"Value": "New Product Page sv {{contentStatus}} {{$randomInt}}",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"hideSiteHeader": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			},
+			"metaDescription": {
+				"Value": "New Product Page sv {{contentStatus}} {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"hideSiteFooter": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			},
+			"uniqueSellingPoints": {
+				"Value": [
+					"New Product Page sv {{contentStatus}} {{$randomInt}}",
+					"Reporting and statistics",
+					"Email handling of tasks",
+					"Risk calculations",
+					"Direct communication to members"
+				],
+				"PropertyDataType": "PropertyStringList"
+			},
+			"mainBody": {
+				"Value": "<p><img style=\"float: left;\" src=\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\" alt=\"Alloy Plan - Efficient project planning\" /></p>\n<p>New Product Page sv {{contentStatus}} {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>",
+				"PropertyDataType": "PropertyXhtmlString"
+			},
+			"relatedContentArea": {
+				"Value": [
+					{
+						"DisplayOption": "",
+						"Tag": null,
+						"ContentLink": {
+							"Id": 47,
+							"WorkId": 0,
+							"ProviderName": null,
+							"Url": null,
+							"Expanded": null
+						}
+					}
+				],
+				"PropertyDataType": "PropertyContentArea"
+			},
+			"disableIndexing": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			}
+		},
+		"jsonPageBodySvPatch": {
+			"name": "New Product Page {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "sv"
+			},
+			"routeSegment": "new-Product-page-{{contentStatus}}-{{$randomInt}}{{$randomInt}}",
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "{{contentStatus}}",
+			"metaTitle": {
+				"Value": "Alloy Plan, New Product Page sv {{contentStatus}} {{$randomInt}}",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"teaserText": {
+				"Value": "New Product Page sv {{contentStatus}} {{$randomInt}}",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"hideSiteHeader": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			},
+			"metaDescription": {
+				"Value": "New Product Page sv {{contentStatus}} {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.",
+				"PropertyDataType": "PropertyLongString"
+			},
+			"metaKeywords": {
+				"value": ["String5", "String6"],
+				"propertyDataType": "PropertyStringList"
+			},
+			"hideSiteFooter": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			},
+			"uniqueSellingPoints": {
+				"Value": [
+					"New Product Page sv {{contentStatus}} {{$randomInt}}",
+					"Reporting and statistics",
+					"Email handling of tasks",
+					"Risk calculations",
+					"Direct communication to members"
+				],
+				"PropertyDataType": "PropertyStringList"
+			},
+			"mainBody": {
+				"Value": "<p><img style=\"float: left;\" src=\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\" alt=\"Alloy Plan - Efficient project planning\" /></p>\n<p>New Product Page sv {{contentStatus}} {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>",
+				"PropertyDataType": "PropertyXhtmlString"
+			},
+			"relatedContentArea": {
+				"Value": [
+					{
+						"DisplayOption": "",
+						"Tag": null,
+						"ContentLink": {
+							"Id": 47,
+							"WorkId": 0,
+							"ProviderName": null,
+							"Url": null,
+							"Expanded": null
+						}
+					}
+				],
+				"PropertyDataType": "PropertyContentArea"
+			},
+			"disableIndexing": {
+				"Value": null,
+				"PropertyDataType": "PropertyBoolean"
+			}
+		},
+		"jsonAllPropertyPageBody": {
+			"contentLink": {},
+			"name": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "en"
+			},
+			"contentType": [
+				"Page",
+				"AllPropertiesPage"
+			],
+			"parentLink": {
+				"guidValue": "{{parentGuid}}"
+			},
+			"startPublish": "2020-11-11T07:07:20Z",
+			"stopPublish": null,
+			"status": "CheckedOut",
+			"boolProp": {
+				"value": true,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"categoryListProp": {
+				"value": [
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					},
+					{
+						"id": 4,
+						"name": "Track",
+						"description": "Alloy Track"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"contReferProp": {
+				"value": {
+					"id": 6,
+					"workId": 0,
+					"providerName": null,
+					"url": "/en/alloy-plan/",
+					"expanded": null
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"dateTimeProp": {
+				"value": "2020-11-24T17:00:00Z",
+				"propertyDataType": "PropertyDate"
+			},
+			"floatProp": {
+				"value": 123.89,
+				"propertyDataType": "PropertyFloatNumber"
+			},
+			"longStringProp": {
+				"value": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"intProp": {
+				"value": 1234,
+				"propertyDataType": "PropertyNumber"
+			},
+			"pageReferenceProp": {
+				"value": {
+					"id": 9,
+					"workId": 0,
+					"providerName": null,
+					"url": "/en/alloy-meet/",
+					"expanded": null
+				},
+				"propertyDataType": "PropertyPageReference"
+			},
+			"pageTypeProp": {
+				"value": "ProductPage",
+				"propertyDataType": "PropertyPageType"
+			},
+			"stringProp": {
+				"value": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyString"
+			},
+			"appSettings": {
+				"value": "",
+				"propertyDataType": "PropertyAppSettings"
+			},
+			"appSettingsMultiple": {
+				"value": [],
+				"propertyDataType": "PropertyAppSettingsMultiple"
+			},
+			"blobProp": {
+				"value": {},
+				"propertyDataType": "PropertyBlob"
+			},
+			"contentAreaProp": {
+				"value": [
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 66,
+							"workId": 0,
+							"providerName": null,
+							"url": null,
+							"expanded": null
+						}
+					}
+				],
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contReferListProp": {
+				"value": [
+					{
+						"id": 6,
+						"workId": 0,
+						"providerName": null,
+						"url": "/en/alloy-plan/",
+						"expanded": null
+					}
+				],
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"dateListProp": {
+				"value": [
+					"2020-11-16T17:00:00Z",
+					"2020-11-05T17:00:00Z"
+				],
+				"propertyDataType": "PropertyDateList"
+			},
+			"documentURLProp": {
+				"value": "/link/26031f5622ab4388adb116c421899148.aspx",
+				"propertyDataType": "PropertyDocumentUrl"
+			},
+			"doubleListProp": {
+				"value": [
+					12.34,
+					56.78
+				],
+				"propertyDataType": "PropertyDoubleList"
+			},
+			"dropDownList": {
+				"value": "",
+				"propertyDataType": "PropertyDropDownList"
+			},
+			"fileSortOrder": {
+				"value": 12,
+				"propertyDataType": "PropertyFileSortOrder"
+			},
+			"frame": {
+				"value": "1",
+				"propertyDataType": "PropertyFrame"
+			},
+			"imageProp": {
+				"value": "/link/26031f5622ab4388adb116c421899148.aspx",
+				"propertyDataType": "PropertyImageUrl"
+			},
+			"integerListProp": {
+				"value": [
+					1,
+					3,
+					5
+				],
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"languageProp": {
+				"value": "en",
+				"propertyDataType": "PropertyLanguage"
+			},
+			"linkItemCollectionProp": {
+				"value": [
+					{
+						"href": "/en/alloy-plan/",
+						"title": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+						"target": null,
+						"text": "link1",
+						"contentLink": {
+							"id": 6,
+							"workId": 0,
+							"providerName": null,
+							"url": "/en/alloy-plan/",
+							"expanded": null
+						}
+					}
+				],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"selector": {
+				"value": [
+					"MetaTitle",
+					"PageImage"
+				],
+				"propertyDataType": "PropertySelector"
+			},
+			"sortOrder": {
+				"value": 3,
+				"propertyDataType": "PropertySortOrder"
+			},
+			"stringListProp": {
+				"value": [
+					"NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+					"string2"
+				],
+				"propertyDataType": "PropertyStringList"
+			},
+			"urlProp": {
+				"value": "/en/alloy-track/",
+				"propertyDataType": "PropertyUrl"
+			},
+			"weekDayProp": {
+				"value": "Monday, Tuesday",
+				"propertyDataType": "PropertyWeekDay"
+			},
+			"virtualLink": {
+				"value": "http://google.vn",
+				"propertyDataType": "PropertyVirtualLink"
+			},
+			"xHtmlStringProp": {
+				"value": "<p>NewAllPropertiesPage {{contentStatus}} {{$randomInt}} If it&rsquo;s possible in your scenario,<strong> you could try setting the next request within the test script of the immediately preceding request.</strong></p>",
+				"propertyDataType": "PropertyXhtmlString"
+			},
+			"checkBoxListProp": {
+				"value": [],
+				"propertyDataType": "PropertyCheckBoxList"
+			},
+			"editorialBlock": {
+				"name": "EditorialBlock",
+				"mainBody": {
+					"value": "<p>NewAllPropertiesPage {{contentStatus}} {{$randomInt}}</p>",
+					"propertyDataType": "PropertyXhtmlString"
+				}
+			}
+		},
+		"jsonAllPropertyPageBodyPatch": {
+			"name": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "en"
+			},
+			"startPublish": "2020-11-22T07:07:20Z",
+			"stopPublish": null,
+			"status": "{{contentStatus}}",
+			"boolProp": {
+				"value": false,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"categoryListProp": {
+				"value": [
+					{
+						"id": 4,
+						"name": "Track",
+						"description": "Alloy Track"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"contReferProp": {
+				"value": {
+					"id": 9,
+					"workId": 0,
+					"providerName": null,
+					"url": "/en/alloy-meet/",
+					"expanded": null
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"dateTimeProp": {
+				"value": "2020-11-02T17:00:00Z",
+				"propertyDataType": "PropertyDate"
+			},
+			"floatProp": {
+				"value": 98.123,
+				"propertyDataType": "PropertyFloatNumber"
+			},
+			"longStringProp": {
+				"value": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"intProp": {
+				"value": 9876,
+				"propertyDataType": "PropertyNumber"
+			},
+			"pageReferenceProp": {
+				"value": {
+					"id": 30,
+					"workId": 0,
+					"providerName": null,
+					"url": null,
+					"expanded": null
+				},
+				"propertyDataType": "PropertyPageReference"
+			},
+			"pageTypeProp": {
+				"value": "ArticlePage",
+				"propertyDataType": "PropertyPageType"
+			},
+			"stringProp": {
+				"value": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyString"
+			},
+			"appSettings": {
+				"value": "",
+				"propertyDataType": "PropertyAppSettings"
+			},
+			"appSettingsMultiple": {
+				"value": [],
+				"propertyDataType": "PropertyAppSettingsMultiple"
+			},
+			"blobProp": {
+				"value": {},
+				"propertyDataType": "PropertyBlob"
+			},
+			"editorialBlock": {
+				"name": "EditorialBlock",
+				"mainBody": {
+					"value": "<p>NewAllPropertiesPage {{contentStatus}} {{$randomInt}}</p>",
+					"propertyDataType": "PropertyXhtmlString"
+				}
+			},
+			"contentAreaProp": {
+				"value": [
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 65,
+							"workId": 0,
+							"providerName": null,
+							"url": null,
+							"expanded": null
+						}
+					}
+				],
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contReferListProp": {
+				"value": [
+					{
+						"id": 6,
+						"workId": 0,
+						"providerName": null,
+						"url": "/en/alloy-plan/",
+						"expanded": null
+					}
+				],
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"dateListProp": {
+				"value": [
+					"2020-11-02T17:00:00Z",
+					"2020-11-29T17:00:00Z"
+				],
+				"propertyDataType": "PropertyDateList"
+			},
+			"documentURLProp": {
+				"value": "/link/26031f5622ab4388adb116c421899148.aspx",
+				"propertyDataType": "PropertyDocumentUrl"
+			},
+			"doubleListProp": {
+				"value": [
+					11.11,
+					99.99
+				],
+				"propertyDataType": "PropertyDoubleList"
+			},
+			"dropDownList": {
+				"value": "",
+				"propertyDataType": "PropertyDropDownList"
+			},
+			"fileSortOrder": {
+				"value": 11,
+				"propertyDataType": "PropertyFileSortOrder"
+			},
+			"frame": {
+				"value": "2",
+				"propertyDataType": "PropertyFrame"
+			},
+			"imageProp": {
+				"value": "/link/26031f5622ab4388adb116c421899148.aspx",
+				"propertyDataType": "PropertyImageUrl"
+			},
+			"integerListProp": {
+				"value": [
+					2,
+					4,
+					6
+				],
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"languageProp": {
+				"value": "sv",
+				"propertyDataType": "PropertyLanguage"
+			},
+			"linkItemCollectionProp": {
+				"value": [
+					{
+						"href": "/en/about-us/",
+						"title": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+						"target": null,
+						"text": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+						"contentLink": {
+							"id": 10,
+							"workId": 0,
+							"providerName": null,
+							"url": "/en/about-us/",
+							"expanded": null
+						}
+					}
+				],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"selector": {
+				"value": [
+					"PageTypeProp"
+				],
+				"propertyDataType": "PropertySelector"
+			},
+			"sortOrder": {
+				"value": 4,
+				"propertyDataType": "PropertySortOrder"
+			},
+			"stringListProp": {
+				"value": [
+					"NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
+					"stringUpdated"
+				],
+				"propertyDataType": "PropertyStringList"
+			},
+			"urlProp": {
+				"value": "/en/alloy-meet/",
+				"propertyDataType": "PropertyUrl"
+			},
+			"weekDayProp": {
+				"value": "Saturday, Sunday",
+				"propertyDataType": "PropertyWeekDay"
+			},
+			"virtualLink": {
+				"value": "http://web.safechat.com",
+				"propertyDataType": "PropertyVirtualLink"
+			},
+			"xHtmlStringProp": {
+				"value": "<p>NewAllPropertiesPage {{contentStatus}} {{$randomInt}} If it&rsquo;s possible in your scenario,<strong> you could try setting the next request within the test script of the immediately preceding request.</strong></p>",
+				"propertyDataType": "PropertyXhtmlString"
+			},
+			"checkBoxListProp": {
+				"value": [],
+				"propertyDataType": "PropertyCheckBoxList"
+			}
+		},
+		"jsonBlockBody": {
+			"name": "Jumbotron block {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"Name": "en"
+			},
+			"contentLink": {},
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "CheckedOut",
+			"parentLink": {
+				"id": "{{parentFolderId}}"
+			},
+			"contentType": [
+				"Block",
+				"JumbotronBlock"
+			],
+			"routeSegment": null,
+			"image": {
+				"value": {
+					"id": 104,
+					"workId": 0,
+					"guidValue": "267d8c0f-59e3-47c3-88bb-a8f3d169549d",
+					"providerName": null,
+					"url": "/contentassets/3e233ed545ad4ee79cfec819f06cf42c/alloymeetbanner.png",
+					"expanded": null
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageDescription": {
+				"value": "Jumbotron block {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"heading": {
+				"value": "Jumbotron block {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"subHeading": {
+				"value": "Jumbotron block {{contentStatus}} {{$randomInt}} Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management ",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonText": {
+				"value": "Read more Jumbotron block {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonLink": {
+				"value": "http://vnlabvm52:17051/16Apr/en/alloy-meet/",
+				"propertyDataType": "PropertyUrl"
+			}
+		},
+		"jsonBlockBodyPatch": {
+			"name": "Jumbotron block {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "en"
+			},
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "{{contentStatus}}",
+			"image": {
+				"value": {
+					"id": 104,
+					"workId": 0,
+					"providerName": null,
+					"url": "/contentassets/b69ffc1bb6844c41bd29d6333cad939c/alloymeetbanner.png",
+					"expanded": null
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageDescription": {
+				"value": "Jumbotron block {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"heading": {
+				"value": "Jumbotron block {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"subHeading": {
+				"value": "Jumbotron block {{contentStatus}} {{$randomInt}} Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management ",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonText": {
+				"value": "Read more Jumbotron block {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonLink": {
+				"value": "http://vnlabvm52:17051/16Apr/en/alloy-meet/",
+				"propertyDataType": "PropertyUrl"
+			}
+		},
+		"jsonBlockBodySv": {
+			"name": "Jumbotron block {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"Name": "sv"
+			},
+			"contentLink": {},
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "CheckedOut",
+			"parentLink": {
+				"id": "{{parentFolderId}}"
+			},
+			"contentType": [
+				"Block",
+				"JumbotronBlock"
+			],
+			"routeSegment": null,
+			"image": {
+				"value": {
+					"id": 104,
+					"workId": 0,
+					"guidValue": "267d8c0f-59e3-47c3-88bb-a8f3d169549d",
+					"providerName": null,
+					"url": "/contentassets/3e233ed545ad4ee79cfec819f06cf42c/alloymeetbanner.png",
+					"expanded": null
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageDescription": {
+				"value": "Some happy people cheering Jumbotron block sv {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"heading": {
+				"value": "Wherever you meet! Jumbotron block sv {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"subHeading": {
+				"value": "Jumbotron block sv {{contentStatus}} {{$randomInt}} Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management ",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonText": {
+				"value": "Read more Jumbotron block sv {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonLink": {
+				"value": "http://vnlabvm52:17051/16Apr/en/alloy-meet/",
+				"propertyDataType": "PropertyUrl"
+			}
+		},
+		"jsonBlockBodySvPatch": {
+			"name": "Jumbotron block {{contentStatus}} {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"Name": "sv"
+			},
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "CheckedOut",
+			"routeSegment": null,
+			"image": {
+				"value": {
+					"id": 104,
+					"workId": 0,
+					"guidValue": "267d8c0f-59e3-47c3-88bb-a8f3d169549d",
+					"providerName": null,
+					"url": "/contentassets/3e233ed545ad4ee79cfec819f06cf42c/alloymeetbanner.png",
+					"expanded": null
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageDescription": {
+				"value": "Some happy people cheering Jumbotron block sv {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"heading": {
+				"value": "Wherever you meet! Jumbotron block sv {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"subHeading": {
+				"value": "Jumbotron block sv {{contentStatus}} {{$randomInt}} Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management ",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonText": {
+				"value": "Read more Jumbotron block sv {{contentStatus}} {{$randomInt}}",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonLink": {
+				"value": "http://vnlabvm52:17051/16Apr/en/alloy-meet/",
+				"propertyDataType": "PropertyUrl"
+			}
+		},
+		"jsonLocalFolderBody": {
+			"name": "Local Folder {{$randomInt}}{{$randomInt}}",
+			"contentLink": {},
+			"parentLink": {
+				"id": "{{parentFolderId}}"
+			},
+			"contentType": [
+				"Folder",
+				"SysContentFolder"
+			]
+		},
+		"jsonSimplePageBody": {
+			"name": "New Page {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "en"
+			},
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "checkedout",
+			"contentLink": {},
+			"parentLink": {
+				"guidValue": "{{parentGuid}}"
+			},
+			"contentType": [
+				"Page",
+				"StandardPage"
+			]
+		},
+		"jsonSimpleBlockBody": {
+			"name": "New Block {{$randomInt}}{{$randomInt}}",
+			"language": {
+				"name": "en"
+			},
+			"startPublish": "2020-10-16T09:42:22Z",
+			"stopPublish": null,
+			"status": "checkedout",
+			"contentLink": {},
+			"parentLink": {
+				"id": "{{parentFolderId}}"
+			},
+			"contentType": [
+				"Block",
+				"JumbotronBlock"
+			],
+			"buttonText": {
+				"value": "Read more",
+				"propertyDataType": "PropertyLongString"
+			},
+			"buttonLink": {
+				"value": "http://vnlabvm52:17051/16Apr/en/alloy-meet/",
+				"propertyDataType": "PropertyUrl"
+			}
+		},
+		"ImageFileBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Image",
+				"Media",
+				"ImageFile"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2017-11-27T07:33:11Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "file copyright",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"ImageFileBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-27T07:33:11Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "file copyright updated",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"VideoFileBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Video",
+				"Media",
+				"VideoFile"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2021-11-09T08:51:19Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "VideoFile copyright",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewImage": {
+				"value": {
+					"id": 62
+				},
+				"propertyDataType": "PropertyContentReference"
+			}
+		},
+		"VideoFileBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-09T08:51:19Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "VideoFile copyright updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewImage": {
+				"value": {
+					"id": 109
+				},
+				"propertyDataType": "PropertyContentReference"
+			}
+		},
+		"GenericMediaBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Media",
+				"GenericMedia"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2021-11-09T08:55:29Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 4,
+						"name": "Track",
+						"description": "Alloy Track"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"description": {
+				"value": "Generic file description",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"GenericMediaBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-09T08:55:29Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 4,
+						"name": "Track",
+						"description": "Alloy Track"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"description": {
+				"value": "Generic file description updated",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"MyTestMediaBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Media",
+				"MyTestMedia"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2021-11-09T09:03:36Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"contentArea1": {
+				"value": [
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 65
+						}
+					},
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 66
+						}
+					}
+				],
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentAreaReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentReference1": {
+				"value": {
+					"id": 6
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceList1": {
+				"value": [
+					{
+						"id": 6
+					},
+					{
+						"id": 9
+					}
+				],
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"contentReferenceListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"linkItemCollection1": {
+				"value": [
+					{
+						"href": "{{cmsUrl}}/en/alloy-plan/",
+						"title": "Link 1",
+						"target": "_blank",
+						"text": "link1",
+						"contentLink": {
+							"id": 6
+						}
+					},
+					{
+						"href": "{{cmsUrl}}/globalassets/alloy-meet/alloymeet.png",
+						"title": "Link 2",
+						"target": "_top",
+						"text": "link2",
+						"contentLink": {
+							"id": 62
+						}
+					},
+					{
+						"href": "mailto:dawnvnguyen@gmail.com",
+						"title": "Link 3",
+						"target": "_blank",
+						"text": "link3",
+						"contentLink": null
+					},
+					{
+						"href": "http://google.vn",
+						"title": "Link 4",
+						"target": null,
+						"text": "link4",
+						"contentLink": null
+					}
+				],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"linkItemCollectionReadonly1": {
+				"value": [],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"text1": {
+				"value": "this is a text",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textArea1": {
+				"value": "This is a text area",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textAreaReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableText1": {
+				"value": "Previewable text",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableTextReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"date1": {
+				"value": "2021-11-23T17:00:00Z",
+				"propertyDataType": "PropertyDate"
+			},
+			"dateReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyDate"
+			},
+			"integer1": {
+				"value": 2147483647,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerRange1": {
+				"value": 4,
+				"propertyDataType": "PropertyNumber"
+			},
+			"bool1": {
+				"value": true,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"boolReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"integerList1": {
+				"value": [
+					1,
+					2,
+					3
+				],
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"integerListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"image1": {
+				"value": {
+					"id": 62
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"singleSelect1": {
+				"value": "1",
+				"propertyDataType": "PropertyLongString"
+			},
+			"singleSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelect1": {
+				"value": "1,2,4,5",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor1": {
+				"value": "1",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor2": {
+				"value": "Alternative 2",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditorReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"MyTestMediaBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-09T09:03:36Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"contentArea1": {
+				"value": [
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 6
+						}
+					}
+				],
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentAreaReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentReference1": {
+				"value": {
+					"id": 7
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceList1": {
+				"value": [
+					{
+						"id": 5
+					},
+					{
+						"id": 6
+					}
+				],
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"contentReferenceListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"linkItemCollection1": {
+				"value": [
+					{
+						"href": "{{cmsUrl}}/en/alloy-plan/",
+						"title": "Link 1",
+						"target": "_blank",
+						"text": "link1",
+						"contentLink": {
+							"id": 6
+						}
+					},
+					{
+						"href": "http://safechat.vn",
+						"title": "Link 4",
+						"target": null,
+						"text": "link4",
+						"contentLink": null
+					},
+					{
+						"href": "{{cmsUrl}}/globalassets/alloy-track/alloytrack.png",
+						"title": "Link 2",
+						"target": "_top",
+						"text": "link2",
+						"contentLink": {
+							"id": 109
+						}
+					},
+					{
+						"href": "mailto:minhnguyen@episerver.com",
+						"title": "Link 3",
+						"target": "_blank",
+						"text": "link3",
+						"contentLink": null
+					}
+				],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"linkItemCollectionReadonly1": {
+				"value": [],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"text1": {
+				"value": "this is a text updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textArea1": {
+				"value": "This is a text area updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textAreaReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableText1": {
+				"value": "Previewable text updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableTextReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"date1": {
+				"value": "2020-11-23T17:00:00Z",
+				"propertyDataType": "PropertyDate"
+			},
+			"dateReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyDate"
+			},
+			"integer1": {
+				"value": 3414141,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerRange1": {
+				"value": 10,
+				"propertyDataType": "PropertyNumber"
+			},
+			"bool1": {
+				"value": false,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"boolReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"integerList1": {
+				"value": [
+					5,
+					6,
+					7
+				],
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"integerListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"image1": {
+				"value": {
+					"id": 109
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"singleSelect1": {
+				"value": "2",
+				"propertyDataType": "PropertyLongString"
+			},
+			"singleSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelect1": {
+				"value": "1,4,6,5",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor1": {
+				"value": "2",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor2": {
+				"value": "Alternative 1",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditorReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			}
+		}
+	}
+]
