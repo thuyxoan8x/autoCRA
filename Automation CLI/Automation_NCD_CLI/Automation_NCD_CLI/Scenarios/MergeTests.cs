@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Automation_NCD_CLI.Scenarios
@@ -159,19 +160,100 @@ namespace Automation_NCD_CLI.Scenarios
 
         [Test, Description("Merge when json file has invalid data")]
         [Category("Merge")]
-        [TestCase("merge_TCx_InvalidContentType_name.json")]
-        [TestCase("merge_TCx_InvalidContentType_baseType.json")]
-        public void TC11_Merge_when_json_file_has_invalid_data(string invalidFile)
+        [TestCase("merge_TCx_InvalidContentType_nameIsNull.json", "invalidNameMissing")]
+        [TestCase("merge_TCx_InvalidContentType_nameIsEmpty.json", "invalidNameMissing")]
+        [TestCase("merge_TCx_InvalidContentType_nameIncludeSpace.json", "invalidName")]
+        [TestCase("merge_TCx_InvalidContentType_nameContainsSpecialCharacters.json", "invalidName")]
+        [TestCase("merge_TCx_InvalidContentType_nameExceedLength.json", "invalidName")]
+        [TestCase("merge_TCx_InvalidContentType_nameIsNotAString.json", "invalidNameFormat")]
+        [TestCase("merge_TCx_InvalidContentType_baseTypeContainsSpace.json", "invalidBaseType")]
+        [TestCase("merge_TCx_InvalidContentType_baseTypeContainsSpecialCharacters.json", "invalidBaseType")]
+        [TestCase("merge_TCx_InvalidContentType_dataTypeIsNull.json", "invalidDataTypeMissing")]
+        [TestCase("merge_TCx_InvalidContentType_dataTypeIsEmpty.json", "invalidDataTypeMissing")]
+        [TestCase("merge_TCx_InvalidContentType_dataTypeContainsSpace.json", "invalidDataType")]
+        [TestCase("merge_TCx_InvalidContentType_dataTypeContainsSpecialCharacters.json", "invalidDataType")]
+        //[TestCase("merge_TCx_InvalidContentType_baseTypeIsNull.json", "invalidBaseType")]
+        //[TestCase("merge_TCx_InvalidContentType_baseTypeIsEmpty.json", "invalidBaseType")]
+        public void TC11_Merge_when_json_file_has_invalid_data(string invalidFile, string invalidType)
         {
             List<string> files = new List<string>() { "merge_TC1_contentType1.json" };
             files.Add(invalidFile);
                    
             string result = ManifestControllers.ExecuteMerge(files);
-
-            Assert.IsTrue(result.Contains(ResultMessages.InvalidContentTypeName));
+            switch(invalidType)
+            {
+                case "invalidNameMissing":
+                    Assert.IsTrue(result.Contains(ResultMessages.InvalidContentTypeNameMissing));
+                    break;
+                case "invalidName":
+                    Assert.IsTrue(result.Contains(ResultMessages.InvalidContentTypeName));
+                    break;
+                case "invalidNameFormat":
+                    Assert.IsTrue(result.Contains(ResultMessages.InvalidContentTypeNameFormat));
+                    break;
+                case "invalidBaseType":
+                    // NCD-1582 NOT FIXED (message is not correct)
+                    Assert.IsTrue(result.Contains(ResultMessages.InvalidContentTypeName));
+                    break;
+                case "invalidDataTypeMissing":
+                    Assert.IsTrue(result.Contains(ResultMessages.InvalidContentTypeDataTypeMissing));
+                    break;
+                case "invalidDataType":
+                    Assert.IsTrue(Regex.IsMatch(result, ResultMessages.InvalidContentTypeDataType));
+                    break;
+                default:
+                    break;
+            }    
         }
 
+        [Test, Description("Merge 2 json files with duplicate content type")]
+        [Category("Merge")]
+        [TestCase("merge_TC3_name1.json,merge_TC3_name1.json")]
+        [TestCase("merge_TC3_name1.json,merge_TC3_name1Properties2.json")]
+        [TestCase("merge_TC3_name1Id1.json,merge_TC3_name1Id1.json", true)]
+        [TestCase("merge_TC3_name1Id1.json,merge_TC3_name1.json")]
+        [TestCase("merge_TC3_name1.json,merge_TC3_name1Id1.json")]
+        [TestCase("merge_TC3_name1Id1.json,merge_TC3_name2Id1.json", true)]
+        [TestCase("merge_TC1_contentType1.json,merge_TC1_contentType1.txt,merge_TC1_contentType1")]
+        public void TC12_Merge_json_files_with_duplicate_content_type_with_reverse(string mergingFiles, bool isDuplicatedId = false)
+        {
+            string outputFile = "merge_TC3_contentTypes.json";
+            List<string> files = mergingFiles.Split(',').ToList();
+            string result = ManifestControllers.ExecuteMerge(files, outputFile, "--reverse");
 
+            // build the expected contenType list in merged order
+            Dictionary<string, ContentType> expectedContentTypesDict = new Dictionary<string, ContentType>();
+            files.Reverse();
+            foreach (string file in files)
+            {
+                var filePath = Path.Combine(ConfigurationResource.MergeWorkingDirectory, file);
+                PullResponse fileContent = JsonConvert.DeserializeObject<PullResponse>(File.ReadAllText(filePath));
+                foreach (ContentType contentType in fileContent.ContentTypes)
+                {
+                    string key = isDuplicatedId ? contentType.Id : contentType.Name;
+                    if (expectedContentTypesDict.ContainsKey(key))
+                    {
+                        expectedContentTypesDict[key].Name = contentType.Name;
+                        if (!string.IsNullOrEmpty(contentType.Id))
+                            expectedContentTypesDict[key].Id = contentType.Id;
+                        if (!string.IsNullOrEmpty(contentType.Version))
+                            expectedContentTypesDict[key].Version = contentType.Version;
+                        foreach (Property prop in contentType.Properties)
+                            if (!expectedContentTypesDict[key].Properties.Where(x => x.Name == prop.Name).Any())
+                                expectedContentTypesDict[key].Properties.Add(prop);
+                    }
+                    else
+                        expectedContentTypesDict.Add(key, contentType);
+                }
+            }
+            List<ContentType> expectedContentTypes = expectedContentTypesDict.Values.ToList();
+
+            var outputPath = Path.Combine(ConfigurationResource.MergeWorkingDirectory, "output", outputFile);
+            PullResponse pullResponse = JsonConvert.DeserializeObject<PullResponse>(File.ReadAllText(outputPath));
+            List<ContentType> mergedContentTypes = pullResponse.ContentTypes.ToList();
+
+            Assert.AreEqual(JsonConvert.SerializeObject(expectedContentTypes), JsonConvert.SerializeObject(mergedContentTypes));
+        }
 
         [TearDown]
         public void CleanUp()

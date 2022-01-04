@@ -21,7 +21,7 @@ namespace Automation_NCD_CLI.Scenarios
         [Category("Export")]
         public void TC01_Export_manifest_to_terminal_command_line()
         {
-            string result = ManifestControllers.ExecuteExport(ConfigurationResource.ExportWorkingDirectory);
+            string result = ManifestControllers.ExecuteExport(ConfigurationResource.DefaultAssembly);
 
             Assert.IsTrue(result.Contains("contentTypes"));
         }
@@ -31,8 +31,8 @@ namespace Automation_NCD_CLI.Scenarios
         public void TC02_Export_manifest_to_output_file()
         {
             outputFile = "export_TC2.json";
-            string result = ManifestControllers.ExecuteExport(ConfigurationResource.ExportWorkingDirectory, outputFile);
-            var outputPath = Path.Combine(ConfigurationResource.ExportWorkingDirectory, "CLI tool//export",  outputFile);
+            string result = ManifestControllers.ExecuteExport(ConfigurationResource.DefaultAssembly, outputFile);
+            var outputPath = Path.Combine(ConfigurationResource.ExportWorkingDirectory, outputFile);
             PullResponse pullResponse = JsonConvert.DeserializeObject<PullResponse>(File.ReadAllText(outputPath));
 
             Assert.IsNotEmpty(pullResponse.ContentTypes);
@@ -41,11 +41,16 @@ namespace Automation_NCD_CLI.Scenarios
 
         [Test, Description("Export without path")]
         [Category("Export")]
-        public void TC02_Export_without_path()
+        public void TC03_Export_without_path()
         {
-            string result = ManifestControllers.ExecuteExport("");
+            outputFile = "export_TC2.json";
+            string result = ManifestControllers.ExecuteExport("", outputFile);
 
-            Assert.IsTrue(result.Contains("contentTypes"));
+            var outputPath = Path.Combine(ConfigurationResource.ExportWorkingDirectory, outputFile);
+            PullResponse pullResponse = JsonConvert.DeserializeObject<PullResponse>(File.ReadAllText(outputPath));
+
+            Assert.IsNotEmpty(pullResponse.ContentTypes);
+            Assert.IsNotNull(pullResponse.ContentTypes.Where(x => x.Name == "MyCodeTestPage").FirstOrDefault());
         }
 
         [Test, Description("Export with Invalid path")]
@@ -54,7 +59,7 @@ namespace Automation_NCD_CLI.Scenarios
         [TestCase("none_existing_folder")]
         [TestCase("not_assembly_folder")]
         [TestCase("cms_folder")]
-        public void TC02_Export_with_invalid_path(string path)
+        public void TC04_Export_with_invalid_path(string path)
         {
             string invalidPath;
             switch(path)
@@ -63,7 +68,7 @@ namespace Automation_NCD_CLI.Scenarios
                     invalidPath = Path.Combine(ConfigurationResource.ExportWorkingDirectory, path);
                     break;
                 case "not_assembly_folder":
-                    invalidPath = Path.Combine(ConfigurationResource.ExportWorkingDirectory, "CLI tool//export");
+                    invalidPath = ConfigurationResource.ExportWorkingDirectory;
                     break;
                 case "cms_folder":
                     invalidPath = ConfigurationResource.ExportWorkingDirectory.Substring(0, ConfigurationResource.ExportWorkingDirectory.IndexOf("sample"));
@@ -91,16 +96,16 @@ namespace Automation_NCD_CLI.Scenarios
 
         [Test, Description("Export with option ' --use-assembly-versioning'")]
         [Category("Export")]
-        public void TC02_Export_with_option_use_assembly_versioning()
+        public void TC06_Export_with_option_use_assembly_versioning()
         {
             outputFile = "export_TC2.json";
-            string result = ManifestControllers.ExecuteExport(ConfigurationResource.ExportWorkingDirectory, outputFile, "--use-assembly-versioning");
+            ManifestControllers.ExecuteExport(ConfigurationResource.DefaultAssembly, outputFile, "--use-assembly-versioning");
 
             // Get assembliesVersion
-            FileVersionInfo assembliesVersionInfo = FileVersionInfo.GetVersionInfo(Path.Combine(ConfigurationResource.ExportWorkingDirectory, "bin\\Debug\\net5.0\\Alloy.DeliverySite.dll"));
+            FileVersionInfo assembliesVersionInfo = FileVersionInfo.GetVersionInfo(Path.Combine(ConfigurationResource.DefaultAssembly, "Alloy.DeliverySite.dll"));
             string assembliesVersion = assembliesVersionInfo.FileVersion;
 
-            var outputPath = Path.Combine(ConfigurationResource.ExportWorkingDirectory, "CLI tool//export", outputFile);
+            var outputPath = Path.Combine(ConfigurationResource.ExportWorkingDirectory, outputFile);
             PullResponse pullResponse = JsonConvert.DeserializeObject<PullResponse>(File.ReadAllText(outputPath));
 
             Assert.IsNotEmpty(pullResponse.ContentTypes);
@@ -112,7 +117,7 @@ namespace Automation_NCD_CLI.Scenarios
         public void CleanUp()
         {
             // Remove output file
-            FileFolderHelper.EmptyDirectory(new DirectoryInfo(Path.Combine(ConfigurationResource.ExportWorkingDirectory, "CLI tool//export")));
+            FileFolderHelper.EmptyDirectory(new DirectoryInfo(Path.Combine(ConfigurationResource.ExportWorkingDirectory)));
         }
 
     }

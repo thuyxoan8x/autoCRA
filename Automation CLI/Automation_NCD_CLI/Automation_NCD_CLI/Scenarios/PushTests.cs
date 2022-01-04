@@ -202,8 +202,6 @@ namespace Automation_NCD_CLI.Scenarios
             else
                 Assert.IsTrue(result.Contains(ResultMessages.ErrorThisClientApplicationIsNotAllowed));
         }
-
-
         #endregion
 
         [Test, Description("push with invalid data")]

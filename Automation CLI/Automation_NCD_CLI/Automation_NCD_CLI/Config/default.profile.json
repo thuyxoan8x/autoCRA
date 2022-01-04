@@ -11,9 +11,18 @@
   "client": "cli",
   "secret": "cli",
   "cliToolName": "epi-content-manifest",
+
+  // command working folder
   "pushWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\push",
   "pullWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\pull",
-  "exportWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite",
-  "mergeWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\merge"
+  "exportWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\export",
+  "mergeWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\merge",
+  "syncWorkingDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\sync",
+  "helpDirectory": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\help",
 
+  // assembly folder
+  "defaultAssembly": "C:\\\\EPI\\\\Stash\\\\EPiServer.ContentDelivery.AspNetCore\\\\samples\\\\Alloy.DeliverySite\\bin\\Debug\\net5.0 - Copy",
+  "addedContentTypeAssembly": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\sync\\AddedContentTypeAssembly",
+  "updatedContentTypeAssembly": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\sync\\UpdatedContentTypeAssembly",
+  "changeVersionAssembly": "C:\\EPI\\Stash\\EPiServer.ContentDelivery.AspNetCore\\samples\\Alloy.DeliverySite\\CLI tool\\sync\\ChangeVersionAssembly"
 }

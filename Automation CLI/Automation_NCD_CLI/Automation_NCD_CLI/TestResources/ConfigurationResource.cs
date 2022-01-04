@@ -38,6 +38,30 @@ namespace Automation_NCD_CLI.TestResources
         /// </summary>
         public static string MergeWorkingDirectory = ConfigValue["mergeWorkingDirectory"];
         /// <summary>
+        /// Export Working Directory
+        /// </summary>
+        public static string SyncWorkingDirectory = ConfigValue["syncWorkingDirectory"]; 
+        /// <summary>
+        /// Help Directory
+        /// </summary>
+        public static string HelpDirectory = ConfigValue["helpDirectory"]; 
+        /// <summary>
+        /// Default Assembly Directory
+        /// </summary>
+        public static string DefaultAssembly = ConfigValue["defaultAssembly"];
+        /// <summary>
+        /// Added Content Assembly Directory
+        /// </summary>
+        public static string AddedContentAssembly = ConfigValue["addedContentTypeAssembly"];
+        /// <summary>
+        /// Updated Content Assembly Directory
+        /// </summary>
+        public static string UpdatedContentAssembly = ConfigValue["updatedContentTypeAssembly"];
+        /// <summary>
+        /// Change version Assembly Directory
+        /// </summary>
+        public static string ChangeVersionAssembly = ConfigValue["changeVersionAssembly"];
+        /// <summary>
         /// CDA Content Type Endpoint
         /// </summary>
         public static string CDA_ContentTypeEndpoint = ConfigValue["contentTypeEndpoint"];
