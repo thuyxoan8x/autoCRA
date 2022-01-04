@@ -1,0 +1,14 @@
+merge
+  Merges content types from specified paths to a single manifest file.
+
+Usage:
+  epi-content-manifest [options] merge <paths>...
+
+Arguments:
+  <paths>  Paths to the files containing content types.
+
+Options:
+  --reverse       Reverses the order the provided paths and merges any input last
+  -v, --verbose   Verbose.
+  -?, -h, --help  Show help and usage information
+

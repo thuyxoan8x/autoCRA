@@ -1,0 +1,875 @@
+{
+  "contentTypes": [
+    {
+      "id": "426cf12f-1f01-4ea0-922f-0778314ddaf0",
+      "name": "ButtonBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "ButtonText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "ButtonLink",
+          "dataType": "PropertyUrl",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "7e932eaf-6bc2-4753-902a-8670edc5f363",
+      "name": "ContactBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Image",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "Heading",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "ContactPageLink",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "LinkText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "LinkUrl",
+          "dataType": "PropertyUrl",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "67f617a4-2175-4360-975e-75edf2b924a7",
+      "name": "EditorialBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "MainBody",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "9fd1c860-7183-4122-8cd4-ff4c55e096f9",
+      "name": "JumbotronBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Image",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "ImageDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "Heading",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "SubHeading",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "ButtonText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "ButtonLink",
+          "dataType": "PropertyUrl",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "eb67a99a-e239-41b8-9c59-20eaa5936049",
+      "name": "MyCodeCustomBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Heading",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "Text",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MyAddedProperty",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "Image",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "Link",
+          "dataType": "PropertyPageReference",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "30685434-33de-42af-88a7-3126b936aead",
+      "name": "PageListBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Heading",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "IncludePublishDate",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "IncludeIntroduction",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "Count",
+          "dataType": "PropertyNumber",
+          "branchSpecific": false
+        },
+        {
+          "name": "SortOrder",
+          "dataType": "PropertyNumber",
+          "branchSpecific": false
+        },
+        {
+          "name": "Root",
+          "dataType": "PropertyPageReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "CategoryFilter",
+          "dataType": "PropertyCategory",
+          "branchSpecific": false
+        },
+        {
+          "name": "Recursive",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "09854019-91a5-4b93-8623-17f038346001",
+      "name": "SiteLogotypeBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Title",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "Url",
+          "dataType": "PropertyUrl",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "eb67a99a-e239-41b8-9c59-20eaa5936047",
+      "name": "TeaserBlock",
+      "baseType": "Block",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Heading",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "Text",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "Image",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "Link",
+          "dataType": "PropertyPageReference",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "0a89e464-56d4-449f-aea8-2bf774ab8730",
+      "name": "ImageFile",
+      "baseType": "Image",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Copyright",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "ee3bd195-7cb0-4756-ab5f-e5e223cd9820",
+      "name": "GenericMedia",
+      "baseType": "Media",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Description",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "aeecadf2-3e89-4117-adeb-f8d43565d2f4",
+      "name": "ArticlePage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "MainBody",
+          "dataType": "PropertyXhtmlString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MainContentArea",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "PropEnumLink",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "f8d47655-7b50-4319-8646-3369ba9af05b",
+      "name": "ContactPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Image",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "Phone",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "Email",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "dbed4258-8213-48db-a11f-99c034172a54",
+      "name": "LandingPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "MainContentArea",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "9ccc8a41-5c8c-4be0-8e73-520ff3de8269",
+      "name": "MyCodeCustomPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "MainBody",
+          "dataType": "PropertyXhtmlString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MainContentAreaUpdate",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "CollectionLinkTest",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "MyUpdatedProperty",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "19671657-b684-4d95-a61f-8dd4fe60d500",
+      "name": "MyCodeTestPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "SelectionTestContentReference",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "SelectionTestBoolean",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "SelectionTestNumber",
+          "dataType": "PropertyNumber",
+          "branchSpecific": false
+        },
+        {
+          "name": "SelectionTestFloatNumber",
+          "dataType": "PropertyFloatNumber",
+          "branchSpecific": false
+        },
+        {
+          "name": "SelectionTestString",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "SelectionTestDate",
+          "dataType": "PropertyDate",
+          "branchSpecific": false
+        },
+        {
+          "name": "SelectionTestStringNotNull",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "638d8271-5ca3-4c72-babc-3e8779233263",
+      "name": "NewsPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "NewsList",
+          "dataType": "PropertyBlock",
+          "branchSpecific": false,
+          "itemType": "PageListBlock"
+        },
+        {
+          "name": "MainBody",
+          "dataType": "PropertyXhtmlString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MainContentArea",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "PropEnumLink",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "17583dcd-3c11-49dd-a66d-0def0dd601fc",
+      "name": "ProductPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "UniqueSellingPoints",
+          "dataType": "PropertyStringList",
+          "branchSpecific": false
+        },
+        {
+          "name": "RelatedContentArea",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "MainBody",
+          "dataType": "PropertyXhtmlString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MainContentArea",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "PropEnumLink",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "9ccc8a41-5c8c-4be0-8e73-520ff3de8267",
+      "name": "StandardPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "MainBody",
+          "dataType": "PropertyXhtmlString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MainContentArea",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "PropEnumLink",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "19671657-b684-4d95-a61f-8dd4fe60d559",
+      "name": "StartPage",
+      "baseType": "Page",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "MainContentArea",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false
+        },
+        {
+          "name": "ProductPageLinks",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "CompanyInformationPageLinks",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "NewsPageLinks",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "CustomerZonePageLinks",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false
+        },
+        {
+          "name": "GlobalNewsPageLink",
+          "dataType": "PropertyPageReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "ContactsPageLink",
+          "dataType": "PropertyPageReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "SiteLogotype",
+          "dataType": "PropertyBlock",
+          "branchSpecific": false,
+          "itemType": "SiteLogotypeBlock"
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "85468104-e06f-47e5-a317-fc9b83d3cba9",
+      "name": "MyCodeCustomMedia",
+      "baseType": "Video",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Copyright",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PreviewImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        }
+      ]
+    },
+    {
+      "id": "85468104-e06f-47e5-a317-fc9b83d3cba6",
+      "name": "VideoFile",
+      "baseType": "Video",
+      "version": "1.5.0.0",
+      "properties": [
+        {
+          "name": "Copyright",
+          "dataType": "PropertyString",
+          "branchSpecific": false
+        },
+        {
+          "name": "PreviewImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false
+        }
+      ]
+    }
+  ],
+  "propertyGroups": []
+}

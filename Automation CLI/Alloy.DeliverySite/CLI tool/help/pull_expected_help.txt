@@ -1,0 +1,14 @@
+pull
+  Pull the content manifest from a specified source
+
+Usage:
+  epi-content-manifest [options] pull
+
+Options:
+  -s, --source <source> (REQUIRED)  Required base URL to the service.
+  --authority <authority>           (OpenID Connect) Authority.
+  --client <client>                 (OpenID Connect) Client ID.
+  --secret <secret>                 (OpenID Connect) Client Secret.
+  -v, --verbose                     Verbose.
+  -?, -h, --help                    Show help and usage information
+

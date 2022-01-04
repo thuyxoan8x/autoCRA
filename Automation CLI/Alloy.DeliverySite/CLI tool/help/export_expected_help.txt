@@ -1,0 +1,14 @@
+export
+  \(PREVIEW\) Scan for content types in an application and output them as a JSON document
+
+Usage:
+  epi-content-manifest \[options\] export \[\<path\>\]
+
+Arguments:
+  \<path\>  The path to the build output or directory containing the assemblies with content types. If left empty the working directory will be used. \[default:.*\]
+
+Options:
+  --use-assembly-versioning  Set to use assembly version as content type version
+  -v, --verbose              Verbose.
+  -\?, -h, --help             Show help and usage information
+
