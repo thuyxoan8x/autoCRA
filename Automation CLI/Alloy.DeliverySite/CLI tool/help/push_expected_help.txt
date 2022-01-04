@@ -1,0 +1,19 @@
+push
+  Pushes a content manifest to the specified management application.
+
+Usage:
+  epi-content-manifest [options] push [<path>]
+
+Arguments:
+  <path>  Path to the manifest file. [default: __console__]
+
+Options:
+  -s, --source <source> (REQUIRED)             Required base URL to the service.
+  --authority <authority>                      (OpenID Connect) Authority.
+  --client <client>                            (OpenID Connect) Client ID.
+  --secret <secret>                            (OpenID Connect) Client Secret.
+  --allowed-upgrades <Major|Minor|None|Patch>  Set to specify which semantic upgrades of content types should be allowed.
+  --force                                      Set to proceed even though there are warnings or changes that are not allowed.
+  -v, --verbose                                Verbose.
+  -?, -h, --help                               Show help and usage information
+

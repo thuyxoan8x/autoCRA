@@ -150,6 +150,22 @@
         /// <summary>
         /// The name of a content type must be a string starting with a standard letter and being between 2 and 50 characters long.
         /// </summary>
-        public static string InvalidContentTypeName = "A content type can only be merge with another content type with the same or empty base type.";
+        public static string InvalidContentTypeName = "The name of a content type must be a string starting with a standard letter and being between 2 and 50 characters long.";
+        /// <summary>
+        /// The JSON value could not be converted to EPiServer.Content.ContentTypeName.
+        /// </summary>
+        public static string InvalidContentTypeNameFormat = "The JSON value could not be converted to EPiServer.Content.ContentTypeName.";
+        /// <summary>
+        /// Section contains a Content Type that is missing both Id and Name
+        /// </summary>
+        public static string InvalidContentTypeNameMissing = "Section contains a Content Type that is missing both Id and Name.";
+        /// <summary>
+        /// The type string cannot be null or empty
+        /// </summary>
+        public static string InvalidContentTypeDataTypeMissing = "The type string cannot be null or empty";
+        /// <summary>
+        /// The type string 'Property String' can only contain alphanumeric characters and underscore.
+        /// </summary>
+        public static string InvalidContentTypeDataType = "^The type string '.*' can only contain alphanumeric characters and underscore.";
     }
 }

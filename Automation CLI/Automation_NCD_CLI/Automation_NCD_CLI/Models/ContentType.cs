@@ -20,6 +20,7 @@ namespace Automation_NCD_CLI.Models
     public class Property
     {
         public string Name { get; set; }
+        public string DataType { get; set; }
     }
 
     public class EditorDefinition

@@ -1,0 +1,21 @@
+sync
+  \(PREVIEW\) Synchronizes content types from specified project to management application
+
+Usage:
+  epi-content-manifest \[options\] sync \[\<path\>\]
+
+Arguments:
+  \<path\>  The path to the build output or directory containing the assemblies with content types. If left empty the working directory will be used. \[.*\]
+
+Options:
+  -s, --source \<source\> \(REQUIRED\)             Required base URL to the service.
+  --authority \<authority\>                      \(OpenID Connect\) Authority.
+  --client \<client\>                            \(OpenID Connect\) Client ID.
+  --secret \<secret\>                            \(OpenID Connect\) Client Secret.
+  -m, --merge \<merge\>                          The path to json file\(s\) containing content types that will be merged with scanned types.
+  --use-assembly-versioning                    Set to use assembly version as content type version
+  --allowed-upgrades <Major|Minor|None|Patch>  Set to specify which semantic upgrades of content types should be allowed.
+  --force                                      Set to proceed even though there are warnings or changes that are not allowed.
+  -v, --verbose                                Verbose.
+  -\?, -h, --help                               Show help and usage information
+

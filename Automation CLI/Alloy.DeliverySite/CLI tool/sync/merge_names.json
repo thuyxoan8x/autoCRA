@@ -1,0 +1,205 @@
+{
+	"contentTypes": [
+    {
+      "name": "MyCodeCustomMedia",
+      "baseType": "Video",
+      "version": "2.5.0.0",
+      "properties": [
+        {
+          "name": "Copyright",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "PreviewImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+		{
+          "name": "AddedProperty",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "MyCodeCustomPage",
+      "baseType": "Page",
+      "version": "0.5.0.0",
+      "properties": [
+        {
+          "name": "MainBody",
+          "dataType": "PropertyXhtmlString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "MainContentAreaUpdate",
+          "dataType": "PropertyContentArea",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "CollectionLinkTest",
+          "dataType": "PropertyLinkCollection",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "MetaTitle",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "MetaKeywords",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "MetaDescription",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "PageImage",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "TeaserText",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "HideSiteHeader",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "HideSiteFooter",
+          "dataType": "PropertyBoolean",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        }
+      ]
+    },
+    {
+      "name": "MyCodeCustomBlock",
+      "baseType": "Block",
+      "version": "2.0.0.0",
+      "properties": [
+        {
+          "name": "Heading",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "Text",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "MyAddedProperty",
+          "dataType": "PropertyString",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "Image",
+          "dataType": "PropertyContentReference",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        },
+        {
+          "name": "Link",
+          "dataType": "PropertyPageReference",
+          "branchSpecific": false,
+          "editSettings": {
+            "visibility": "default",
+            "groupName": "Information",
+            "sortOrder": 0
+          }
+        }
+      ]
+    }
+	]
+}

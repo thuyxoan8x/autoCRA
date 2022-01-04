@@ -63,6 +63,8 @@
     <Compile Include="CLIControllers\CLIHelper.cs" />
     <Compile Include="Models\PullResponse.cs" />
     <Compile Include="Models\ContentType.cs" />
+    <Compile Include="Scenarios\HelpTests.cs" />
+    <Compile Include="Scenarios\SyncTests.cs" />
     <Compile Include="Scenarios\ExportTests.cs" />
     <Compile Include="Scenarios\MergeTests.cs" />
     <Compile Include="Scenarios\PullTests.cs" />
