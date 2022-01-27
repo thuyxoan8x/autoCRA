@@ -345,7 +345,9 @@
 				"propertyDataType": "PropertyAppSettingsMultiple"
 			},
 			"blobProp": {
-				"value": {},
+				"value": {
+					"id": "epi.fx.blob://default/abc/def.png"
+				},
 				"propertyDataType": "PropertyBlob"
 			},
 			"contentAreaProp": {
@@ -561,7 +563,9 @@
 				"propertyDataType": "PropertyAppSettingsMultiple"
 			},
 			"blobProp": {
-				"value": {},
+				"value": {
+					"id": "epi.fx.blob://default/abc/def.png"
+				},
 				"propertyDataType": "PropertyBlob"
 			},
 			"editorialBlock": {
@@ -930,6 +934,603 @@
 			"buttonLink": {
 				"value": "http://vnlabvm52:17051/16Apr/en/alloy-meet/",
 				"propertyDataType": "PropertyUrl"
+			}
+		},
+		"ImageFileBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Image",
+				"Media",
+				"ImageFile"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2017-11-27T07:33:11Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "file copyright",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"ImageFileBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-27T07:33:11Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "file copyright updated",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"VideoFileBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Video",
+				"Media",
+				"VideoFile"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2021-11-09T08:51:19Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "VideoFile copyright",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewImage": {
+				"value": {
+					"id": 62
+				},
+				"propertyDataType": "PropertyContentReference"
+			}
+		},
+		"VideoFileBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-09T08:51:19Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"copyright": {
+				"value": "VideoFile copyright updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewImage": {
+				"value": {
+					"id": 109
+				},
+				"propertyDataType": "PropertyContentReference"
+			}
+		},
+		"GenericMediaBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Media",
+				"GenericMedia"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2021-11-09T08:55:29Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 4,
+						"name": "Track",
+						"description": "Alloy Track"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"description": {
+				"value": "Generic file description",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"GenericMediaBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-09T08:55:29Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 4,
+						"name": "Track",
+						"description": "Alloy Track"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"description": {
+				"value": "Generic file description updated",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"MyTestMediaBody": {
+			"contentLink": {
+			},
+			"name": "{{fileName}}",
+			"contentType": [
+				"Media",
+				"MyTestMedia"
+			],
+			"parentLink": {
+				"id": "{{parentId}}"
+			},
+			"startPublish": "2021-11-09T09:03:36Z",
+			"stopPublish": null,
+			"status": "{{status}}",
+			"category": {
+				"value": [
+					{
+						"id": 2,
+						"name": "Meet",
+						"description": "Alloy Meet"
+					},
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"contentArea1": {
+				"value": [
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 65
+						}
+					},
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 66
+						}
+					}
+				],
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentAreaReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentReference1": {
+				"value": {
+					"id": 6
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceList1": {
+				"value": [
+					{
+						"id": 6
+					},
+					{
+						"id": 9
+					}
+				],
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"contentReferenceListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"linkItemCollection1": {
+				"value": [
+					{
+						"href": "{{cmsUrl}}/en/alloy-plan/",
+						"title": "Link 1",
+						"target": "_blank",
+						"text": "link1",
+						"contentLink": {
+							"id": 6
+						}
+					},
+					{
+						"href": "{{cmsUrl}}/globalassets/alloy-meet/alloymeet.png",
+						"title": "Link 2",
+						"target": "_top",
+						"text": "link2",
+						"contentLink": {
+							"id": 62
+						}
+					},
+					{
+						"href": "mailto:dawnvnguyen@gmail.com",
+						"title": "Link 3",
+						"target": "_blank",
+						"text": "link3",
+						"contentLink": null
+					},
+					{
+						"href": "http://google.vn",
+						"title": "Link 4",
+						"target": null,
+						"text": "link4",
+						"contentLink": null
+					}
+				],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"linkItemCollectionReadonly1": {
+				"value": [],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"text1": {
+				"value": "this is a text",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textArea1": {
+				"value": "This is a text area",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textAreaReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableText1": {
+				"value": "Previewable text",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableTextReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"date1": {
+				"value": "2021-11-23T17:00:00Z",
+				"propertyDataType": "PropertyDate"
+			},
+			"dateReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyDate"
+			},
+			"integer1": {
+				"value": 2147483647,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerRange1": {
+				"value": 4,
+				"propertyDataType": "PropertyNumber"
+			},
+			"bool1": {
+				"value": true,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"boolReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"integerList1": {
+				"value": [
+					1,
+					2,
+					3
+				],
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"integerListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"image1": {
+				"value": {
+					"id": 62
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"singleSelect1": {
+				"value": "1",
+				"propertyDataType": "PropertyLongString"
+			},
+			"singleSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelect1": {
+				"value": "1,2,4,5",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor1": {
+				"value": "1",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor2": {
+				"value": "Alternative 2",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditorReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			}
+		},
+		"MyTestMediaBodyPatch": {
+			"name": "{{updatedFileName}}",
+			"startPublish": "2020-11-09T09:03:36Z",
+			"stopPublish": null,
+			"status": "{{updatedStatus}}",
+			"category": {
+				"value": [
+					{
+						"id": 3,
+						"name": "Plan",
+						"description": "Alloy Plan"
+					}
+				],
+				"propertyDataType": "PropertyCategory"
+			},
+			"contentArea1": {
+				"value": [
+					{
+						"displayOption": "",
+						"tag": null,
+						"contentLink": {
+							"id": 6
+						}
+					}
+				],
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentAreaReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentArea"
+			},
+			"contentReference1": {
+				"value": {
+					"id": 7
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"contentReferenceList1": {
+				"value": [
+					{
+						"id": 5
+					},
+					{
+						"id": 6
+					}
+				],
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"contentReferenceListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReferenceList"
+			},
+			"linkItemCollection1": {
+				"value": [
+					{
+						"href": "{{cmsUrl}}/en/alloy-plan/",
+						"title": "Link 1",
+						"target": "_blank",
+						"text": "link1",
+						"contentLink": {
+							"id": 6
+						}
+					},
+					{
+						"href": "http://safechat.vn",
+						"title": "Link 4",
+						"target": null,
+						"text": "link4",
+						"contentLink": null
+					},
+					{
+						"href": "{{cmsUrl}}/globalassets/alloy-track/alloytrack.png",
+						"title": "Link 2",
+						"target": "_top",
+						"text": "link2",
+						"contentLink": {
+							"id": 109
+						}
+					},
+					{
+						"href": "mailto:minhnguyen@episerver.com",
+						"title": "Link 3",
+						"target": "_blank",
+						"text": "link3",
+						"contentLink": null
+					}
+				],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"linkItemCollectionReadonly1": {
+				"value": [],
+				"propertyDataType": "PropertyLinkCollection"
+			},
+			"text1": {
+				"value": "this is a text updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textArea1": {
+				"value": "This is a text area updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"textAreaReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableText1": {
+				"value": "Previewable text updated",
+				"propertyDataType": "PropertyLongString"
+			},
+			"previewableTextReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"date1": {
+				"value": "2020-11-23T17:00:00Z",
+				"propertyDataType": "PropertyDate"
+			},
+			"dateReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyDate"
+			},
+			"integer1": {
+				"value": 3414141,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyNumber"
+			},
+			"integerRange1": {
+				"value": 10,
+				"propertyDataType": "PropertyNumber"
+			},
+			"bool1": {
+				"value": false,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"boolReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyBoolean"
+			},
+			"integerList1": {
+				"value": [
+					5,
+					6,
+					7
+				],
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"integerListReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyIntegerList"
+			},
+			"image1": {
+				"value": {
+					"id": 109
+				},
+				"propertyDataType": "PropertyContentReference"
+			},
+			"imageReadonly1": {
+				"value": null,
+				"propertyDataType": "PropertyContentReference"
+			},
+			"singleSelect1": {
+				"value": "2",
+				"propertyDataType": "PropertyLongString"
+			},
+			"singleSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelect1": {
+				"value": "1,4,6,5",
+				"propertyDataType": "PropertyLongString"
+			},
+			"multiSelectReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor1": {
+				"value": "2",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditor2": {
+				"value": "Alternative 1",
+				"propertyDataType": "PropertyLongString"
+			},
+			"selectionEditorReadonly1": {
+				"value": "",
+				"propertyDataType": "PropertyLongString"
 			}
 		}
 	}

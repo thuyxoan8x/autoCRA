@@ -206,7 +206,9 @@
 			"stringProp": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
 			"appSettings": "",
 			"appSettingsMultiple": [],
-			"blobProp": {},
+			"blobProp": {
+					"id": "epi.fx.blob://default/abc/def.png"
+				},
 			"contentAreaProp": [
 				{
 					"displayOption": "",
@@ -321,7 +323,9 @@
 			"stringProp": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
 			"appSettings": "",
 			"appSettingsMultiple": [],
-			"blobProp": {},
+			"blobProp": {
+					"id": "epi.fx.blob://default/abc/def.png"
+				},
 			"editorialBlock": {
 				"mainBody": "<p>NewAllPropertiesPage {{contentStatus}} {{$randomInt}}</p>"
 			},
