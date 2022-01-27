@@ -10,3 +10,8 @@ newman run "CMA-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environ
 
 4. CMA flatten
 newman run "CMA-NetCore-Flatten.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-NetCore-Flatten.json" -r htmlextra
+
+5. CMA Media non flatten
+newman run "CMA-Media-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-Media-NetCore.json" -r htmlextra
+
+* Note: You can specify the test folder to save time with option --folder "folderName"
