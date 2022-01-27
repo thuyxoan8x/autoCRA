@@ -1,16 +1,16 @@
 {
 	"info": {
-		"_postman_id": "d8d05fce-7bee-44b2-ad48-982ae1b49a17",
-		"name": "CD NetCore",
+		"_postman_id": "0093b800-ac7f-4a04-a02a-46346b202826",
+		"name": "CD-NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Headless API",
+			"name": "Regression",
 			"item": [
 				{
-					"name": "HAPI: Token",
+					"name": "Token",
 					"item": [
 						{
 							"name": "1005: Create token for unexistent user",
@@ -64,7 +64,7 @@
 										},
 										{
 											"key": "client_secret",
-											"value": "super-secret-key",
+											"value": "{{client_secret}}",
 											"type": "text"
 										}
 									]
@@ -152,7 +152,7 @@
 										"exec": [
 											"// Create new access token to get its refresh token",
 											"pm.sendRequest({    ",
-											"    url: `${pm.globals.get(\"cmsUrl\")}` + \"/api/episerver/connect/token\",    ",
+											"    url: `${pm.environment.get(\"cmsUrl\")}` + \"/api/episerver/connect/token\",    ",
 											"    method: 'POST',    ",
 											"    body: {        ",
 											"        mode: 'urlencoded',",
@@ -168,11 +168,8 @@
 											"        ]",
 											"    } ",
 											"}, function (err, response) {",
-											"    console.log(response.json()); ",
-											"    //console.log(response.json()['.expires']); ",
-											"    ",
 											"    // Get \"refresh_token\" value used for this main request \"refresh token\"",
-											"    pm.variables.set(\"refreshToken\", response.json().refresh_token);",
+											"    pm.environment.set(\"refreshToken\", response.json().refresh_token);",
 											"});",
 											"",
 											""
@@ -207,7 +204,7 @@
 										},
 										{
 											"key": "client_secret",
-											"value": "super-secret-key",
+											"value": "{{client_secret}}",
 											"type": "text"
 										}
 									]
@@ -274,7 +271,7 @@
 										},
 										{
 											"key": "client_secret",
-											"value": "super-secret-key",
+											"value": "{{client_secret}}",
 											"type": "text"
 										}
 									]
@@ -341,7 +338,7 @@
 										},
 										{
 											"key": "client_secret",
-											"value": "super-secret-key",
+											"value": "{{client_secret}}",
 											"type": "text"
 										}
 									]
@@ -618,7 +615,7 @@
 										},
 										{
 											"key": "client_secret",
-											"value": "super-secret-key",
+											"value": "{{client_secret}}",
 											"type": "text"
 										}
 									]
@@ -669,7 +666,7 @@
 					]
 				},
 				{
-					"name": "HAPI: Authorization",
+					"name": "Authorization",
 					"item": [
 						{
 							"name": "get StartPage using token",
@@ -800,7 +797,7 @@
 					]
 				},
 				{
-					"name": "HAPI: Request Validation",
+					"name": "RequestValidation",
 					"item": [
 						{
 							"name": "1045: Get content using invalid token",
@@ -841,13 +838,13 @@
 									}
 								],
 								"url": {
-									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/5",
+									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/6",
 									"host": [
 										"{{cmsUrl}}{{HAPI:endpointRoot}}"
 									],
 									"path": [
 										"content",
-										"5"
+										"6"
 									]
 								}
 							},
@@ -1122,7 +1119,10 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"commonTest.failed(400, \"The request path must contain either content reference or content guid.\");"
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"    verifyResponseCode(404);\r",
+											"else\r",
+											"    commonTest.failed(400, \"The request path must contain either content reference or content guid.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -1340,7 +1340,7 @@
 					]
 				},
 				{
-					"name": "HAPI: Site",
+					"name": "Site",
 					"item": [
 						{
 							"name": "get sites",
@@ -1376,24 +1376,6 @@
 											"        pm.environment.set(\"HAPI:contentassetsId\", site.contentRoots.contentAssetsRoot.id);",
 											"",
 											"        pm.environment.set(\"HAPI:forallsitesId\", site.contentRoots.globalAssetsRoot.id);",
-											"                    ",
-											"        /*",
-											"        //only for site using its own assets",
-											"        pm.environment.set(\"HAPI:forthissitesId\"+index, site.contentRoots.siteAssetsRoot.id);",
-											"        */",
-											"        //var Ajv = require('ajv'),",
-											"            //ajv = new Ajv({allErrors: true, logger: console}),",
-											"            //schema = JSON.parse(pm.environment.get(\"HAPI:siteSchema\"));",
-											"            ",
-											"        //pm.test('Validate site schema is valid', function() {",
-											"            //pm.expect(ajv.validate(schema, site)).to.be.true;",
-											"        //});",
-											"",
-											"        //var result = ajv.validate(schema, site);",
-											"        //console.log(result);",
-											"        //if (result) console.log('Valid!');",
-											"        //else console.log('Invalid: ' + ajv.errorsText(result.errors));        ",
-											"",
 											"    });",
 											"}"
 										],
@@ -1540,7 +1522,7 @@
 					]
 				},
 				{
-					"name": "HAPI: Content",
+					"name": "Content",
 					"item": [
 						{
 							"name": "Preparation",
@@ -6468,7 +6450,7 @@
 													"        }",
 													"        // for matching content: contentUrl parameter value compared to content url in response body",
 													"        var contentUrl = urls.getQueryValue(\"contentUrl\", false);",
-													"        contentUrl = contentUrl.replace(\"{{cmsUrl}}\", pm.globals.get(\"cmsUrl\"));",
+													"        contentUrl = contentUrl.replace(\"{{cmsUrl}}\", pm.environment.get(\"cmsUrl\"));",
 													"        //console.log(contentUrl);",
 													"        verifySubstring(\"Content url \", content.contentLink.url, contentUrl);",
 													"    }",
@@ -6943,7 +6925,7 @@
 					]
 				},
 				{
-					"name": "HAPI: Caching",
+					"name": "Caching",
 					"item": [
 						{
 							"name": "cache site",
@@ -6954,9 +6936,7 @@
 										"exec": [
 											"//verify response code = 200\r",
 											"verifyResponseCode(200);\r",
-											"if(pm.response.code===200){\r",
-											"    pm.environment.set(\"HAPI:siteEtag\", postman.getResponseHeader('ETag'));\r",
-											"}"
+											"pm.environment.set(\"HAPI:siteEtag\", postman.getResponseHeader('ETag'));"
 										],
 										"type": "text/javascript"
 									}
@@ -6964,19 +6944,7 @@
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Accept-Language",
-										"value": "abc",
-										"disabled": true
-									},
-									{
-										"key": "If-None-Match",
-										"value": "{{HAPI:ETag}}",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site",
 									"host": [
@@ -6996,7 +6964,11 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyResponseCode(304);"
+											"verifyResponseCode(304);\r",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"    verifyMatchingData(\"ETag \", pm.request.headers.get(\"If-None-Match\").slice(2), pm.response.headers.get(\"ETag\"));\r",
+											"else\r",
+											"    verifyMatchingData(\"ETag \", pm.request.headers.get(\"If-None-Match\"), pm.response.headers.get(\"ETag\"));"
 										],
 										"type": "text/javascript"
 									}
@@ -7005,10 +6977,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.request.headers.add({\r",
-											"    'key': \"If-None-Match\",\r",
-											"    'value': pm.environment.get(\"HAPI:siteEtag\")    \r",
-											"});"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -7018,15 +6987,9 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Accept-Language",
-										"value": "abc",
-										"disabled": true
-									},
-									{
 										"key": "If-None-Match",
 										"type": "text",
-										"value": "{{HAPI:ETag}}",
-										"disabled": true
+										"value": "{{HAPI:siteEtag}}"
 									}
 								],
 								"url": {
@@ -7050,9 +7013,7 @@
 										"exec": [
 											"//verify response code = 200\r",
 											"verifyResponseCode(200);\r",
-											"if(pm.response.code===200){\r",
-											"    verifyMatchingData(\"ETag \", pm.environment.get(\"HAPI:siteEtag\"), pm.response.headers.get(\"ETag\"));\r",
-											"}"
+											"verifyMatchingData(\"ETag \", pm.environment.get(\"HAPI:siteEtag\"), pm.response.headers.get(\"ETag\"));"
 										],
 										"type": "text/javascript"
 									}
@@ -7061,10 +7022,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.request.headers.add({\r",
-											"    'key': \"If-None-Match\",\r",
-											"    'value': \"invalid\"    \r",
-											"});"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -7074,15 +7032,9 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Accept-Language",
-										"value": "abc",
-										"disabled": true
-									},
-									{
 										"key": "If-None-Match",
-										"value": "{{HAPI:ETag}}",
-										"type": "text",
-										"disabled": true
+										"value": "invalid",
+										"type": "text"
 									}
 								],
 								"url": {
@@ -7106,9 +7058,7 @@
 										"exec": [
 											"//verify response code = 200",
 											"verifyResponseCode(200);",
-											"if(pm.response.code===200){",
-											"    pm.environment.set(\"HAPI:siteEtag\", postman.getResponseHeader('ETag'));",
-											"}"
+											"pm.environment.set(\"HAPI:siteEtag\", postman.getResponseHeader('ETag'));"
 										],
 										"type": "text/javascript"
 									}
@@ -7116,13 +7066,7 @@
 							],
 							"request": {
 								"method": "GET",
-								"header": [
-									{
-										"key": "Accept-Language",
-										"value": "en",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"url": {
 									"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/site/{{HAPI:siteId1}}",
 									"host": [
@@ -7143,7 +7087,11 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyResponseCode(304);"
+											"verifyResponseCode(304);\r",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"    verifyMatchingData(\"ETag \", pm.request.headers.get(\"If-None-Match\").slice(2), pm.response.headers.get(\"ETag\"));\r",
+											"else\r",
+											"    verifyMatchingData(\"ETag \", pm.request.headers.get(\"If-None-Match\"), pm.response.headers.get(\"ETag\"));"
 										],
 										"type": "text/javascript"
 									}
@@ -7152,10 +7100,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.request.headers.add({\r",
-											"    'key': \"If-None-Match\",\r",
-											"    'value': pm.environment.get(\"HAPI:siteEtag\")    \r",
-											"});"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -7165,9 +7110,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Accept-Language",
-										"value": "en",
-										"disabled": true
+										"key": "If-None-Match",
+										"value": "{{HAPI:siteEtag}}"
 									}
 								],
 								"url": {
@@ -7192,9 +7136,7 @@
 										"exec": [
 											"//verify response code = 200\r",
 											"verifyResponseCode(200);\r",
-											"if(pm.response.code===200){\r",
-											"    verifyMatchingData(\"ETag \", pm.environment.get(\"HAPI:siteEtag\"), pm.response.headers.get(\"ETag\"));\r",
-											"}"
+											"verifyMatchingData(\"ETag \", pm.environment.get(\"HAPI:siteEtag\"), pm.response.headers.get(\"ETag\"));"
 										],
 										"type": "text/javascript"
 									}
@@ -7203,10 +7145,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.request.headers.add({\r",
-											"    'key': \"If-None-Match\",\r",
-											"    'value': \"invalid\"    \r",
-											"});"
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -7216,9 +7155,8 @@
 								"method": "GET",
 								"header": [
 									{
-										"key": "Accept-Language",
-										"value": "en",
-										"disabled": true
+										"key": "If-None-Match",
+										"value": "invalid"
 									}
 								],
 								"url": {
@@ -7261,26 +7199,14 @@
 									"    }",
 									"    pm.environment.set(\"HAPI:ETag\", pm.response.headers.get(\"ETag\")); // keep value for sending request again",
 									"    verifyDataNotNull(\"Response body \", responseBody);",
-									"}",
-									"// Requests with If-None-Match header",
-									"else if (pm.response.code == 304) {",
-									"    verifyMatchingData(\"ETag \", pm.request.headers.get(\"If-None-Match\"), pm.response.headers.get(\"ETag\"));",
-									"    verifyMatchingData(\"Body \", '', responseBody);",
-									"    ",
-									"}",
-									"else {",
-									"    verifyResponseCode(200); // to show error if not valid response",
-									"}",
-									"console.log(\"Number of items: \" + responseData.itemCount());",
-									"",
-									""
+									"}"
 								]
 							}
 						}
 					]
 				},
 				{
-					"name": "HAPI: NoCache",
+					"name": "NoCache",
 					"item": [],
 					"event": [
 						{
@@ -7308,7 +7234,7 @@
 					]
 				},
 				{
-					"name": "HAPI: CrossOrigin",
+					"name": "CrossOrigin",
 					"item": [
 						{
 							"name": "NCD-971: Preflight request for content",
@@ -7417,42 +7343,7 @@
 					"script": {
 						"type": "text/javascript",
 						"exec": [
-							"// Set the root url of all requests",
-							"var url = pm.environment.get(\"cmsUrl\");",
-							"if (url === undefined)",
-							"    pm.environment.set(\"cmsUrl\", \"your-CMS-site-url\");",
-							"else pm.globals.set(\"cmsUrl\", url);",
-							"",
-							"// Set the expected data format in response body",
-							"var format = pm.environment.get(\"HAPI:dataFormat\");",
-							"if (format === undefined)",
-							"    pm.environment.set(\"HAPI:dataFormat\", \"json\");",
-							"else if ((format !== null) & (format !== '')) ",
-							"    pm.variables.set(\"responseFormat\", \"json\");",
-							"",
-							"// Set default values for some environment variables",
-							"if (pm.environment.get(\"HAPI:endpointRoot\") === undefined) ",
-							"    pm.environment.set(\"HAPI:endpointRoot\", \"api/episerver/v2.0\");",
-							"if (pm.environment.get(\"HAPI:endpointRootV3\") === undefined) ",
-							"    pm.environment.set(\"HAPI:endpointRootV3\", \"api/episerver/v3\");",
-							"if (pm.environment.get(\"HAPI:tokenEndpoint\") === undefined)",
-							"    pm.environment.set(\"HAPI:tokenEndpoint\", \"api/episerver/auth/token\");",
-							"if (pm.environment.get(\"client_id\") === undefined)",
-							"    pm.environment.set(\"client_id\", \"Default\");",
-							"if (pm.environment.get(\"adminUser\") === undefined)",
-							"    pm.environment.set(\"adminUser\", \"admin\");",
-							"if (pm.environment.get(\"adminPassword\") === undefined)",
-							"    pm.environment.set(\"adminPassword\", \"devLab08/\");",
-							"",
-							"// Handle testing in differerent ways of authorization using either token or cookie",
-							"if (pm.environment.get(\"appCookie\") === undefined)",
-							"    pm.environment.set(\"appCookie\", \"\");",
-							"if (pm.environment.get(\"HAPI:authType\") === undefined) {",
-							"    pm.environment.set(\"HAPI:authType\", \"token\");",
-							"    var authType = \"token\";",
-							"}",
-							"// For testing authorization using cookie, clear access token to make sure that it will not be used",
-							"if (authType === \"cookie\") pm.environment.set(\"HAPI:token\", \"\"); "
+							""
 						]
 					}
 				},
@@ -7752,16 +7643,6 @@
 					"    debugMode = \"0\";",
 					"}",
 					"",
-					"//var Header = require('postman-collection').Header;",
-					"//if (pm.environment.get(\"HAPI:authType\") === \"cookie\")",
-					"   // pm.request.headers.add({ key: 'Cookie', value: '.AspNetCore.Identity.Application={{appCookie}}' });",
-					"/*else {",
-					"    if (pm.environment.get(\"HAPI:token\") === \"\")",
-					"    {",
-					"        token = GetToken();",
-					"    }",
-					"}*/",
-					"",
 					"// Global functions for general purposes",
 					"debug = {",
 					"    log(message) {",
@@ -7873,14 +7754,7 @@
 					"    var data = urls.segment(index).split('_');",
 					"    var workId = data[1];",
 					"    return workId;",
-					"};",
-					"",
-					"// Load built-in js libs",
-					"// https://www.getpostman.com/docs/v6/postman/scripts/postman_sandbox_api_reference",
-					"//var pmsdk = require('postman-collection');",
-					"//var lodash = require(\"lodash\");",
-					"//var crypto = require(\"crypto-js\");",
-					"//var url = require(\"url\");"
+					"};"
 				]
 			}
 		},
@@ -7890,26 +7764,15 @@
 				"type": "text/javascript",
 				"exec": [
 					"var lodash = require(\"lodash\");  ",
-					"const CmsErrorPrefix = \"[CMS:Tests] \";",
 					"var jsonData;",
 					"",
 					"try {",
 					"    if (responseBody !== '') {",
-					"        var responseFormat = pm.variables.get(\"responseFormat\").trim().toLowerCase();",
-					"        switch (responseFormat) {",
-					"            case 'json':",
-					"                //jsonData = JSON.parse(responseBody);",
-					"                jsonData = pm.response.json();",
-					"                break; case 'xml':",
-					"                jsonData = xml2Json(responseBody);",
-					"                break;",
-					"            default:",
-					"                throw new Error(\"Unsupported response body format.\");",
-					"        }",
+					"        jsonData = pm.response.json();",
 					"    }",
 					"    else jsonData = JSON.stringify('');",
 					"} catch (err) {",
-					"    console.log(CmsErrorPrefix + \"Couldn't parse response body to JSON: \" + err.message);",
+					"    console.log(\"Couldn't parse response body to JSON: \" + err.message);",
 					"    if (pm.response.code !== 200) {",
 					"        //throw err;",
 					"    }",

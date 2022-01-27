@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "0c0c74a7-1df3-499a-b642-3e8b5050b057",
-		"name": "CMA NetCore Flatten",
+		"_postman_id": "c4750320-a98f-4f71-a792-88aa3a9ce484",
+		"name": "CMA-NetCore-Flatten",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -7250,9 +7250,13 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(400);\r",
-									"verifyErrorMessage(\"contentReference\", [\"'\" + pm.variables.get(\"invalidGuid\") + \"' is incorrect format.\"]);\r",
-									"\r",
+									"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+									"    verifyResponseCode(404);\r",
+									"else\r",
+									"{\r",
+									"    verifyResponseCode(400);\r",
+									"    verifyErrorMessage(\"contentReference\", [\"'\" + pm.variables.get(\"invalidGuid\") + \"' is incorrect format.\"]);\r",
+									"}\r",
 									"pm.variables.unset(\"invalidGuid\");"
 								],
 								"type": "text/javascript"
@@ -10405,11 +10409,15 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"verifyResponseCode(400);\r",
-									"verifyErrorMessage( \"contentIdentifier\", [\r",
+									"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+									"    verifyResponseCode(404);\r",
+									"else\r",
+									"{\r",
+									"    verifyResponseCode(400);\r",
+									"    verifyErrorMessage( \"contentIdentifier\", [\r",
 									"            \"The request path must contain either content reference or content guid.\"\r",
 									"        ]);\r",
-									"\r",
+									"}\r",
 									"pm.environment.unset(\"invalidContentId\");"
 								],
 								"type": "text/javascript"
@@ -16346,12 +16354,18 @@
 							}
 						],
 						"url": {
-							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{contentId}}",
+							"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{contentId}}?noCache={{newStatusCount}}",
 							"host": [
 								"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 							],
 							"path": [
 								"{{contentId}}"
+							],
+							"query": [
+								{
+									"key": "noCache",
+									"value": "{{newStatusCount}}"
+								}
 							]
 						}
 					},
@@ -16431,6 +16445,9 @@
 									"requestBody.saved = responseBody.saved;\r",
 									"if(responseBody.url !== undefined)\r",
 									"    requestBody.url = responseBody.url;\r",
+									"// update mimeType and thumbnail\r",
+									"requestBody.mimeType = responseBody.mimeType;\r",
+									"requestBody.thumbnail = responseBody.thumbnail;\r",
 									"\r",
 									"requestBody = SortJson(requestBody);\r",
 									"\r",
