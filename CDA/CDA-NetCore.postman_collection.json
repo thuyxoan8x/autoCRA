@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c6393aaa-ce0d-406e-8b8e-9e794884d0a9",
+		"_postman_id": "ca7352fb-d39c-4746-9def-72b1bac27c43",
 		"name": "CDA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -6794,7 +6794,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeName\") + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).version + \"' is 'None'.\");"
+													"verifyErrorDetailMessage(\"The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeName\") + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).version + \"' is 'None', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -22091,7 +22091,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -22172,7 +22172,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -22509,7 +22509,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -22591,7 +22591,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -23009,7 +23009,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'Minor' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -23430,7 +23430,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but the save options only allows 'Minor' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -24667,7 +24667,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'Minor' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -24909,7 +24909,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -24984,7 +24984,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but no save options was provided.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -25060,7 +25060,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but no save options was provided.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -25309,7 +25309,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
@@ -25390,7 +25390,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
@@ -25472,7 +25472,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
@@ -25727,7 +25727,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -25808,7 +25808,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");"
 												],
@@ -25890,7 +25890,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType\");\r",
 													"\r",
@@ -27605,7 +27605,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"pm.variables.unset(\"contentType1\");\r",
 													"pm.variables.unset(\"contentType2\");"
@@ -27694,7 +27694,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData2\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[1].version + \"' is 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData2\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[1].version + \"' is 'Patch', but no save options was provided.\");\r",
 													"\r",
 													"\r",
 													"pm.variables.unset(\"contentType1\");\r",
@@ -27785,7 +27785,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
 													"pm.variables.unset(\"contentType1\");\r",
@@ -27881,7 +27881,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
 													"pm.variables.unset(\"contentType1\");\r",
@@ -29422,7 +29422,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'None', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'None', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");\r",
 													""
 												],
 												"type": "text/javascript"
@@ -29491,7 +29491,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -29564,7 +29564,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -29638,7 +29638,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -29707,7 +29707,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -29780,7 +29780,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -29854,7 +29854,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'None', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");\r",
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'None', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");\r",
 													""
 												],
 												"type": "text/javascript"
@@ -29929,7 +29929,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -30008,7 +30008,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -30083,7 +30083,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -30163,7 +30163,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -30242,7 +30242,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -31836,7 +31836,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but the save options only allows 'Major' changes.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -31916,7 +31916,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but the save options only allows 'Major' changes.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -32906,7 +32906,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', but the save options only allows 'Minor' changes.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -33233,7 +33233,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major'.\");"
+													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', but the save options only allows 'Minor' changes.\");"
 												],
 												"type": "text/javascript"
 											}

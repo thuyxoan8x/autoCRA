@@ -294,7 +294,7 @@
 			},
 			"contReferProp": {
 				"value": {
-					"id": 6,
+					"id": "{{alloyPlanId}}",
 					"workId": 0,
 					"providerName": null,
 					"url": "/en/alloy-plan/",
@@ -320,7 +320,7 @@
 			},
 			"pageReferenceProp": {
 				"value": {
-					"id": 9,
+					"id": "{{alloyMeetId}}",
 					"workId": 0,
 					"providerName": null,
 					"url": "/en/alloy-meet/",
@@ -369,7 +369,7 @@
 			"contReferListProp": {
 				"value": [
 					{
-						"id": 6,
+						"id": "{{alloyPlanId}}",
 						"workId": 0,
 						"providerName": null,
 						"url": "/en/alloy-plan/",
@@ -432,7 +432,7 @@
 						"target": null,
 						"text": "link1",
 						"contentLink": {
-							"id": 6,
+							"id": "{{alloyPlanId}}",
 							"workId": 0,
 							"providerName": null,
 							"url": "/en/alloy-plan/",
@@ -512,7 +512,7 @@
 			},
 			"contReferProp": {
 				"value": {
-					"id": 9,
+					"id": "{{alloyMeetId}}",
 					"workId": 0,
 					"providerName": null,
 					"url": "/en/alloy-meet/",
@@ -594,7 +594,7 @@
 			"contReferListProp": {
 				"value": [
 					{
-						"id": 6,
+						"id": "{{alloyPlanId}}",
 						"workId": 0,
 						"providerName": null,
 						"url": "/en/alloy-plan/",
@@ -657,7 +657,7 @@
 						"target": null,
 						"text": "NewAllPropertiesPage {{contentStatus}} {{$randomInt}}",
 						"contentLink": {
-							"id": 10,
+							"id": "{{aboutUsId}}",
 							"workId": 0,
 							"providerName": null,
 							"url": "/en/about-us/",
@@ -1112,13 +1112,13 @@
 				"propertyDataType": "PropertyLongString"
 			}
 		},
-		"MyTestMediaBody": {
+		"MediaWithAllPropertiesBody": {
 			"contentLink": {
 			},
 			"name": "{{fileName}}",
 			"contentType": [
 				"Media",
-				"MyTestMedia"
+				"MediaWithAllProperties"
 			],
 			"parentLink": {
 				"id": "{{parentId}}"
@@ -1192,21 +1192,12 @@
 			"linkItemCollection1": {
 				"value": [
 					{
-						"href": "{{cmsUrl}}/en/alloy-plan/",
-						"title": "Link 1",
-						"target": "_blank",
-						"text": "link1",
-						"contentLink": {
-							"id": 6
-						}
-					},
-					{
 						"href": "{{cmsUrl}}/globalassets/alloy-meet/alloymeet.png",
 						"title": "Link 2",
 						"target": "_top",
 						"text": "link2",
 						"contentLink": {
-							"id": 62
+							"id": "{{alloyMeetPngId}}"
 						}
 					},
 					{
@@ -1333,7 +1324,7 @@
 				"propertyDataType": "PropertyLongString"
 			}
 		},
-		"MyTestMediaBodyPatch": {
+		"MediaWithAllPropertiesBodyPatch": {
 			"name": "{{updatedFileName}}",
 			"startPublish": "2020-11-09T09:03:36Z",
 			"stopPublish": null,
@@ -1392,29 +1383,11 @@
 			"linkItemCollection1": {
 				"value": [
 					{
-						"href": "{{cmsUrl}}/en/alloy-plan/",
-						"title": "Link 1",
-						"target": "_blank",
-						"text": "link1",
-						"contentLink": {
-							"id": 6
-						}
-					},
-					{
 						"href": "http://safechat.vn",
 						"title": "Link 4",
 						"target": null,
 						"text": "link4",
 						"contentLink": null
-					},
-					{
-						"href": "{{cmsUrl}}/globalassets/alloy-track/alloytrack.png",
-						"title": "Link 2",
-						"target": "_top",
-						"text": "link2",
-						"contentLink": {
-							"id": 109
-						}
 					},
 					{
 						"href": "mailto:minhnguyen@episerver.com",

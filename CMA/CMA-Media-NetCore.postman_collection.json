@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "06228e75-5ab0-4dc9-b0fe-98ab24624086",
+		"_postman_id": "7785e6e7-a9d6-42cf-b425-15908bcecffe",
 		"name": "CMA-Media-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -69,6 +69,63 @@
 							"response": []
 						},
 						{
+							"name": "Preparation - Create parent block",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.environment.set(\"parentBlockId\", pm.response.json().contentLink.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"Parent block {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Block\",\r\n        \"JumbotronBlock\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 3\r\n    },\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"image\": {\r\n        \"value\": {\r\n        },\r\n        \"propertyDataType\": \"PropertyContentReference\"\r\n    },\r\n    \"imageDescription\": {\r\n        \"value\": \"Some happy people cheering\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"Wherever you meet!\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"subHeading\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management \",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonText\": {\r\n        \"value\": \"Read more\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonLink\": {\r\n        \"value\": \"http://epvnwrkming:8000/en/alloy-meet/\",\r\n        \"propertyDataType\": \"PropertyUrl\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Preparation - Create parent folder",
 							"event": [
 								{
@@ -82,13 +139,13 @@
 											"parentList.add(pm.environment.get(\"forThisSiteId\"));\r",
 											"parentList.add(pm.environment.get(\"parentPageId\"));\r",
 											"parentList.add(pm.environment.get(\"parentFolderId\"));\r",
-											"parentList.add(37); //Alloy meet jumbotron\r",
+											"parentList.add(pm.environment.get(\"parentBlockId\"));\r",
 											"pm.environment.set(\"parentList\", parentList);\r",
 											"\r",
 											"//Prepare the mediaList for next step\r",
 											"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 											"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
-											"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MyTestMedia\"]);\r",
+											"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
 											"\r",
 											"pm.environment.set(\"parentCount\", 0);\r",
 											"pm.environment.set(\"mediaCount\", 0);\r",
@@ -882,13 +939,13 @@
 										"exec": [
 											"pm.request.headers.add({\r",
 											"    'key': \"Content-Type\",\r",
-											"    'value': \"video/x-flv\"   \r",
+											"    'value': \"audio/mid\"   \r",
 											"});\r",
 											"pm.request.headers.add({\r",
 											"    'key': \"FileName\",\r",
-											"    'value': \"file.flv\"  \r",
+											"    'value': \"file.midi\"  \r",
 											"});\r",
-											"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+											"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 										],
 										"type": "text/javascript"
 									}
@@ -1418,7 +1475,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 											"    verifyResponseCode(403);\r",
 											"else\r",
 											"{\r",
@@ -1776,11 +1833,13 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 											"    verifyResponseCode(403);\r",
 											"else\r",
-											"    //Bug HAPI-2029\r",
-											"    verifyResponseCode(400);"
+											"{\r",
+											"    verifyResponseCode(400);\r",
+											"    verifyErrorMessage(\"\", [\"The input was not valid.\"]);\r",
+											"}"
 										],
 										"type": "text/javascript"
 									}
@@ -1849,7 +1908,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 											"    verifyResponseCode(403);\r",
 											"else\r",
 											"{\r",
@@ -2544,7 +2603,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 											"    verifyResponseCode(403);\r",
 											"else\r",
 											"{\r",
@@ -6448,11 +6507,13 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 											"    verifyResponseCode(403);\r",
 											"else\r",
-											"    //Bug HAPI-2029\r",
-											"    verifyResponseCode(400);"
+											"{\r",
+											"    verifyResponseCode(400);\r",
+											"    verifyErrorMessage(\"\", [\"The input was not valid.\"]);\r",
+											"}"
 										],
 										"type": "text/javascript"
 									}
@@ -6511,7 +6572,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+											"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 											"    verifyResponseCode(403);\r",
 											"else\r",
 											"{\r",
@@ -6844,6 +6905,165 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Delete parent page",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Epi-Permanent-Delete",
+										"type": "text",
+										"value": "true"
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentPageId}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+									],
+									"path": [
+										"{{parentPageId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete parent folder",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Epi-Permanent-Delete",
+										"type": "text",
+										"value": "true"
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+									],
+									"path": [
+										"{{parentFolderId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete parent block",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Epi-Permanent-Delete",
+										"type": "text",
+										"value": "true"
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentBlockId}}",
+									"host": [
+										"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+									],
+									"path": [
+										"{{parentBlockId}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -6911,6 +7131,63 @@
 									"response": []
 								},
 								{
+									"name": "Preparation - Create parent block",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"parentBlockId\", pm.response.json().contentLink.id);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"Parent block {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Block\",\r\n        \"JumbotronBlock\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 3\r\n    },\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"image\": {\r\n        \"value\": {\r\n        },\r\n        \"propertyDataType\": \"PropertyContentReference\"\r\n    },\r\n    \"imageDescription\": {\r\n        \"value\": \"Some happy people cheering\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"Wherever you meet!\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"subHeading\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management \",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonText\": {\r\n        \"value\": \"Read more\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonLink\": {\r\n        \"value\": \"http://epvnwrkming:8000/en/alloy-meet/\",\r\n        \"propertyDataType\": \"PropertyUrl\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "Preparation - Create parent folder",
 									"event": [
 										{
@@ -6925,8 +7202,8 @@
 													"parentList.add(pm.environment.get(\"forThisSiteId\"));\r",
 													"parentList.add(pm.environment.get(\"parentPageId\"));\r",
 													"parentList.add(pm.environment.get(\"parentFolderId\"));\r",
+													"parentList.add(pm.environment.get(\"parentBlockId\"));\r",
 													"parentList.add(pm.environment.get(\"approvalSequenceParentId\"));\r",
-													"parentList.add(37); //Alloy meet jumbotron\r",
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
 													"pm.environment.set(\"statusList1\", [\"CheckedIn\", \"DelayedPublish\", \"Published\"]);\r",
@@ -6988,6 +7265,120 @@
 												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 											]
 										}
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet local folder",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].name === \"Alloy Meet\")",
+													"    {",
+													"        pm.environment.set(\"alloyMeetFolderId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/4/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"4",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet png id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].contentType.includes(\"ImageFile\"))",
+													"    {",
+													"        pm.environment.set(\"alloyMeetPngId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{alloyMeetFolderId}}/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{alloyMeetFolderId}}",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
 									},
 									"response": []
 								},
@@ -7117,26 +7508,26 @@
 													"{\r",
 													"    for(i = 0; i < response.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    contentBody.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(response.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    contentBody.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(response.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < response.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    contentBody.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(response.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
 													"    contentBody.image1 = response.image1;\r",
 													"}\r",
 													"if(response.linkItemCollection1 != undefined)\r",
@@ -7145,11 +7536,11 @@
 													"    {\r",
 													"        if(response.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    contentBody.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -7339,7 +7730,7 @@
 													"                pm.environment.set(\"mediaList\", [\"file.doc\",\"file.mp3\"]);\r",
 													"                pm.environment.set(\"updatedMediaList\", [ \"patchedFile.doc\",\"patchedFile.mp3\"]);\r",
 													"                pm.environment.set(\"contentTypeList\", [\"application/msword\",\"audio/mpeg\"]);\r",
-													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"MyTestMedia\"]);\r",
+													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"MediaWithAllProperties\"]);\r",
 													"\r",
 													"                pm.environment.set(\"parentCount\", 0);\r",
 													"                pm.environment.set(\"mediaCount\", 0);\r",
@@ -7540,26 +7931,26 @@
 													"{\r",
 													"    for(i = 0; i < response.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    contentBody.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(response.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    contentBody.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(response.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < response.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    contentBody.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(response.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
 													"    contentBody.image1 = response.image1;\r",
 													"}\r",
 													"if(response.linkItemCollection1 != undefined)\r",
@@ -7568,11 +7959,11 @@
 													"    {\r",
 													"        if(response.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    contentBody.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -8293,46 +8684,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -8637,46 +8988,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -10081,46 +10392,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -10546,46 +10817,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -10745,7 +10976,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"{\r",
@@ -10832,7 +11063,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"{\r",
@@ -11473,46 +11704,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -11813,46 +12004,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -12166,46 +12317,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -15321,46 +15432,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -15659,46 +15730,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -16492,46 +16523,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -16963,46 +16954,6 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"// Process to loop\r",
-													"parentList = pm.environment.get(\"parentList\");\r",
-													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
-													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
-													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
-													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
-													"\r",
-													"if(parentCount < parentList.length - 1)\r",
-													"{\r",
-													"    pm.environment.set('parentCount', parentCount + 1);\r",
-													"    postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set('parentCount', 0);\r",
-													"\r",
-													"    if(statusCount < statusList.length - 1)\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', statusCount + 1);\r",
-													"        postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"    }    \r",
-													"    else\r",
-													"    {\r",
-													"        pm.environment.set('statusCount', 0);\r",
-													"\r",
-													"        if(mediaCount < mediaList.length - 1)\r",
-													"        {\r",
-													"            pm.environment.set('mediaCount', mediaCount + 1);\r",
-													"            postman.setNextRequest(\"1. Preparation - Create new media content 1919\");\r",
-													"        }\r",
-													"        else\r",
-													"        {\r",
-													"            // exit the loop\r",
-													"            pm.environment.unset(\"mediaCount\");\r",
-													"            pm.environment.unset(\"parentCount\");\r",
-													"            pm.environment.unset(\"statusCount\");\r",
-													"        }\r",
-													"    }\r",
-													"}\r",
 													""
 												],
 												"type": "text/javascript"
@@ -17048,10 +16999,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -17070,7 +17021,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -17126,10 +17077,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -17149,7 +17100,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -17206,10 +17157,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -17224,7 +17175,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -17281,10 +17232,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -17303,7 +17254,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -17347,6 +17298,165 @@
 											],
 											"path": [
 												"{{mediaGuid}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent page",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentPageId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentPageId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent folder",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentFolderId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent block",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentBlockId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentBlockId}}"
 											]
 										}
 									},
@@ -17415,6 +17525,63 @@
 									"response": []
 								},
 								{
+									"name": "Preparation - Create parent block",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"parentBlockId\", pm.response.json().contentLink.id);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"Parent block {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Block\",\r\n        \"JumbotronBlock\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 3\r\n    },\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"image\": {\r\n        \"value\": {\r\n        },\r\n        \"propertyDataType\": \"PropertyContentReference\"\r\n    },\r\n    \"imageDescription\": {\r\n        \"value\": \"Some happy people cheering\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"Wherever you meet!\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"subHeading\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management \",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonText\": {\r\n        \"value\": \"Read more\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonLink\": {\r\n        \"value\": \"http://epvnwrkming:8000/en/alloy-meet/\",\r\n        \"propertyDataType\": \"PropertyUrl\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "Preparation - Create parent folder",
 									"event": [
 										{
@@ -17429,8 +17596,8 @@
 													"parentList.add(pm.environment.get(\"forThisSiteId\"));\r",
 													"parentList.add(pm.environment.get(\"parentPageId\"));\r",
 													"parentList.add(pm.environment.get(\"parentFolderId\"));\r",
+													"parentList.add(pm.environment.get(\"parentBlockId\"));\r",
 													"parentList.add(pm.environment.get(\"approvalSequenceParentId\"));\r",
-													"parentList.add(37); //Alloy meet jumbotron\r",
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
 													"pm.environment.set(\"statusList1\", [\"CheckedIn\", \"DelayedPublish\", \"Published\"]);\r",
@@ -17492,6 +17659,120 @@
 												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 											]
 										}
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet local folder",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].name === \"Alloy Meet\")",
+													"    {",
+													"        pm.environment.set(\"alloyMeetFolderId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/4/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"4",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet png id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].contentType.includes(\"ImageFile\"))",
+													"    {",
+													"        pm.environment.set(\"alloyMeetPngId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{alloyMeetFolderId}}/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{alloyMeetFolderId}}",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
 									},
 									"response": []
 								},
@@ -17565,26 +17846,26 @@
 													"{\r",
 													"    for(i = 0; i < response.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    contentBody.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(response.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    contentBody.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(response.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < response.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    contentBody.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(response.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
 													"    contentBody.image1 = response.image1;\r",
 													"}\r",
 													"if(response.linkItemCollection1 != undefined)\r",
@@ -17593,11 +17874,11 @@
 													"    {\r",
 													"        if(response.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    contentBody.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -17754,26 +18035,26 @@
 													"{\r",
 													"    for(i = 0; i < expectedData.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", expectedData.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", expectedData.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    expectedData.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(expectedData.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", expectedData.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", expectedData.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    expectedData.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(expectedData.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < expectedData.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", expectedData.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", expectedData.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    expectedData.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(expectedData.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", expectedData.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", expectedData.image1.value.id, response.image1.value.id);\r",
 													"    expectedData.image1 = response.image1;\r",
 													"}\r",
 													"if(expectedData.linkItemCollection1 != undefined)\r",
@@ -17782,11 +18063,11 @@
 													"    {\r",
 													"        if(expectedData.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", expectedData.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", expectedData.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", expectedData.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", expectedData.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    expectedData.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -17897,7 +18178,7 @@
 													"                pm.environment.set(\"mediaList\", [\"file.doc\",\"file.mp3\"]);\r",
 													"                pm.environment.set(\"updatedMediaList\", [ \"patchedFile.doc\",\"patchedFile.mp3\"]);\r",
 													"                pm.environment.set(\"contentTypeList\", [\"application/msword\",\"audio/mpeg\"]);\r",
-													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"MyTestMedia\"]);\r",
+													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"MediaWithAllProperties\"]);\r",
 													"\r",
 													"                pm.environment.set(\"parentCount\", 0);\r",
 													"                pm.environment.set(\"mediaCount\", 0);\r",
@@ -18014,26 +18295,26 @@
 													"{\r",
 													"    for(i = 0; i < response.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    contentBody.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(response.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    contentBody.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(response.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < response.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    contentBody.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(response.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
 													"    contentBody.image1 = response.image1;\r",
 													"}\r",
 													"if(response.linkItemCollection1 != undefined)\r",
@@ -18042,11 +18323,11 @@
 													"    {\r",
 													"        if(response.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    contentBody.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -18203,26 +18484,26 @@
 													"{\r",
 													"    for(i = 0; i < expectedData.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", expectedData.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", expectedData.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    expectedData.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(expectedData.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", expectedData.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", expectedData.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    expectedData.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(expectedData.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < expectedData.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", expectedData.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", expectedData.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    expectedData.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(expectedData.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", expectedData.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", expectedData.image1.value.id, response.image1.value.id);\r",
 													"    expectedData.image1 = response.image1;\r",
 													"}\r",
 													"if(expectedData.linkItemCollection1 != undefined)\r",
@@ -18231,11 +18512,11 @@
 													"    {\r",
 													"        if(expectedData.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", expectedData.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", expectedData.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", expectedData.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", expectedData.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    expectedData.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -20811,7 +21092,7 @@
 									"response": []
 								},
 								{
-									"name": "Delete content Copy",
+									"name": "Delete content",
 									"event": [
 										{
 											"listen": "prerequest",
@@ -21250,7 +21531,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"{\r",
@@ -21329,7 +21610,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"{\r",
@@ -25728,10 +26009,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -25750,7 +26031,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -25880,7 +26161,7 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"startPublish\": null,\r",
 													"    \"stopPublish\": null,\r",
 													"    \"status\": \"Published\",\r",
@@ -25895,7 +26176,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -25952,7 +26233,7 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"startPublish\": null,\r",
 													"    \"stopPublish\": null,\r",
 													"    \"status\": \"Published\",\r",
@@ -25967,7 +26248,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -26070,6 +26351,165 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "Delete parent page",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentPageId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentPageId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent block",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentBlockId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentBlockId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent folder",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentFolderId}}"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -26134,6 +26574,63 @@
 									"response": []
 								},
 								{
+									"name": "Preparation - Create parent block",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"parentBlockId\", pm.response.json().contentLink.id);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"Parent block {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Block\",\r\n        \"JumbotronBlock\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 3\r\n    },\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"image\": {\r\n        \"value\": {\r\n        },\r\n        \"propertyDataType\": \"PropertyContentReference\"\r\n    },\r\n    \"imageDescription\": {\r\n        \"value\": \"Some happy people cheering\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"Wherever you meet!\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"subHeading\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management \",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonText\": {\r\n        \"value\": \"Read more\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonLink\": {\r\n        \"value\": \"http://epvnwrkming:8000/en/alloy-meet/\",\r\n        \"propertyDataType\": \"PropertyUrl\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "Preparation - Create parent folder",
 									"event": [
 										{
@@ -26148,14 +26645,14 @@
 													"parentList.add(pm.environment.get(\"forThisSiteId\"));\r",
 													"parentList.add(pm.environment.get(\"parentPageId\"));\r",
 													"parentList.add(pm.environment.get(\"parentFolderId\"));\r",
+													"parentList.add(pm.environment.get(\"parentBlockId\"));\r",
 													"parentList.add(pm.environment.get(\"approvalSequenceParentId\"));\r",
-													"parentList.add(37); //Alloy meet jumbotron\r",
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
 													"//Prepare the mediaList for next step\r",
 													"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 													"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
-													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MyTestMedia\"]);\r",
+													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
 													"\r",
 													"pm.environment.set(\"parentCount\", 0);\r",
 													"pm.environment.set(\"mediaCount\", 0);\r",
@@ -26207,6 +26704,120 @@
 												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 											]
 										}
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet local folder",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].name === \"Alloy Meet\")",
+													"    {",
+													"        pm.environment.set(\"alloyMeetFolderId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/4/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"4",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet png id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].contentType.includes(\"ImageFile\"))",
+													"    {",
+													"        pm.environment.set(\"alloyMeetPngId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{alloyMeetFolderId}}/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{alloyMeetFolderId}}",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
 									},
 									"response": []
 								},
@@ -26281,26 +26892,26 @@
 													"{\r",
 													"    for(i = 0; i < response.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    contentBody.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(response.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    contentBody.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(response.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < response.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    contentBody.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(response.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
 													"    contentBody.image1 = response.image1;\r",
 													"}\r",
 													"if(response.linkItemCollection1 != undefined)\r",
@@ -26309,11 +26920,11 @@
 													"    {\r",
 													"        if(response.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    contentBody.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -28321,7 +28932,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"{\r",
@@ -28406,7 +29017,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"{\r",
@@ -30874,7 +31485,7 @@
 													"        \"ImageFile\"\r",
 													"    ],\r",
 													"\t\"parentLink\": {\r",
-													"\t\t\"id\": 62\r",
+													"\t\t\"id\": \"{{alloyMeetPngId}}\"\r",
 													"\t},\r",
 													"\t\"status\": \"Published\",\r",
 													"    \"startPublish\": \"2021-11-16T08:42:24Z\",\r",
@@ -32697,10 +33308,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -32715,7 +33326,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -32769,10 +33380,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -32791,7 +33402,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -32845,10 +33456,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -32867,7 +33478,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -32924,10 +33535,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"noAPIAccessParentId\")\r",
@@ -32946,7 +33557,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -33002,10 +33613,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -33024,7 +33635,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -33078,10 +33689,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -33100,7 +33711,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -33141,6 +33752,165 @@
 											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}",
 											"host": [
 												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent page",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentPageId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentPageId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent block",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentBlockId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentBlockId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent folder",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentFolderId}}"
 											]
 										}
 									},
@@ -33229,6 +33999,63 @@
 									"response": []
 								},
 								{
+									"name": "Preparation - Create parent block",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"pm.environment.set(\"parentBlockId\", pm.response.json().contentLink.id);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"Parent block {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Block\",\r\n        \"JumbotronBlock\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": 3\r\n    },\r\n    \"startPublish\": \"2017-11-27T07:33:11Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"image\": {\r\n        \"value\": {\r\n        },\r\n        \"propertyDataType\": \"PropertyContentReference\"\r\n    },\r\n    \"imageDescription\": {\r\n        \"value\": \"Some happy people cheering\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"Wherever you meet!\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"subHeading\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management \",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonText\": {\r\n        \"value\": \"Read more\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"buttonLink\": {\r\n        \"value\": \"http://epvnwrkming:8000/en/alloy-meet/\",\r\n        \"propertyDataType\": \"PropertyUrl\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "Preparation - Create parent folder",
 									"event": [
 										{
@@ -33243,14 +34070,14 @@
 													"parentList.add(pm.environment.get(\"forThisSiteId\"));\r",
 													"parentList.add(pm.environment.get(\"parentPageId\"));\r",
 													"parentList.add(pm.environment.get(\"parentFolderId\"));\r",
+													"parentList.add(pm.environment.get(\"parentBlockId\"));\r",
 													"parentList.add(pm.environment.get(\"approvalSequenceParentId\"));\r",
-													"parentList.add(37); //Alloy meet jumbotron\r",
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
 													"//Prepare the mediaList for next step\r",
 													"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 													"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
-													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MyTestMedia\"]);\r",
+													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
 													"\r",
 													"pm.environment.set(\"parentCount\", 0);\r",
 													"pm.environment.set(\"mediaCount\", 0);\r",
@@ -33302,6 +34129,120 @@
 												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
 											]
 										}
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet local folder",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].name === \"Alloy Meet\")",
+													"    {",
+													"        pm.environment.set(\"alloyMeetFolderId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/4/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"4",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
+									},
+									"response": []
+								},
+								{
+									"name": "Preparation - Get Alloy Meet png id",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"childrens = pm.response.json();",
+													"for(i = 0; i < childrens.length; i++)",
+													"{",
+													"    if(childrens[i].contentType.includes(\"ImageFile\"))",
+													"    {",
+													"        pm.environment.set(\"alloyMeetPngId\", childrens[i].contentLink.id);",
+													"        break;",
+													"    }",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": ""
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:endpointRoot}}/content/{{alloyMeetFolderId}}/children",
+											"host": [
+												"{{cmsUrl}}{{HAPI:endpointRoot}}"
+											],
+											"path": [
+												"content",
+												"{{alloyMeetFolderId}}",
+												"children"
+											]
+										},
+										"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
 									},
 									"response": []
 								},
@@ -33375,26 +34316,26 @@
 													"{\r",
 													"    for(i = 0; i < response.contentArea1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", contentBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);\r",
 													"    }\r",
 													"    contentBody.contentArea1 = response.contentArea1;\r",
 													"}\r",
 													"if(response.contentReference1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", contentBody.contentReference1.value.id, response.contentReference1.value.id);\r",
 													"    contentBody.contentReference1 = response.contentReference1;\r",
 													"}\r",
 													"if(response.contentReferenceList1 != undefined)\r",
 													"{\r",
 													"    for(i = 0; i < response.contentReferenceList1.value.length; i++)\r",
 													"    {\r",
-													"        Assert.IsEqual(\"Verify MyTestMedia contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
+													"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", contentBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);\r",
 													"    }\r",
 													"    contentBody.contentReferenceList1 = response.contentReferenceList1;\r",
 													"}\r",
 													"if(response.image1 != undefined)\r",
 													"{\r",
-													"    Assert.IsEqual(\"Verify MyTestMedia image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
+													"    Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", contentBody.image1.value.id, response.image1.value.id);\r",
 													"    contentBody.image1 = response.image1;\r",
 													"}\r",
 													"if(response.linkItemCollection1 != undefined)\r",
@@ -33403,11 +34344,11 @@
 													"    {\r",
 													"        if(response.linkItemCollection1.value[i].contentLink != undefined)\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", contentBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);\r",
 													"        }\r",
 													"        else\r",
 													"        {\r",
-													"            Assert.IsEqual(\"Verify MyTestMedia linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
+													"            Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", contentBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);\r",
 													"        }\r",
 													"    }\r",
 													"    contentBody.linkItemCollection1 = response.linkItemCollection1;\r",
@@ -35770,7 +36711,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"    verifyResponseCode(415);"
@@ -35854,7 +36795,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
+													"if ((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
 													"    verifyResponseCode(403);\r",
 													"else\r",
 													"{\r",
@@ -38414,7 +39355,7 @@
 													"        \"ImageFile\"\r",
 													"    ],\r",
 													"\t\"parentLink\": {\r",
-													"\t\t\"id\": 62\r",
+													"\t\t\"id\": \"{{alloyMeetPngId}}\"\r",
 													"\t},\r",
 													"\t\"status\": \"Published\",\r",
 													"    \"startPublish\": \"2021-11-16T08:42:24Z\",\r",
@@ -40300,10 +41241,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40318,7 +41259,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -40375,10 +41316,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40397,7 +41338,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -40454,10 +41395,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40476,7 +41417,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -40529,10 +41470,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40551,7 +41492,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -40611,10 +41552,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"noAPIAccessParentId\")\r",
@@ -40633,7 +41574,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -40692,10 +41633,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -40714,7 +41655,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -40771,10 +41712,10 @@
 											"script": {
 												"exec": [
 													"body = {\r",
-													"    \"name\": \"file.flv\",\r",
+													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MyTestMediaWithValidation\"\r",
+													"        \"MediaWithValidation\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -40793,7 +41734,7 @@
 													"};\r",
 													"\r",
 													"pm.environment.set(\"content\", JSON.stringify(body));\r",
-													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.flv\");"
+													"pm.environment.set(\"fileSource\", pm.environment.get(\"mediaPath\") + \"file.midi\");"
 												],
 												"type": "text/javascript"
 											}
@@ -40837,6 +41778,165 @@
 											],
 											"path": [
 												"{{$guid}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent page",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentPageId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentPageId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent block",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentBlockId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentBlockId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent folder",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{HAPI:CMAEndpoint}}/{{parentFolderId}}",
+											"host": [
+												"{{cmsUrl}}{{HAPI:CMAEndpoint}}"
+											],
+											"path": [
+												"{{parentFolderId}}"
 											]
 										}
 									},
@@ -40948,7 +42048,17 @@
 					"//Copy an array or object",
 					"CloneObject = (object) => {",
 					"    return lodash.cloneDeep(object);",
-					"};"
+					"};",
+					"",
+					"//==========================================================",
+					"// In Test data, we have to set id variable as quote, e.g \"id\": \"{{alloyPlanId}}\", otherwise Testrunner cannot load Test data file",
+					"// Before sending request, we need to change it back to \"id\": {{alloyPlanId}}",
+					"RemoveQuoteFromIdVariable = (body) => {",
+					"    body = body.replace(/\"{{alloyPlanId}}\"/g, \"{{alloyPlanId}}\");",
+					"    body = body.replace(/\"{{alloyMeetId}}\"/g, \"{{alloyMeetId}}\");",
+					"    body = body.replace(/\"{{aboutUsId}}\"/g, \"{{aboutUsId}}\");",
+					"    return body;",
+					"}"
 				]
 			}
 		},
