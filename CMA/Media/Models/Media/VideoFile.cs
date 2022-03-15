@@ -7,7 +7,7 @@ using EPiServer.Web;
 namespace AlloyTemplates.Models.Media
 {
     [ContentType(GUID = "85468104-E06F-47E5-A317-FC9B83D3CBA6")]
-    [MediaDescriptor(ExtensionString = "mp4,webm")]
+    [MediaDescriptor(ExtensionString = "flv,mp4,webm")]
     public class VideoFile : VideoData
     {
         /// <summary>

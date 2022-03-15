@@ -1,0 +1,11 @@
+1. CMA Non Flatten: 
+	newman run "CMA-FW-Token.postman_collection.json" -e "CMS-FW-Token.postman_environment.json" -d "TestData.json" -r htmlextra --reporter-htmlextra-title "CMA NetFW Test report" --reporter-htmlextra-titleSize 4
+
+2. CMA Flatten:
+	newman run "CMA-Flatten-FW-Cookie.postman_collection.json" -e "CMS-FW-Cookie.postman_environment.json" -d "TestData_Flatten.json" -r htmlextra --reporter-htmlextra-title "CMA Flatten NetFW Test report" --reporter-htmlextra-titleSize 4
+
+3. CD: 
+	newman run "CD-Full-FW.postman_collection.json" -e "CMS-FW-Token.postman_environment.json" -r htmlextra --reporter-htmlextra-title "CD (Includes Search) NetFW Test report" --reporter-htmlextra-titleSize 4
+
+
+* Note: You can specify the test folder to save time with option --folder "folderName"

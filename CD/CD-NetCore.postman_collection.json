@@ -1119,10 +1119,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\"))\r",
-											"    verifyResponseCode(404);\r",
-											"else\r",
-											"    commonTest.failed(400, \"The request path must contain either content reference or content guid.\");"
+											"verifyResponseCode(404);"
 										],
 										"type": "text/javascript"
 									}
