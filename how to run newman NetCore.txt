@@ -1,17 +1,13 @@
 1. Definition:
-	newman run "CDA-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra --reporter-htmlextra-title "CDA-NetCore Test report" --reporter-htmlextra-titleSize 3
+	newman run "CDA-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra --reporter-htmlextra-title "CDA 3.3.0 Test report" --reporter-htmlextra-titleSize 4
 
-2. CD:
-	newman run "CD-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra --reporter-htmlextra-title "CD-NetCore Test report" --reporter-htmlextra-titleSize 3
-	newman run "CD-CDSearch-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra
+2. CD (includes Search):
+	newman run "CD-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -r htmlextra --reporter-htmlextra-title "CD 3.3.0 Test report" --reporter-htmlextra-titleSize 4
 
-3. CMA non flatten:
-	newman run "CMA-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-NetCore.json" -r htmlextra --reporter-htmlextra-title "CMA-NetCore Test report" --reporter-htmlextra-titleSize 3
+3. CMA (non-flatten and flatten):
+	newman run "CMA-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-NetCore.json" -r htmlextra --reporter-htmlextra-title "CMA 3.3.0 Test report" --reporter-htmlextra-titleSize 4
 
-4. CMA Media non flatten
-	newman run "CMA-Media-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-NetCore.json" --working-dir "C:\EPI\CMS - Service API\CD\Stash\cms_hapi\CMA" -r htmlextra --reporter-htmlextra-title "CMA-Media-NetCore Test report" --reporter-htmlextra-titleSize 3
-
-5. CMA flatten
-	newman run "CMA-NetCore-Flatten.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-NetCore-Flatten.json" -r htmlextra --reporter-htmlextra-title "CMA-Flatten-NetCore Test report" --reporter-htmlextra-titleSize 4
+4. CMA Media (non flatten)
+	newman run "CMA-Media-NetCore.postman_collection.json" -e "CMS-NetCore.postman_environment.json" -d "TestData-NetCore.json" --working-dir "D:\Optimizely\github\automation-content-rest-api\CMA" -r htmlextra --reporter-htmlextra-title "CMA Media 3.3.0 Test report" --reporter-htmlextra-titleSize 4
 
 * Note: You can specify the test folder to save time with option --folder "folderName"
