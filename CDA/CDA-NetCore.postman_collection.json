@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2db19f2e-b4bd-4ef2-99cb-396c72c7d2eb",
+		"_postman_id": "d14af718-9f64-4d06-8b0e-dd1b808d36e3",
 		"name": "CDA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -8,6 +8,127 @@
 		{
 			"name": "Regression",
 			"item": [
+				{
+					"name": "Preparation",
+					"item": [
+						{
+							"name": "Get content type list - Button block",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"contentTypes = pm.response.json();\r",
+											"\r",
+											"Assert.IsNotEmpty(\"Verify contentTypes list\", contentTypes);\r",
+											"\r",
+											"for(i = 0; i < contentTypes.length; i++)\r",
+											"    if(contentTypes[i].name === \"ButtonBlock\")\r",
+											"        {\r",
+											"            pm.environment.set(\"buttonBlockGuid\", contentTypes[i].id);\r",
+											"            break;\r",
+											"        }"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1. Set ContentApiOption Flatten is false",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"flatten\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/Automation/SetContentApiOption",
+									"host": [
+										"{{cmsUrl}}"
+									],
+									"path": [
+										"Automation",
+										"SetContentApiOption"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
 				{
 					"name": "HAPI-710 Property Group",
 					"item": [
@@ -2756,13 +2877,7 @@
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
 													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-													"        \r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -2964,12 +3079,8 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"\r",
-													"requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
 													"Assert.IsEqual(\"Verify response\", SortJson(requestBody), SortJson(responseBody));\r",
 													"\r",
 													"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -3131,13 +3242,9 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"requestBody.id = responseBody.id;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"for(i = 0; i < responseBody.properties.length; i++)\r",
 													"{\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
 													"    requestBody.properties[i].editSettings.displayName = requestBody.properties[i].editSettings.displayName.trim();\r",
 													"    requestBody.properties[i].editSettings.groupName = requestBody.properties[i].editSettings.groupName.trim();\r",
 													"    requestBody.properties[i].editSettings.hint = requestBody.properties[i].editSettings.hint.trim();\r",
@@ -3309,12 +3416,8 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"\r",
-													"requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
 													"Assert.IsEqual(\"Verify response\", SortJson(requestBody), SortJson(responseBody));\r",
 													"\r",
 													"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -3482,7 +3585,7 @@
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
 													"\r",
-													"requestBody.id = responseBody.id;\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"// New created content type - default property's group name is Information\r",
 													"requestBody.properties[0].editSettings.groupName = responseBody.properties[0].editSettings.groupName;\r",
 													"\r",
@@ -3637,9 +3740,12 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"responseData = pm.response.json();\r",
-													"pm.environment.set(\"existedContentTypeName\", responseData[0].name);\r",
-													"pm.environment.set(\"existedContentTypeId\", responseData[0].id);"
+													"contentTypes = pm.response.json();\r",
+													"\r",
+													"Assert.IsNotEmpty(\"Verify contentTypes list\", contentTypes);\r",
+													"\r",
+													"pm.environment.set(\"existedContentTypeName\", contentTypes[0].name);\r",
+													"pm.environment.set(\"existedContentTypeId\", contentTypes[0].id);"
 												],
 												"type": "text/javascript"
 											}
@@ -4299,17 +4405,9 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-													"\r",
-													"requestBody = SortJson(requestBody);\r",
-													"responseBody = SortJson(responseBody);\r",
-													"Assert.IsEqual(\"Verify response\", requestBody, responseBody);\r",
+													"Assert.IsEqual(\"Verify response\", SortJson(requestBody), SortJson(responseBody));\r",
 													"\r",
 													"pm.environment.set(\"contentTypeGuid\", responseBody.id);"
 												],
@@ -4386,15 +4484,9 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortContentTypeByPropertiesOrder(responseBody);\r",
+													"\r",
 													"Assert.IsEqual(\"Verify response\", requestBody, responseBody);\r",
 													"\r",
 													"pm.environment.set(\"updatedRequestData\", requestBody);"
@@ -4586,17 +4678,9 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-													"\r",
-													"requestBody = SortJson(requestBody);\r",
-													"responseBody = SortJson(responseBody);\r",
-													"Assert.IsEqual(\"Verify response\", requestBody, responseBody);\r",
+													"Assert.IsEqual(\"Verify response\", SortJson(requestBody), SortJson(responseBody));\r",
 													"\r",
 													"pm.environment.set(\"contentTypeGuid\", responseBody.id);"
 												],
@@ -4695,15 +4779,9 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortContentTypeByPropertiesOrder(responseBody);\r",
+													"\r",
 													"Assert.IsEqual(\"Verify response\", requestBody, responseBody);\r",
 													"\r",
 													"pm.environment.set(\"updatedRequestData\", requestBody);"
@@ -4874,15 +4952,9 @@
 													"verifyResponseCode(201);\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
-													"for(i = 0; i < responseBody.properties.length; i++)\r",
-													"    if(responseBody.properties[i].branchSpecific !== undefined)\r",
-													"        requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortContentTypeByPropertiesOrder(responseBody);\r",
+													"\r",
 													"Assert.IsEqual(\"Verify response\", requestBody, responseBody);\r",
 													"\r",
 													"pm.environment.set(\"updatedRequestData\", requestBody);\r",
@@ -7173,10 +7245,7 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -7400,13 +7469,10 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"// Update default value for visibility, groupName\r",
 													"requestBody.properties[0].editSettings.visibility = \"default\";\r",
 													"requestBody.properties[0].editSettings.groupName = \"Information\";\r",
-													"\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -7517,7 +7583,6 @@
 													"if (pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))\r",
 													"{\r",
 													"    verifyResponseCode(403);\r",
-													"    console.log(\"go\");\r",
 													"    postman.setNextRequest(\"7. Invalid - Create a content type with invalid  property editSettings.groupName\");\r",
 													"}\r",
 													"else\r",
@@ -7526,10 +7591,7 @@
 													"\r",
 													"    requestBody = JSON.parse(request.data);\r",
 													"    responseBody = pm.response.json();\r",
-													"\r",
-													"    if(requestBody.id !== responseBody.id)\r",
-													"        requestBody.id = responseBody.id;\r",
-													"\r",
+													"    UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"    requestBody = SortJson(requestBody);\r",
 													"    responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -7895,9 +7957,7 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"// Update default value for displayName, helpText, hint\r",
 													"requestBody.properties[0].editSettings.displayName = \"\";\r",
 													"requestBody.properties[0].editSettings.helpText = \"\";\r",
@@ -8223,10 +8283,7 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -8459,10 +8516,7 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -8536,7 +8590,7 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -8713,10 +8767,7 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -8790,6 +8841,7 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"// Update visibility\r",
 													"requestBody.properties[0].editSettings.visibility = \"default\";\r",
 													"requestBody.properties[0].editSettings.groupName = \"Information\";\r",
@@ -8965,14 +9017,9 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
-													"\r",
-													"requestBody = SortJson(requestBody);\r",
-													"responseBody = SortJson(responseBody);\r",
-													"\r",
-													"Assert.IsEqual(\"Verify response\", requestBody, responseBody);\r",
+													"Assert.IsEqual(\"Verify response\", SortJson(requestBody), SortJson(responseBody));\r",
 													"\r",
 													"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
 													"pm.environment.set(\"contentTypeName\", responseBody.name);"
@@ -9049,7 +9096,7 @@
 													"\r",
 													"    requestBody = JSON.parse(request.data);\r",
 													"    responseBody = pm.response.json();\r",
-													"\r",
+													"    UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"    requestBody = SortJson(requestBody);\r",
 													"    responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -9393,14 +9440,11 @@
 													"\r",
 													"requestBody = JSON.parse(request.data);\r",
 													"responseBody = pm.response.json();\r",
-													"\r",
-													"if(requestBody.id !== responseBody.id)\r",
-													"    requestBody.id = responseBody.id;\r",
+													"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 													"// Update default value for displayName, helpText, hint\r",
 													"requestBody.properties[0].editSettings.displayName = \"\";\r",
 													"requestBody.properties[0].editSettings.helpText = \"\";\r",
 													"requestBody.properties[0].editSettings.hint = \"\";\r",
-													"\r",
 													"requestBody = SortJson(requestBody);\r",
 													"responseBody = SortJson(responseBody);\r",
 													"\r",
@@ -10593,8 +10637,66 @@
 					]
 				},
 				{
-					"name": "HAPI-658 REST API to define validation rules",
+					"name": "HAPI-2303 Support to specify Required for content properties",
 					"item": [
+						{
+							"name": "1. Get a content type from Models which has required property",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"properties = pm.response.json().properties;\r",
+											"for(i = 0; i < properties.length; i++)\r",
+											"{\r",
+											"    if(properties[i].name === \"ButtonText\")\r",
+											"        Assert.IsTrue(\"Verify ButtonText property required\", properties[i].required);\r",
+											"    if(properties[i].name === \"ButtonLink\")\r",
+											"        Assert.IsTrue(\"Verify ButtonLink property required\", properties[i].required);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{buttonBlockGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{buttonBlockGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "Preparation - Create parent container page",
 							"event": [
@@ -10648,7 +10750,597 @@
 							"response": []
 						},
 						{
-							"name": "1. Create content type with all validation types",
+							"name": "3. POST to create a content type with required property",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"requestBody = JSON.parse(request.data);\r",
+											"responseBody = pm.response.json();\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
+											"requestBody = SortJson(requestBody);\r",
+											"\r",
+											"for(i = 0; i < responseBody.properties.length; i++)\r",
+											"    Assert.IsTrue(\"Verify property required\", responseBody.properties[i].required);\r",
+											"Assert.IsEqual(\"Verify response\",  requestBody,  SortJson(responseBody));\r",
+											"\r",
+											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
+											"pm.environment.set(\"contentTypeName\", responseBody.name);\r",
+											"pm.environment.set(\"requestData\", requestBody);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get created content type",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"responseBody = pm.response.json();\r",
+											"for(i = 0; i < responseBody.properties.length; i++)\r",
+											"{\r",
+											"    Assert.IsTrue(\"Verify property required\", responseBody.properties[i].required);\r",
+											"}\r",
+											"\r",
+											"Assert.IsEqual(\"Verify response\", pm.environment.get(\"requestData\"), SortJson(responseBody));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST to create a content with required properties",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"pm.environment.set(\"contentId\", pm.response.json().contentLink.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n            1,\r\n            2,\r\n            3\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - POST to create a content without required Heading property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'Heading' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n            1,\r\n            2,\r\n            3\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - POST to create a content with empty - required Heading property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'Heading' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid -  POST to create a content without required IntegerList property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'IntegerList' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading of new content\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - POST to create a content with empty required IntegerList property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'IntegerList' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading of new content\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - POST to create a content without required EventDate property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'EventDate' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading of new content\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n            1,\r\n            2,\r\n            3\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - POST to create a content with empty required Heading property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'EventDate' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading of new content\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n            1,\r\n            2,\r\n            3\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - Delete content",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);\r",
+											"pm.environment.unset(\"contentId\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Epi-Permanent-Delete",
+										"value": "true",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{contentId}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									],
+									"path": [
+										"{{contentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - delete content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4. PUT to create a content type with required property",
 							"event": [
 								{
 									"listen": "test",
@@ -10659,13 +11351,1726 @@
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
 											"\r",
-											"requestBody.id = responseBody.id;\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
+											"requestBody = SortJson(requestBody);\r",
 											"\r",
 											"for(i = 0; i < responseBody.properties.length; i++)\r",
+											"    Assert.IsTrue(\"Verify property required\", responseBody.properties[i].required);\r",
+											"Assert.IsEqual(\"Verify response\",  requestBody,  SortJson(responseBody));\r",
+											"\r",
+											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
+											"pm.environment.set(\"contentTypeName\", responseBody.name);\r",
+											"pm.environment.set(\"requestData\", requestBody);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{$guid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{$guid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get created content type",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"responseBody = pm.response.json();\r",
+											"for(i = 0; i < responseBody.properties.length; i++)\r",
 											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
+											"    Assert.IsTrue(\"Verify property required\", responseBody.properties[i].required);\r",
 											"}\r",
+											"\r",
+											"Assert.IsEqual(\"Verify response\", pm.environment.get(\"requestData\"), SortJson(responseBody));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST to create a content with required properties",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"pm.environment.set(\"contentId\", pm.response.json().contentLink.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n            1,\r\n            2,\r\n            3\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - POST to create a content without required Heading property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'Heading' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n            1,\r\n            2,\r\n            3\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - POST to create a content with empty - required Heading property value",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorDetailMessage(\"Property 'Heading' is required.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - Delete content",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);\r",
+											"pm.environment.unset(\"contentId\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "X-Epi-Permanent-Delete",
+										"value": "true",
+										"type": "default"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{contentId}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									],
+									"path": [
+										"{{contentId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - delete content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5. Create a content type with property no required field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"properties = pm.response.json().properties;\r",
+											"for(i = 0; i < properties.length; i++)\r",
+											"{\r",
+											"    if(properties[i].name === \"Heading\")\r",
+											"    {\r",
+											"        Assert.IsFalse(\"Verify Heading property's required field\", properties[i].required);\r",
+											"        break;\r",
+											"    }\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a content type with property required is false",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"properties = pm.response.json().properties;\r",
+											"for(i = 0; i < properties.length; i++)\r",
+											"{\r",
+											"    if(properties[i].name === \"Heading\")\r",
+											"    {\r",
+											"        Assert.IsFalse(\"Verify Heading property's required field\", properties[i].required);\r",
+											"        break;\r",
+											"    }\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": false,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a content type with property required is null",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);\r",
+											"verifyErrorMessage(\"properties[0]\", [\r",
+											"            \"The input was not valid.\"\r",
+											"        ]);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": null,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "6-7. Preparation - Create a content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"responseBody = pm.response.json();\r",
+											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
+											"pm.environment.set(\"contentTypeName\", responseBody.name);\r",
+											"pm.environment.set(\"requestData\", responseBody);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": false,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update property required only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"properties = pm.response.json().properties;\r",
+											"for(i = 0; i < properties.length; i++)\r",
+											"{\r",
+											"    if(properties[i].name === \"Heading\")\r",
+											"    {\r",
+											"        Assert.IsTrue(\"Verify Heading property's required field\", properties[i].required);\r",
+											"        break;\r",
+											"    }\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									],
+									"query": [
+										{
+											"key": "allowedUpgrades",
+											"value": "major"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update property required only 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"properties = pm.response.json().properties;\r",
+											"for(i = 0; i < properties.length; i++)\r",
+											"{\r",
+											"    if(properties[i].name === \"IntegerList\")\r",
+											"    {\r",
+											"        Assert.IsFalse(\"Verify IntegerList property's required field\", properties[i].required);\r",
+											"        break;\r",
+											"    }\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": false,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									],
+									"query": [
+										{
+											"key": "allowedUpgrades",
+											"value": "major"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT to create a content type with required property",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"requestBody = JSON.parse(request.data);\r",
+											"responseBody = pm.response.json();\r",
+											"\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
+											"SortContentTypeByPropertiesOrder(requestBody);\r",
+											"SortContentTypeByPropertiesOrder(responseBody);\r",
+											"   \r",
+											"Assert.IsEqual(\"Verify response\",  SortJson(requestBody),  SortJson(responseBody));\r",
+											"\r",
+											"pm.environment.set(\"contentTypeName\", responseBody.name);\r",
+											"pm.environment.set(\"requestData\", requestBody);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCaseUpdate{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"HeadingUpdate\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": false,\r\n      \"branchSpecific\": false,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 20, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message update. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": false,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 20, \r\n          \"maximum\": 100\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDateUpdated\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": false,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}?allowedUpgrades=major",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									],
+									"query": [
+										{
+											"key": "allowedUpgrades",
+											"value": "major"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get created content type",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"expectedData = pm.environment.get(\"requestData\");\r",
+											"responseBody = pm.response.json();\r",
+											"SortContentTypeByPropertiesOrder(responseBody);\r",
+											"   \r",
+											"Assert.IsEqual(\"Verify response\",  SortJson(expectedData),  SortJson(responseBody));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - delete content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "8. PUT manifest to create content type with required property",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);\r",
+											"pm.environment.set(\"contentTypeGuid\", requestData.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{$guid}}\",\r\n\t\t\t\"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 0,\r\n\t\t\t\t\t\t\"visibility\": \"default\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"^epi[\\\\w ]+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\",\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 0,\r\n\t\t\t\t\t\t\"visibility\": \"default\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"ItemRange\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": 1,\r\n\t\t\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\",\r\n\t\t\t\t\t\"editSettings\": {\r\n\t\t\t\t\t\t\"groupName\": \"Information\",\r\n\t\t\t\t\t\t\"sortOrder\": 0,\r\n\t\t\t\t\t\t\"visibility\": \"default\"\r\n\t\t\t\t\t},\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Range\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": \"2020-01-01T00:00:00Z\",\r\n\t\t\t\t\t\t\t\"maximum\": \"2022-12-31T00:00:00Z\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentmanifestEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentmanifestEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get created content type",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"responseBody = pm.response.json();\r",
+											"for(i = 0; i < responseBody.properties.length; i++)\r",
+											"{\r",
+											"    Assert.IsNotNull(\"Verify property required\", responseBody.properties[i].required);\r",
+											"}\r",
+											"\r",
+											"Assert.IsEqual(\"Verify response\", SortJson(pm.environment.get(\"contentTypeRequestData\")), SortJson(responseBody));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - delete content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "9-10. Preparation - Create a content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"responseBody = pm.response.json();\r",
+											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
+											"pm.environment.set(\"contentTypeName\", responseBody.name);\r",
+											"pm.environment.set(\"requestData\", responseBody);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": false,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT manifest to update content type property required only",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{contentTypeGuid}}\",\r\n\t\t\t\"name\": \"{{contentTypeName}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"^epi[\\\\w ]+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\",\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"ItemRange\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": 1,\r\n\t\t\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\",\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Range\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": \"2020-01-01T00:00:00Z\",\r\n\t\t\t\t\t\t\t\"maximum\": \"2022-12-31T00:00:00Z\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentmanifestEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentmanifestEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get created content type",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"properties = pm.response.json().properties;\r",
+											"for(i = 0; i < properties.length; i++)\r",
+											"{\r",
+											"    if(properties[i].name === \"Heading\")\r",
+											"    Assert.IsTrue(\"Verify Heading property required\", properties[i].required);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT manifest to update content type property required only Copy",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{\r\n\t\t\t\"id\": \"{{contentTypeGuid}}\",\r\n\t\t\t\"name\": \"{{contentTypeName}}\",\r\n\t\t\t\"baseType\": \"Page\",\r\n\t\t\t\"properties\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"Heading\",\r\n\t\t\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 100,\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"pattern\": \"^epi[\\\\w ]+\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"IntegerList\",\r\n\t\t\t\t\t\"dataType\": \"PropertyIntegerList\",\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"required\": false,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Length\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": 2,\r\n\t\t\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t\t\t},\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"ItemRange\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": 1,\r\n\t\t\t\t\t\t\t\"maximum\": 10\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t},\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"EventDate\",\r\n\t\t\t\t\t\"dataType\": \"PropertyDate\",\r\n\t\t\t\t\t\"branchSpecific\": true,\r\n\t\t\t\t\t\"required\": true,\r\n\t\t\t\t\t\"validation\": [\r\n\t\t\t\t\t\t{\r\n\t\t\t\t\t\t\t\"name\": \"Range\",\r\n\t\t\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\t\t\"minimum\": \"2020-01-01T00:00:00Z\",\r\n\t\t\t\t\t\t\t\"maximum\": \"2022-12-31T00:00:00Z\"\r\n\t\t\t\t\t\t}\r\n\t\t\t\t\t]\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentmanifestEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentmanifestEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get updated content",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"properties = pm.response.json().properties;\r",
+											"for(i = 0; i < properties.length; i++)\r",
+											"{\r",
+											"    if(properties[i].name === \"IntegerList\")\r",
+											"    Assert.IsFalse(\"Verify IntegerList property required\", properties[i].required);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT manifest to update content type with property required",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"verifyManifestIsAllSuccess();\r",
+											"\r",
+											"requestData = JSON.parse(request.data).contentTypes[0];\r",
+											"pm.environment.set(\"contentTypeRequestData\", requestData);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"updateContentType = {\r",
+											"    \"id\": pm.environment.get(\"contentTypeGuid\"),\r",
+											"    \"name\": pm.environment.get(\"contentTypeName\"),\r",
+											"    \"baseType\": \"Page\",\r",
+											"    \"properties\": [\r",
+											"    {\r",
+											"        \"name\": \"HeadingUpdateUpdate\",\r",
+											"        \"dataType\": \"PropertyString\",\r",
+											"        \t\t\t\"editSettings\": {\r",
+											"\t\t\t\t\"groupName\": \"Information\",\r",
+											"\t\t\t\t\"sortOrder\": 0,\r",
+											"\t\t\t\t\"visibility\": \"default\"\r",
+											"\t\t\t},\r",
+											"        \"required\": true,\r",
+											"        \"branchSpecific\": false,\r",
+											"        \"validation\": [\r",
+											"        {\r",
+											"            \"name\": \"Length\",\r",
+											"            \"minimum\": 20,\r",
+											"            \"maximum\": 100,\r",
+											"            \"severity\": \"error\",\r",
+											"            \"errorMessage\": \"This is the customized message update. The heading length should be bettween 2 and 100.\"\r",
+											"        },\r",
+											"        {\r",
+											"            \"name\": \"RegularExpression\",\r",
+											"            \"severity\": \"error\",\r",
+											"            \"pattern\": \"^opt[\\\\w ]+\"\r",
+											"        }]\r",
+											"    },\r",
+											"    {\r",
+											"        \"name\": \"IntegerList\",\r",
+											"        \"dataType\": \"PropertyIntegerList\",\r",
+											"        \t\t\t\"editSettings\": {\r",
+											"\t\t\t\t\"groupName\": \"Information\",\r",
+											"\t\t\t\t\"sortOrder\": 0,\r",
+											"\t\t\t\t\"visibility\": \"default\"\r",
+											"\t\t\t},\r",
+											"        \"branchSpecific\": false,\r",
+											"        \"required\": true,\r",
+											"        \"validation\": [\r",
+											"        {\r",
+											"            \"name\": \"Length\",\r",
+											"            \"severity\": \"error\",\r",
+											"            \"minimum\": 20,\r",
+											"            \"maximum\": 100\r",
+											"        },\r",
+											"        {\r",
+											"            \"name\": \"ItemRange\",\r",
+											"            \"severity\": \"error\",\r",
+											"            \"minimum\": 10,\r",
+											"            \"maximum\": 100\r",
+											"        }]\r",
+											"    },\r",
+											"    {\r",
+											"        \"name\": \"EventDateUpdated\",\r",
+											"        \"dataType\": \"PropertyDate\",\r",
+											"        \t\t\t\"editSettings\": {\r",
+											"\t\t\t\t\"groupName\": \"Information\",\r",
+											"\t\t\t\t\"sortOrder\": 0,\r",
+											"\t\t\t\t\"visibility\": \"default\"\r",
+											"\t\t\t},\r",
+											"        \"branchSpecific\": true,\r",
+											"        \"required\": false,\r",
+											"        \"validation\": [\r",
+											"        {\r",
+											"            \"name\": \"Range\",\r",
+											"            \"severity\": \"error\",\r",
+											"            \"minimum\": \"2020-01-01T00:00:00Z\",\r",
+											"            \"maximum\": \"2030-12-31T00:00:00Z\"\r",
+											"        }]\r",
+											"    }]\r",
+											"}\r",
+											"\r",
+											"pm.environment.set(\"updateContentType\", JSON.stringify(updateContentType));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"contentTypes\": [\r\n\t\t{{updateContentType}}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentmanifestEndpoint}}?force=true",
+									"host": [
+										"{{cmsUrl}}{{cda_contentmanifestEndpoint}}"
+									],
+									"query": [
+										{
+											"key": "force",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get created content type",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"expectedData = pm.environment.get(\"contentTypeRequestData\");\r",
+											"responseBody = pm.response.json();\r",
+											"SortContentTypeByPropertiesOrder(expectedData);\r",
+											"SortContentTypeByPropertiesOrder(responseBody);\r",
+											"\r",
+											"Assert.IsEqual(\"Verify response\",  SortJson(expectedData),  SortJson(responseBody));"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - delete content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"ValidationCase{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"Heading\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": true,\r\n      \"branchSpecific\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 2, \r\n          \"maximum\": 10\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDate\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeGuid}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeGuid}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "HAPI-658 REST API to define validation rules",
+					"item": [
+						{
+							"name": "Preparation - Create parent container page",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"Test Container Page {{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"startPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"stopPublish\": null,\r\n\t\"status\": \"published\",\r\n\t\"contentLink\": {},\r\n\t\"parentLink\": {\r\n\t\t\"id\": \"{{testContainerPageId}}\"\r\n\t},\r\n\t\"contentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ContainerPage\"\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1. Create content type with all validation types",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"requestBody = JSON.parse(request.data);\r",
+											"responseBody = pm.response.json();\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
 											"\r",
 											"Assert.IsEqual(\"Verify response\",  requestBody,  SortJson(responseBody));\r",
@@ -10776,22 +13181,12 @@
 											"\r",
 											"requestBody = SortJson(JSON.parse(request.data));\r",
 											"responseBody = SortJson(pm.response.json());\r",
-											"\r",
 											"// update some added properties from response to request (for assertion and next step)\r",
-											"requestBody.url = responseBody.url;\r",
-											"requestBody.category = responseBody.category;\r",
-											"requestBody.contentLink = responseBody.contentLink;\r",
-											"requestBody.language = responseBody.language;\r",
-											"requestBody.parentLink = responseBody.parentLink;\r",
-											"requestBody.routeSegment = responseBody.routeSegment;\r",
-											"requestBody.existingLanguages = responseBody.existingLanguages;\r",
-											"requestBody.masterLanguage = responseBody.masterLanguage;\r",
-											"requestBody.changed = responseBody.changed;\r",
-											"requestBody.created = responseBody.created;\r",
-											"requestBody.saved = responseBody.saved;\r",
-											"\r",
+											"UpdateContentRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+											"\r",
 											"pm.environment.set(\"requestData\", requestBody);\r",
 											"pm.environment.set(\"contentId\", requestBody.contentLink.id);\r",
 											"pm.environment.set(\"contentGuid\", responseBody.contentLink.guidValue);"
@@ -10851,24 +13246,10 @@
 											"responseBody = SortJson(pm.response.json());\r",
 											"\r",
 											"// update some added properties from response to request (for assertion and next step)\r",
-											"putRequestData.category = originalRequestData.category;\r",
-											"putRequestData.contentLink = originalRequestData.contentLink;\r",
-											"putRequestData.language = originalRequestData.language;\r",
-											"putRequestData.parentLink = originalRequestData.parentLink;\r",
-											"putRequestData.routeSegment = originalRequestData.routeSegment;\r",
-											"putRequestData.existingLanguages = originalRequestData.existingLanguages;\r",
-											"putRequestData.masterLanguage = originalRequestData.masterLanguage;\r",
-											"putRequestData.routeSegment = responseBody.routeSegment;\r",
-											"putRequestData.changed = responseBody.changed;\r",
-											"putRequestData.created = responseBody.created;\r",
-											"putRequestData.saved = responseBody.saved;\r",
+											"UpdateContentRequestBody(putRequestData, originalRequestData);\r",
 											"\r",
 											"//update url after upsert\r",
-											"putRequestData.url = responseBody.url;\r",
-											"putRequestData.contentLink.url = responseBody.contentLink.url;\r",
-											"putRequestData.language.link = responseBody.language.link;\r",
-											"putRequestData.existingLanguages[0].link = responseBody.existingLanguages[0].link;\r",
-											"putRequestData.masterLanguage.link = responseBody.masterLanguage.link;\r",
+											"UpdateContentRequestBodyAfterPUT(putRequestData, responseBody);\r",
 											"\r",
 											"requestBody = SortJson(putRequestData);\r",
 											"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
@@ -11031,22 +13412,12 @@
 											"\r",
 											"requestBody = SortJson(JSON.parse(request.data));\r",
 											"responseBody = SortJson(pm.response.json());\r",
-											"\r",
 											"// update some added properties from response to request (for assertion and next step)\r",
-											"requestBody.url = responseBody.url;\r",
-											"requestBody.category = responseBody.category;\r",
-											"requestBody.contentLink = responseBody.contentLink;\r",
-											"requestBody.language = responseBody.language;\r",
-											"requestBody.parentLink = responseBody.parentLink;\r",
-											"requestBody.routeSegment = responseBody.routeSegment;\r",
-											"requestBody.existingLanguages = responseBody.existingLanguages;\r",
-											"requestBody.masterLanguage = responseBody.masterLanguage;\r",
-											"requestBody.changed = responseBody.changed;\r",
-											"requestBody.created = responseBody.created;\r",
-											"requestBody.saved = responseBody.saved;\r",
-											"\r",
+											"UpdateContentRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+											"\r",
 											"pm.environment.set(\"requestData\", requestBody);\r",
 											"pm.environment.set(\"contentId\", requestBody.contentLink.id);\r",
 											"pm.environment.set(\"contentGuid\", responseBody.contentLink.guidValue);"
@@ -11161,24 +13532,10 @@
 											"responseBody = SortJson(pm.response.json());\r",
 											"\r",
 											"// update some added properties from response to request (for assertion and next step)\r",
-											"patchRequestData.category = originalRequestData.category;\r",
-											"patchRequestData.contentLink = originalRequestData.contentLink;\r",
-											"patchRequestData.contentType = originalRequestData.contentType;\r",
-											"patchRequestData.language = originalRequestData.language;\r",
-											"patchRequestData.parentLink = originalRequestData.parentLink;\r",
-											"patchRequestData.routeSegment = originalRequestData.routeSegment;\r",
-											"patchRequestData.existingLanguages = originalRequestData.existingLanguages;\r",
-											"patchRequestData.masterLanguage = originalRequestData.masterLanguage;\r",
-											"patchRequestData.changed = responseBody.changed;\r",
-											"patchRequestData.created = responseBody.created;\r",
-											"patchRequestData.saved = responseBody.saved;\r",
+											"UpdateContentRequestBody(patchRequestData, originalRequestData);\r",
 											"\r",
 											"//update url after upsert\r",
-											"patchRequestData.url = responseBody.url;\r",
-											"patchRequestData.contentLink.url = responseBody.contentLink.url;\r",
-											"patchRequestData.language.link = responseBody.language.link;\r",
-											"patchRequestData.existingLanguages[0].link = responseBody.existingLanguages[0].link;\r",
-											"patchRequestData.masterLanguage.link = responseBody.masterLanguage.link;\r",
+											"UpdateContentRequestBodyAfterPUT(patchRequestData, responseBody);\r",
 											"\r",
 											"Assert.IsEqual(\"Verify response\", SortJson(patchRequestData),  responseBody);\r",
 											"\r",
@@ -11287,22 +13644,12 @@
 											"\r",
 											"requestBody = SortJson(JSON.parse(request.data));\r",
 											"responseBody = SortJson(pm.response.json());\r",
-											"\r",
 											"// update some added properties from response to request (for assertion and next step)\r",
-											"requestBody.url = responseBody.url;\r",
-											"requestBody.category = responseBody.category;\r",
-											"requestBody.contentLink = responseBody.contentLink;\r",
-											"requestBody.language = responseBody.language;\r",
-											"requestBody.parentLink = responseBody.parentLink;\r",
-											"requestBody.routeSegment = responseBody.routeSegment;\r",
-											"requestBody.existingLanguages = responseBody.existingLanguages;\r",
-											"requestBody.masterLanguage = responseBody.masterLanguage;\r",
-											"requestBody.changed = responseBody.changed;\r",
-											"requestBody.created = responseBody.created;\r",
-											"requestBody.saved = responseBody.saved;\r",
-											"\r",
+											"UpdateContentRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody,  responseBody);\r",
+											"\r",
 											"pm.environment.set(\"requestData\", requestBody);\r",
 											"pm.environment.set(\"contentId\", requestBody.contentLink.id);\r",
 											"pm.environment.set(\"contentGuid\", responseBody.contentLink.guidValue);"
@@ -11361,23 +13708,14 @@
 											"responseBody = pm.response.json();\r",
 											"\r",
 											"// update some added properties from response to request (for assertion and next step)\r",
-											"requestBody.category = responseBody.category;\r",
-											"requestBody.contentLink = responseBody.contentLink;\r",
-											"requestBody.language = responseBody.language;\r",
-											"requestBody.parentLink = responseBody.parentLink;\r",
-											"requestBody.routeSegment = responseBody.routeSegment;\r",
-											"requestBody.existingLanguages = responseBody.existingLanguages;\r",
-											"requestBody.masterLanguage = responseBody.masterLanguage;\r",
-											"requestBody.changed = responseBody.changed;\r",
-											"requestBody.created = responseBody.created;\r",
-											"requestBody.saved = responseBody.saved;\r",
+											"UpdateContentRequestBody(requestBody, responseBody);\r",
 											"\r",
 											"//update url after upsert\r",
-											"requestBody.url = responseBody.url;\r",
+											"/*requestBody.url = responseBody.url;\r",
 											"requestBody.contentLink.url = responseBody.contentLink.url;\r",
 											"requestBody.language.link = responseBody.language.link;\r",
 											"requestBody.existingLanguages[0].link = responseBody.existingLanguages[0].link;\r",
-											"requestBody.masterLanguage.link = responseBody.masterLanguage.link;\r",
+											"requestBody.masterLanguage.link = responseBody.masterLanguage.link;*/\r",
 											"\r",
 											"requestBody = SortJson(requestBody);\r",
 											"responseBody = SortJson(responseBody);\r",
@@ -13737,14 +16075,9 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
-											"\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"for(i = 0; i < responseBody.properties.length; i++)\r",
 											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
-											"\r",
 											"    if(requestBody.properties[i].name === \"CategoryList\" || requestBody.properties[i].name === \"ContentArea\")\r",
 											"        delete requestBody.properties[i].validation;\r",
 											"}\r",
@@ -14566,14 +16899,7 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
-											"\r",
-											"for(i = 0; i < responseBody.properties.length; i++)\r",
-											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
-											"}\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"// validation without severity will be updated to \"none\"\r",
 											"requestBody.properties[0].validation[0].severity = \"none\";\r",
 											"        \r",
@@ -14824,12 +17150,10 @@
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
 											"\r",
-											"requestBody.id = responseBody.id;\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"\r",
 											"for(i = 0; i < responseBody.properties.length; i++)\r",
 											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
 											"    delete requestBody.properties[i].validation;\r",
 											"}\r",
 											"\r",
@@ -14977,16 +17301,9 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
-											"\r",
-											"for(i = 0; i < responseBody.properties.length; i++)\r",
-											"{\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"}\r",
-											"\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody, SortJson(responseBody));\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -15441,16 +17758,9 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
-											"\r",
-											"for(i = 0; i < responseBody.properties.length; i++)\r",
-											"{\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"}\r",
-											"\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody, SortJson(responseBody));\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -16133,18 +18443,15 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"\r",
 											"for(i = 0; i < responseBody.properties.length; i++)\r",
 											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
 											"    delete requestBody.properties[i].validation[0].extraProperty;\r",
 											"    delete requestBody.properties[i].validation[0].pattern;\r",
 											"}\r",
-											"\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody, SortJson(responseBody));\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -16289,16 +18596,9 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
-											"\r",
-											"for(i = 0; i < responseBody.properties.length; i++)\r",
-											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
-											"}\r",
-											"        \r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody, SortJson(responseBody));\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -16852,16 +19152,9 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
-											"\r",
-											"for(i = 0; i < responseBody.properties.length; i++)\r",
-											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
-											"}\r",
-											"        \r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody, SortJson(responseBody));\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -17112,16 +19405,9 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
-											"\r",
-											"for(i = 0; i < responseBody.properties.length; i++)\r",
-											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
-											"}\r",
-											"        \r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody, SortJson(responseBody));\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);\r",
@@ -18008,19 +20294,16 @@
 											"\r",
 											"requestBody = JSON.parse(request.data);\r",
 											"responseBody = pm.response.json();\r",
-											"\r",
-											"requestBody.id = responseBody.id;\r",
+											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"\r",
 											"for(i = 0; i < responseBody.properties.length; i++)\r",
 											"{\r",
-											"    requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;\r",
-											"    requestBody.properties[i].editSettings = responseBody.properties[i].editSettings;\r",
 											"    delete requestBody.properties[i].validation[0].test;\r",
 											"    delete requestBody.properties[i].validation[0].extraProperty;\r",
 											"    delete requestBody.properties[i].validation[0].minimum;\r",
 											"}\r",
-											"\r",
 											"requestBody = SortJson(requestBody);\r",
+											"\r",
 											"Assert.IsEqual(\"Verify response\", requestBody, SortJson(responseBody));\r",
 											"\r",
 											"pm.environment.set(\"contentTypeGuid\", responseBody.id);"
@@ -33335,7 +35618,7 @@
 					"function GetToken() {",
 					"    console.log(\"===== Get valid token =====\");",
 					"    tokenUrl = pm.environment.get(\"cmsUrl\") + pm.environment.get(\"tokenEndpoint\");",
-					"    scopes = pm.environment.get(\"cd_allowedScope\") + \" \" + pm.environment.get(\"cma_allowedScope\") + \" \" + pm.environment.get(\"cda_allowedScope\");",
+					"    scopes = pm.environment.get(\"cd_allowedScope\") + \" \" + pm.environment.get(\"cma_allowedScope\") + \" \" + pm.environment.get(\"cda_allowedScope\") + \" \" + pm.environment.get(\"cdSearch_allowedScope\");",
 					"    pm.sendRequest(",
 					"        {",
 					"            url: tokenUrl,",
@@ -33457,11 +35740,11 @@
 					"                if (!lodash.isEqual(expectedValue, actualValue))",
 					"                {",
 					"                    console.log(\"----- expectedValue -----\");",
-					"                    //console.log(JSON.stringify(expectedValue));",
-					"                    console.log(expectedValue);",
+					"                    console.log(JSON.stringify(expectedValue));",
+					"                    //console.log(expectedValue);",
 					"                    console.log(\"----- actualValue -----\");",
-					"                    //console.log(JSON.stringify(actualValue));",
-					"                    console.log(actualValue);",
+					"                    console.log(JSON.stringify(actualValue));",
+					"                    //console.log(actualValue);",
 					"                }",
 					"            }",
 					"            else",
@@ -33516,6 +35799,14 @@
 					"        });",
 					"    },",
 					"    ",
+					"    IsNotNull:function(elementName, actualValue)   //Assert if actualValue is null",
+					"    {",
+					"        pm.test(elementName + \" should be not null. Actual: \" + actualValue, function(){",
+					"            pm.expect(actualValue).not.to.equal(null);",
+					"            pm.expect(actualValue).not.to.equal(undefined);",
+					"        });",
+					"    },",
+					"",
 					"    IsEmpty:function(elementName, actualValue)  //Assert if actualValue is empty, that means array with no element",
 					"    {",
 					"        pm.test(elementName + \" should be empty. Actual: \" + actualValue.length, function()",
@@ -33586,6 +35877,34 @@
 					"                propertyArray[j + 1] = temp; ",
 					"            }",
 					"    obj.properties = propertyArray;",
+					"    SortContentTypeByValidationOrder(obj);",
+					"    return obj;",
+					"}",
+					"",
+					"// This is to sort validation by name",
+					"SortContentTypeByValidationOrder = (obj) => {",
+					"    var propertyArray = obj.properties;",
+					"    for(k = 0; k < propertyArray.length; k++)",
+					"    {",
+					"        var validationArray = propertyArray[k].validation;",
+					"        if(validationArray === undefined || validationArray.length === 0)",
+					"            break;",
+					"        for(i=0; i< validationArray.length; i++){",
+					"            for( j=validationArray.length-1; j>i; j--)",
+					"            {",
+					"                console.log(\"come \" + i + \"-\" + j);",
+					"                if(validationArray[j].name > validationArray[j - 1].name)",
+					"                {",
+					"                    console.log(\"come\");",
+					"                    temp = validationArray[j];",
+					"                    validationArray[j] = validationArray[j - 1];",
+					"                    validationArray[j - 1] = temp; ",
+					"                }",
+					"            }",
+					"        }",
+					"        console.log(\"validation \" + k + \": \", validationArray );",
+					"        propertyArray[k].validation = validationArray;",
+					"    }",
 					"    return obj;",
 					"}",
 					"",
@@ -33602,6 +35921,65 @@
 					"    }",
 					"",
 					"\treturn found;",
+					"}",
+					"",
+					"/////////////////////////////////////////////////////////////////",
+					"// This method is to update content type request body with auto generated fields from response",
+					"/////////////////////////////////////////////////////////////////",
+					"UpdateContentTypeRequestBody = (requestBody, responseBody) => {",
+					"    if(requestBody.id !== responseBody.id)",
+					"        requestBody.id = responseBody.id;",
+					"    editSettings = {",
+					"\t\t\t\t\"groupName\": \"Information\",",
+					"\t\t\t\t\"sortOrder\": 0,",
+					"\t\t\t\t\"visibility\": \"default\"",
+					"\t\t\t};",
+					"    for(i = 0; i < responseBody.properties.length; i++)",
+					"    {",
+					"        if((requestBody.properties[i].branchSpecific === undefined) && (responseBody.properties[i].branchSpecific !== undefined))",
+					"            requestBody.properties[i].branchSpecific = responseBody.properties[i].branchSpecific;",
+					"        if((requestBody.properties[i].required === undefined) && (responseBody.properties[i].required !== undefined))",
+					"            requestBody.properties[i].required = responseBody.properties[i].required;",
+					"        if((requestBody.properties[i].editSettings === undefined) && (responseBody.properties[i].editSettings !== undefined))",
+					"            requestBody.properties[i].editSettings = editSettings;",
+					"    } ",
+					"}",
+					"",
+					"/////////////////////////////////////////////////////////////////",
+					"// This method is to update content request body with auto generated fields from response (for assertion and next step)",
+					"/////////////////////////////////////////////////////////////////",
+					"UpdateContentRequestBody = (requestBody, responseBody) => {",
+					"    requestBody.url = responseBody.url;",
+					"    requestBody.category = responseBody.category;",
+					"    requestBody.contentLink = responseBody.contentLink;",
+					"    requestBody.language = responseBody.language;",
+					"    requestBody.parentLink = responseBody.parentLink;",
+					"    requestBody.routeSegment = responseBody.routeSegment;",
+					"    requestBody.existingLanguages = responseBody.existingLanguages;",
+					"    requestBody.masterLanguage = responseBody.masterLanguage;",
+					"    requestBody.changed = responseBody.changed;",
+					"    requestBody.created = responseBody.created;",
+					"    requestBody.saved = responseBody.saved;",
+					"    requestBody.editUrl = responseBody.editUrl;",
+					"    requestBody.previewUrl = responseBody.previewUrl;",
+					"}",
+					"",
+					"/////////////////////////////////////////////////////////////////",
+					"// This method is to update content request body with auto generated fields from PUT/PATCH (for assertion and next step)",
+					"/////////////////////////////////////////////////////////////////",
+					"UpdateContentRequestBodyAfterPUT = (putRequestData, responseBody) => {",
+					"    putRequestData.contentType = responseBody.contentType;",
+					"    putRequestData.routeSegment = responseBody.routeSegment;",
+					"    putRequestData.changed = responseBody.changed;",
+					"    putRequestData.created = responseBody.created;",
+					"    putRequestData.saved = responseBody.saved;",
+					"    putRequestData.url = responseBody.url;",
+					"    putRequestData.contentLink.url = responseBody.contentLink.url;",
+					"    putRequestData.language.link = responseBody.language.link;",
+					"    putRequestData.existingLanguages[0].link = responseBody.existingLanguages[0].link;",
+					"    putRequestData.masterLanguage.link = responseBody.masterLanguage.link;",
+					"    putRequestData.editUrl = responseBody.editUrl;",
+					"    putRequestData.previewUrl = responseBody.previewUrl;",
 					"}"
 				]
 			}
