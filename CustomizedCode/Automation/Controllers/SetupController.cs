@@ -18,6 +18,7 @@ using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAccess;
 using EPiServer.Security;
+using EPiServer.Security.Internal;					  
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
 using EPiServer.Web;
@@ -43,7 +44,7 @@ namespace AlloyTemplates.Automation.Controllers
         private readonly ContentDefinitionsApiOptions _contentDefinitionsApiOptions;
         private readonly RoutingOptions _routingOption;
         private readonly ContentLanguageSettingRepository _contentLanguageSettingRepository;
-
+		private readonly ISynchronizedUsersRepository _synchronizedUsersRepository;																		   
 
         private const string ContainerPageTypeGuid = "D178950C-D20E-4A46-90BD-5338B2424745";
         private const string CmsAdminUsername = "cmsadmin";
@@ -64,7 +65,8 @@ namespace AlloyTemplates.Automation.Controllers
             RoutingOptions routingOption,
             UIRoleProvider roleProvider,
             IApprovalDefinitionRepository approvalDefinitionRepository,
-            ContentLanguageSettingRepository contentLanguageSettingRepository)
+            ContentLanguageSettingRepository contentLanguageSettingRepository,
+			ISynchronizedUsersRepository synchronizedUsersRepository)																	 
         {
             _contentRepository = contentRepository;
             _siteDefinitionRepository = siteDefinitionRepository;
@@ -80,6 +82,7 @@ namespace AlloyTemplates.Automation.Controllers
             _contentDefinitionsApiOptions = contentDefinitionsApiOptions;
             _routingOption = routingOption;
             _contentLanguageSettingRepository = contentLanguageSettingRepository;
+			_synchronizedUsersRepository = synchronizedUsersRepository;														   
         }
 
         #region New Setup
@@ -392,6 +395,35 @@ namespace AlloyTemplates.Automation.Controllers
         }
         #endregion
 
+        [Route("/Automation/GrantAccessRightsToContent")]
+        public IActionResult GrantAccessRightsToContent()
+        {
+            string accessLevel = GetRequestQueryString("accessLevel");
+            string contentId = GetRequestQueryString("id");
+            try
+            {
+                var pageRef = _contentRepository.Get<PageData>(new ContentReference(contentId)).CreateWritableClone();
+                var pageLink = _contentRepository.Save(pageRef, SaveAction.Default, (AccessLevel)Enum.Parse(typeof(AccessLevel), accessLevel));
+
+                var entries = _contentSecurityRepository.Get(pageLink).Entries
+                    .Where(e => e.Name != WebAdminsGroupName && e.Name != WebEditorsGroupName && e.Name != EnvironmentBase.ApplicationName)
+                    .ToList();
+                var securityDescriptor = new ContentAccessControlList(pageLink).CreateWritableClone();
+
+                foreach (var entry in entries)
+                {
+                    securityDescriptor.AddEntry(entry);
+                }
+
+                _contentSecurityRepository.Save(pageLink, securityDescriptor, SecuritySaveType.Replace);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $"Grant access rights for {contentId} as {accessLevel} done" });
+        }
+
         [Produces("application/json")]
         [HttpPost("/Automation/SetContentApiOption")]
         public IActionResult SetContentApiOption([FromBody] SetApiOptions options)
@@ -516,8 +548,6 @@ namespace AlloyTemplates.Automation.Controllers
             public string SiteDefinitionApiEnabled { get; set; }
             public string BaseRoute { get; set; }
             public string IncludeRequiredPreview { get; set; }
-
-
         }
 
         [Route("/Automation/SetAssetFriendlyUrl")]
@@ -548,6 +578,20 @@ namespace AlloyTemplates.Automation.Controllers
             return Ok(new { message = $@"Set Replacement Language done for content {contentId} from language {from} to language {to}" });
         }
 
+		[Route("/Automation/SetActiveLanguage")]
+        public IActionResult SetActiveLanguage()
+        {
+            string language = GetRequestQueryString("language");
+            string isActive = GetRequestQueryString("isActive");
+
+            var pageRef = new PageReference(SiteDefinition.Current.StartPage);
+            var languageSetting = new ContentLanguageSetting(pageRef, language);
+            languageSetting.IsActive = isActive.Equals("true") ? true : false;
+            _contentLanguageSettingRepository.Save(languageSetting);
+
+            return Ok(new { message = $"set ok" });
+        }
+		
         [Route("/Automation/SetFallBackLanguage")]
         public IActionResult SetFallBackLanguage()
         {
@@ -690,6 +734,32 @@ namespace AlloyTemplates.Automation.Controllers
             siteDefinitionRepository.Delete(siteDefinition.Id);
         }
         #endregion
+        #region SyncUser
+        [Route("/Automation/DeleteUserAsync")]
+        public async Task<IActionResult> DeleteUserAsync()
+        {
+            string username = GetRequestQueryString("username");
+            await _synchronizedUsersRepository.DeleteUserAsync(username);
+            return Ok(new { message = $"DeleteUserAsync with username {username}" });
+        }
+
+        [Route("/Automation/GetRolesForUserAsync")]
+        public async Task<IActionResult> GetRolesForUserAsync()
+        {
+            string username = GetRequestQueryString("username");
+            var roles = await _synchronizedUsersRepository.GetRolesForUserAsync(username);
+            return Ok(new { message = $"GetRolesForUserAsync with username {username}: [{string.Join(',', roles)}]" });
+        }
+
+        [Route("/Automation/DeleteInactiveUsersAsync")]
+        public async Task<IActionResult> DeleteInactiveUsersAsync()
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(int.Parse(GetRequestQueryString("fromSeconds")));
+
+            var users = await _synchronizedUsersRepository.DeleteInactiveUsersAsync(timeSpan);
+            return Ok(new { message = $"DeleteInactiveUsersAsync with timespan {timeSpan}: [{string.Join(',', users)}]" });
+        }
+        #endregion
         private string GetRequestQueryString(string paramName)
         {
             if (Request.QueryString.Value == null || string.IsNullOrEmpty(Request.Query[paramName].ToString()))
@@ -699,5 +769,5 @@ namespace AlloyTemplates.Automation.Controllers
 
             return HttpUtility.UrlDecode(Request.Query[paramName]);
         }
-    }
+    }	
 }
