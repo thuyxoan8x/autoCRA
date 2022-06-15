@@ -398,22 +398,19 @@ namespace AlloyTemplates.Automation.Controllers
         [Route("/Automation/GrantAccessRightsToContent")]
         public IActionResult GrantAccessRightsToContent()
         {
-            string accessLevel = GetRequestQueryString("accessLevel");
+            string level = GetRequestQueryString("accessLevel");
+            AccessLevel accessLevel = (AccessLevel)Enum.Parse(typeof(AccessLevel), level);
             string contentId = GetRequestQueryString("id");
             try
             {
-                var pageRef = _contentRepository.Get<PageData>(new ContentReference(contentId)).CreateWritableClone();
-                var pageLink = _contentRepository.Save(pageRef, SaveAction.Default, (AccessLevel)Enum.Parse(typeof(AccessLevel), accessLevel));
+                var pageLink = _contentRepository.Get<PageData>(new ContentReference(contentId)).CreateWritableClone().ContentLink;
 
-                var entries = _contentSecurityRepository.Get(pageLink).Entries
-                    .Where(e => e.Name != WebAdminsGroupName && e.Name != WebEditorsGroupName && e.Name != EnvironmentBase.ApplicationName)
-                    .ToList();
                 var securityDescriptor = new ContentAccessControlList(pageLink).CreateWritableClone();
-
-                foreach (var entry in entries)
-                {
-                    securityDescriptor.AddEntry(entry);
-                }
+                securityDescriptor.AddEntry(new AccessControlEntry(WebAdminsGroupName, accessLevel));
+                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ApplicationName, accessLevel));
+                securityDescriptor.AddEntry(new AccessControlEntry("Administrator", AccessLevel.FullAccess));
+                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ContentApiWrite, AccessLevel.Read));
+                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ContentApiRead, AccessLevel.Read));
 
                 _contentSecurityRepository.Save(pageLink, securityDescriptor, SecuritySaveType.Replace);
             }
