@@ -10,12 +10,15 @@ using AlloyTemplates.Models.Pages;
 using EPiServer;
 using EPiServer.Approvals;
 using EPiServer.Approvals.ContentApprovals;
+using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Core.Configuration;
+using EPiServer.ContentDefinitionsApi;
 using EPiServer.ContentManagementApi;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAccess;
 using EPiServer.Security;
+using EPiServer.Security.Internal;					  
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
 using EPiServer.Web;
@@ -37,9 +40,11 @@ namespace AlloyTemplates.Automation.Controllers
         private readonly IApprovalDefinitionRepository _approvalDefinitionRepository;
         private readonly ContentTypeAvailabilityService _contentTypeAvailabilityService;
         private readonly ContentApiOptions _contentApiOptions;
+        private readonly ContentDeliveryApiOptions _contentDeliveryApiOptions;
+        private readonly ContentDefinitionsApiOptions _contentDefinitionsApiOptions;
         private readonly RoutingOptions _routingOption;
         private readonly ContentLanguageSettingRepository _contentLanguageSettingRepository;
-
+		private readonly ISynchronizedUsersRepository _synchronizedUsersRepository;																		   
 
         private const string ContainerPageTypeGuid = "D178950C-D20E-4A46-90BD-5338B2424745";
         private const string CmsAdminUsername = "cmsadmin";
@@ -55,10 +60,13 @@ namespace AlloyTemplates.Automation.Controllers
             IContentSecurityRepository contentSecurityRepository,
             ContentTypeAvailabilityService contentTypeAvailabilityService,
             ContentApiOptions contentApiOptions,
+            ContentDeliveryApiOptions contentDeliveryApiOptions,
+            ContentDefinitionsApiOptions contentDefinitionsApiOptions,
             RoutingOptions routingOption,
             UIRoleProvider roleProvider,
             IApprovalDefinitionRepository approvalDefinitionRepository,
-            ContentLanguageSettingRepository contentLanguageSettingRepository)
+            ContentLanguageSettingRepository contentLanguageSettingRepository,
+			ISynchronizedUsersRepository synchronizedUsersRepository)																	 
         {
             _contentRepository = contentRepository;
             _siteDefinitionRepository = siteDefinitionRepository;
@@ -70,8 +78,11 @@ namespace AlloyTemplates.Automation.Controllers
             _roleProvider = roleProvider;
             _approvalDefinitionRepository = approvalDefinitionRepository;
             _contentApiOptions = contentApiOptions;
+            _contentDeliveryApiOptions = contentDeliveryApiOptions;
+            _contentDefinitionsApiOptions = contentDefinitionsApiOptions;
             _routingOption = routingOption;
             _contentLanguageSettingRepository = contentLanguageSettingRepository;
+			_synchronizedUsersRepository = synchronizedUsersRepository;														   
         }
 
         #region New Setup
@@ -384,82 +395,222 @@ namespace AlloyTemplates.Automation.Controllers
         }
         #endregion
 
+        [Route("/Automation/GrantAccessRightsToContent")]
+        public IActionResult GrantAccessRightsToContent()
+        {
+            string level = GetRequestQueryString("accessLevel");
+            AccessLevel accessLevel = (AccessLevel)Enum.Parse(typeof(AccessLevel), level);
+            string contentId = GetRequestQueryString("id");
+            try
+            {
+                var pageLink = _contentRepository.Get<PageData>(new ContentReference(contentId)).CreateWritableClone().ContentLink;
+
+                var securityDescriptor = new ContentAccessControlList(pageLink).CreateWritableClone();
+                securityDescriptor.AddEntry(new AccessControlEntry(WebAdminsGroupName, accessLevel));
+                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ApplicationName, accessLevel));
+                securityDescriptor.AddEntry(new AccessControlEntry("Administrator", AccessLevel.FullAccess));
+                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ContentApiWrite, AccessLevel.Read));
+                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ContentApiRead, AccessLevel.Read));
+
+                _contentSecurityRepository.Save(pageLink, securityDescriptor, SecuritySaveType.Replace);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $"Grant access rights for {contentId} as {accessLevel} done" });
+        }
+
         [Produces("application/json")]
         [HttpPost("/Automation/SetContentApiOption")]
         public IActionResult SetContentApiOption([FromBody] SetApiOptions options)
         {
-            if(!string.IsNullOrEmpty(options.flatten))
-                _contentApiOptions.SetFlattenPropertyModel(bool.Parse(options.flatten));
-            if(!string.IsNullOrEmpty(options.forceabsolute))
-                _contentApiOptions.SetForceAbsolute(bool.Parse(options.forceabsolute));
-            if(!string.IsNullOrEmpty(options.includeInternalContentRoots))
-                _contentApiOptions.SetIncludeInternalContentRoots(bool.Parse(options.includeInternalContentRoots));
-            if(!string.IsNullOrEmpty(options.expandedBehavior))
+            Dictionary<string, string> messages = new Dictionary<string, string>();
+            try
             {
-                ExpandedLanguageBehavior expOpt = (options.expandedBehavior == "RequestedLanguage") ? ExpandedLanguageBehavior.RequestedLanguage : ExpandedLanguageBehavior.ContentLanguage;
-                _contentApiOptions.SetExpandedBehavior(expOpt);
+                if (!string.IsNullOrEmpty(options.FlattenPropertyModel))
+                {
+                    _contentApiOptions.SetFlattenPropertyModel(bool.Parse(options.FlattenPropertyModel));
+                    messages.Add("FlattenPropertyModel", options.FlattenPropertyModel);
+                }    
+                if (!string.IsNullOrEmpty(options.ForceAbsolute))
+                {
+                    _contentApiOptions.SetForceAbsolute(bool.Parse(options.ForceAbsolute));
+                    messages.Add("ForceAbsolute", options.ForceAbsolute);
+                }
+                if (!string.IsNullOrEmpty(options.IncludeInternalContentRoots))
+                {
+                    _contentApiOptions.SetIncludeInternalContentRoots(bool.Parse(options.IncludeInternalContentRoots));
+                    messages.Add("IncludeInternalContentRoots", options.IncludeInternalContentRoots);
+                }
+                if (!string.IsNullOrEmpty(options.ExpandedBehavior))
+                {
+                    ExpandedLanguageBehavior expOpt = (options.ExpandedBehavior == "RequestedLanguage") ? ExpandedLanguageBehavior.RequestedLanguage : ExpandedLanguageBehavior.ContentLanguage;
+                    _contentApiOptions.SetExpandedBehavior(expOpt);
+                    messages.Add("ExpandedBehavior", options.ExpandedBehavior);
+                }
+                if (!string.IsNullOrEmpty(options.IncludeEmptyContentProperties))
+                {
+                    _contentApiOptions.IncludeEmptyContentProperties = bool.Parse(options.IncludeEmptyContentProperties);
+                    messages.Add("IncludeEmptyContentProperties", options.IncludeEmptyContentProperties);
+                }
+                if (!string.IsNullOrEmpty(options.IncludeMasterLanguage))
+                {
+                    _contentApiOptions.SetIncludeMasterLanguage(bool.Parse(options.IncludeMasterLanguage));
+                    messages.Add("IncludeMasterLanguage", options.IncludeMasterLanguage);
+                }
+                if (!string.IsNullOrEmpty(options.IncludeNumericContentIdentifier))
+                {
+                    _contentApiOptions.SetIncludeNumericContentIdentifier(bool.Parse(options.IncludeNumericContentIdentifier));
+                    messages.Add("IncludeNumericContentIdentifier", options.IncludeNumericContentIdentifier);
+                }
+                if (!string.IsNullOrEmpty(options.IncludeSiteHosts))
+                {
+                    _contentApiOptions.SetIncludeSiteHosts(bool.Parse(options.IncludeSiteHosts));
+                    messages.Add("IncludeSiteHosts", options.IncludeSiteHosts);
+                }
+                if (!string.IsNullOrEmpty(options.MultiSiteFilteringEnabled))
+                {
+                    _contentApiOptions.SetMultiSiteFilteringEnabled(bool.Parse(options.MultiSiteFilteringEnabled));
+                    messages.Add("MultiSiteFilteringEnabled", options.MultiSiteFilteringEnabled);
+                }
+                if (!string.IsNullOrEmpty(options.ValidateTemplateForContentUrl))
+                {
+                    _contentApiOptions.SetValidateTemplateForContentUrl(bool.Parse(options.ValidateTemplateForContentUrl));
+                    messages.Add("ValidateTemplateForContentUrl", options.ValidateTemplateForContentUrl);
+                }
             }
-            if (!string.IsNullOrEmpty(options.includeEmptyContentProperties))
-                _contentApiOptions.IncludeEmptyContentProperties = bool.Parse(options.includeEmptyContentProperties);
-            if (!string.IsNullOrEmpty(options.includeMasterLanguage))
-                _contentApiOptions.SetIncludeMasterLanguage(bool.Parse(options.includeMasterLanguage));
-            if (!string.IsNullOrEmpty(options.includeNumericContentIdentifier))
-                _contentApiOptions.SetIncludeNumericContentIdentifier(bool.Parse(options.includeNumericContentIdentifier));
-            if (!string.IsNullOrEmpty(options.includeSiteHosts))
-                _contentApiOptions.SetIncludeSiteHosts(bool.Parse(options.includeSiteHosts));
-            return Ok(new { message = $"Set ContentApiOption done" });
+            catch(Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            var response = new { message = "Set ContentApiOption done", options = messages };
+            return Ok(response);
+        }
+
+        [Produces("application/json")]
+        [HttpPost("/Automation/SetContentDeliveryApiOption")]
+        public IActionResult SetContentDeliveryApiOptions([FromBody] SetApiOptions options)
+        {
+            Dictionary<string, string> messages = new Dictionary<string, string>();
+            try
+            {
+                if (!string.IsNullOrEmpty(options.SiteDefinitionApiEnabled))
+                {
+                    _contentDeliveryApiOptions.SiteDefinitionApiEnabled = bool.Parse(options.SiteDefinitionApiEnabled);
+                    messages.Add("SiteDefinitionApiEnabled", options.SiteDefinitionApiEnabled);
+                }       
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            var response = new { message = "Set ContentDeliveryApiOptions done", options = messages };
+            return Ok(response);
+        }
+
+        [Produces("application/json")]
+        [HttpPost("/Automation/SetContentDefinitionsApiOption")]
+        public IActionResult SetContentDefinitionsApiOption([FromBody] SetApiOptions options)
+        {
+            Dictionary<string, string> messages = new Dictionary<string, string>();
+            try
+            {
+                if (!string.IsNullOrEmpty(options.IncludeRequiredPreview))
+                {
+                    _contentDefinitionsApiOptions.IncludeRequiredPreview = bool.Parse(options.IncludeRequiredPreview);
+                    messages.Add("IncludeRequiredPreview", options.IncludeRequiredPreview);
+                }       
+            }
+            catch(Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            var response = new { message = "Set ContentDefinitionsApiOption done", options = messages };
+            return Ok(response);
         }
 
         public class SetApiOptions
         {
-            public string flatten { get; set; }
-            public string forceabsolute { get; set; }
-            public string includeInternalContentRoots { get; set; }
-            public string expandedBehavior { get; set; }
-            public string includeEmptyContentProperties { get; set; }
-            public string includeMasterLanguage { get; set; }
-            public string includeNumericContentIdentifier { get; set; }
-            public string includeSiteHosts { get; set; }
+            public string FlattenPropertyModel { get; set; }
+            public string ForceAbsolute { get; set; }
+            public string IncludeInternalContentRoots { get; set; }
+            public string ExpandedBehavior { get; set; }
+            public string IncludeEmptyContentProperties { get; set; }
+            public string IncludeMasterLanguage { get; set; }
+            public string IncludeNumericContentIdentifier { get; set; }
+            public string IncludeSiteHosts { get; set; }
+            public string MultiSiteFilteringEnabled { get; set; }
+            public string ValidateTemplateForContentUrl { get; set; }
+            public string SiteDefinitionApiEnabled { get; set; }
+            public string BaseRoute { get; set; }
+            public string IncludeRequiredPreview { get; set; }
         }
 
         [Route("/Automation/SetAssetFriendlyUrl")]
         public IActionResult SetAssetFriendlyUrl()
         {
             bool isEnable = bool.Parse(GetRequestQueryString("enable"));
-            //_routingOption.ContentAssetsBasePath = isEnable ? ContentAssetsBasePath.ContentOwner: ContentAssetsBasePath.Root;
+            _routingOption.ContentAssetsBasePath = isEnable ? ContentAssetsBasePath.ContentOwner : ContentAssetsBasePath.Root;
             return Ok(new { message = $"Set SetAssetFriendlyUrl = {isEnable}" });
-        } 
+        }
 
+        #region Replacement/ Fallback
         [Route("/Automation/SetReplacementLanguage")]
         public IActionResult SetReplacementLanguage()
         {
             string contentId = GetRequestQueryString("id");
             string from = GetRequestQueryString("from");
             string to = GetRequestQueryString("to");
-            
-            var pageRef = new PageReference(contentId);
-            var languageSetting = new ContentLanguageSetting(pageRef, from, to, Array.Empty<string>());
+            try
+            {
+                var pageRef = new PageReference(contentId);
+                var languageSetting = new ContentLanguageSetting(pageRef, from, to, Array.Empty<string>());
+                _contentLanguageSettingRepository.Save(languageSetting);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $@"Set Replacement Language done for content {contentId} from language {from} to language {to}" });
+        }
+
+		[Route("/Automation/SetActiveLanguage")]
+        public IActionResult SetActiveLanguage()
+        {
+            string language = GetRequestQueryString("language");
+            string isActive = GetRequestQueryString("isActive");
+
+            var pageRef = new PageReference(SiteDefinition.Current.StartPage);
+            var languageSetting = new ContentLanguageSetting(pageRef, language);
+            languageSetting.IsActive = isActive.Equals("true") ? true : false;
             _contentLanguageSettingRepository.Save(languageSetting);
 
             return Ok(new { message = $"set ok" });
         }
-
+		
         [Route("/Automation/SetFallBackLanguage")]
         public IActionResult SetFallBackLanguage()
         {
             string contentId = GetRequestQueryString("id");
             string from = GetRequestQueryString("from");
             string to = GetRequestQueryString("to");
-
-            var pageRef = new PageReference(contentId);
-            var setting = new ContentLanguageSetting();
-            setting.DefinedOnContent = pageRef;
-            setting.LanguageBranch = from;
-            setting.LanguageBranchFallback = new[] { to };
-            _contentLanguageSettingRepository.Save(setting);
-
-            return Ok(new { message = $"set ok" });
+            try
+            {
+                var pageRef = new PageReference(contentId);
+                var setting = new ContentLanguageSetting();
+                setting.DefinedOnContent = pageRef;
+                setting.LanguageBranch = from;
+                setting.LanguageBranchFallback = new[] { to };
+                _contentLanguageSettingRepository.Save(setting);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $@"Set Fallback Language done for content {contentId} from language {from} to language {to}" });
         }
+        #endregion
 
         #region Host
         [Route("/Automation/CreateHost")]
@@ -468,29 +619,41 @@ namespace AlloyTemplates.Automation.Controllers
             string hostName = GetRequestQueryString("name");
             string type = GetRequestQueryString("type");
             string language = GetRequestQueryString("language");
+            try
+            {
+                var clone = SiteDefinition.Current.CreateWritableClone();
+                HostDefinition newHost = new HostDefinition();
+                newHost.Name = hostName;
+                if (!string.IsNullOrEmpty(type))
+                    newHost.Type = (HostDefinitionType)Enum.Parse(typeof(HostDefinitionType), type);
+                if (!string.IsNullOrEmpty(language))
+                    newHost.Language = new CultureInfo(language);
 
-            var clone = SiteDefinition.Current.CreateWritableClone();
-            HostDefinition newHost = new HostDefinition();
-            newHost.Name = hostName;
-            if (!string.IsNullOrEmpty(type))
-                newHost.Type = (HostDefinitionType)Enum.Parse(typeof(HostDefinitionType), type);
-            if (!string.IsNullOrEmpty(language))
-                newHost.Language = new CultureInfo(language);
-
-            clone.Hosts.Add(newHost);
-            _siteDefinitionRepository.Save(clone);
-            return Ok(new { message = $"create host ok" });
+                clone.Hosts.Add(newHost);
+                _siteDefinitionRepository.Save(clone);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $"Create host {hostName} done" });
         }
 
         [Route("/Automation/DeleteEditHost")]
         public IActionResult DeleteHost()
         {
             string hostName = GetRequestQueryString("name");
-            var clone = SiteDefinition.Current.CreateWritableClone();
-
-            clone.Hosts.Remove(clone.GetHost(hostName, false));
-            _siteDefinitionRepository.Save(clone);
-            return Ok(new { message = $"delete host ok" });
+            try
+            {
+                var clone = SiteDefinition.Current.CreateWritableClone();
+                clone.Hosts.Remove(clone.GetHost(hostName, false));
+                _siteDefinitionRepository.Save(clone);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $"Delete host {hostName} done" });
         }
 
         [Route("/Automation/CreateSite")]
@@ -498,9 +661,17 @@ namespace AlloyTemplates.Automation.Controllers
         {
             string siteName = GetRequestQueryString("siteName");
             string startPageName = GetRequestQueryString("startPageName");
-
-            var startPageLink = CreateSite(siteName: siteName, startPageName: startPageName);
-            return Ok(new { message = $"create site ok with start page id {startPageLink}" });
+            int startPageId = -1;
+            try
+            {
+                var startPageLink = CreateSite(siteName: siteName, startPageName: startPageName);
+                startPageId = startPageLink.ID;
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $"Create site {siteName} with start page {startPageName}({startPageId}) done"});
         }
 
         [Route("/Automation/DeleteSite")]
@@ -508,22 +679,31 @@ namespace AlloyTemplates.Automation.Controllers
         {
             string siteName = GetRequestQueryString("siteName");
             string startPage = GetRequestQueryString("startPage");
-
-            DeleteSite(new PageReference(startPage), siteName);
-            return Ok(new { message = $"delete site {siteName} with start page id {startPage} ok" });
+            try
+            {
+                DeleteSite(new PageReference(startPage), siteName);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            return Ok(new { message = $"Delete site {siteName} done" });
         }
 
-        private ContentReference CreateSite(string siteUrl = "http://localHost/", string siteName = "TestSite", string startPageName = "StartPage", IEnumerable<HostDefinition> hostDefinitions = null)
+        private ContentReference CreateSite(string siteUrl = "http://epvnlptming:8010/", string siteName = "TestSite", string startPageName = "StartPage", IEnumerable<HostDefinition> hostDefinitions = null)
         {
             var startPage = _contentRepository.GetDefault<StartPage>(SiteDefinition.Current.RootPage);
             startPage.Name = startPageName;
             var startPageLink = _contentRepository.Save(startPage, SaveAction.Publish, AccessLevel.NoAccess).ToReferenceWithoutVersion();
+
+            IContent siteFolder = _contentRepository.Get<ContentFolder>(CreateSystemFolder(startPageLink, SiteDefinition.SiteAssetsName).ToReferenceWithoutVersion());
 
             var siteDefinition = new SiteDefinition
             {
                 Name = siteName,
                 StartPage = startPageLink,
                 SiteUrl = new Uri(siteUrl),
+                SiteAssetsRoot = siteFolder.ContentLink
             };
 
             if (hostDefinitions != null)
@@ -551,6 +731,32 @@ namespace AlloyTemplates.Automation.Controllers
             siteDefinitionRepository.Delete(siteDefinition.Id);
         }
         #endregion
+        #region SyncUser
+        [Route("/Automation/DeleteUserAsync")]
+        public async Task<IActionResult> DeleteUserAsync()
+        {
+            string username = GetRequestQueryString("username");
+            await _synchronizedUsersRepository.DeleteUserAsync(username);
+            return Ok(new { message = $"DeleteUserAsync with username {username}" });
+        }
+
+        [Route("/Automation/GetRolesForUserAsync")]
+        public async Task<IActionResult> GetRolesForUserAsync()
+        {
+            string username = GetRequestQueryString("username");
+            var roles = await _synchronizedUsersRepository.GetRolesForUserAsync(username);
+            return Ok(new { message = $"GetRolesForUserAsync with username {username}: [{string.Join(',', roles)}]" });
+        }
+
+        [Route("/Automation/DeleteInactiveUsersAsync")]
+        public async Task<IActionResult> DeleteInactiveUsersAsync()
+        {
+            TimeSpan timeSpan = TimeSpan.FromSeconds(int.Parse(GetRequestQueryString("fromSeconds")));
+
+            var users = await _synchronizedUsersRepository.DeleteInactiveUsersAsync(timeSpan);
+            return Ok(new { message = $"DeleteInactiveUsersAsync with timespan {timeSpan}: [{string.Join(',', users)}]" });
+        }
+        #endregion
         private string GetRequestQueryString(string paramName)
         {
             if (Request.QueryString.Value == null || string.IsNullOrEmpty(Request.Query[paramName].ToString()))
@@ -560,7 +766,5 @@ namespace AlloyTemplates.Automation.Controllers
 
             return HttpUtility.UrlDecode(Request.Query[paramName]);
         }
-    }
-
-    
+    }	
 }
