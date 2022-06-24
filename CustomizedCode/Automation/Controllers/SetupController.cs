@@ -479,6 +479,11 @@ namespace AlloyTemplates.Automation.Controllers
                     _contentApiOptions.SetValidateTemplateForContentUrl(bool.Parse(options.ValidateTemplateForContentUrl));
                     messages.Add("ValidateTemplateForContentUrl", options.ValidateTemplateForContentUrl);
                 }
+                if (!string.IsNullOrEmpty(options.IncludeMetadataPropertiesPreview))
+                {
+                    _contentApiOptions.IncludeMetadataPropertiesPreview = bool.Parse(options.IncludeMetadataPropertiesPreview);
+                    messages.Add("IncludeMetadataPropertiesPreview", options.IncludeMetadataPropertiesPreview);
+                }
             }
             catch(Exception ex)
             {
@@ -545,6 +550,7 @@ namespace AlloyTemplates.Automation.Controllers
             public string SiteDefinitionApiEnabled { get; set; }
             public string BaseRoute { get; set; }
             public string IncludeRequiredPreview { get; set; }
+            public string IncludeMetadataPropertiesPreview { get; set; }
         }
 
         [Route("/Automation/SetAssetFriendlyUrl")]

@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f53764dd-e9ba-45bf-b035-33236055d4c0",
+		"_postman_id": "07b5c21e-234c-4d91-a388-40f3c71043cb",
 		"name": "HAPI-Configuration-Checklist",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -6266,6 +6266,497 @@
 											"key": "name",
 											"value": "{{editHostName}}"
 										}
+									]
+								},
+								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+							},
+							"response": []
+						},
+						{
+							"name": "12. CD Get content by ID with IncludeMetadataPropertiesPreview is false as default",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"\r",
+											"Assert.IsNotFound(\"Verify externalURL\", response.externalURL);\r",
+											"Assert.IsNotFound(\"Verify visibleInMenu\", response.visibleInMenu);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "sv",
+										"disabled": true
+									},
+									{
+										"key": "If-None-Match",
+										"value": "\"512532078\"",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{cdEndpoint}}/content/{{alloyPlanId}}",
+									"host": [
+										"{{cmsUrl}}{{cdEndpoint}}"
+									],
+									"path": [
+										"content",
+										"{{alloyPlanId}}"
+									]
+								},
+								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+							},
+							"response": []
+						},
+						{
+							"name": "CMA Get content by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"\r",
+											"Assert.IsNotFound(\"Verify externalURL\", response.externalURL);\r",
+											"Assert.IsNotFound(\"Verify visibleInMenu\", response.visibleInMenu);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "sv",
+										"disabled": true
+									},
+									{
+										"key": "If-None-Match",
+										"value": "\"512532078\"",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{alloyPlanId}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									],
+									"path": [
+										"{{alloyPlanId}}"
+									]
+								},
+								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+							},
+							"response": []
+						},
+						{
+							"name": "12.1. Set IncludeMetadataPropertiesPreviewis is true",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"IncludeMetadataPropertiesPreview\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/Automation/SetContentApiOption",
+									"host": [
+										"{{cmsUrl}}"
+									],
+									"path": [
+										"Automation",
+										"SetContentApiOption"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CD Get content by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"\r",
+											"Assert.IsNotNull(\"Verify externalURL\", response.externalURL);\r",
+											"Assert.IsNotNull(\"Verify visibleInMenu\", response.visibleInMenu);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "sv",
+										"disabled": true
+									},
+									{
+										"key": "If-None-Match",
+										"value": "\"512532078\"",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{cdEndpoint}}/content/{{alloyPlanId}}",
+									"host": [
+										"{{cmsUrl}}{{cdEndpoint}}"
+									],
+									"path": [
+										"content",
+										"{{alloyPlanId}}"
+									]
+								},
+								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+							},
+							"response": []
+						},
+						{
+							"name": "CMA Get content by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"\r",
+											"Assert.IsNotNull(\"Verify externalURL\", response.externalURL);\r",
+											"Assert.IsNotNull(\"Verify visibleInMenu\", response.visibleInMenu);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "sv",
+										"disabled": true
+									},
+									{
+										"key": "If-None-Match",
+										"value": "\"512532078\"",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{alloyPlanId}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									],
+									"path": [
+										"{{alloyPlanId}}"
+									]
+								},
+								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+							},
+							"response": []
+						},
+						{
+							"name": "12.2. Set IncludeMetadataPropertiesPreviewis is false",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"IncludeMetadataPropertiesPreview\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/Automation/SetContentApiOption",
+									"host": [
+										"{{cmsUrl}}"
+									],
+									"path": [
+										"Automation",
+										"SetContentApiOption"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CD Get content by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"\r",
+											"Assert.IsNotFound(\"Verify externalURL\", response.externalURL);\r",
+											"Assert.IsNotFound(\"Verify visibleInMenu\", response.visibleInMenu);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "sv",
+										"disabled": true
+									},
+									{
+										"key": "If-None-Match",
+										"value": "\"512532078\"",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{cdEndpoint}}/content/{{alloyPlanId}}",
+									"host": [
+										"{{cmsUrl}}{{cdEndpoint}}"
+									],
+									"path": [
+										"content",
+										"{{alloyPlanId}}"
+									]
+								},
+								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+							},
+							"response": []
+						},
+						{
+							"name": "CMA Get content by ID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"response = pm.response.json();\r",
+											"\r",
+											"Assert.IsNotFound(\"Verify externalURL\", response.externalURL);\r",
+											"Assert.IsNotFound(\"Verify visibleInMenu\", response.visibleInMenu);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept-Language",
+										"value": "sv",
+										"disabled": true
+									},
+									{
+										"key": "If-None-Match",
+										"value": "\"512532078\"",
+										"type": "default",
+										"disabled": true
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{alloyPlanId}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									],
+									"path": [
+										"{{alloyPlanId}}"
 									]
 								},
 								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
