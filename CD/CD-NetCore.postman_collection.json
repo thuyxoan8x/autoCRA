@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "0093b800-ac7f-4a04-a02a-46346b202826",
+		"_postman_id": "1face710-6334-4142-b09d-62f9d9b3d695",
 		"name": "CD-NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
@@ -1487,6 +1487,189 @@
 				{
 					"name": "Site",
 					"item": [
+						{
+							"name": "Preparation - Set IncludeSiteHosts is true",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeSiteHosts\"]);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"includeSiteHosts\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/Automation/SetContentApiOption",
+									"host": [
+										"{{cmsUrl}}"
+									],
+									"path": [
+										"Automation",
+										"SetContentApiOption"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation -  Set IncludeInternalContentRoots is true",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeInternalContentRoots\"]);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"includeInternalContentRoots\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/Automation/SetContentApiOption",
+									"host": [
+										"{{cmsUrl}}"
+									],
+									"path": [
+										"Automation",
+										"SetContentApiOption"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Preparation Set MultiSiteFilteringEnabled is true",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"MultiSiteFilteringEnabled\"]);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"MultiSiteFilteringEnabled\": \"true\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/Automation/SetContentApiOption",
+									"host": [
+										"{{cmsUrl}}"
+									],
+									"path": [
+										"Automation",
+										"SetContentApiOption"
+									]
+								}
+							},
+							"response": []
+						},
 						{
 							"name": "get sites",
 							"event": [
@@ -14883,7 +15066,7 @@
 			"script": {
 				"type": "text/javascript",
 				"exec": [
-					"var lodash = require(\"lodash\");  ",
+					"var lodash = require(\"lodash\");",
 					"var jsonData;",
 					"",
 					"try {",
@@ -15052,7 +15235,7 @@
 					"};",
 					"verifySubstring = (dataName, expectedValue, dataValue) => {",
 					"    pm.test(dataName + \" contains string: \" + expectedValue, function () {",
-					"        pm.expect(dataValue).to.include(expectedValue); ",
+					"        pm.expect(dataValue).to.include(expectedValue);",
 					"    });",
 					"};",
 					"verifyDataNotNull = (dataName, dataValue) => {",
@@ -15112,6 +15295,13 @@
 					"        pm.expect(dataValue).to.be.above(expectedValue);",
 					"    });",
 					"};",
+					"verifyConfigurationSetting = (message, options) => {",
+					"    verifyResponseCode(200);",
+					"    response = pm.response.json();",
+					"    Assert.IsEqual(\"Verify message\", message, response.message);",
+					"    for (i = 0; i < options.length; i++)",
+					"        Assert.IsNotNull(\"Verify option \" + options[i] + \" is set\", response.options[options[i]]);",
+					"}",
 					"",
 					"// Common tests to verify results for many requests",
 					"commonTest = {",
@@ -15131,19 +15321,16 @@
 					"};",
 					"",
 					"Assert = {",
-					"    IsEqual:function(elementName, expectedValue, actualValue)   //Assert if expectedValue == actualValue, for all types",
+					"    IsEqual: function (elementName, expectedValue, actualValue)   //Assert if expectedValue == actualValue, for all types",
 					"    {",
-					"        if (typeof(expectedValue) == typeof(actualValue))",
-					"        {",
+					"        if (typeof (expectedValue) == typeof (actualValue)) {",
 					"            //TO DOUBLE-CHECK: In case comparing arrays, if array element contains sub-arrays, then such arrays / sub-arrays need to be sorted before comparing. Otherwise it might return false if arrays / sub-arrays order are different",
-					"            if (typeof(actualValue) == \"object\")",
-					"            {",
-					"                pm.test(elementName + \" should be correct. Expected: \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"            if (typeof (actualValue) == \"object\") {",
+					"                pm.test(elementName + \" should be correct. Expected: \" + expectedValue + \". Actual: \" + actualValue, function () {",
 					"                    pm.expect(lodash.isEqual(expectedValue, actualValue)).to.equal(true);",
 					"                });",
-					"                ",
-					"                if (!lodash.isEqual(expectedValue, actualValue))",
-					"                {",
+					"",
+					"                if (!lodash.isEqual(expectedValue, actualValue)) {",
 					"                    console.log(\"----- expectedValue -----\");",
 					"                    //console.log(expectedValue);",
 					"                    console.log(JSON.stringify(expectedValue));",
@@ -15152,14 +15339,12 @@
 					"                    console.log(JSON.stringify(actualValue));",
 					"                }",
 					"            }",
-					"            else",
-					"            {",
-					"                pm.test(elementName + \" should be correct. Expected: \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"            else {",
+					"                pm.test(elementName + \" should be correct. Expected: \" + expectedValue + \". Actual: \" + actualValue, function () {",
 					"                    pm.expect(expectedValue).to.equal(actualValue);",
 					"                });",
 					"",
-					"                if (!lodash.isEqual(expectedValue, actualValue))",
-					"                {",
+					"                if (!lodash.isEqual(expectedValue, actualValue)) {",
 					"                    console.log(\"----- expectedValue -----\");",
 					"                    console.log(expectedValue);",
 					"                    console.log(\"----- actualValue -----\");",
@@ -15168,70 +15353,74 @@
 					"            }",
 					"        }",
 					"    },",
-					"    ",
-					"    IsGreater:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue > numeric expectedValue",
+					"",
+					"    IsGreater: function (elementName, expectedValue, actualValue) //Assert if numeric actualValue > numeric expectedValue",
 					"    {",
-					"        pm.test(elementName + \" should be larger than \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"        pm.test(elementName + \" should be larger than \" + expectedValue + \". Actual: \" + actualValue, function () {",
 					"            pm.expect(actualValue).to.be.above(expectedValue);",
 					"        });",
 					"    },",
-					"    ",
-					"    IsGreaterOrEqual:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue >= numeric expectedValue",
+					"",
+					"    IsGreaterOrEqual: function (elementName, expectedValue, actualValue) //Assert if numeric actualValue >= numeric expectedValue",
 					"    {",
-					"        pm.test(elementName + \" should be larger than or equal to \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"        pm.test(elementName + \" should be larger than or equal to \" + expectedValue + \". Actual: \" + actualValue, function () {",
 					"            pm.expect(actualValue).to.not.be.below(expectedValue);",
 					"        });",
 					"    },",
-					"    ",
-					"    IsLess:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue < numeric expectedValue",
+					"",
+					"    IsLess: function (elementName, expectedValue, actualValue) //Assert if numeric actualValue < numeric expectedValue",
 					"    {",
-					"        pm.test(elementName + \" should be less than \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"        pm.test(elementName + \" should be less than \" + expectedValue + \". Actual: \" + actualValue, function () {",
 					"            pm.expect(actualValue).to.be.below(expectedValue);",
 					"        });",
 					"    },",
-					"    ",
-					"    IsLessOrEqual:function(elementName, expectedValue, actualValue) //Assert if numeric actualValue <= numeric expectedValue",
+					"",
+					"    IsLessOrEqual: function (elementName, expectedValue, actualValue) //Assert if numeric actualValue <= numeric expectedValue",
 					"    {",
-					"        pm.test(elementName + \" should be less than or equal to \" + expectedValue + \". Actual: \" + actualValue, function(){",
+					"        pm.test(elementName + \" should be less than or equal to \" + expectedValue + \". Actual: \" + actualValue, function () {",
 					"            pm.expect(actualValue).to.not.be.above(expectedValue);",
 					"        });",
 					"    },",
-					"    ",
-					"    IsNull:function(elementName, actualValue)   //Assert if actualValue is null",
+					"",
+					"    IsNull: function (elementName, actualValue)   //Assert if actualValue is null",
 					"    {",
-					"        pm.test(elementName + \" should be null. Actual: \" + actualValue, function(){",
+					"        pm.test(elementName + \" should be null. Actual: \" + actualValue, function () {",
 					"            pm.expect(actualValue).to.equal(null);",
 					"        });",
 					"    },",
-					"    ",
-					"    IsEmpty:function(elementName, actualValue)  //Assert if actualValue is empty, that means array with no element",
+					"",
+					"    IsNotNull: function (elementName, actualValue)   //Assert if actualValue isnot null",
 					"    {",
-					"        pm.test(elementName + \" should be empty. Actual: \" + actualValue.length, function()",
-					"        {",
+					"        pm.test(elementName + \" should be not null. Actual: \" + actualValue, function () {",
+					"            pm.expect(actualValue).not.to.equal(null);",
+					"            pm.expect(actualValue).not.to.equal(undefined);",
+					"        });",
+					"    },",
+					"",
+					"    IsEmpty: function (elementName, actualValue)  //Assert if actualValue is empty, that means array with no element",
+					"    {",
+					"        pm.test(elementName + \" should be empty. Actual: \" + actualValue.length, function () {",
 					"            pm.expect(actualValue.length).to.equal(0);",
 					"        });",
 					"    },",
-					"    ",
-					"    IsNotEmpty:function(elementName, actualValue)  //Assert if actualValue is not empty, that means array with some elements",
+					"",
+					"    IsNotEmpty: function (elementName, actualValue)  //Assert if actualValue is not empty, that means array with some elements",
 					"    {",
-					"        pm.test(elementName + \" should not be empty. Actual: \" + actualValue.length, function()",
-					"        {",
+					"        pm.test(elementName + \" should not be empty. Actual: \" + actualValue.length, function () {",
 					"            pm.expect(actualValue.length).to.be.above(0);",
 					"        });",
 					"    },",
-					"    ",
-					"    IsTrue:function(elementName, actualValue)   //Assert if actualValue equals true",
+					"",
+					"    IsTrue: function (elementName, actualValue)   //Assert if actualValue equals true",
 					"    {",
-					"        pm.test(elementName + \" should be true. Actual: \" + actualValue, function()",
-					"        {",
+					"        pm.test(elementName + \" should be true. Actual: \" + actualValue, function () {",
 					"            pm.expect(actualValue).to.be.true;",
 					"        });",
 					"    },",
-					"    ",
-					"    IsFalse:function(elementName, actualValue)   //Assert if actualValue equals false",
+					"",
+					"    IsFalse: function (elementName, actualValue)   //Assert if actualValue equals false",
 					"    {",
-					"        pm.test(elementName + \" should be false. Actual: \" + actualValue, function()",
-					"        {",
+					"        pm.test(elementName + \" should be false. Actual: \" + actualValue, function () {",
 					"            pm.expect(actualValue).to.be.false;",
 					"        });",
 					"    }",

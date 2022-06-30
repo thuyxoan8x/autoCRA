@@ -12,13 +12,14 @@ using EPiServer.Approvals;
 using EPiServer.Approvals.ContentApprovals;
 using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Core.Configuration;
+using EPiServer.ContentApi.Search;
 using EPiServer.ContentDefinitionsApi;
 using EPiServer.ContentManagementApi;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAccess;
 using EPiServer.Security;
-using EPiServer.Security.Internal;					  
+using EPiServer.Security.Internal;
 using EPiServer.ServiceLocation;
 using EPiServer.Shell.Security;
 using EPiServer.Web;
@@ -28,7 +29,7 @@ using Newtonsoft.Json;
 
 namespace AlloyTemplates.Automation.Controllers
 {
-    public class SetupController: Controller
+    public class SetupController : Controller
     {
         private readonly IContentRepository _contentRepository;
         private readonly ISiteDefinitionRepository _siteDefinitionRepository;
@@ -42,9 +43,10 @@ namespace AlloyTemplates.Automation.Controllers
         private readonly ContentApiOptions _contentApiOptions;
         private readonly ContentDeliveryApiOptions _contentDeliveryApiOptions;
         private readonly ContentDefinitionsApiOptions _contentDefinitionsApiOptions;
+        private readonly ContentSearchApiOptions _contentSearchApiOptions;
         private readonly RoutingOptions _routingOption;
         private readonly ContentLanguageSettingRepository _contentLanguageSettingRepository;
-		private readonly ISynchronizedUsersRepository _synchronizedUsersRepository;																		   
+        private readonly ISynchronizedUsersRepository _synchronizedUsersRepository;
 
         private const string ContainerPageTypeGuid = "D178950C-D20E-4A46-90BD-5338B2424745";
         private const string CmsAdminUsername = "cmsadmin";
@@ -62,11 +64,12 @@ namespace AlloyTemplates.Automation.Controllers
             ContentApiOptions contentApiOptions,
             ContentDeliveryApiOptions contentDeliveryApiOptions,
             ContentDefinitionsApiOptions contentDefinitionsApiOptions,
+            ContentSearchApiOptions contentSearchApiOptions,
             RoutingOptions routingOption,
             UIRoleProvider roleProvider,
             IApprovalDefinitionRepository approvalDefinitionRepository,
             ContentLanguageSettingRepository contentLanguageSettingRepository,
-			ISynchronizedUsersRepository synchronizedUsersRepository)																	 
+            ISynchronizedUsersRepository synchronizedUsersRepository)
         {
             _contentRepository = contentRepository;
             _siteDefinitionRepository = siteDefinitionRepository;
@@ -79,10 +82,11 @@ namespace AlloyTemplates.Automation.Controllers
             _approvalDefinitionRepository = approvalDefinitionRepository;
             _contentApiOptions = contentApiOptions;
             _contentDeliveryApiOptions = contentDeliveryApiOptions;
+            _contentSearchApiOptions = contentSearchApiOptions;
             _contentDefinitionsApiOptions = contentDefinitionsApiOptions;
             _routingOption = routingOption;
             _contentLanguageSettingRepository = contentLanguageSettingRepository;
-			_synchronizedUsersRepository = synchronizedUsersRepository;														   
+            _synchronizedUsersRepository = synchronizedUsersRepository;
         }
 
         #region New Setup
@@ -407,7 +411,7 @@ namespace AlloyTemplates.Automation.Controllers
 
                 var securityDescriptor = new ContentAccessControlList(pageLink).CreateWritableClone();
                 securityDescriptor.AddEntry(new AccessControlEntry(WebAdminsGroupName, accessLevel));
-                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ApplicationName, accessLevel));
+                securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ApplicationName, accessLevel, SecurityEntityType.Application));
                 securityDescriptor.AddEntry(new AccessControlEntry("Administrator", AccessLevel.FullAccess));
                 securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ContentApiWrite, AccessLevel.Read));
                 securityDescriptor.AddEntry(new AccessControlEntry(EnvironmentBase.ContentApiRead, AccessLevel.Read));
@@ -432,7 +436,7 @@ namespace AlloyTemplates.Automation.Controllers
                 {
                     _contentApiOptions.SetFlattenPropertyModel(bool.Parse(options.FlattenPropertyModel));
                     messages.Add("FlattenPropertyModel", options.FlattenPropertyModel);
-                }    
+                }
                 if (!string.IsNullOrEmpty(options.ForceAbsolute))
                 {
                     _contentApiOptions.SetForceAbsolute(bool.Parse(options.ForceAbsolute));
@@ -485,7 +489,7 @@ namespace AlloyTemplates.Automation.Controllers
                     messages.Add("IncludeMetadataPropertiesPreview", options.IncludeMetadataPropertiesPreview);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(new { title = "Error", messge = ex.Message });
             }
@@ -504,9 +508,9 @@ namespace AlloyTemplates.Automation.Controllers
                 {
                     _contentDeliveryApiOptions.SiteDefinitionApiEnabled = bool.Parse(options.SiteDefinitionApiEnabled);
                     messages.Add("SiteDefinitionApiEnabled", options.SiteDefinitionApiEnabled);
-                }       
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(new { title = "Error", messge = ex.Message });
             }
@@ -525,13 +529,34 @@ namespace AlloyTemplates.Automation.Controllers
                 {
                     _contentDefinitionsApiOptions.IncludeRequiredPreview = bool.Parse(options.IncludeRequiredPreview);
                     messages.Add("IncludeRequiredPreview", options.IncludeRequiredPreview);
-                }       
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(new { title = "Error", messge = ex.Message });
             }
             var response = new { message = "Set ContentDefinitionsApiOption done", options = messages };
+            return Ok(response);
+        }
+
+        [Produces("application/json")]
+        [HttpPost("/Automation/SetContentSearchApiOption")]
+        public IActionResult SetContentSearchApiOptions([FromBody] SetApiOptions options)
+        {
+            Dictionary<string, string> messages = new Dictionary<string, string>();
+            try
+            {
+                if (!string.IsNullOrEmpty(options.MaximumSearchResults))
+                {
+                    _contentSearchApiOptions.MaximumSearchResults = int.Parse(options.MaximumSearchResults);
+                    messages.Add("MaximumSearchResults", options.MaximumSearchResults);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            var response = new { message = "Set ContentSearchApiOption done", options = messages };
             return Ok(response);
         }
 
@@ -551,6 +576,7 @@ namespace AlloyTemplates.Automation.Controllers
             public string BaseRoute { get; set; }
             public string IncludeRequiredPreview { get; set; }
             public string IncludeMetadataPropertiesPreview { get; set; }
+            public string MaximumSearchResults { get; set; }
         }
 
         [Route("/Automation/SetAssetFriendlyUrl")]
@@ -559,6 +585,36 @@ namespace AlloyTemplates.Automation.Controllers
             bool isEnable = bool.Parse(GetRequestQueryString("enable"));
             _routingOption.ContentAssetsBasePath = isEnable ? ContentAssetsBasePath.ContentOwner : ContentAssetsBasePath.Root;
             return Ok(new { message = $"Set SetAssetFriendlyUrl = {isEnable}" });
+        }
+
+        [Route("/Automation/SetRoutingOptions")]
+        public IActionResult SetRoutingOption([FromBody] SetRoutingOptions options)
+        {
+            Dictionary<string, string> messages = new Dictionary<string, string>();
+            try
+            {
+                if (!string.IsNullOrEmpty(options.ContentAssetsBasePath))
+                {
+                    _routingOption.ContentAssetsBasePath = (ContentAssetsBasePath)Enum.Parse(typeof(ContentAssetsBasePath), options.ContentAssetsBasePath);
+                    messages.Add("ContentAssetsBasePath", options.ContentAssetsBasePath);
+                }
+                if (!string.IsNullOrEmpty(options.PreferredUrlFormat))
+                {
+                    _routingOption.PreferredUrlFormat = (PreferredUrlFormat)Enum.Parse(typeof(PreferredUrlFormat), options.PreferredUrlFormat);
+                    messages.Add("PreferredUrlFormat", options.PreferredUrlFormat);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { title = "Error", messge = ex.Message });
+            }
+            var response = new { message = "Set RoutingOption done", options = messages };
+            return Ok(response);
+        }
+        public class SetRoutingOptions
+        {
+            public string ContentAssetsBasePath { get; set; }
+            public string PreferredUrlFormat { get; set; }
         }
 
         #region Replacement/ Fallback
@@ -581,7 +637,7 @@ namespace AlloyTemplates.Automation.Controllers
             return Ok(new { message = $@"Set Replacement Language done for content {contentId} from language {from} to language {to}" });
         }
 
-		[Route("/Automation/SetActiveLanguage")]
+        [Route("/Automation/SetActiveLanguage")]
         public IActionResult SetActiveLanguage()
         {
             string language = GetRequestQueryString("language");
@@ -594,7 +650,7 @@ namespace AlloyTemplates.Automation.Controllers
 
             return Ok(new { message = $"set ok" });
         }
-		
+
         [Route("/Automation/SetFallBackLanguage")]
         public IActionResult SetFallBackLanguage()
         {
@@ -677,7 +733,7 @@ namespace AlloyTemplates.Automation.Controllers
             {
                 return BadRequest(new { title = "Error", messge = ex.Message });
             }
-            return Ok(new { message = $"Create site {siteName} with start page {startPageName}({startPageId}) done"});
+            return Ok(new { message = $"Create site {siteName} with start page {startPageName}({startPageId}) done" });
         }
 
         [Route("/Automation/DeleteSite")]
@@ -719,7 +775,7 @@ namespace AlloyTemplates.Automation.Controllers
                     siteDefinition.Hosts.Add(hostDefinition);
                 }
             }
-            
+
             _siteDefinitionRepository.Save(siteDefinition);
             SiteDefinition.Current = null;
 
@@ -772,5 +828,5 @@ namespace AlloyTemplates.Automation.Controllers
 
             return HttpUtility.UrlDecode(Request.Query[paramName]);
         }
-    }	
+    }
 }
