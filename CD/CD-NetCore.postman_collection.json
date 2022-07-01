@@ -7580,9 +7580,7 @@
 											"verifyMatchingData(\"Access-Control-Allow-Headers \", pm.request.headers.get(\"Access-Control-Request-Headers\"), pm.response.headers.get(\"Access-Control-Allow-Headers\"));\r",
 											"\r",
 											"verifyResponseCode(204);\r",
-											"verifyMatchingData(\"Body \", '', responseBody);\r",
-											"\r",
-											""
+											"verifyMatchingData(\"Body \", '', responseBody);"
 										],
 										"type": "text/javascript"
 									}
@@ -7668,24 +7666,16 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"if(pm.environment.get(\"authType\") !== \"token\")",
-													"{",
-													"    console.log(\"Temporily ignore CD Search scripts when running with Application auth\");",
-													"    postman.setNextRequest(null);",
-													"}",
-													"else",
-													"{",
-													"    //Verify Status code = 200",
-													"    verifyResponseCode(200);",
+													"//Verify Status code = 200",
+													"verifyResponseCode(200);",
 													"",
-													"    if(pm.response.code === 200)",
-													"    {",
-													"        var data = responseData.getRoot();",
-													"        //Incase newly-installed site, requiredRole isn't matched vs. Recycle Bin folder",
-													"        verifyMatchingData(\"Total matching\", 121, data.totalMatching);",
-													"        pm.environment.set(\"totalMatchingAll\", data.totalMatching);",
-													"    }",
-													"}"
+													"if (pm.response.code === 200) {",
+													"    var data = responseData.getRoot();",
+													"    //Incase newly-installed site, requiredRole isn't matched vs. Recycle Bin folder",
+													"    verifyMatchingData(\"Total matching\", 121, data.totalMatching);",
+													"    pm.environment.set(\"totalMatchingAll\", data.totalMatching);",
+													"}",
+													""
 												],
 												"type": "text/javascript"
 											}

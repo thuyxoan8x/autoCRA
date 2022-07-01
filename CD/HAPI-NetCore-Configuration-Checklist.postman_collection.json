@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "07b5c21e-234c-4d91-a388-40f3c71043cb",
-		"name": "HAPI-Configuration-Checklist",
+		"_postman_id": "febbedc6-2edc-4329-a016-696ed3fa4e22",
+		"name": "HAPI-NetCore-Configuration-Checklist",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -449,7 +449,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"FlattenPropertyModel\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -629,7 +629,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"FlattenPropertyModel\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -930,7 +930,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"ForceAbsolute\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -1114,7 +1114,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"ForceAbsolute\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -1336,7 +1336,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeInternalContentRoots\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -1435,7 +1435,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeInternalContentRoots\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -1846,7 +1846,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"ExpandedBehavior\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -1973,7 +1973,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"ExpandedBehavior\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -2330,7 +2330,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeEmptyContentProperties\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -2541,7 +2541,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeEmptyContentProperties\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -2864,7 +2864,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeMasterLanguage\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -3042,7 +3042,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeMasterLanguage\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -3378,7 +3378,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeNumericContentIdentifier\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -3596,7 +3596,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeNumericContentIdentifier\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -3858,7 +3858,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeSiteHosts\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -4024,7 +4024,10 @@
 											"",
 											"response = pm.response.json()[0];",
 											"",
-											"Assert.IsEqual(\"Verify editLocation\", \"http://\" + pm.environment.get(\"editHostName\") + \"/\", response.editLocation);",
+											"if ((!pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) && (!pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))",
+											"    Assert.IsEqual(\"Verify editLocation\", \"http://\" + pm.environment.get(\"editHostName\") + \"/\", response.editLocation);",
+											"else",
+											"    Assert.IsEqual(\"Verify editLocation\", \"https://\" + pm.environment.get(\"editHostName\") + \"/\", response.editLocation);",
 											"Assert.IsNotFound(\"Verify hosts\", response.hosts);"
 										],
 										"type": "text/javascript"
@@ -4115,7 +4118,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeSiteHosts\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -4224,7 +4227,7 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.environment.set(\"secondSite\", \"TestSite\");"
+											"pm.environment.set(\"secondSite\", getRandomString(10));"
 										],
 										"type": "text/javascript"
 									}
@@ -4552,7 +4555,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"MultiSiteFilteringEnabled\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -4729,7 +4732,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"MultiSiteFilteringEnabled\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -5382,7 +5385,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"ValidateTemplateForContentUrl\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -5797,7 +5800,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"ValidateTemplateForContentUrl\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -5977,7 +5980,10 @@
 										"exec": [
 											"verifyResponseCode(200);\r",
 											"\r",
-											"Assert.IsTrue(\"Verify pageImage url starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), pm.response.json().pageImage.value.url.startsWith(\"http://\" + pm.environment.get(\"editHostName\")));"
+											"if ((!pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) && (!pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
+											"    Assert.IsTrue(\"Verify pageImage url starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), pm.response.json().pageImage.value.url.startsWith(\"http://\" + pm.environment.get(\"editHostName\")));\r",
+											"else\r",
+											"    Assert.IsTrue(\"Verify pageImage url starts with edit host \" + \"https://\" + pm.environment.get(\"editHostName\"), pm.response.json().pageImage.value.url.startsWith(\"https://\" + pm.environment.get(\"editHostName\")));"
 										],
 										"type": "text/javascript"
 									}
@@ -6041,8 +6047,12 @@
 											"urls = [response.contentLink.url, response.language.link, response.url, response.thumbnail.value.url];\r",
 											"urlNames = [\"response.contentLink.url\", \"response.language.link\", \"response.url\", \"response.thumbnail.value.url\"];\r",
 											"\r",
-											"for(i = 0; i < urls.length; i++)\r",
-											"    Assert.IsTrue(\"Verify \" + urlNames[i] + \" starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), urls[i].startsWith(\"http://\" + pm.environment.get(\"editHostName\")));"
+											"for (i = 0; i < urls.length; i++) {\r",
+											"    if ((!pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) && (!pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
+											"        Assert.IsTrue(\"Verify \" + urlNames[i] + \" starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), urls[i].startsWith(\"http://\" + pm.environment.get(\"editHostName\")));\r",
+											"    else\r",
+											"        Assert.IsTrue(\"Verify \" + urlNames[i] + \" starts with edit host \" + \"https://\" + pm.environment.get(\"editHostName\"), urls[i].startsWith(\"https://\" + pm.environment.get(\"editHostName\")));\r",
+											"}"
 										],
 										"type": "text/javascript"
 									}
@@ -6102,7 +6112,10 @@
 										"exec": [
 											"verifyResponseCode(200);\r",
 											"\r",
-											"Assert.IsTrue(\"Verify pageImage url starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), pm.response.json().pageImage.value.url.startsWith(\"http://\" + pm.environment.get(\"editHostName\")));"
+											"if ((!pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) && (!pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
+											"    Assert.IsTrue(\"Verify pageImage url starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), pm.response.json().pageImage.value.url.startsWith(\"http://\" + pm.environment.get(\"editHostName\")));\r",
+											"else\r",
+											"    Assert.IsTrue(\"Verify pageImage url starts with edit host \" + \"https://\" + pm.environment.get(\"editHostName\"), pm.response.json().pageImage.value.url.startsWith(\"https://\" + pm.environment.get(\"editHostName\")));"
 										],
 										"type": "text/javascript"
 									}
@@ -6165,8 +6178,12 @@
 											"urls = [response.contentLink.url, response.language.link, response.url];\r",
 											"urlNames = [\"response.contentLink.url\", \"response.language.link\", \"response.url\"];\r",
 											"\r",
-											"for(i = 0; i < urls.length; i++)\r",
-											"    Assert.IsTrue(\"Verify \" + urlNames[i] + \" starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), urls[i].startsWith(\"http://\" + pm.environment.get(\"editHostName\")));"
+											"for (i = 0; i < urls.length; i++) {\r",
+											"    if ((!pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) && (!pm.environment.get(\"cmsUrl\").includes(\"devoops.se\")))\r",
+											"        Assert.IsTrue(\"Verify \" + urlNames[i] + \" starts with edit host \" + \"http://\" + pm.environment.get(\"editHostName\"), urls[i].startsWith(\"http://\" + pm.environment.get(\"editHostName\")));\r",
+											"    else\r",
+											"        Assert.IsTrue(\"Verify \" + urlNames[i] + \" starts with edit host \" + \"https://\" + pm.environment.get(\"editHostName\"), urls[i].startsWith(\"https://\" + pm.environment.get(\"editHostName\")));\r",
+											"}"
 										],
 										"type": "text/javascript"
 									}
@@ -6402,7 +6419,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeMetadataPropertiesPreview\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -6586,7 +6603,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentApiOption done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeMetadataPropertiesPreview\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -6810,7 +6827,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentDeliveryApiOptions done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentDeliveryApiOptions done\", [\"SiteDefinitionApiEnabled\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -6905,7 +6922,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"Assert.IsEqual(\"Verify message\", \"Set ContentDeliveryApiOptions done\", pm.response.json().message);"
+											"verifyConfigurationSetting(\"Set ContentDeliveryApiOptions done\", [\"SiteDefinitionApiEnabled\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -7259,6 +7276,14 @@
 					"verifyManifestIsAllSuccess = () =>",
 					"{",
 					"    Assert.IsFalse(\"Verify has error\", pm.response.json().hasErrors);",
+					"}",
+					"",
+					"verifyConfigurationSetting = (message, options) => {",
+					"    verifyResponseCode(200);",
+					"    response = pm.response.json();",
+					"    Assert.IsEqual(\"Verify message\", message, response.message);",
+					"    for (i = 0; i < options.length; i++)",
+					"        Assert.IsNotNull(\"Verify option \" + options[i] + \" is set\", response.options[options[i]]);",
 					"}",
 					"",
 					"Assert = {",
