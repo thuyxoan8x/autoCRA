@@ -46923,6 +46923,307 @@
 											"response": []
 										},
 										{
+											"name": "52. Preparation - Create content with visibleInMenu",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"\r",
+															"Assert.IsFalse(\"Verify visibleInMenu\", response.visibleInMenu.value);\r",
+															"\r",
+															"pm.environment.set(\"contentId\", response.contentLink.id);\r",
+															"pm.environment.set(\"contentGuid\", response.contentLink.guidValue);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": false,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create non master language version with visibleInMenu",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(400);\r",
+															"verifyErrorDetailMessage(\"Cannot provide non-branch specific property 'PageVisibleInMenu' when creating a new language branch.\");"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"contentLink\": {\r\n        \"id\": {{contentId}}\r\n    },\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n    \"visibleInMenu\": {\r\n        \"value\": false,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "53. Preparation - Create non master language version",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"contentLink\": {\r\n        \"id\": {{contentId}}\r\n    },\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "PUT non master language version with visibleInMenu",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(400);\r",
+															"verifyErrorDetailMessage(\"Cannot provide non-branch specific property 'PageVisibleInMenu' when not passing the master language.\");"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n    \"visibleInMenu\": {\r\n        \"value\": false,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{contentGuid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{contentGuid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "PUT non master language version with visibleInMenu Copy",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(400);\r",
+															"verifyErrorDetailMessage(\"Cannot provide non-branch specific property 'PageVisibleInMenu' when not passing the master language.\");"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PATCH",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n    \"visibleInMenu\": {\r\n        \"value\": false,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{contentGuid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{contentGuid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "Content Cleanup",
 											"event": [
 												{
