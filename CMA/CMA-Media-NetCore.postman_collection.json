@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "f5b191c6-66b8-407c-bac2-cb462bde2cfe",
+		"_postman_id": "bc42e1cb-8439-4f44-842c-d98b24ea9720",
 		"name": "CMA-Media-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -128,6 +128,67 @@
 									]
 								},
 								"description": "Get root's children\n1. Status code =200\n2. At least 4 contents returned\n3. Common pass test vs. contents\n - Start page\n - Recycle Bin\n - For All Sites\n - Customer Zone\n - Content Assets (optional if site uses its own assets)\nCommon tests: ID, Name, Content Type"
+							},
+							"response": []
+						},
+						{
+							"name": "Set ContentApiOption Flatten is false",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"FlattenPropertyModel\"]);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"FlattenPropertyModel\": \"false\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}/Automation/SetContentApiOption",
+									"host": [
+										"{{cmsUrl}}"
+									],
+									"path": [
+										"Automation",
+										"SetContentApiOption"
+									]
+								}
 							},
 							"response": []
 						}
@@ -7346,6 +7407,7 @@
 													"parentList.add(pm.environment.get(\"approvalSequenceParentId\"));\r",
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
+													"pm.environment.set(\"availableStatusList\", [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"]);\r",
 													"pm.environment.set(\"statusList1\", [\"CheckedIn\", \"DelayedPublish\", \"Published\"]);\r",
 													"pm.environment.set(\"statusList2\", [\"CheckedOut\", \"Rejected\", \"Published\"]);\r",
 													"//Prepare the mediaList for next step\r",
@@ -7417,7 +7479,7 @@
 												"exec": [
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\");\r",
-													"statusList = pm.variables.get(\"statusList1\");\r",
+													"statusList = pm.environment.get(\"statusList1\");\r",
 													"contentTypeList = pm.environment.get(\"contentContentTypeList\");\r",
 													"\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
@@ -7759,7 +7821,7 @@
 												"exec": [
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\");\r",
-													"statusList = pm.variables.get(\"statusList2\");\r",
+													"statusList = pm.environment.get(\"statusList2\");\r",
 													"contentTypeList = pm.environment.get(\"contentContentTypeList\");\r",
 													"\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
@@ -8089,7 +8151,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"statusList = [\"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\", \"AwaitingApproval\"];\r",
+													"statusList = pm.environment.get(\"availableStatusList\");//[\"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\", \"AwaitingApproval\"];\r",
 													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
 													"pm.environment.set(\"status\", statusList[statusCount]);\r",
 													"\r",
@@ -8186,8 +8248,9 @@
 													"// Check if status is changed from Published to another status\r",
 													"if(pm.environment.get(\"status\") === \"AwaitingApproval\")\r",
 													"{\r",
-													"    verifyResponseCode(409);\r",
-													"    verifyErrorDetailMessage(\"Content is locked by 'admin' with lock identifier 'contentapproval'\");\r",
+													"    verifyResponseCode(400);\r",
+													"    user = (pm.environment.get(\"authType\") === \"token\") ? pm.environment.get(\"adminUser\") : pm.environment.get(\"client_id\")\r",
+													"    verifyErrorDetailMessage(\"Content is locked by '\" + user + \"' with lock identifier 'contentapproval'\");\r",
 													"}\r",
 													"else\r",
 													"    verifyResponseCode(200);"
@@ -8199,7 +8262,8 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"statusList = [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"];\r",
+													"//statusList = [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"];\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"updatedStatusCount = parseInt(pm.environment.get(\"updatedStatusCount\"));\r",
 													"pm.environment.set(\"updatedStatus\", statusList[updatedStatusCount]);\r",
 													"\r",
@@ -8287,7 +8351,7 @@
 													"// Process to loop\r",
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
 													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
 													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
@@ -17509,6 +17573,7 @@
 													"parentList.add(pm.environment.get(\"approvalSequenceParentId\"));\r",
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
+													"pm.environment.set(\"availableStatusList\", [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"]);\r",
 													"pm.environment.set(\"statusList1\", [\"CheckedIn\", \"DelayedPublish\", \"Published\"]);\r",
 													"pm.environment.set(\"statusList2\", [\"CheckedOut\", \"Rejected\", \"Published\"]);\r",
 													"//Prepare the mediaList for next step\r",
@@ -18280,7 +18345,8 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"statusList = [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"];\r",
+													"//statusList = [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"];\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
 													"pm.environment.set(\"status\", statusList[statusCount]);\r",
 													"\r",
@@ -18373,13 +18439,14 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"statusList = [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"];\r",
+													"//statusList = [\"AwaitingApproval\", \"CheckedIn\", \"CheckedOut\", \"DelayedPublish\", \"Rejected\", \"Published\"];\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"updatedStatusCount = parseInt(pm.environment.get(\"updatedStatusCount\"));\r",
 													"pm.environment.set(\"updatedStatus\", statusList[updatedStatusCount]);\r",
 													"\r",
 													"body = {\r",
 													"\t\"name\": \"file.png\",\r",
-													"\t\"status\": statusList[statusCount],\r",
+													"\t\"status\": statusList[updatedStatusCount],\r",
 													"    \"startPublish\": \"2021-11-16T08:42:24Z\",\r",
 													"    \"stopPublish\": null,\r",
 													"    \"category\": {\r",
@@ -18548,7 +18615,7 @@
 													"// Process to loop\r",
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
 													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
 													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
@@ -26244,6 +26311,7 @@
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
 													"//Prepare the mediaList for next step\r",
+													"pm.environment.set(\"availableStatusList\", [\"CheckedIn\", \"DelayedPublish\", \"CheckedOut\", \"Rejected\", \"Published\"]);\r",
 													"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 													"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
 													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
@@ -26310,7 +26378,7 @@
 												"exec": [
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\");\r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"contentTypeList = pm.environment.get(\"contentContentTypeList\");\r",
 													"\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
@@ -26578,7 +26646,7 @@
 													"// Process to loop\r",
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
 													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
 													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
@@ -33450,6 +33518,7 @@
 													"pm.environment.set(\"parentList\", parentList);\r",
 													"\r",
 													"//Prepare the mediaList for next step\r",
+													"pm.environment.set(\"availableStatusList\", [\"CheckedIn\", \"DelayedPublish\", \"CheckedOut\", \"Rejected\", \"Published\"]);\r",
 													"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 													"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
 													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
@@ -33516,7 +33585,7 @@
 												"exec": [
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\");\r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"contentTypeList = pm.environment.get(\"contentContentTypeList\");\r",
 													"\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
@@ -33788,7 +33857,7 @@
 													"// Process to loop\r",
 													"parentList = pm.environment.get(\"parentList\");\r",
 													"mediaList = pm.environment.get(\"mediaList\"); \r",
-													"statusList = pm.variables.get(\"availableStatusList\").split(',');\r",
+													"statusList = pm.environment.get(\"availableStatusList\");\r",
 													"parentCount = parseInt(pm.environment.get(\"parentCount\"));\r",
 													"mediaCount = parseInt(pm.environment.get(\"mediaCount\"));\r",
 													"statusCount = parseInt(pm.environment.get(\"statusCount\"));\r",
@@ -41288,6 +41357,14 @@
 					"    Assert.IsTrue(\"Verify error detail message starts with \" + message, pm.response.json().detail.startsWith(message));",
 					"}",
 					"",
+					"verifyConfigurationSetting = (message, options) => {",
+					"    verifyResponseCode(200);",
+					"    response = pm.response.json();",
+					"    Assert.IsEqual(\"Verify message\", message, response.message);",
+					"    for (i = 0; i < options.length; i++)",
+					"        Assert.IsNotNull(\"Verify option \" + options[i] + \" is set\", response.options[options[i]]);",
+					"}",
+					"",
 					"Assert = {",
 					"    IsEqual: function(elementName, expectedValue, actualValue) //Assert if expectedValue == actualValue, for all types",
 					"    {",
@@ -41371,6 +41448,14 @@
 					"        });",
 					"    },",
 					"",
+					"    IsNotNull: function (elementName, actualValue)   //Assert if actualValue isnot null",
+					"    {",
+					"        pm.test(elementName + \" should be not null. Actual: \" + actualValue, function () {",
+					"            pm.expect(actualValue).not.to.equal(null);",
+					"            pm.expect(actualValue).not.to.equal(undefined);",
+					"        });",
+					"    },",
+					"    ",
 					"    IsEmpty: function(elementName, actualValue) //Assert if actualValue is empty, that means array with no element",
 					"    {",
 					"        pm.test(elementName + \" should be empty. Actual: \" + actualValue.length, function() {",
@@ -41523,6 +41608,10 @@
 					"        expectedData.mimeType = response.mimeType;",
 					"        expectedData.thumbnail = response.thumbnail;",
 					"    }",
+					"",
+					"    //Update preview and edit url",
+					"    expectedData.previewUrl = response.previewUrl;",
+					"    expectedData.editUrl = response.editUrl;",
 					"    return expectedObj;",
 					"}"
 				]
