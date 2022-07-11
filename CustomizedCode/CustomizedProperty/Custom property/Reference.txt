@@ -1,0 +1,10 @@
+https://azanganeh.com/blog/2016/10/30/episerver-custom-property-in-simple-steps-by-step-example/
+
+------ Define property in model:
+
+        [Display(
+            GroupName = SystemTabNames.Content,
+            Order = 340)]
+        [UIHint(AuthorEditorDescriptor.UIHint)]
+        [BackingType(typeof(PropertyAuthor))]
+        public virtual Author Author { get; set; }
