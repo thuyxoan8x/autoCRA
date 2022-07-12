@@ -5060,14 +5060,14 @@
 									"\r",
 									"//Verify in case NewtonSoft v13-\r",
 									"if (responseCode == \"400\") {\r",
-									"    Assert.IsEqual(\"Verify Inner Error message\", \"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'. Path 'PageImage', line 52, position 2.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"    Assert.IsEqual(\"Verify target\", \"content.PageImage\", pm.response.json().Error.Details[0].Target);\r",
+									"    Assert.StartsWith(\"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"    Assert.IsEqual(\"Verify target\", \"content.TeaserText\", pm.response.json().Error.Details[0].Target);\r",
 									"}\r",
 									"//Verify in case NewtonSoft v13+\r",
 									"else {\r",
 									"    verifyResponseCode(201);\r",
 									"    teaserText2 = pm.environment.get(\"teaserText2\");\r",
-									"    Assert.IsEqual(\"TeaserText\", teaserText2 , pm.response.json().TeaserText);\r",
+									"    Assert.IsEqual(\"TeaserText\", JSON.parse(teaserText2) , pm.response.json().teaserText);\r",
 									"}"
 								],
 								"type": "text/javascript"
@@ -5078,18 +5078,17 @@
 							"script": {
 								"exec": [
 									"teaserText1 = {\r",
-									"    \"value\": \"New Product Page {{$randomInt}}\",\r",
-									"    \"PropertyDataType\": \"PropertyLongString\"\r",
+									"    \"value\": \"New Product Page A\",\r",
+									"    \"propertyDataType\": \"PropertyLongString\"\r",
 									"},\r",
 									"\r",
 									"teaserText2 = {\r",
-									"    \"value\": \"New Product Page {{$randomInt}}\",\r",
-									"    \"PropertyDataType\": \"PropertyLongString\"\r",
+									"    \"value\": \"New Product Page B\",\r",
+									"    \"propertyDataType\": \"PropertyLongString\"\r",
 									"},\r",
 									"\r",
 									"pm.environment.set(\"teaserText1\", JSON.stringify(teaserText1));\r",
-									"pm.environment.set(\"teaserText2\", JSON.stringify(teaserText2));\r",
-									""
+									"pm.environment.set(\"teaserText2\", JSON.stringify(teaserText2));"
 								],
 								"type": "text/javascript"
 							}
@@ -5114,7 +5113,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"contentLink\": {},\r\n        \"Name\": \"New Product Page {{$randomInt}}{{$randomInt}}\",\r\n        \"language\": {\r\n            \"name\": \"en\"\r\n        },\r\n        \"ContentType\": [\r\n            \"Page\",\r\n            \"ProductPage\"\r\n        ],\r\n        \"parentLink\": {\r\n            \"guidValue\": \"{{parentGuid}}\"\r\n        },\r\n        \"RouteSegment\": \"new-Product-page-{{$randomInt}}{{$randomInt}}\",\r\n        \"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n        \"StopPublish\": null,\r\n        \"status\": \"checkedOut\",\r\n        \"Category\": {\r\n            \"Value\": [\r\n            {\r\n                \"Id\": 3,\r\n                \"Name\": \"Plan\",\r\n                \"Description\": \"New Product Page {{$randomInt}}\"\r\n            }\r\n            ],\r\n            \"PropertyDataType\": \"PropertyCategory\"\r\n        },\r\n        \"MetaTitle\": {\r\n            \"Value\": \"Alloy Plan, New Product Page {{$randomInt}}\",\r\n            \"PropertyDataType\": \"PropertyLongString\"\r\n        },\r\n        \"PageImage\": {\r\n            \"value\": {\r\n            \"Id\": 43,\r\n            \"WorkId\": 0,\r\n            \"ProviderName\": null,\r\n            \"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r\n            \"Expanded\": null\r\n            },\r\n            \"propertyDataType\": \"PropertyContentReference\"\r\n        },\r\n        \"TeaserText\": {{teaserText1}},\r\n        \"TeaserText\": {{teaserText2}},\r\n        \"HideSiteHeader\": {\r\n            \"value\": null,\r\n            \"PropertyDataType\": \"PropertyBoolean\"\r\n        },\r\n        \"MetaDescription\": {\r\n            \"value\": \"New Product Page {{contentStatus}} {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n            \"PropertyDataType\": \"PropertyLongString\"\r\n        },\r\n        \"HideSiteFooter\": {\r\n            \"value\": null,\r\n            \"PropertyDataType\": \"PropertyBoolean\"\r\n        },\r\n        \"UniqueSellingPoints\": {\r\n            \"value\": [\r\n            \"New Product Page {{contentStatus}} {{$randomInt}}\",\r\n            \"Reporting and statistics\",\r\n            \"Email handling of tasks\",\r\n            \"Risk calculations\",\r\n            \"Direct communication to members\"\r\n            ],\r\n            \"propertyDataType\": \"PropertyStringList\"\r\n        },\r\n        \"MainBody\": {\r\n            \"value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{contentStatus}} {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n            \"propertyDataType\": \"PropertyXhtmlString\"\r\n        },\r\n        \"MainContentArea\": {\r\n            \"Value\": [\r\n            {\r\n                \"DisplayOption\": \"\",\r\n                \"Tag\": null,\r\n                \"ContentLink\": {\r\n                \"Id\": 46,\r\n                \"WorkId\": 0,\r\n                \"ProviderName\": null,\r\n                \"Url\": null,\r\n                \"Expanded\": null\r\n                }\r\n            }\r\n            ],\r\n            \"PropertyDataType\": \"PropertyContentArea\"\r\n        },\r\n        \"RelatedContentArea\": {\r\n            \"Value\": [\r\n            {\r\n                \"DisplayOption\": \"\",\r\n                \"Tag\": null,\r\n                \"ContentLink\": {\r\n                \"Id\": 47,\r\n                \"WorkId\": 0,\r\n                \"ProviderName\": null,\r\n                \"Url\": null,\r\n                \"Expanded\": null\r\n                }\r\n            }\r\n            ],\r\n            \"PropertyDataType\": \"PropertyContentArea\"\r\n        },\r\n        \"DisableIndexing\": {\r\n            \"value\": null,\r\n            \"PropertyDataType\": \"PropertyBoolean\"\r\n        }\r\n    }",
+							"raw": "{\r\n    \"contentLink\": {},\r\n    \"Name\": \"New Product Page {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"ContentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n    \"StopPublish\": null,\r\n    \"status\": \"checkedOut\",\r\n    \"Category\": {\r\n        \"Value\": [\r\n            {\r\n                \"Id\": 3,\r\n                \"Name\": \"Plan\",\r\n                \"Description\": \"New Product Page {{$randomInt}}\"\r\n            }\r\n        ],\r\n        \"PropertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"MetaTitle\": {\r\n        \"Value\": \"Alloy Plan, New Product Page {{$randomInt}}\",\r\n        \"PropertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"PageImage\": {\r\n        \"value\": {\r\n            \"Id\": 43,\r\n            \"WorkId\": 0,\r\n            \"ProviderName\": null,\r\n            \"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r\n            \"Expanded\": null\r\n        },\r\n        \"propertyDataType\": \"PropertyContentReference\"\r\n    },\r\n    \"TeaserText\": {{teaserText1}},\r\n    \"TeaserText\": {{teaserText2}},\r\n    \"HideSiteHeader\": {\r\n        \"value\": null,\r\n        \"PropertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"MetaDescription\": {\r\n        \"value\": \"New Product Page {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n        \"PropertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"HideSiteFooter\": {\r\n        \"value\": null,\r\n        \"PropertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"UniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"New Product Page {{$randomInt}}\",\r\n            \"Reporting and statistics\",\r\n            \"Email handling of tasks\",\r\n            \"Risk calculations\",\r\n            \"Direct communication to members\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n    \"MainBody\": {\r\n        \"value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{contentStatus}} {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n        \"propertyDataType\": \"PropertyXhtmlString\"\r\n    },\r\n    \"MainContentArea\": {\r\n        \"Value\": [\r\n            {\r\n                \"DisplayOption\": \"\",\r\n                \"Tag\": null,\r\n                \"ContentLink\": {\r\n                    \"Id\": 46,\r\n                    \"WorkId\": 0,\r\n                    \"ProviderName\": null,\r\n                    \"Url\": null,\r\n                    \"Expanded\": null\r\n                }\r\n            }\r\n        ],\r\n        \"PropertyDataType\": \"PropertyContentArea\"\r\n    },\r\n    \"RelatedContentArea\": {\r\n        \"Value\": [\r\n            {\r\n                \"DisplayOption\": \"\",\r\n                \"Tag\": null,\r\n                \"ContentLink\": {\r\n                    \"Id\": 47,\r\n                    \"WorkId\": 0,\r\n                    \"ProviderName\": null,\r\n                    \"Url\": null,\r\n                    \"Expanded\": null\r\n                }\r\n            }\r\n        ],\r\n        \"PropertyDataType\": \"PropertyContentArea\"\r\n    },\r\n    \"DisableIndexing\": {\r\n        \"value\": null,\r\n        \"PropertyDataType\": \"PropertyBoolean\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -11248,14 +11247,14 @@
 									"\r",
 									"//Verify in case NewtonSoft v13-\r",
 									"if (responseCode == \"400\") {\r",
-									"    Assert.IsEqual(\"Verify Inner Error message\", \"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'. Path 'PageImage', line 52, position 2.\", pm.response.json().Error.Details[0].InnerError[0]);\r",
-									"    Assert.IsEqual(\"Verify target\", \"content.PageImage\", pm.response.json().Error.Details[0].Target);\r",
+									"    Assert.StartsWith(\"Error setting value in extension data for type 'EPiServer.ContentManagementApi.Models.Internal.ContentApiCreateModel'\", pm.response.json().Error.Details[0].InnerError[0]);\r",
+									"    Assert.IsEqual(\"Verify target\", \"content.TeaserText\", pm.response.json().Error.Details[0].Target);\r",
 									"}\r",
 									"//Verify in case NewtonSoft v13+\r",
 									"else {\r",
 									"    verifyResponseCode(201);\r",
-									"    pageImage2 = pm.environment.get(\"pageImage2\");\r",
-									"    Assert.IsEqual(\"PageImage\", pageImage2 , pm.response.json().PageImage);\r",
+									"    teaserText2 = pm.environment.get(\"teaserText2\");\r",
+									"    Assert.IsEqual(\"TeaserText\", JSON.parse(teaserText2) , pm.response.json().teaserText);\r",
 									"}"
 								],
 								"type": "text/javascript"
@@ -11265,33 +11264,18 @@
 							"listen": "prerequest",
 							"script": {
 								"exec": [
-									"pageImage1 = {\r",
-									"    \"Value\": {\r",
-									"        \"Id\": 43,\r",
-									"        \"WorkId\": 0,\r",
-									"        \"ProviderName\": null,\r",
-									"        \"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r",
-									"        \"Expanded\": null\r",
-									"    },\r",
-									"    \"PropertyDataType\": \"PropertyContentReference\"\r",
-									"};\r",
+									"teaserText1 = {\r",
+									"    \"value\": \"New Product Page A\",\r",
+									"    \"propertyDataType\": \"PropertyLongString\"\r",
+									"},\r",
 									"\r",
-									"pageImage2 = {\r",
-									"    \"Value\": {\r",
-									"        \"Id\": 44,\r",
-									"        \"WorkId\": 0,\r",
-									"        \"ProviderName\": null,\r",
-									"        \"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r",
-									"        \"Expanded\": null\r",
-									"    },\r",
-									"    \"PropertyDataType\": \"PropertyContentReference\"\r",
-									"};\r",
+									"teaserText2 = {\r",
+									"    \"value\": \"New Product Page B\",\r",
+									"    \"propertyDataType\": \"PropertyLongString\"\r",
+									"},\r",
 									"\r",
-									"pm.environment.set(\"pageImage1\", JSON.stringify(pageImage1));\r",
-									"pm.environment.set(\"pageImage2\", JSON.stringify(pageImage2));\r",
-									"\r",
-									"\r",
-									""
+									"pm.environment.set(\"teaserText1\", JSON.stringify(teaserText1));\r",
+									"pm.environment.set(\"teaserText2\", JSON.stringify(teaserText2));"
 								],
 								"type": "text/javascript"
 							}
@@ -11316,7 +11300,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"contentLink\": {},\r\n        \"name\": \"New Product Page {{contentStatus}} {{$randomInt}}{{$randomInt}}\",\r\n        \"name\": \"{{newName}}\",\r\n        \"language\": {\r\n            \"name\": \"en\"\r\n        },\r\n        \"ContentType\": [\r\n            \"Page\",\r\n            \"ProductPage\"\r\n        ],\r\n        \"parentLink\": {\r\n            \"guidValue\": \"{{parentGuid}}\"\r\n        },\r\n        \"RouteSegment\": \"new-Product-page-{{contentStatus}}-{{$randomInt}}{{$randomInt}}\",\r\n        \"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n        \"StopPublish\": null,\r\n        \"status\": \"CheckedOut\",\r\n        \"Category\": {\r\n            \"Value\": [\r\n                {\r\n                    \"Id\": 3,\r\n                    \"Name\": \"Plan\",\r\n                    \"Description\": \"New Product Page {{contentStatus}} {{$randomInt}}\"\r\n                }\r\n            ],\r\n            \"PropertyDataType\": \"PropertyCategory\"\r\n        },\r\n        \"MetaTitle\": {\r\n            \"Value\": \"Alloy Plan, New Product Page {{contentStatus}} {{$randomInt}}\",\r\n            \"PropertyDataType\": \"PropertyLongString\"\r\n        },\r\n        \"PageImage\": {{pageImage1}},\r\n        \"PageImage\": {{pageImage2}},\r\n        \"TeaserText\": {\r\n            \"Value\": \"New Product Page {{contentStatus}} {{$randomInt}}\",\r\n            \"PropertyDataType\": \"PropertyLongString\"\r\n        },\r\n        \"HideSiteHeader\": {\r\n            \"Value\": null,\r\n            \"PropertyDataType\": \"PropertyBoolean\"\r\n        },\r\n        \"MetaDescription\": {\r\n            \"Value\": \"New Product Page {{contentStatus}} {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n            \"PropertyDataType\": \"PropertyLongString\"\r\n        },\r\n        \"HideSiteFooter\": {\r\n            \"Value\": null,\r\n            \"PropertyDataType\": \"PropertyBoolean\"\r\n        },\r\n        \"UniqueSellingPoints\": {\r\n            \"Value\": [\r\n                \"New Product Page {{contentStatus}} {{$randomInt}}\",\r\n                \"Reporting and statistics\",\r\n                \"Email handling of tasks\",\r\n                \"Risk calculations\",\r\n                \"Direct communication to members\"\r\n            ],\r\n            \"PropertyDataType\": \"PropertyStringList\"\r\n        },\r\n        \"MainBody\": {\r\n            \"Value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{contentStatus}} {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n            \"PropertyDataType\": \"PropertyXhtmlString\"\r\n        },\r\n        \"MainContentArea\": {\r\n            \"Value\": [\r\n                {\r\n                    \"DisplayOption\": \"\",\r\n                    \"Tag\": null,\r\n                    \"ContentLink\": {\r\n                        \"Id\": 46,\r\n                        \"WorkId\": 0,\r\n                        \"ProviderName\": null,\r\n                        \"Url\": null,\r\n                        \"Expanded\": null\r\n                    }\r\n                }\r\n            ],\r\n            \"PropertyDataType\": \"PropertyContentArea\"\r\n        },\r\n        \"RelatedContentArea\": {\r\n            \"Value\": [\r\n                {\r\n                    \"DisplayOption\": \"\",\r\n                    \"Tag\": null,\r\n                    \"ContentLink\": {\r\n                        \"Id\": 47,\r\n                        \"WorkId\": 0,\r\n                        \"ProviderName\": null,\r\n                        \"Url\": null,\r\n                        \"Expanded\": null\r\n                    }\r\n                }\r\n            ],\r\n            \"PropertyDataType\": \"PropertyContentArea\"\r\n        },\r\n        \"DisableIndexing\": {\r\n            \"Value\": null,\r\n            \"PropertyDataType\": \"PropertyBoolean\"\r\n        }\r\n    }",
+							"raw": "{\r\n    \"contentLink\": {},\r\n    \"Name\": \"New Product Page {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"ContentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"StartPublish\": \"2020-10-16T09:42:22Z\",\r\n    \"StopPublish\": null,\r\n    \"status\": \"checkedOut\",\r\n    \"Category\": {\r\n        \"Value\": [\r\n            {\r\n                \"Id\": 3,\r\n                \"Name\": \"Plan\",\r\n                \"Description\": \"New Product Page {{$randomInt}}\"\r\n            }\r\n        ],\r\n        \"PropertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"MetaTitle\": {\r\n        \"Value\": \"Alloy Plan, New Product Page {{$randomInt}}\",\r\n        \"PropertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"PageImage\": {\r\n        \"value\": {\r\n            \"Id\": 43,\r\n            \"WorkId\": 0,\r\n            \"ProviderName\": null,\r\n            \"Url\": \"/contentassets/58809c8bdc2748f88f1edfad66dcb880/alloyplan.png\",\r\n            \"Expanded\": null\r\n        },\r\n        \"propertyDataType\": \"PropertyContentReference\"\r\n    },\r\n    \"TeaserText\": {{teaserText1}},\r\n    \"TeaserText\": {{teaserText2}},\r\n    \"HideSiteHeader\": {\r\n        \"value\": null,\r\n        \"PropertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"MetaDescription\": {\r\n        \"value\": \"New Product Page {{$randomInt}} Project management has never been easier! Use Alloy Meet with Alloy Plan to get the whole team involved in the creation of project plans and see how this commitment translates into finite and achievable goals.\",\r\n        \"PropertyDataType\": \"PropertyLongString\"\r\n    },\r\n    \"HideSiteFooter\": {\r\n        \"value\": null,\r\n        \"PropertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"UniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"New Product Page {{$randomInt}}\",\r\n            \"Reporting and statistics\",\r\n            \"Email handling of tasks\",\r\n            \"Risk calculations\",\r\n            \"Direct communication to members\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n    \"MainBody\": {\r\n        \"value\": \"<p><img style=\\\"float: left;\\\" src=\\\"/16Apr/contentassets/0757bdda11ad41d48b5538fa06797706/alloyplanscreen.png\\\" alt=\\\"Alloy Plan - Efficient project planning\\\" /></p>\\n<p>New Product Page {{contentStatus}} {{$randomInt}} Planning is crucial to the success of any project. Alloy Plan takes into consideration all aspects of project planning; from well-defined objectives to staffing, capital investments and management support. Nothing is left to chance.</p>\\n<p>Alloy Plan supports all project methodologies efficiently as the system is totally flexible in terms of setup and use.</p>\\n<p>Realize the benefits of using Alloy Plan. Our customers see on average  an 80% increase in delivery of their projects on time, on budget and  with minimal risk involved.</p>\\n<p>Work with an Alloy Technology partner to define the scale of your organization's needs and find the best fit with Alloy Plan.</p>\",\r\n        \"propertyDataType\": \"PropertyXhtmlString\"\r\n    },\r\n    \"MainContentArea\": {\r\n        \"Value\": [\r\n            {\r\n                \"DisplayOption\": \"\",\r\n                \"Tag\": null,\r\n                \"ContentLink\": {\r\n                    \"Id\": 46,\r\n                    \"WorkId\": 0,\r\n                    \"ProviderName\": null,\r\n                    \"Url\": null,\r\n                    \"Expanded\": null\r\n                }\r\n            }\r\n        ],\r\n        \"PropertyDataType\": \"PropertyContentArea\"\r\n    },\r\n    \"RelatedContentArea\": {\r\n        \"Value\": [\r\n            {\r\n                \"DisplayOption\": \"\",\r\n                \"Tag\": null,\r\n                \"ContentLink\": {\r\n                    \"Id\": 47,\r\n                    \"WorkId\": 0,\r\n                    \"ProviderName\": null,\r\n                    \"Url\": null,\r\n                    \"Expanded\": null\r\n                }\r\n            }\r\n        ],\r\n        \"PropertyDataType\": \"PropertyContentArea\"\r\n    },\r\n    \"DisableIndexing\": {\r\n        \"value\": null,\r\n        \"PropertyDataType\": \"PropertyBoolean\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -23561,6 +23545,13 @@
 					"        {",
 					"            pm.expect(actualValue).to.be.false;",
 					"        });",
+					"    },",
+					"",
+					"    StartsWith: function(expectedValue, actualValue) //Assert if actualValue starts with expectedValue",
+					"    {",
+					"        if (!actualValue.startsWith(expectedValue)) {",
+					"            Assert.IsTrue(\"\" + actualValue + \" doesn't starts with \" + expectedValue, false);",
+					"        }",
 					"    }",
 					"};",
 					"",
