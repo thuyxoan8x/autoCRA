@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -14,7 +13,6 @@ using EPiServer.ContentApi.Cms;
 using EPiServer.ContentApi.Core.Configuration;
 using EPiServer.ContentApi.Search;
 using EPiServer.ContentDefinitionsApi;
-using EPiServer.ContentManagementApi;
 using EPiServer.Core;
 using EPiServer.DataAbstraction;
 using EPiServer.DataAccess;
@@ -25,7 +23,6 @@ using EPiServer.Shell.Security;
 using EPiServer.Web;
 using EPiServer.Web.Routing;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 namespace AlloyTemplates.Automation.Controllers
 {
@@ -91,7 +88,7 @@ namespace AlloyTemplates.Automation.Controllers
 
         #region New Setup
         [Route("/Automation/Setup")]
-        public async Task<EnvironmentBase> Setup(string siteDomain)
+        public async Task<Dictionary<string,int>> Setup(string siteDomain)
         {
             AdjustSettings();
             UpdateSiteDomain(siteDomain);
@@ -179,7 +176,7 @@ namespace AlloyTemplates.Automation.Controllers
             }
         }
 
-        private async Task<EnvironmentBase> SetupPagesAndFolders()
+        private async Task<Dictionary<string, int>> SetupPagesAndFolders()
         {
             await AddRole(EnvironmentBase.ContentApiRead, AccessLevel.Read);
             await AddRole(EnvironmentBase.ContentApiWrite, AccessLevel.Read);
@@ -187,14 +184,8 @@ namespace AlloyTemplates.Automation.Controllers
 
             RevokeAccessOfEveryoneGroup();
 
-            var environment = new CmsEnvironment();
-
-            await foreach (var item in GenerateEnvironmentVariableItemsAsync())
-            {
-                environment.Values.Add(item);
-            }
-
-            return environment;
+            var info = await GenerateEnvironmentVariableItemsAsync();
+            return info;
         }
 
         private async Task AddRole(string roleName, AccessLevel accessLevel)
@@ -238,20 +229,20 @@ namespace AlloyTemplates.Automation.Controllers
             _contentSecurityRepository.Save(ContentReference.RootPage, securityDescriptor, SecuritySaveType.Replace);
         }
 
-        private async IAsyncEnumerable<VariableItem> GenerateEnvironmentVariableItemsAsync()
+        private async Task<Dictionary<string, int>> GenerateEnvironmentVariableItemsAsync()
         {
-            yield return new VariableItem(Key: "cmsUrl", Value: SiteDefinition.Current.SiteUrl.ToString());
-            yield return new VariableItem(Key: "forThisSiteId", Value: SiteDefinition.Current.SiteAssetsRoot.ID);
-            yield return new VariableItem(Key: "testContainerFolderId", Value: CreateEmptyTestFolderUnderGlobalAssetRoot().ID);
-
+            Dictionary<string, int> variables = new Dictionary<string, int>();
+            variables.Add("forThisSiteId", SiteDefinition.Current.SiteAssetsRoot.ID);
+            variables.Add("testContainerFolderId", CreateEmptyTestFolderUnderGlobalAssetRoot().ID);
             var testPageReference = CreateContainerPageUnderStartPage();
-            yield return new VariableItem(Key: "testContainerPageId", Value: testPageReference.ID);
+            variables.Add("testContainerPageId", testPageReference.ID);
+            variables.Add("deniedPageId", CreatePublishedPageWithNoAccessForCmsadmin(testPageReference).ID);
+            variables.Add("draftPageId", CreateDraft(testPageReference).ID);
+            variables.Add("approvalSequenceParentId", (await CreatePublishedPageWithApprovalSequenceEnabled(testPageReference)).ID);
+            variables.Add("noPublishedRightParentId", CreatePublishedPageWithoutPublishAccessRight(testPageReference).ID);
+            variables.Add("noAPIAccessParentId", CreatePublishedPageWithoutContentApiWriteAccessRight(testPageReference).ID);
 
-            yield return new VariableItem(Key: "deniedPageId", Value: CreatePublishedPageWithNoAccessForCmsadmin(testPageReference).ID);
-            yield return new VariableItem(Key: "draftPageId", Value: CreateDraft(testPageReference).ID);
-            yield return new VariableItem(Key: "approvalSequenceParentId", Value: (await CreatePublishedPageWithApprovalSequenceEnabled(testPageReference)).ID);
-            yield return new VariableItem(Key: "noPublishedRightParentId", Value: CreatePublishedPageWithoutPublishAccessRight(testPageReference).ID);
-            yield return new VariableItem(Key: "noAPIAccessParentId", Value: CreatePublishedPageWithoutContentApiWriteAccessRight(testPageReference).ID);
+            return variables;
         }
 
         /// <summary>
@@ -793,6 +784,7 @@ namespace AlloyTemplates.Automation.Controllers
             siteDefinitionRepository.Delete(siteDefinition.Id);
         }
         #endregion
+
         #region SyncUser
         [Route("/Automation/DeleteUserAsync")]
         public async Task<IActionResult> DeleteUserAsync()

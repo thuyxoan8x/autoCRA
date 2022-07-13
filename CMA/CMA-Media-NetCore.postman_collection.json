@@ -191,6 +191,153 @@
 								}
 							},
 							"response": []
+						},
+						{
+							"name": "Preparation - Get content type list",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"\r",
+											"contentTypes = pm.response.json();\r",
+											"genericMediaTypeGuid = \"\";\r",
+											"imageFileTypeGuid = \"\";\r",
+											"myCustomMediaTypeGuid = \"\";\r",
+											"\r",
+											"for (i = 0; i < contentTypes.length; i++)\r",
+											"    if (contentTypes[i].name === \"GenericMedia\") {\r",
+											"        genericMediaTypeGuid = contentTypes[i].id;\r",
+											"        pm.environment.set(\"genericMediaTypeGuid\", contentTypes[i].id);\r",
+											"        break;\r",
+											"    }\r",
+											"for (i = 0; i < contentTypes.length; i++)\r",
+											"    if (contentTypes[i].name === \"ImageFile\") {\r",
+											"        imageFileTypeGuid = contentTypes[i].id;\r",
+											"        pm.environment.set(\"imageFileTypeGuid\", contentTypes[i].id);\r",
+											"        break;\r",
+											"    }\r",
+											"for (i = 0; i < contentTypes.length; i++)\r",
+											"    if (contentTypes[i].name === \"MyCustomMedia\") {\r",
+											"        myCustomMediaTypeGuid = contentTypes[i].id;\r",
+											"        pm.environment.set(\"myCustomMediaTypeGuid\", contentTypes[i].id);\r",
+											"        break;\r",
+											"    }\r",
+											"\r",
+											"Assert.IsNotNullorEmptyString(\"Verify GenericMedia Type Guid\", genericMediaTypeGuid);\r",
+											"Assert.IsNotNullorEmptyString(\"Verify ImageFile Type Guid\", imageFileTypeGuid);\r",
+											"Assert.IsNotNullorEmptyString(\"Verify MyCustomMedia Type Guid\", myCustomMediaTypeGuid);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT to add supportedMediaExtensions to content type for MyCustomeMedia type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"Assert.IsEqual(\"Verify supportedMediaExtensions\", \"iv99\", pm.response.json().supportedMediaExtensions);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"iv99\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{myCustomMediaTypeGuid}}"
+									],
+									"query": [
+										{
+											"key": "allowedUpgrades",
+											"value": "major"
+										}
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
@@ -41190,6 +41337,84 @@
 							]
 						}
 					]
+				},
+				{
+					"name": "Cleanup",
+					"item": [
+						{
+							"name": "PUT to clear supportedMediaExtensions to content type for MyCustomeMedia type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(200);\r",
+											"Assert.IsNotFound(\"Verify supportedMediaExtensions\", pm.response.json().supportedMediaExtensions);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Cookie",
+										"type": "text",
+										"value": ".AspNet.ApplicationCookie={{appCookie}}",
+										"disabled": true
+									},
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{myCustomMediaTypeGuid}}"
+									],
+									"query": [
+										{
+											"key": "allowedUpgrades",
+											"value": "major"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
 				}
 			]
 		}
@@ -41482,9 +41707,14 @@
 					"        pm.test(elementName + \" should be false. Actual: \" + actualValue, function() {",
 					"            pm.expect(actualValue).to.be.false;",
 					"        });",
+					"    },",
+					"",
+					"    IsNotFound:function(elementName, actualValue)   //Assert if actualValue is null",
+					"    {",
+					"        pm.test(elementName + \" is not found. Actual: \" + actualValue, function(){",
+					"            pm.expect(actualValue).to.equal(undefined);",
+					"        });",
 					"    }",
-					"",
-					"",
 					"};",
 					"",
 					"////////////////////////////////////////////////////////////////",
