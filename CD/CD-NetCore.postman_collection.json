@@ -6832,6 +6832,69 @@
 										"description": "Get container page/Block/image/Folder by ID\n1. Status code"
 									},
 									"response": []
+								},
+								{
+									"name": "HAPI-2361 Query CD endpoints with select language",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(200);",
+													"keys = Object.keys(pm.response.json());",
+													"",
+													"languageCount = 0;",
+													"for (i = 0; i < keys.length; i++) {",
+													"    if (keys[i] === \"language\")",
+													"        languageCount++;",
+													"}",
+													"Assert.IsTrue(\"Verify only one language field is returned\", languageCount === 1);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "EN",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cdEndpoint}}/content/{{alloyplanId}}?select=language",
+											"host": [
+												"{{cmsUrl}}{{cdEndpoint}}"
+											],
+											"path": [
+												"content",
+												"{{alloyplanId}}"
+											],
+											"query": [
+												{
+													"key": "select",
+													"value": "language"
+												}
+											]
+										},
+										"description": "Get container page/Block/image/Folder by ID\n1. Status code"
+									},
+									"response": []
 								}
 							],
 							"event": [
