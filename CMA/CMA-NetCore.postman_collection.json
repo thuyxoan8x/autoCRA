@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "d5464f10-72bc-4aa7-9aec-551c1b6722a9",
+		"_postman_id": "6ef4532d-658b-445c-ad34-c52eda856bbf",
 		"name": "CMA-NetCore",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21606264"
 	},
 	"item": [
 		{
@@ -37815,6 +37816,1030 @@
 											"response": []
 										},
 										{
+											"name": "9. Preparation - Create content with externalUrl has 1 segment",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"firstContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"firstExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment);\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{firstExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create content with externalUrl share a part of segment with another content - case 1",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"secondContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"secondExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{secondExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of first content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"firstContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"firstExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{firstExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{firstExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of second content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"secondContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"secondExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());",
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{secondExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{secondExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "10. Preparation - Create content with externalUrl has 2 segment",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"firstContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"firstExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment );"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{firstExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create content with externalUrl share a part of segment with another content - case 2",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"secondContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"secondExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{secondExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of first content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"firstContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"firstExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{firstExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{firstExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of second content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"secondContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"secondExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{secondExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{secondExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "11. Preparation - Create content with externalUrl has 2 segment",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"firstContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"firstExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{firstExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create content with externalUrl share a part of segment with another content - case 3",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"secondContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"secondExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{secondExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of first content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"firstContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"firstExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{firstExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{firstExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of second content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"secondContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"secondExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{secondExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{secondExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "12. Preparation - Create a content in en with externalUrl",
 											"event": [
 												{
@@ -40087,6 +41112,1047 @@
 													],
 													"path": [
 														"{{$guid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "23. Preparation - Create content with externalUrl has 1 segment",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"firstContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"firstExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment);\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{firstExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{$guid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{$guid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create content with externalUrl share a part of segment with another content - case 1",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"secondContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"secondExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{secondExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{$guid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{$guid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of first content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"firstContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"firstExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{firstExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{firstExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of second content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"secondContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"secondExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{secondExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{secondExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "24. Preparation - Create content with externalUrl has 2 segment",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"firstContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"firstExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment );"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{firstExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{$guid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{$guid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create content with externalUrl share a part of segment with another content - case 2",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"secondContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"secondExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{secondExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{$guid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{$guid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of first content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"firstContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"firstExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{firstExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{firstExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of second content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"secondContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"secondExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{secondExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{secondExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "25. Preparation - Create content with externalUrl has 2 segment",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"firstContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"firstExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{firstExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{$guid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{$guid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Create content with externalUrl share a part of segment with another content - case 3",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(201);\r",
+															"\r",
+															"response = pm.response.json();\r",
+															"pm.environment.set(\"secondContentId\", response.contentLink.id);\r",
+															"\r",
+															"Assert.IsEqual(\"Verify externalUrl\", pm.environment.get(\"secondExternalUrl\"), response.externalURL.value);"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept-encoding": true,
+													"connection": true,
+													"user-agent": true
+												}
+											},
+											"request": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Accept-Language",
+														"type": "text",
+														"value": "",
+														"disabled": true
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\r\n    \"name\": \"ProductPage {{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": \"{{parentId}}\"\r\n    },\r\n    \"startPublish\": null,\r\n    \"stopPublish\": null,\r\n    \"status\": \"published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    },\r\n     \"visibleInMenu\": {\r\n        \"value\": true,\r\n        \"propertyDataType\": \"PropertyBoolean\"\r\n    },\r\n    \"externalURL\": {\r\n        \"value\": \"{{secondExternalUrl}}\",\r\n        \"propertyDataType\": \"PropertyVirtualLink\"\r\n    }\r\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{$guid}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{$guid}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of first content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"firstContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"firstExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{firstExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{firstExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "CD Get content by simple url of second content",
+											"event": [
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(200);",
+															"",
+															"body = pm.response.json();",
+															"",
+															"Assert.IsEqual(\"Verify content id\", pm.environment.get(\"secondContentId\"), body.contentLink.id);",
+															"Assert.IsEqual(\"Verify external url\", pm.environment.get(\"secondExternalUrl\").toLowerCase(), body.externalURL.value.toLowerCase());"
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															"pm.request.headers.remove('Accept');\r",
+															"pm.request.headers.add({ key: 'Accept', value: 'application/json' });"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"connection": true,
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{cmsUrl}}/sv/{{secondExternalUrl}}",
+													"host": [
+														"{{cmsUrl}}"
+													],
+													"path": [
+														"sv",
+														"{{secondExternalUrl}}"
+													]
+												},
+												"description": "Get Alloy Plan page by friendly URL."
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
 													]
 												}
 											},
