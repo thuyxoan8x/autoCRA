@@ -37836,7 +37836,10 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"pm.environment.set(\"firstExternalUrl\", getRandomString(10));"
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment);\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
 														],
 														"type": "text/javascript"
 													}
@@ -37898,8 +37901,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"firstExternalUrl = pm.environment.get(\"firstExternalUrl\");\r",
-															"pm.environment.set(\"secondExternalUrl\", firstExternalUrl + \"/\" + getRandomString(10));"
+															""
 														],
 														"type": "text/javascript"
 													}
@@ -38044,6 +38046,118 @@
 											"response": []
 										},
 										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "10. Preparation - Create content with externalUrl has 2 segment",
 											"event": [
 												{
@@ -38064,7 +38178,10 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"pm.environment.set(\"firstExternalUrl\", getRandomString(10) + \"/\" + getRandomString(10));"
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment );"
 														],
 														"type": "text/javascript"
 													}
@@ -38126,8 +38243,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"firstExternalUrl = pm.environment.get(\"firstExternalUrl\");\r",
-															"pm.environment.set(\"secondExternalUrl\", firstExternalUrl.split(\"/\")[0]);"
+															""
 														],
 														"type": "text/javascript"
 													}
@@ -38271,6 +38387,118 @@
 											"response": []
 										},
 										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "11. Preparation - Create content with externalUrl has 2 segment",
 											"event": [
 												{
@@ -38291,7 +38519,10 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"pm.environment.set(\"firstExternalUrl\", getRandomString(10) + \"/\" + getRandomString(10));"
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
 														],
 														"type": "text/javascript"
 													}
@@ -38353,8 +38584,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"firstExternalUrl = pm.environment.get(\"firstExternalUrl\");\r",
-															"pm.environment.set(\"secondExternalUrl\", firstExternalUrl.split(\"/\")[0] + \"/\" + getRandomString(10));"
+															""
 														],
 														"type": "text/javascript"
 													}
@@ -40908,7 +41138,10 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"pm.environment.set(\"firstExternalUrl\", getRandomString(10));"
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment);\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
 														],
 														"type": "text/javascript"
 													}
@@ -40973,8 +41206,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"firstExternalUrl = pm.environment.get(\"firstExternalUrl\");\r",
-															"pm.environment.set(\"secondExternalUrl\", firstExternalUrl + \"/\" + getRandomString(10));"
+															""
 														],
 														"type": "text/javascript"
 													}
@@ -41121,6 +41353,118 @@
 											"response": []
 										},
 										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "24. Preparation - Create content with externalUrl has 2 segment",
 											"event": [
 												{
@@ -41141,7 +41485,10 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"pm.environment.set(\"firstExternalUrl\", getRandomString(10) + \"/\" + getRandomString(10));"
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment );"
 														],
 														"type": "text/javascript"
 													}
@@ -41206,8 +41553,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"firstExternalUrl = pm.environment.get(\"firstExternalUrl\");\r",
-															"pm.environment.set(\"secondExternalUrl\", firstExternalUrl.split(\"/\")[0]);"
+															""
 														],
 														"type": "text/javascript"
 													}
@@ -41354,6 +41700,118 @@
 											"response": []
 										},
 										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"firstContentId\");\r",
+															"pm.environment.unset(\"firstExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{firstContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{firstContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
+											"name": "Delete content",
+											"event": [
+												{
+													"listen": "prerequest",
+													"script": {
+														"exec": [
+															""
+														],
+														"type": "text/javascript"
+													}
+												},
+												{
+													"listen": "test",
+													"script": {
+														"exec": [
+															"verifyResponseCode(204);\r",
+															"\r",
+															"pm.environment.unset(\"secondContentId\");\r",
+															"pm.environment.unset(\"secondExternalUrl\");"
+														],
+														"type": "text/javascript"
+													}
+												}
+											],
+											"protocolProfileBehavior": {
+												"disabledSystemHeaders": {
+													"accept": true
+												}
+											},
+											"request": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"type": "text",
+														"value": "application/json"
+													},
+													{
+														"key": "X-Epi-Permanent-Delete",
+														"type": "text",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{secondContentId}}",
+													"host": [
+														"{{cmsUrl}}{{cmaEndpoint}}"
+													],
+													"path": [
+														"{{secondContentId}}"
+													]
+												}
+											},
+											"response": []
+										},
+										{
 											"name": "25. Preparation - Create content with externalUrl has 2 segment",
 											"event": [
 												{
@@ -41374,7 +41832,10 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"pm.environment.set(\"firstExternalUrl\", getRandomString(10) + \"/\" + getRandomString(10));"
+															"firstExternalUrlSegment = getRandomString(10);\r",
+															"\r",
+															"pm.environment.set(\"firstExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));\r",
+															"pm.environment.set(\"secondExternalUrl\", firstExternalUrlSegment + \"/\" + getRandomString(10));"
 														],
 														"type": "text/javascript"
 													}
@@ -41439,8 +41900,7 @@
 													"listen": "prerequest",
 													"script": {
 														"exec": [
-															"firstExternalUrl = pm.environment.get(\"firstExternalUrl\");\r",
-															"pm.environment.set(\"secondExternalUrl\", firstExternalUrl.split(\"/\")[0] + \"/\" + getRandomString(10));"
+															""
 														],
 														"type": "text/javascript"
 													}
