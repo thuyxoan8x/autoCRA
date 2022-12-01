@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "41be8f73-41fa-4565-860f-4dba146584bd",
+		"_postman_id": "c5ef99dc-6c5c-4bdd-9b4f-a4239357e582",
 		"name": "CDA-NetCore",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21606264"
 	},
 	"item": [
 		{
@@ -11230,7 +11231,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading of new content\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"name\": \"ValidationCasePage{{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-11T10:01:02Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"heading\": {\r\n        \"value\": \"epiThis is the heading of new content\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"eventDate\": {\r\n        \"value\": \"2021-01-20T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -18347,7 +18348,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"{{contentTypeName}}Page\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-13T08:52:15Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"string1\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"string2\": {\r\n        \"value\": \"12345\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"integerList\": {\r\n        \"value\": [\r\n        ],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    },\r\n    \"dateList\": {\r\n        \"value\": [\r\n            \"2021-01-19T17:00:00Z\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyDateList\"\r\n    }\r\n}",
+									"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"{{contentTypeName}}Page\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentTypeName}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2021-01-13T08:52:15Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"string1\": {\r\n        \"value\": \"\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"string2\": {\r\n        \"value\": \"12345\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    },\r\n    \"dateList\": {\r\n        \"value\": [\r\n            \"2021-01-19T17:00:00Z\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyDateList\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"

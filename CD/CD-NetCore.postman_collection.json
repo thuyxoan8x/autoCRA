@@ -1,9 +1,10 @@
 {
 	"info": {
-		"_postman_id": "1face710-6334-4142-b09d-62f9d9b3d695",
+		"_postman_id": "debee294-7f16-40ec-b1db-32abd2ca2190",
 		"name": "CD-NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21606264"
 	},
 	"item": [
 		{
@@ -7735,7 +7736,7 @@
 													"if (pm.response.code === 200) {",
 													"    var data = responseData.getRoot();",
 													"    //Incase newly-installed site, requiredRole isn't matched vs. Recycle Bin folder",
-													"    verifyMatchingData(\"Total matching\", 121, data.totalMatching);",
+													"    verifyMatchingData(\"Total matching\", pm.environment.get(\"search_all\"), data.totalMatching);",
 													"    pm.environment.set(\"totalMatchingAll\", data.totalMatching);",
 													"}",
 													""
@@ -11382,7 +11383,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(20);"
+													"verifyFilterResults(pm.environment.get(\"contentType_ne_page\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11435,7 +11436,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(115);"
+													"verifyFilterResults(pm.environment.get(\"parentLink_ne_rootId\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11489,7 +11490,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(55);"
+													"verifyFilterResults(pm.environment.get(\"name_ne_alloyTrack\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11542,7 +11543,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(120);"
+													"verifyFilterResults(pm.environment.get(\"contentLink_ne_alloyPlanId\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11597,7 +11598,7 @@
 											"script": {
 												"exec": [
 													"debug.log(\"There is a Find issue. 'ne' operator will return contents not having category/value/name = 'Meet' but including content having nocategory/value/name property\");",
-													"verifyFilterResults(117);"
+													"verifyFilterResults(pm.environment.get(\"category_value_name_ne_Meet\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11709,7 +11710,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(21);"
+													"verifyFilterResults(pm.environment.get(\"contentLink_gt_100\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11767,7 +11768,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(16);"
+													"verifyFilterResults(pm.environment.get(\"parentLink_gt_52\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11820,7 +11821,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(50);"
+													"verifyFilterResults(pm.environment.get(\"created_gt_createdPage\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -11877,7 +11878,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(83);"
+													"verifyFilterResults(pm.environment.get(\"startPublish_gt_startPublishPage\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -12216,7 +12217,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(84);"
+													"verifyFilterResults(pm.environment.get(\"startPublish_ge_startPublishPage\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -12274,7 +12275,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(51);"
+													"verifyFilterResults(pm.environment.get(\"created_ge_createdPage\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -12331,7 +12332,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(22);"
+													"verifyFilterResults(pm.environment.get(\"contentLink_ge_100\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -12389,7 +12390,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyFilterResults(16);"
+													"verifyFilterResults(pm.environment.get(\"parentLink_ge_52\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -13585,7 +13586,7 @@
 												"exec": [
 													"commonTest.OK();",
 													"var data=responseData.getRoot();",
-													"verifyMatchingData(\"Total matching\", 51, data.totalMatching);",
+													"verifyMatchingData(\"Total matching\", pm.environment.get(\"complexFilter1\"), data.totalMatching);",
 													"",
 													"for (var content in data.results){",
 													"    console.log(data.results[content].name+\"-\"+((data.results[content].parentLink!==null)?data.results[content].parentLink.id+\"-\":\"\")+data.results[content].contentType.toString());",
@@ -13882,7 +13883,21 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
-									""
+									"pm.environment.set(\"search_all\", 122);",
+									"pm.environment.set(\"contentType_ne_page\", 21);",
+									"pm.environment.set(\"parentLink_ne_rootId\", 116);",
+									"pm.environment.set(\"name_ne_alloyTrack\", 56);",
+									"pm.environment.set(\"contentLink_ne_alloyPlanId\", 121);",
+									"pm.environment.set(\"category_value_name_ne_Meet\", 118);",
+									"pm.environment.set(\"contentLink_gt_100\", 22);",
+									"pm.environment.set(\"parentLink_gt_52\", 17);",
+									"pm.environment.set(\"created_gt_createdPage\", 51);",
+									"pm.environment.set(\"startPublish_gt_startPublishPage\", 84);",
+									"pm.environment.set(\"startPublish_ge_startPublishPage\", 85);",
+									"pm.environment.set(\"created_ge_createdPage\", 52);",
+									"pm.environment.set(\"contentLink_ge_100\", 23);",
+									"pm.environment.set(\"parentLink_ge_52\", 17);",
+									"pm.environment.set(\"complexFilter1\", 52);"
 								]
 							}
 						},
