@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6ef4532d-658b-445c-ad34-c52eda856bbf",
+		"_postman_id": "710941c7-0b6f-4778-a583-864a67364c17",
 		"name": "CMA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21606264"
@@ -55200,7 +55200,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n\t\"contentLink\": {},\r\n\t\"name\": \"NewAllPropertiesPage {{contentStatus}} {{$randomInt}}{{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"contentType\": [\r\n\t\t\"Page\",\r\n\t\t\"AllPropertiesPage\"\r\n\t],\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n\t\"startPublish\": \"2020-11-11T07:07:20Z\",\r\n\t\"stopPublish\": null,\r\n\t\"status\": \"CheckedOut\",\r\n\t\"boolProp\":  true,\r\n\t\"categoryListProp\": [\r\n\t\t\t{\r\n\t\t\t\t\"id\": 3,\r\n\t\t\t\t\"name\": \"Plan\",\r\n\t\t\t\t\"description\": \"Alloy Plan\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"id\": 4,\r\n\t\t\t\t\"name\": \"Track\",\r\n\t\t\t\t\"description\": \"Alloy Track\"\r\n\t\t\t}\r\n\t\t],\r\n\t\"contentAreaProp\": [\r\n\t\t\t{\r\n\t\t\t\t\"displayOption\": \"wide\",\r\n\t\t\t\t\"tag\": null,\r\n\t\t\t\t\"contentLink\": {\r\n\t\t\t\t\t\"id\": {{$randomInt}}{{$randomInt}}{{$randomInt}},\r\n                    \"guidValue\": \"{{$guid}}\",\r\n\t\t\t\t\t\"workId\": 0,\r\n\t\t\t\t\t\"providerName\": null,\r\n\t\t\t\t\t\"url\": null,\r\n\t\t\t\t\t\"expanded\": null\r\n\t\t\t\t}\r\n\t\t\t},\r\n            {\r\n\t\t\t\t\"displayOption\": \"full\",\r\n\t\t\t\t\"tag\": null,\r\n\t\t\t\t\"contentLink\": {\r\n\t\t\t\t\t\"id\": {{$randomInt}}{{$randomInt}}{{$randomInt}},\r\n\t\t\t\t\t\"workId\": 0,\r\n\t\t\t\t\t\"providerName\": null,\r\n\t\t\t\t\t\"url\": null,\r\n\t\t\t\t\t\"expanded\": null\r\n\t\t\t\t}\r\n\t\t\t},\r\n            {\r\n\t\t\t\t\"displayOption\": \"narrow\",\r\n\t\t\t\t\"tag\": null,\r\n\t\t\t\t\"contentLink\": {\r\n\t\t\t\t\t\"id\": {{$randomInt}}{{$randomInt}}{{$randomInt}},\r\n\t\t\t\t\t\"workId\": 0,\r\n\t\t\t\t\t\"providerName\": null,\r\n\t\t\t\t\t\"url\": null,\r\n\t\t\t\t\t\"expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t]\r\n}",
+											"raw": "{\r\n\t\"contentLink\": {},\r\n\t\"name\": \"NewAllPropertiesPage {{contentStatus}} {{$randomInt}}{{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"contentType\": [\r\n\t\t\"Page\",\r\n\t\t\"AllPropertiesPage\"\r\n\t],\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n\t\"startPublish\": \"2020-11-11T07:07:20Z\",\r\n\t\"stopPublish\": null,\r\n\t\"status\": \"CheckedOut\",\r\n\t\"boolProp\":  true,\r\n\t\"categoryListProp\": [\r\n\t\t\t{\r\n\t\t\t\t\"id\": 3,\r\n\t\t\t\t\"name\": \"Plan\",\r\n\t\t\t\t\"description\": \"Alloy Plan\"\r\n\t\t\t},\r\n\t\t\t{\r\n\t\t\t\t\"id\": 4,\r\n\t\t\t\t\"name\": \"Track\",\r\n\t\t\t\t\"description\": \"Alloy Track\"\r\n\t\t\t}\r\n\t\t],\r\n\t\"contentAreaProp\": [\r\n\t\t\t{\r\n\t\t\t\t\"displayOption\": \"wide\",\r\n\t\t\t\t\"tag\": null,\r\n\t\t\t\t\"contentLink\": {\r\n\t\t\t\t\t\"id\": {{$randomInt}}{{$randomInt}},\r\n                    \"guidValue\": \"{{$guid}}\",\r\n\t\t\t\t\t\"workId\": 0,\r\n\t\t\t\t\t\"providerName\": null,\r\n\t\t\t\t\t\"url\": null,\r\n\t\t\t\t\t\"expanded\": null\r\n\t\t\t\t}\r\n\t\t\t},\r\n            {\r\n\t\t\t\t\"displayOption\": \"full\",\r\n\t\t\t\t\"tag\": null,\r\n\t\t\t\t\"contentLink\": {\r\n\t\t\t\t\t\"id\": {{$randomInt}}{{$randomInt}},\r\n\t\t\t\t\t\"workId\": 0,\r\n\t\t\t\t\t\"providerName\": null,\r\n\t\t\t\t\t\"url\": null,\r\n\t\t\t\t\t\"expanded\": null\r\n\t\t\t\t}\r\n\t\t\t},\r\n            {\r\n\t\t\t\t\"displayOption\": \"narrow\",\r\n\t\t\t\t\"tag\": null,\r\n\t\t\t\t\"contentLink\": {\r\n\t\t\t\t\t\"id\": {{$randomInt}}{{$randomInt}},\r\n\t\t\t\t\t\"workId\": 0,\r\n\t\t\t\t\t\"providerName\": null,\r\n\t\t\t\t\t\"url\": null,\r\n\t\t\t\t\t\"expanded\": null\r\n\t\t\t\t}\r\n\t\t\t}\r\n\t\t]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -76319,6 +76319,9 @@
 					"            requestBody.linkItemProp3.value.href = responseBody.linkItemProp3.value.href;",
 					"        }",
 					"        requestBody.urlProp.value = responseBody.urlProp.value;",
+					"        if (responseBody.editorialBlock !== undefined && responseBody.editorialBlock.propertyItemType !== undefined) {",
+					"            requestBody.editorialBlock.propertyItemType = responseBody.editorialBlock.propertyItemType;",
+					"        }",
 					"    }",
 					"    else // Flatten mode",
 					"    {",
@@ -76417,6 +76420,9 @@
 					"    requestBody.editUrl = updatedBody.editUrl;",
 					"    if (isUpdateRouteSegment)",
 					"        requestBody.routeSegment = updatedBody.routeSegment;",
+					"    if (updatedBody.editorialBlock !== undefined && updatedBody.editorialBlock.propertyItemType !== undefined) {",
+					"        requestBody.editorialBlock.propertyItemType = updatedBody.editorialBlock.propertyItemType;",
+					"    }",
 					"}",
 					"",
 					"/////////////////////////////////////////////////////////",
