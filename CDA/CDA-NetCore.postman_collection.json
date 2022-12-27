@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "35da5f52-2104-452a-b680-6077365dab97",
+		"_postman_id": "033aea2c-997a-4e4a-8ba1-1c73682e006a",
 		"name": "CDA-NetCore",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21606264"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -14125,7 +14124,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' must contain between 2 and 10 items.\");"
+											"verifyErrorDetailMessage(\"Property 'IntegerList' must contain between 2 and 10 items.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14183,7 +14182,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' value must be between 1 and 10.\");"
+											"verifyErrorDetailMessage(\"Item of property 'IntegerList' value must be between 1 and 10.\",);"
 										],
 										"type": "text/javascript"
 									}
@@ -14242,9 +14241,9 @@
 										"exec": [
 											"verifyResponseCode(400);\r",
 											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
 											"else\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14403,7 +14402,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' must contain between 2 and 10 items.\");"
+											"verifyErrorDetailMessage(\"Property 'IntegerList' must contain between 2 and 10 items.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14457,7 +14456,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' value must be between 1 and 10.\");"
+											"verifyErrorDetailMessage(\"Item of property 'IntegerList' value must be between 1 and 10.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14512,9 +14511,9 @@
 										"exec": [
 											"verifyResponseCode(400);\r",
 											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
 											"else\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14676,7 +14675,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' must contain between 2 and 10 items.\");"
+											"verifyErrorDetailMessage(\"Property 'IntegerList' must contain between 2 and 10 items.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14730,7 +14729,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' value must be between 1 and 10.\");"
+											"verifyErrorDetailMessage(\"Item of property 'IntegerList' value must be between 1 and 10.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14785,9 +14784,9 @@
 										"exec": [
 											"verifyResponseCode(400);\r",
 											"if((pm.environment.get(\"cmsUrl\").includes(\"epimore.com\")) || (pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\")) || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
 											"else\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14943,7 +14942,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' must contain between 2 and 10 items.\");"
+											"verifyErrorDetailMessage(\"Property 'IntegerList' must contain between 2 and 10 items.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -14994,7 +14993,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' value must be between 1 and 10.\");"
+											"verifyErrorDetailMessage(\"Item of property 'IntegerList' value must be between 1 and 10.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -15046,9 +15045,9 @@
 										"exec": [
 											"verifyResponseCode(400);\r",
 											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
 											"else\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -15293,7 +15292,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' must contain between 2 and 10 items.\");"
+											"verifyErrorDetailMessage(\"Property 'IntegerList' must contain between 2 and 10 items.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -15344,7 +15343,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' value must be between 1 and 10.\");"
+											"verifyErrorDetailMessage(\"Item of property 'IntegerList' value must be between 1 and 10.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -15396,9 +15395,9 @@
 										"exec": [
 											"verifyResponseCode(400);\r",
 											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 01/01/2020 00:00:00 and 12/31/2022 00:00:00.\");\r",
 											"else\r",
-											"    verifyErrorDetailMessage(\"Property '' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
+											"    verifyErrorDetailMessage(\"Property 'EventDate' value must be between 1/1/2020 12:00:00 AM and 12/31/2022 12:00:00 AM.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -15822,7 +15821,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property 'StringList' does not match the required pattern.\");"
+											"verifyErrorDetailMessage(\"Item of property 'StringList' does not match the required pattern.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -16833,7 +16832,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"Property '' value must be between 1 and 10.\");"
+											"verifyErrorDetailMessage(\"Item of property 'IntegerList' value must be between 1 and 10.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20361,13 +20360,14 @@
 							"response": []
 						},
 						{
-							"name": "30. Invalid - Create content type with validation RegularExpression ItemRegularExpression pattern is null or missing",
+							"name": "30. Invalid - Create content type with validation RegularExpression \bpattern is null",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyResponseCode(201);"
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20394,7 +20394,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"String1\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"String 1: pattern is missing\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"String2\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": null,\r\n\t\t\t\t\t\"errorMessage\": \"String 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"StringList1\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"String List 1: pattern is missing\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"StringList2\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": null,\r\n\t\t\t\t\t\"errorMessage\": \"String List 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"String2\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": null,\r\n\t\t\t\t\t\"errorMessage\": \"String 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -20411,13 +20411,322 @@
 							"response": []
 						},
 						{
-							"name": "31. Invalid - Create content type with invalid RegularExpression ItemRegularExpression pattern",
+							"name": "Invalid - Create content type with validation RegularExpression \bpattern is empty",
 							"event": [
 								{
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyResponseCode(201);"
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"String2\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"\",\r\n\t\t\t\t\t\"errorMessage\": \"String 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create content type with validation RegularExpression \bwithout pattern",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Waiting for CMS-26127",
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"String2\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"String 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create content type with validation ItemRegularExpression pattern is empty - LongString",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"String2\",\r\n\t\t\t\"dataType\": \"PropertyLongString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"\",\r\n\t\t\t\t\t\"errorMessage\": \"String 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create content type with validation ItemRegularExpression pattern is null",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"StringList2\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": null,\r\n\t\t\t\t\t\"errorMessage\": \"String List 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create content type with validation ItemRegularExpression pattern is empty",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"StringList2\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"\",\r\n\t\t\t\t\t\"errorMessage\": \"String List 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create content type with validation ItemRegularExpression without pattern",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Waiting for bug fixed CMS-26127",
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"sortOrder\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"StringList2\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"errorMessage\": \"String List 2: pattern is null\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "31. Invalid - Create content type with invalid RegularExpression pattern",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Invalid pattern '[0-9]++' at offset 7. Nested quantifier '+'.\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20451,7 +20760,65 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"order\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"String1\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"[0-9]++\",\r\n\t\t\t\t\t\"errorMessage\": \"String 1: pattern is invalid\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t},\r\n\t\t{\r\n\t\t\t\"name\": \"StringList1\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"[0-9]++\",\r\n\t\t\t\t\t\"errorMessage\": \"String List 1: pattern is invalid\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"order\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"String1\",\r\n\t\t\t\"dataType\": \"PropertyString\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"[0-9]++\",\r\n\t\t\t\t\t\"errorMessage\": \"String 1: pattern is invalid\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create content type with invalid ItemRegularExpression pattern",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Invalid pattern '[0-9]++' at offset 7. Nested quantifier '+'.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"RegExValidationInvalidCase{{$randomInt}}\",\r\n\t\"baseType\": \"Page\",\r\n\t\"editSettings\": {\r\n\t\t\"available\": true,\r\n\t\t\"order\": 0\r\n\t},\r\n\t\"properties\": [\r\n\t\t{\r\n\t\t\t\"name\": \"StringList1\",\r\n\t\t\t\"dataType\": \"PropertyStringList\",\r\n\t\t\t\"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"ItemRegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"[0-9]++\",\r\n\t\t\t\t\t\"errorMessage\": \"String List 1: pattern is invalid\"\r\n\t\t\t\t}\r\n\t\t\t]\r\n\t\t}\r\n\t]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -20650,6 +21017,3972 @@
 									""
 								]
 							}
+						}
+					]
+				},
+				{
+					"name": "CMS-25804 Improve error message",
+					"item": [
+						{
+							"name": "Preparation - Create parent container page",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);\r",
+											"\r",
+											"pm.environment.set(\"parentId\", pm.response.json().contentLink.id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n\t\"name\": \"Test Container Page {{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"startPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"stopPublish\": null,\r\n\t\"status\": \"published\",\r\n\t\"contentLink\": {},\r\n\t\"parentLink\": {\r\n\t\t\"id\": \"{{testContainerPageId}}\"\r\n\t},\r\n\t\"contentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ContainerPage\"\r\n\t]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1. Create length validation content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);",
+											"",
+											"pm.environment.set(\"contentType\", pm.response.json().name);",
+											"pm.environment.set(\"contentTypeId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"LengthValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"StringWithMax\",\r\n            \"dataType\": \"PropertyString\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"StringWithMin\",\r\n            \"dataType\": \"PropertyString\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 10,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"StringWithMaxMin\",\r\n            \"dataType\": \"PropertyString\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"StringWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyString\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"String With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match length validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'StringWithMax' must not be more than 50 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"stringWithMax\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration – better communication and better project management Alloy solves the two most\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match length validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'StringWithMin' must be at least 10 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"stringWithMin\": {\r\n        \"value\": \"Alloy\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match length validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'StringWithMaxMin' must be between 10 and 50 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"StringWithMaxMin\": {\r\n        \"value\": \"Alloy\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match length validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'String With Max Min' must be between 10 and 50 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"StringWithMaxMin_DisplayName\": {\r\n        \"value\": \"Alloy\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeId}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2. Create content type with list property length validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);",
+											"",
+											"pm.environment.set(\"contentType\", pm.response.json().name);",
+											"pm.environment.set(\"contentTypeId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"LengthValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"IntegerListWithMin\",\r\n            \"dataType\": \"PropertyIntegerList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 2\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntegerListWithMax\",\r\n            \"dataType\": \"PropertyIntegerList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"severity\": \"error\",\r\n                    \"maximum\": 3\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntegerListWithMaxMin\",\r\n            \"dataType\": \"PropertyIntegerList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 2,\r\n                    \"maximum\": 3\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntegerListWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyIntegerList\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"IntegerList With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 2,\r\n                    \"maximum\": 3\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewDoubleListWithMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 2,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewDoubleListWithMax\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"maximum\": 3,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewDoubleListWithMaxMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 2,\r\n                    \"maximum\": 3,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewDoubleListWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"New DoubleList With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 2,\r\n                    \"maximum\": 3,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"CustomUsersWithMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyCustomUser\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 2,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"CustomUsersWithMax\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyCustomUser\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"maximum\": 3,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"CustomUsersWithMaxMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyCustomUser\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 2,\r\n                    \"maximum\": 3,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"CustomUsersWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyCustomUser\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"CustomUsers With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Length\",\r\n                    \"minimum\": 2,\r\n                    \"maximum\": 3,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match length validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'IntegerListWithMin' must contain at least 2 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntegerListWithMin\": {\r\n        \"value\": [1],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match length validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'IntegerListWithMax' must not contain more than 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntegerListWithMax\": {\r\n        \"value\": [1,2,3,4],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match length validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'IntegerListWithMaxMin' must contain between 2 and 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntegerListWithMaxMin\": {\r\n        \"value\": [1,2,3,4],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match length validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'IntegerList With Max Min' must contain between 2 and 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntegerListWithMaxMin_DisplayName\": {\r\n        \"value\": [1,2,3,4],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match length validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'NewDoubleListWithMin' must contain at least 2 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewDoubleListWithMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 11,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match length validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'NewDoubleListWithMax' must not contain more than 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewDoubleListWithMax\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 1.1,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 2.2,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 3.3,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 4.4,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match length validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'NewDoubleListWithMaxMin' must contain between 2 and 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewDoubleListWithMaxMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 1.1,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 2.2,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 3.3,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 4.4,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match length validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'New DoubleList With Max Min' must contain between 2 and 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewDoubleListWithMaxMin_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 1.1,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 2.2,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 3.3,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 4.4,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new custom property list not match length validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'CustomUsersWithMin' must contain at least 2 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"CustomUsersWithMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyCustomUser\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new custom property list not match length validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'CustomUsersWithMax' must not contain more than 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"CustomUsersWithMax\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyCustomUser\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new custom property list not match length validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'CustomUsersWithMaxMin' must contain between 2 and 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"CustomUsersWithMaxMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyCustomUser\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new custom property list not match length validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'CustomUsers With Max Min' must contain between 2 and 3 items.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"CustomUsersWithMaxMin_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            },\r\n            {\r\n                \"value\": {\r\n                    \"firstName\": \"Minh\",\r\n                    \"lastName\": \"Nguyen\"\r\n                },\r\n                \"propertyDataType\": \"PropertyCustomUser\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyCustomUser\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeId}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "3. Create regex validation content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);",
+											"",
+											"pm.environment.set(\"contentType\", pm.response.json().name);",
+											"pm.environment.set(\"contentTypeId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"RegexValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"StringProp\",\r\n            \"dataType\": \"PropertyString\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^epi[\\\\w+]\"\r\n\t\t\t\t}\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"StringProp_DisplayName\",\r\n            \"dataType\": \"PropertyString\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"String Property\"\r\n            },\r\n            \"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^epi[\\\\w+]\"\r\n\t\t\t\t}\r\n            ]\r\n        },\r\n                {\r\n            \"name\": \"LongStringProp\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^epi[\\\\w+]\"\r\n\t\t\t\t}\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"LongStringProp_DisplayName\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Long String Property\"\r\n            },\r\n            \"validation\": [\r\n\t\t\t\t{\r\n\t\t\t\t\t\"name\": \"RegularExpression\",\r\n\t\t\t\t\t\"severity\": \"error\",\r\n\t\t\t\t\t\"pattern\": \"^epi[\\\\w+]\"\r\n\t\t\t\t}\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match regex validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'StringProp' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"StringProp\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match regex validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'String Property' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"StringProp_DisplayName\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match regex validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'LongStringProp' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"LongStringProp\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match regex validation 2 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'Long String Property' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"LongStringProp_DisplayName\": {\r\n        \"value\": \"Alloy solves the two most pressing problems in long distance collaboration\",\r\n        \"propertyDataType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeId}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "4. Create range validation content type",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);",
+											"",
+											"pm.environment.set(\"contentType\", pm.response.json().name);",
+											"pm.environment.set(\"contentTypeId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"RangeValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"IntWithMax\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMin\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMaxMin\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Int Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n                {\r\n            \"name\": \"FloatWithMaxMin\",\r\n            \"dataType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"FloatWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Float number Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n                        {\r\n            \"name\": \"DatetimeWithMaxMin\",\r\n            \"dataType\": \"PropertyDate\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"DatetimeWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyDate\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Datetime Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'IntWithMax' value must be between -2147483648 and 50.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntWithMax\": {\r\n        \"value\": 100,\r\n        \"propertyDataType\": \"PropertyNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'IntWithMin' value must be between 10 and 2147483647.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntWithMin\": {\r\n        \"value\": 0,\r\n        \"propertyDataType\": \"PropertyNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'IntWithMaxMin' value must be between 10 and 50.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntWithMaxMin\": {\r\n        \"value\": 0,\r\n        \"propertyDataType\": \"PropertyNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'Int Property With Max Min' value must be between 10 and 50.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"IntWithMaxMin_DisplayName\": {\r\n        \"value\": 0,\r\n        \"propertyDataType\": \"PropertyNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation 4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'FloatWithMaxMin' value must be between 10 and 50.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"FloatWithMaxMin\": {\r\n        \"value\": 1.5,\r\n        \"propertyDataType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation 4 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Property 'Float number Property With Max Min' value must be between 10 and 50.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"FloatWithMaxMin_DisplayName\": {\r\n        \"value\": 1.5,\r\n        \"propertyDataType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation 5",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))",
+											"    verifyErrorDetailMessage(\"Property 'DatetimeWithMaxMin' value must be between 01/01/2000 17:00:00 and 12/31/2022 17:00:00.\");",
+											"else",
+											"    verifyErrorDetailMessage(\"Property 'DatetimeWithMaxMin' value must be between 1/1/2000 5:00:00 PM and 12/31/2022 5:00:00 PM.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"DatetimeWithMaxMin\": {\r\n        \"value\": \"1900-01-01T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation 5 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))",
+											"    verifyErrorDetailMessage(\"Property 'Datetime Property With Max Min' value must be between 01/01/2000 17:00:00 and 12/31/2022 17:00:00.\");",
+											"else",
+											"    verifyErrorDetailMessage(\"Property 'Datetime Property With Max Min' value must be between 1/1/2000 5:00:00 PM and 12/31/2022 5:00:00 PM.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"DatetimeWithMaxMin_DisplayName\": {\r\n        \"value\": \"1900-01-01T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeId}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "5. Create content type has list property with itemLength validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);",
+											"",
+											"pm.environment.set(\"contentType\", pm.response.json().name);",
+											"pm.environment.set(\"contentTypeId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ItemLengthValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"OldStringListWithMin\",\r\n            \"dataType\": \"PropertyStringList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 50\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldStringListWithMax\",\r\n            \"dataType\": \"PropertyStringList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"severity\": \"error\",\r\n                    \"maximum\": 100\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldStringListWithMaxMin\",\r\n            \"dataType\": \"PropertyStringList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 50,\r\n                    \"maximum\": 100\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldStringListWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyStringList\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Old String List Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 50,\r\n                    \"maximum\": 100\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewStringListWithMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyString\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"minimum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewStringListWithMax\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyString\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"maximum\": 100,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewStringListWithMaxMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyString\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"minimum\": 50,\r\n                    \"maximum\": 100,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewStringListWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyString\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"New String List Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemLength\",\r\n                    \"minimum\": 50,\r\n                    \"maximum\": 100,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'OldStringListWithMin' must be at least 50 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldStringListWithMin\": {\r\n        \"value\": [\"shortString\"],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'OldStringListWithMax' must not be more than 100 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldStringListWithMax\": {\r\n        \"value\": [\"Improve error message for property validation and property item validationImprove error message for property validation and property item validationImprove error message for property validation and property item validation\"],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'OldStringListWithMaxMin' must be between 50 and 100 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldStringListWithMaxMin\": {\r\n        \"value\": [\"Improve error message for property validation and property item validationImprove error message for property validation and property item validationImprove error message for property validation and property item validation\"],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'Old String List Property With Max Min' must be between 50 and 100 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldStringListWithMaxMin_DisplayName\": {\r\n        \"value\": [\"Improve error message for property validation and property item validationImprove error message for property validation and property item validationImprove error message for property validation and property item validation\"],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation 4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'NewStringListWithMin' must be at least 50 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewStringListWithMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"shortString\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation 5",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'NewStringListWithMax' must not be more than 100 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewStringListWithMax\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"Improve error message for property validation and property item validationImprove error message for property validation and property item validationImprove error message for property validation and property item validation\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation 6",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'NewStringListWithMaxMin' must be between 50 and 100 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewStringListWithMaxMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"Improve error message for property validation and property item validationImprove error message for property validation and property item validationImprove error message for property validation and property item validation\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item length validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'New String List Property With Max Min' must be between 50 and 100 characters.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewStringListWithMaxMin_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"Improve error message for property validation and property item validationImprove error message for property validation and property item validationImprove error message for property validation and property item validation\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeId}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "6. Create content type has list property with itemRange validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);",
+											"",
+											"pm.environment.set(\"contentType\", pm.response.json().name);",
+											"pm.environment.set(\"contentTypeId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ItemRangeValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"OldIntegerListWithMin\",\r\n            \"dataType\": \"PropertyIntegerList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 50\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldIntegerListWithMin_DisplayName\",\r\n            \"dataType\": \"PropertyIntegerList\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Old Integer List With Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": 50\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldDoubleListWithMax\",\r\n            \"dataType\": \"PropertyDoubleList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"severity\": \"error\",\r\n                    \"maximum\": 100\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldDoubleListWithMax_DisplayName\",\r\n            \"dataType\": \"PropertyDoubleList\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Old Double List With Max\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"severity\": \"error\",\r\n                    \"maximum\": 100\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldDateListWithMaxMin\",\r\n            \"dataType\": \"PropertyDateList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldDateListWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyDateList\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Old Date List With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"severity\": \"error\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewIntegerListWithMaxMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyNumber\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"minimum\": 50,\r\n                    \"maximum\": 100,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewIntegerListWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyNumber\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"New Interger List Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"minimum\": 50,\r\n                    \"maximum\": 100,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n                {\r\n            \"name\": \"NewFloatListWithMin\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"minimum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewFloatListWithMin_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"New Float Number List Property With Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"minimum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewDateListWithMax\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyDate\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewDateListWithMax_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyDate\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"New Date List Property With Max\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRange\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item range validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'OldIntegerListWithMin' value must be between 50 and 2147483647.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldIntegerListWithMin\": {\r\n        \"value\": [10,20],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item range validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'Old Integer List With Min' value must be between 50 and 2147483647.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldIntegerListWithMin_DisplayName\": {\r\n        \"value\": [10,20],\r\n        \"propertyDataType\": \"PropertyIntegerList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item range validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'OldDoubleListWithMax' value must be between -1.7976931348623157E+308 and 100.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldDoubleListWithMax\": {\r\n        \"value\": [100.5,20],\r\n        \"propertyDataType\": \"PropertyDoubleList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item range validation 2 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'Old Double List With Max' value must be between -1.7976931348623157E+308 and 100.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldDoubleListWithMax_DisplayName\": {\r\n        \"value\": [100.5,20],\r\n        \"propertyDataType\": \"PropertyDoubleList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item range validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))",
+											"    verifyErrorDetailMessage(\"Item of property 'OldDateListWithMaxMin' value must be between 01/01/2000 17:00:00 and 12/31/2022 17:00:00.\");",
+											"else",
+											"    verifyErrorDetailMessage(\"Item of property 'OldDateListWithMaxMin' value must be between 1/1/2000 5:00:00 PM and 12/31/2022 5:00:00 PM.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldDateListWithMaxMin\": {\r\n        \"value\": [\r\n            \"2100-01-01T17:00:00Z\",\r\n            \"1900-01-01T17:00:00Z\"\r\n            ],\r\n        \"propertyDataType\": \"PropertyDoubleList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item range validation 3 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))",
+											"    verifyErrorDetailMessage(\"Item of property 'Old Date List With Max Min' value must be between 01/01/2000 17:00:00 and 12/31/2022 17:00:00.\");",
+											"else",
+											"    verifyErrorDetailMessage(\"Item of property 'Old Date List With Max Min' value must be between 1/1/2000 5:00:00 PM and 12/31/2022 5:00:00 PM.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldDateListWithMaxMin_DisplayName\": {\r\n        \"value\": [\r\n            \"2100-01-01T17:00:00Z\",\r\n            \"1900-01-01T17:00:00Z\"\r\n            ],\r\n        \"propertyDataType\": \"PropertyDoubleList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item range validation 4",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'NewIntegerListWithMaxMin' value must be between 50 and 100.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewIntegerListWithMaxMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 5,\r\n                \"propertyDataType\": \"PropertyNumber\"\r\n            },\r\n            {\r\n                \"value\": 60,\r\n                \"propertyDataType\": \"PropertyNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item range validation 4 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'New Interger List Property With Max Min' value must be between 50 and 100.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewIntegerListWithMaxMin_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 5,\r\n                \"propertyDataType\": \"PropertyNumber\"\r\n            },\r\n            {\r\n                \"value\": 60,\r\n                \"propertyDataType\": \"PropertyNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item range validation 5",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'NewFloatListWithMin' value must be between 50 and 1.7976931348623157E+308.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewFloatListWithMin\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 5.5,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 60.5,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item range validation 5 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'New Float Number List Property With Min' value must be between 50 and 1.7976931348623157E+308.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewFloatListWithMin_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": 5.5,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            },\r\n            {\r\n                \"value\": 60.5,\r\n                \"propertyDataType\": \"PropertyFloatNumber\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyFloatNumber\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item range validation 6",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))",
+											"    verifyErrorDetailMessage(\"Item of property 'NewDateListWithMax' value must be between 01/01/1753 00:00:00 and 12/31/2022 17:00:00.\");",
+											"else",
+											"    verifyErrorDetailMessage(\"Item of property 'NewDateListWithMax' value must be between 1/1/1753 12:00:00 AM and 12/31/2022 5:00:00 PM.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewDateListWithMax\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"2023-01-01T17:00:00Z\",\r\n                \"propertyDataType\": \"PropertyDate\"\r\n            },\r\n            {\r\n                \"value\": \"2010-01-01T17:00:00Z\",\r\n                \"propertyDataType\": \"PropertyDate\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item range validation 6 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))",
+											"    verifyErrorDetailMessage(\"Item of property 'New Date List Property With Max' value must be between 01/01/1753 00:00:00 and 12/31/2022 17:00:00.\");",
+											"else",
+											"    verifyErrorDetailMessage(\"Item of property 'New Date List Property With Max' value must be between 1/1/1753 12:00:00 AM and 12/31/2022 5:00:00 PM.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewDateListWithMax_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"2023-01-01T17:00:00Z\",\r\n                \"propertyDataType\": \"PropertyDate\"\r\n            },\r\n            {\r\n                \"value\": \"2010-01-01T17:00:00Z\",\r\n                \"propertyDataType\": \"PropertyDate\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeId}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "7. Create content type has list property with itemRange validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(201);",
+											"",
+											"pm.environment.set(\"contentType\", pm.response.json().name);",
+											"pm.environment.set(\"contentTypeId\", pm.response.json().id);"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"ItemRegexValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"OldStringList\",\r\n            \"dataType\": \"PropertyStringList\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRegularExpression\",\r\n                    \"severity\": \"error\",\r\n                    \"pattern\": \"^epi[\\\\w+]\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"OldStringList_DisplayName\",\r\n            \"dataType\": \"PropertyStringList\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Old String List\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRegularExpression\",\r\n                    \"severity\": \"error\",\r\n                    \"pattern\": \"^epi[\\\\w+]\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewStringList\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyString\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRegularExpression\",\r\n                    \"severity\": \"error\",\r\n                    \"pattern\": \"^epi[\\\\w+]\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewStringList_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyString\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"New String List\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRegularExpression\",\r\n                    \"severity\": \"error\",\r\n                    \"pattern\": \"^epi[\\\\w+]\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewLongStringList\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRegularExpression\",\r\n                    \"severity\": \"error\",\r\n                    \"pattern\": \"^epi[\\\\w+]\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"NewLongStringList_DisplayName\",\r\n            \"dataType\": \"PropertyCollection\",\r\n            \"itemType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"editSettings\": {\r\n                \"displayName\": \"New Long String List\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"ItemRegularExpression\",\r\n                    \"severity\": \"error\",\r\n                    \"pattern\": \"^epi[\\\\w+]\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item regex validation",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'OldStringList' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldStringList\": {\r\n        \"value\": [\r\n            \"Not start with epi\",\r\n            \"epi123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content old supported list not match item regex validation - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'Old String List' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"OldStringList_DisplayName\": {\r\n        \"value\": [\r\n            \"Not start with epi\",\r\n            \"epi123\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item regex validation 2",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'NewStringList' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewStringList\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"epi 123 start with epi\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            },\r\n            {\r\n                \"value\": \"not start with epi\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item regex validation 2 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'New String List' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewStringList_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"epi 123 start with epi\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            },\r\n            {\r\n                \"value\": \"not start with epi\",\r\n                \"propertyDataType\": \"PropertyString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item regex validation 3",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'NewLongStringList' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewLongStringList\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"epi 123 start with epi\",\r\n                \"propertyDataType\": \"PropertyLongString\"\r\n            },\r\n            {\r\n                \"value\": \"not start with epi\",\r\n                \"propertyDataType\": \"PropertyLongString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyLongString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content new supported list not match item regex validation 3 - has display name",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"verifyErrorDetailMessage(\"Item of property 'New Long String List' does not match the required pattern.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"NewLongStringList_DisplayName\": {\r\n        \"value\": [\r\n            {\r\n                \"value\": \"epi 123 start with epi\",\r\n                \"propertyDataType\": \"PropertyLongString\"\r\n            },\r\n            {\r\n                \"value\": \"not start with epi\",\r\n                \"propertyDataType\": \"PropertyLongString\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCollection\",\r\n        \"propertyItemType\": \"PropertyLongString\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete the contentType",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{contentTypeId}}",
+									"host": [
+										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
+									],
+									"path": [
+										"{{contentTypeId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Cleanup - Delete parent content",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(204);\r",
+											"\r",
+											"//Unset variables\r",
+											"pm.environment.unset(\"parentId\");\r",
+											"pm.environment.unset(\"contentTypeId\");\r",
+											"pm.environment.unset(\"contentType\");"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept": true
+								}
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Epi-Permanent-Delete",
+										"type": "text",
+										"value": "true"
+									}
+								],
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentId}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									],
+									"path": [
+										"{{parentId}}"
+									]
+								}
+							},
+							"response": []
 						}
 					]
 				},
