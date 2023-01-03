@@ -20360,7 +20360,7 @@
 							"response": []
 						},
 						{
-							"name": "30. Invalid - Create content type with validation RegularExpression \bpattern is null",
+							"name": "30. Invalid - Create content type with validation RegularExpression pattern is null",
 							"event": [
 								{
 									"listen": "test",
@@ -20411,7 +20411,7 @@
 							"response": []
 						},
 						{
-							"name": "Invalid - Create content type with validation RegularExpression \bpattern is empty",
+							"name": "Invalid - Create content type with validation RegularExpression pattern is empty",
 							"event": [
 								{
 									"listen": "test",
@@ -20462,7 +20462,7 @@
 							"response": []
 						},
 						{
-							"name": "Invalid - Create content type with validation RegularExpression \bwithout pattern",
+							"name": "Invalid - Create content type with validation RegularExpression without pattern",
 							"event": [
 								{
 									"listen": "test",
@@ -20514,7 +20514,7 @@
 							"response": []
 						},
 						{
-							"name": "Invalid - Create content type with validation ItemRegularExpression pattern is empty - LongString",
+							"name": "Invalid - Create content type with validation RegularExpression pattern is empty - LongString",
 							"event": [
 								{
 									"listen": "test",
@@ -20726,7 +20726,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);",
-											"verifyErrorDetailMessage(\"Invalid pattern '[0-9]++' at offset 7. Nested quantifier '+'.\");"
+											"verifyErrorDetailMessageStartsWith(\"Invalid pattern '[0-9]++'\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20784,7 +20784,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);",
-											"verifyErrorDetailMessage(\"Invalid pattern '[0-9]++' at offset 7. Nested quantifier '+'.\");"
+											"verifyErrorDetailMessageStartsWith(\"Invalid pattern '[0-9]++'\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20835,7 +20835,7 @@
 							"response": []
 						},
 						{
-							"name": "32. Create content type with extra property of itemRegularExpression validation",
+							"name": "32. Create content type with extra property in validation",
 							"event": [
 								{
 									"listen": "test",
@@ -20847,7 +20847,7 @@
 											"responseBody = pm.response.json();\r",
 											"UpdateContentTypeRequestBody(requestBody, responseBody);\r",
 											"\r",
-											"for(i = 0; i < responseBody.properties.length; i++)\r",
+											"for(i = 0; i < requestBody.properties.length; i++)\r",
 											"{\r",
 											"    delete requestBody.properties[i].validation[0].test;\r",
 											"    delete requestBody.properties[i].validation[0].extraProperty;\r",
@@ -22579,7 +22579,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"name\": \"RangeValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"IntWithMax\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMin\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMaxMin\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Int Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n                {\r\n            \"name\": \"FloatWithMaxMin\",\r\n            \"dataType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"FloatWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Float number Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n                        {\r\n            \"name\": \"DatetimeWithMaxMin\",\r\n            \"dataType\": \"PropertyDate\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"DatetimeWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyDate\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Datetime Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"name\": \"RangeValidation{{$randomInt}}{{$randomInt}}\",\r\n    \"baseType\": \"Page\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"IntWithMax\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMin\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMaxMin\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"IntWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyNumber\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Int Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"FloatWithMaxMin\",\r\n            \"dataType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"FloatWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyFloatNumber\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Float number Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": 10,\r\n                    \"maximum\": 50,\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"DatetimeWithMax\",\r\n            \"dataType\": \"PropertyDate\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"DatetimeWithMaxMin\",\r\n            \"dataType\": \"PropertyDate\",\r\n            \"branchSpecific\": true,\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"name\": \"DatetimeWithMaxMin_DisplayName\",\r\n            \"dataType\": \"PropertyDate\",\r\n            \"branchSpecific\": true,\r\n            \"editSettings\": {\r\n                \"displayName\": \"Datetime Property With Max Min\"\r\n            },\r\n            \"validation\": [\r\n                {\r\n                    \"name\": \"Range\",\r\n                    \"minimum\": \"2000-01-01T17:00:00Z\",\r\n                    \"maximum\": \"2022-12-31T17:00:00Z\",\r\n                    \"severity\": \"error\"\r\n                }\r\n            ]\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -23054,6 +23054,68 @@
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"DatetimeWithMaxMin_DisplayName\": {\r\n        \"value\": \"1900-01-01T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+									"host": [
+										"{{cmsUrl}}{{cmaEndpoint}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Invalid - Create a content not match range validation 6",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"verifyResponseCode(400);",
+											"",
+											"if(pm.environment.get(\"cmsUrl\").includes(\"epimore.com\") || pm.environment.get(\"cmsUrl\").includes(\"azurewebsites.net\") || pm.environment.get(\"cmsUrl\").includes(\"devoops.se\"))",
+											"    verifyErrorDetailMessage(\"Property 'DatetimeWithMax' value must be between 01/01/1753 00:00:00 and 12/31/2022 17:00:00.\");",
+											"else",
+											"    verifyErrorDetailMessage(\"Property 'DatetimeWithMax' value must be between 1/1/1753 12:00:00 AM and 12/31/2022 5:00:00 PM.\");"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {
+									"accept-encoding": true,
+									"connection": true,
+									"user-agent": true
+								}
+							},
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept-Language",
+										"type": "text",
+										"value": "",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"InvalidValidationPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"{{contentType}}\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"id\": {{parentId}}\r\n    },\r\n    \"startPublish\": \"2022-10-24T01:10:05Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"DatetimeWithMax\": {\r\n        \"value\": \"2030-01-01T17:00:00Z\",\r\n        \"propertyDataType\": \"PropertyDate\"\r\n    }\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -54688,6 +54750,11 @@
 					"verifyErrorDetailMessage = (message) =>",
 					"{",
 					"    Assert.IsEqual(\"Verify error detail message\", message, pm.response.json().detail);",
+					"}",
+					"",
+					"verifyErrorDetailMessageStartsWith = (message) =>",
+					"{",
+					"    Assert.IsTrue(\"Verify error detail message\", pm.response.json().detail.startsWith(message));",
 					"}",
 					"",
 					"verifyManifestMessagesInclude = (message, severity = \"error\") =>",
