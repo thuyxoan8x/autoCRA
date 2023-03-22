@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f5448d3e-f417-46b1-b165-2d15614f80e7",
+		"_postman_id": "bb349555-efb9-452a-8ca1-c9f8a1658343",
 		"name": "CMA-NetCore",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6850412"
 	},
 	"item": [
 		{
@@ -3270,9 +3271,6 @@
 													"expectedData = pm.environment.get(\"requestData\");\r",
 													"\r",
 													"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);\r",
-													"\r",
-													"console.log(JSON.stringify(expectedData));\r",
-													"console.log(JSON.stringify(responseBody));\r",
 													"\r",
 													"// Process to loop\r",
 													"contentBodyList = pm.environment.get(\"contentBodyList\").split(',');\r",
@@ -7797,13 +7795,12 @@
 													"Assert.IsEqual(\"Verify linkItem href\", expectedLinkItemHref, response.linkItemProp1.value.href);\r",
 													"Assert.IsEqual(\"Verify linkItem contentLink id\", cmaResponse.linkItemProp1.value.contentLink.id, response.linkItemProp1.value.contentLink.id);\r",
 													"\r",
-													"console.log(cd_remainingUrls);\r",
-													"if(cd_remainingUrls.length > 0)\r",
+													"if (cd_remainingUrls.length > 0)\r",
 													"    postman.setNextRequest(\"44. [HAPI-2411] Create new content with link item href to page with remaining url\");\r",
-													"else\r",
-													"{\r",
+													"else {\r",
 													"    pm.environment.unset(\"cd_remainingUrls\");\r",
 													"    pm.environment.unset(\"cma_remainingUrls\");\r",
+													"    pm.environment.unset(\"cma_remainingUrl\");\r",
 													"}"
 												],
 												"type": "text/javascript"
@@ -8131,6 +8128,7 @@
 													"count = parseInt(pm.environment.get(\"count\"));\r",
 													"pm.environment.set(\"contentStatus\", \"Published\");\r",
 													"var body = data[\"nonFlattenFormat\"][contentBodyList[count]];\r",
+													"console.log(body);\r",
 													"if(contentBodyList[count] !== \"jsonLocalFolderBody\")\r",
 													"    body.status = \"Published\";\r",
 													"\r",
@@ -9115,7 +9113,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"ArticlePage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ArticlePage\"\r\n    ],\r\n\t\"parentLink\": {\r\n\t\t\"id\": \"{{testContainerPageId}}\"\r\n\t},\r\n    \"startPublish\": \"2012-09-17T11:41:23Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [\r\n            {\r\n                \"id\": 4,\r\n                \"name\": \"Track\",\r\n                \"description\": \"Alloy Track\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"metaTitle\": {\r\n        \"value\": \"Alloy saves polar bears\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"ArticlePage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ArticlePage\"\r\n    ],\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n    \"startPublish\": \"2012-09-17T11:41:23Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [\r\n            {\r\n                \"id\": 4,\r\n                \"name\": \"Track\",\r\n                \"description\": \"Alloy Track\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"metaTitle\": {\r\n        \"value\": \"Alloy saves polar bears\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -9179,7 +9177,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"AProductPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n\t\"parentLink\": {\r\n\t\t\"id\": \"{{testContainerPageId}}\"\r\n\t},\r\n    \"startPublish\": \"2012-08-22T15:15:48Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"Project planning\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"AProductPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n    \"startPublish\": \"2012-08-22T15:15:48Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"Project planning\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -11320,8 +11318,6 @@
 													"responseData = SortJson(pm.response.json());\r",
 													"originalData = pm.environment.get(\"originalData\");\r",
 													"expectedData = pm.environment.get(\"patchedBody\");\r",
-													"\r",
-													"console.log(originalData);\r",
 													"\r",
 													"// update expected data based on original\r",
 													"expectedData.contentLink = originalData.contentLink;\r",
@@ -57532,59 +57528,6 @@
 									"response": []
 								},
 								{
-									"name": "Cleanup: Delete parent container page",
-									"event": [
-										{
-											"listen": "prerequest",
-											"script": {
-												"exec": [
-													""
-												],
-												"type": "text/javascript"
-											}
-										},
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"verifyResponseCode(204);"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"disabledSystemHeaders": {
-											"accept": true
-										}
-									},
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Accept",
-												"type": "text",
-												"value": "application/json"
-											},
-											{
-												"key": "X-Epi-Permanent-Delete",
-												"type": "text",
-												"value": "true"
-											}
-										],
-										"url": {
-											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentGuid}}",
-											"host": [
-												"{{cmsUrl}}{{cmaEndpoint}}"
-											],
-											"path": [
-												"{{parentGuid}}"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "Cleanup: Delete parent folder",
 									"event": [
 										{
@@ -57861,8 +57804,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyResponseCode(404);\r",
-													"//Assert.IsEqual(\"Verify message\", \"NotFound\", pm.response.json().Error.Message);\r",
+													"verifyResponseCode(400);\r",
 													"verifyErrorDetailMessage(\"Cannot get parent content\")\r",
 													"\r",
 													"pm.environment.unset(\"nonExistedParentContentGuid\")"
@@ -57874,7 +57816,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.environment.set(\"nonExistedParentContentGuid\", \"79aabb08-8431-4af9-952f-18f2a92973f2\");"
+													"pm.environment.set(\"nonExistedParentContentGuid\", \"aaaabb08-8431-4af9-952f-18f2a92973f2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -58139,6 +58081,59 @@
 												"{{testContainerFolderId}}_{{workId}}",
 												"move",
 												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Cleanup: Delete parent container page",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(204);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentGuid}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											],
+											"path": [
+												"{{parentGuid}}"
 											]
 										}
 									},
@@ -59640,7 +59635,6 @@
 													"}\r",
 													"else\r",
 													"{\r",
-													"    console.log(\"1\");\r",
 													"    UpdateBlockRequestBody(expectedData, responseData, true);\r",
 													"}\r",
 													"\r",
@@ -60126,8 +60120,6 @@
 													"responseData = SortJson(pm.response.json());\r",
 													"originalData = pm.environment.get(\"originalData\");\r",
 													"expectedData = pm.environment.get(\"patchedBody\");\r",
-													"\r",
-													"console.log(originalData);\r",
 													"\r",
 													"// update expected data based on original\r",
 													"expectedData.contentLink = originalData.contentLink;\r",
