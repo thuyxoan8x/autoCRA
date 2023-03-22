@@ -8128,7 +8128,6 @@
 													"count = parseInt(pm.environment.get(\"count\"));\r",
 													"pm.environment.set(\"contentStatus\", \"Published\");\r",
 													"var body = data[\"nonFlattenFormat\"][contentBodyList[count]];\r",
-													"console.log(body);\r",
 													"if(contentBodyList[count] !== \"jsonLocalFolderBody\")\r",
 													"    body.status = \"Published\";\r",
 													"\r",
