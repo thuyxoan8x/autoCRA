@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "710941c7-0b6f-4778-a583-864a67364c17",
+		"_postman_id": "bb349555-efb9-452a-8ca1-c9f8a1658343",
 		"name": "CMA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21606264"
+		"_exporter_id": "6850412"
 	},
 	"item": [
 		{
@@ -7646,6 +7646,204 @@
 									"response": []
 								},
 								{
+									"name": "44. [HAPI-2411] Create new content with link item href to page with remaining url",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(201);\r",
+													"\r",
+													"request = JSON.parse(pm.request.body);\r",
+													"response = pm.response.json();\r",
+													"pm.environment.set(\"contentId\", response.contentLink.id);\r",
+													"\r",
+													"Assert.IsEqual(\"Verify linkItemCollection href\", request.linkItemCollectionProp.value[0].href, response.linkItemCollectionProp.value[0].href);\r",
+													"Assert.IsEqual(\"Verify linkItemCollection contentLink id\", request.linkItemCollectionProp.value[0].contentLink.id, response.linkItemCollectionProp.value[0].contentLink.id);\r",
+													"Assert.IsEqual(\"Verify linkItem href\", request.linkItemProp1.value.href, response.linkItemProp1.value.href);\r",
+													"Assert.IsEqual(\"Verify linkItem contentLink id\", request.linkItemProp1.value.contentLink.id, response.linkItemProp1.value.contentLink.id);\r",
+													"\r",
+													"pm.environment.set(\"responseBody\", response);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"if(!pm.environment.has(\"cma_remainingUrls\"))\r",
+													"{\r",
+													"    pm.environment.set(\"cma_remainingUrls\", [\"?epsremainingpath=value&opt1=123\", \"?epsremainingpath=value&opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
+													"    pm.environment.set(\"cd_remainingUrls\", [\"value?opt1=123\", \"value?opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
+													"}\r",
+													"\r",
+													"cma_remainingUrls = pm.environment.get(\"cma_remainingUrls\");\r",
+													"cma_remainingUrl = cma_remainingUrls.shift();\r",
+													"pm.environment.set(\"cma_remainingUrl\", cma_remainingUrl);\r",
+													"pm.environment.set(\"cma_remainingUrls\", cma_remainingUrls);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {},\r\n    \"name\": \"NewAllPropertiesPage {{$randomInt}}{{$randomInt}}\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"AllPropertiesPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"startPublish\": \"2020-11-11T07:07:20Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"linkItemProp1\": {\r\n        \"value\": {\r\n            \"href\": \"{{cmsUrl}}/en/alloy-plan/{{cma_remainingUrl}}\",\r\n            \"title\": \"linkItemProp1\",\r\n            \"target\": null,\r\n            \"text\": \"link1\",\r\n            \"contentLink\": {\r\n                \"id\": {{alloyPlanId}}\r\n            }\r\n        },\r\n        \"propertyDataType\": \"PropertyLinkItem\"\r\n    },\r\n    \"linkItemCollectionProp\": {\r\n        \"value\": [\r\n            {\r\n            \"href\": \"{{cmsUrl}}/en/alloy-plan/{{cma_remainingUrl}}\",\r\n            \"title\": \"linkItemCollection item1\",\r\n            \"target\": null,\r\n            \"text\": \"link1\",\r\n            \"contentLink\": {\r\n                \"id\": {{alloyPlanId}}\r\n            }\r\n        }\r\n        ],\r\n        \"propertyDataType\": \"PropertyLinkCollection\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CMA get content",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(200);\r",
+													"Assert.IsEqual(\"Verify response\", pm.environment.get(\"responseBody\"), pm.response.json());"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{contentId}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											],
+											"path": [
+												"{{contentId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CD get content",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(200);\r",
+													"\r",
+													"response = pm.response.json();\r",
+													"cd_remainingUrls = pm.environment.get(\"cd_remainingUrls\");\r",
+													"cd_remainingUrl = cd_remainingUrls.shift();\r",
+													"cma_remainingUrl = pm.environment.get(\"cma_remainingUrl\");\r",
+													"pm.environment.set(\"cd_remainingUrls\", cd_remainingUrls);\r",
+													"cmaResponse = pm.environment.get(\"responseBody\");\r",
+													"\r",
+													"expectedLinkItemCollectionHref = cmaResponse.linkItemCollectionProp.value[0].href.replace(cma_remainingUrl, cd_remainingUrl);\r",
+													"expectedLinkItemHref = cmaResponse.linkItemProp1.value.href.replace(cma_remainingUrl, cd_remainingUrl);\r",
+													"\r",
+													"Assert.IsEqual(\"Verify linkItemCollection href\", expectedLinkItemCollectionHref, response.linkItemCollectionProp.value[0].href);\r",
+													"Assert.IsEqual(\"Verify linkItemCollection contentLink id\", cmaResponse.linkItemCollectionProp.value[0].contentLink.id, response.linkItemCollectionProp.value[0].contentLink.id);\r",
+													"Assert.IsEqual(\"Verify linkItem href\", expectedLinkItemHref, response.linkItemProp1.value.href);\r",
+													"Assert.IsEqual(\"Verify linkItem contentLink id\", cmaResponse.linkItemProp1.value.contentLink.id, response.linkItemProp1.value.contentLink.id);\r",
+													"\r",
+													"if (cd_remainingUrls.length > 0)\r",
+													"    postman.setNextRequest(\"44. [HAPI-2411] Create new content with link item href to page with remaining url\");\r",
+													"else {\r",
+													"    pm.environment.unset(\"cd_remainingUrls\");\r",
+													"    pm.environment.unset(\"cma_remainingUrls\");\r",
+													"    pm.environment.unset(\"cma_remainingUrl\");\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cdEndpoint}}/content/{{contentId}}",
+											"host": [
+												"{{cmsUrl}}{{cdEndpoint}}"
+											],
+											"path": [
+												"content",
+												"{{contentId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
 									"name": "Content Cleanup",
 									"event": [
 										{
@@ -8309,59 +8507,6 @@
 									"response": []
 								},
 								{
-									"name": "Cleanup: Delete parent container page",
-									"event": [
-										{
-											"listen": "prerequest",
-											"script": {
-												"exec": [
-													""
-												],
-												"type": "text/javascript"
-											}
-										},
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"verifyResponseCode(204);"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"disabledSystemHeaders": {
-											"accept": true
-										}
-									},
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Accept",
-												"type": "text",
-												"value": "application/json"
-											},
-											{
-												"key": "X-Epi-Permanent-Delete",
-												"type": "text",
-												"value": "true"
-											}
-										],
-										"url": {
-											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentGuid}}",
-											"host": [
-												"{{cmsUrl}}{{cmaEndpoint}}"
-											],
-											"path": [
-												"{{parentGuid}}"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "Cleanup: Delete parent folder",
 									"event": [
 										{
@@ -8638,7 +8783,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyResponseCode(404);\r",
+													"verifyResponseCode(400);\r",
 													"verifyErrorDetailMessage(\"Cannot get parent content\")\r",
 													"\r",
 													"pm.environment.unset(\"nonExistedParentContentGuid\")"
@@ -8854,7 +8999,6 @@
 													"\r",
 													"pm.environment.unset(\"workId\");\r",
 													"// Cleanup at the end of folder\r",
-													"pm.environment.unset(\"parentGuid\");\r",
 													"pm.environment.unset(\"parentFolderId\");\r",
 													"pm.environment.unset(\"contentStatus\");\r",
 													"pm.environment.unset(\"movedGuid\");\r",
@@ -8915,6 +9059,256 @@
 												"{{testContainerFolderId}}_{{workId}}",
 												"move",
 												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "[HAPI-2506] Create an ArticlePage",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(201);\r",
+													"pm.environment.set(\"movedGuid\", pm.response.json().contentLink.guidValue);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json",
+												"disabled": true
+											},
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"ArticlePage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ArticlePage\"\r\n    ],\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n    \"startPublish\": \"2012-09-17T11:41:23Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"category\": {\r\n        \"value\": [\r\n            {\r\n                \"id\": 4,\r\n                \"name\": \"Track\",\r\n                \"description\": \"Alloy Track\"\r\n            }\r\n        ],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    },\r\n    \"metaTitle\": {\r\n        \"value\": \"Alloy saves polar bears\",\r\n        \"propertyDataType\": \"PropertyLongString\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create a Product page",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(201);\r",
+													"pm.environment.set(\"contentId\", pm.response.json().contentLink.id);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json",
+												"disabled": true
+											},
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {\r\n    },\r\n    \"name\": \"AProductPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"ProductPage\"\r\n    ],\r\n\t\"parentLink\": {\r\n\t\t\"guidValue\": \"{{parentGuid}}\"\r\n\t},\r\n    \"startPublish\": \"2012-08-22T15:15:48Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"Published\",\r\n    \"uniqueSellingPoints\": {\r\n        \"value\": [\r\n            \"Project planning\"\r\n        ],\r\n        \"propertyDataType\": \"PropertyStringList\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Invalid - Move a Product page to an Article page destination which does not allow Product page",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(400);\r",
+													"verifyErrorDetailMessage(\"Content type \\\"ProductPage\\\" is not allowed to be created under parent of content type \\\"ArticlePage\\\"\");"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json",
+												"disabled": true
+											},
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\t\"parentLink\":{\r\n\t\t\"guidValue\": \"{{movedGuid}}\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{contentId}}/move/",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											],
+											"path": [
+												"{{contentId}}",
+												"move",
+												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Cleanup: Delete parent container page",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(204);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentGuid}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											],
+											"path": [
+												"{{parentGuid}}"
 											]
 										}
 									},
@@ -10923,8 +11317,6 @@
 													"responseData = SortJson(pm.response.json());\r",
 													"originalData = pm.environment.get(\"originalData\");\r",
 													"expectedData = pm.environment.get(\"patchedBody\");\r",
-													"\r",
-													"console.log(originalData);\r",
 													"\r",
 													"// update expected data based on original\r",
 													"expectedData.contentLink = originalData.contentLink;\r",
@@ -22583,7 +22975,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -22644,7 +23036,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -25666,7 +26058,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -25727,7 +26119,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -57135,59 +57527,6 @@
 									"response": []
 								},
 								{
-									"name": "Cleanup: Delete parent container page",
-									"event": [
-										{
-											"listen": "prerequest",
-											"script": {
-												"exec": [
-													""
-												],
-												"type": "text/javascript"
-											}
-										},
-										{
-											"listen": "test",
-											"script": {
-												"exec": [
-													"verifyResponseCode(204);"
-												],
-												"type": "text/javascript"
-											}
-										}
-									],
-									"protocolProfileBehavior": {
-										"disabledSystemHeaders": {
-											"accept": true
-										}
-									},
-									"request": {
-										"method": "DELETE",
-										"header": [
-											{
-												"key": "Accept",
-												"type": "text",
-												"value": "application/json"
-											},
-											{
-												"key": "X-Epi-Permanent-Delete",
-												"type": "text",
-												"value": "true"
-											}
-										],
-										"url": {
-											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentGuid}}",
-											"host": [
-												"{{cmsUrl}}{{cmaEndpoint}}"
-											],
-											"path": [
-												"{{parentGuid}}"
-											]
-										}
-									},
-									"response": []
-								},
-								{
 									"name": "Cleanup: Delete parent folder",
 									"event": [
 										{
@@ -57464,8 +57803,7 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyResponseCode(404);\r",
-													"//Assert.IsEqual(\"Verify message\", \"NotFound\", pm.response.json().Error.Message);\r",
+													"verifyResponseCode(400);\r",
 													"verifyErrorDetailMessage(\"Cannot get parent content\")\r",
 													"\r",
 													"pm.environment.unset(\"nonExistedParentContentGuid\")"
@@ -57477,7 +57815,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.environment.set(\"nonExistedParentContentGuid\", \"79aabb08-8431-4af9-952f-18f2a92973f2\");"
+													"pm.environment.set(\"nonExistedParentContentGuid\", \"aaaabb08-8431-4af9-952f-18f2a92973f2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -57742,6 +58080,59 @@
 												"{{testContainerFolderId}}_{{workId}}",
 												"move",
 												""
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Cleanup: Delete parent container page",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(204);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"type": "text",
+												"value": "true"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentGuid}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											],
+											"path": [
+												"{{parentGuid}}"
 											]
 										}
 									},
@@ -59243,7 +59634,6 @@
 													"}\r",
 													"else\r",
 													"{\r",
-													"    console.log(\"1\");\r",
 													"    UpdateBlockRequestBody(expectedData, responseData, true);\r",
 													"}\r",
 													"\r",
@@ -59729,8 +60119,6 @@
 													"responseData = SortJson(pm.response.json());\r",
 													"originalData = pm.environment.get(\"originalData\");\r",
 													"expectedData = pm.environment.get(\"patchedBody\");\r",
-													"\r",
-													"console.log(originalData);\r",
 													"\r",
 													"// update expected data based on original\r",
 													"expectedData.contentLink = originalData.contentLink;\r",
@@ -71260,7 +71648,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -71321,7 +71709,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -74338,7 +74726,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -74399,7 +74787,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(409);\r",
-													"verifyErrorDetailMessage(\"A content item with the same id and a different parent already exists.\");"
+													"verifyErrorDetailMessage(\"A content item with the same identifier and a different parent already exists.\");"
 												],
 												"type": "text/javascript"
 											}
@@ -76319,6 +76707,7 @@
 					"            requestBody.linkItemProp3.value.href = responseBody.linkItemProp3.value.href;",
 					"        }",
 					"        requestBody.urlProp.value = responseBody.urlProp.value;",
+					"        requestBody.contentAreaProp.value[0].inlineBlock = responseBody.contentAreaProp.value[0].inlineBlock;",
 					"        if (responseBody.editorialBlock !== undefined && responseBody.editorialBlock.propertyItemType !== undefined) {",
 					"            requestBody.editorialBlock.propertyItemType = responseBody.editorialBlock.propertyItemType;",
 					"        }",
@@ -76352,6 +76741,7 @@
 					"            requestBody.linkItemProp3.href = responseBody.linkItemProp3.href;",
 					"        }",
 					"        requestBody.urlProp = responseBody.urlProp;",
+					"        requestBody.contentAreaProp[0].inlineBlock = responseBody.contentAreaProp[0].inlineBlock;",
 					"    }",
 					"    requestBody.previewUrl = responseBody.previewUrl;",
 					"    requestBody.editUrl = responseBody.editUrl;",
@@ -76362,14 +76752,17 @@
 					"/////////////////////////////////////////////////////////",
 					"UpdateProductPageRequestBody = (requestBody, responseBody, isFlatten = false) => {",
 					"    console.log(responseBody.relatedContentArea.value)",
-					"    if (!isFlatten) ",
-					"    {",
+					"    if (!isFlatten) {",
 					"        if (responseBody.relatedContentArea.value != null)",
+					"        {",
 					"            requestBody.relatedContentArea.value[0].contentLink.guidValue = responseBody.relatedContentArea.value[0].contentLink.guidValue;",
+					"            requestBody.relatedContentArea.value[0].inlineBlock = responseBody.relatedContentArea.value[0].inlineBlock;",
+					"        }",
 					"    }",
 					"    else // Flatten mode",
 					"    {",
 					"        requestBody.relatedContentArea[0].contentLink.guidValue = responseBody.relatedContentArea[0].contentLink.guidValue;",
+					"        requestBody.relatedContentArea[0].inlineBlock = responseBody.relatedContentArea[0].inlineBlock;",
 					"    }",
 					"    requestBody.previewUrl = responseBody.previewUrl;",
 					"    requestBody.editUrl = responseBody.editUrl;",
