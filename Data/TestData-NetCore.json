@@ -1185,13 +1185,13 @@
 				"propertyDataType": "PropertyLongString"
 			}
 		},
-		"MediaWithAllPropertiesBody": {
+		"AutoTestAllPropertiesMediaBody": {
 			"contentLink": {
 			},
 			"name": "{{fileName}}",
 			"contentType": [
 				"Media",
-				"MediaWithAllProperties"
+				"AutoTestAllPropertiesMedia"
 			],
 			"parentLink": {
 				"id": "{{parentId}}"
@@ -1397,7 +1397,7 @@
 				"propertyDataType": "PropertyLongString"
 			}
 		},
-		"MediaWithAllPropertiesBodyPatch": {
+		"AutoTestAllPropertiesMediaBodyPatch": {
 			"name": "{{updatedFileName}}",
 			"startPublish": "2020-11-09T09:03:36Z",
 			"stopPublish": null,

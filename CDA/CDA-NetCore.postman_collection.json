@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "033aea2c-997a-4e4a-8ba1-1c73682e006a",
+		"_postman_id": "bd43f2a3-6c2a-45b8-ba38-26a6b622fb31",
 		"name": "CDA-NetCore",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6850412"
 	},
 	"item": [
 		{
@@ -2954,15 +2955,15 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", count);\r",
+													"    pm.environment.set(\"count\", count);\r",
 													"    \r",
-													"pm.variables.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);"
 												],
 												"type": "text/javascript"
 											}
@@ -3069,18 +3070,18 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// Loop to create new content type\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"1. Create content type\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
-													"    pm.variables.unset(\"baseTypeList\");\r",
+													"    pm.environment.unset(\"count\");\r",
+													"    pm.environment.unset(\"baseTypeList\");\r",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3118,16 +3119,16 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"if(!pm.variables.has(\"baseTypeList\"))\r",
-													"    pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"if(!pm.environment.has(\"baseTypeList\"))\r",
+													"    pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", count);\r",
+													"    pm.environment.set(\"count\", count);\r",
 													"    \r",
-													"pm.variables.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);"
 												],
 												"type": "text/javascript"
 											}
@@ -3232,18 +3233,18 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// Loop to create new content type\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"2. Create contentType with displayName, Hint, HelpText contain special characters\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
-													"    pm.variables.unset(\"baseTypeList\");\r",
+													"    pm.environment.unset(\"count\");\r",
+													"    pm.environment.unset(\"baseTypeList\");\r",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3281,16 +3282,16 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"if(!pm.variables.has(\"baseTypeList\"))\r",
-													"    pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"if(!pm.environment.has(\"baseTypeList\"))\r",
+													"    pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", count);\r",
+													"    pm.environment.set(\"count\", count);\r",
 													"    \r",
-													"pm.variables.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);"
 												],
 												"type": "text/javascript"
 											}
@@ -3401,18 +3402,18 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// Loop to create new content type\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"3. Create ContentType with spaces at begin and end of displayName, groupName, hint, helpText\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
-													"    pm.variables.unset(\"baseTypeList\");\r",
+													"    pm.environment.unset(\"count\");\r",
+													"    pm.environment.unset(\"baseTypeList\");\r",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3450,21 +3451,21 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"if(!pm.variables.has(\"baseTypeList\"))\r",
-													"    pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"if(!pm.environment.has(\"baseTypeList\"))\r",
+													"    pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", count);\r",
+													"    pm.environment.set(\"count\", count);\r",
 													"    \r",
-													"pm.variables.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);\r",
-													"pm.variables.set(\"contentTypeName\", \"a\" + getRandomString(49));\r",
-													"pm.variables.set(\"propertyName\", \"b\" + getRandomString(99));\r",
-													"pm.variables.set(\"displayName\", \"c\" + getRandomString(254));\r",
-													"pm.variables.set(\"helpText\", getRandomString(2000));\r",
-													"pm.variables.set(\"hint\", getRandomString(255));"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);\r",
+													"pm.environment.set(\"contentTypeName\", \"a\" + getRandomString(49));\r",
+													"pm.environment.set(\"propertyName\", \"b\" + getRandomString(99));\r",
+													"pm.environment.set(\"displayName\", \"c\" + getRandomString(254));\r",
+													"pm.environment.set(\"helpText\", getRandomString(2000));\r",
+													"pm.environment.set(\"hint\", getRandomString(255));"
 												],
 												"type": "text/javascript"
 											}
@@ -3569,23 +3570,23 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// Loop to create new content type\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"4. Create none existed ContentType with maxLength_of_properties\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
-													"    pm.variables.unset(\"baseTypeList\");\r",
-													"    pm.variables.unset(\"contentTypeName\");\r",
-													"    pm.variables.unset(\"propertyName\");\r",
-													"    pm.variables.unset(\"displayName\");\r",
-													"    pm.variables.unset(\"helpText\");\r",
-													"    pm.variables.unset(\"hint\");\r",
+													"    pm.environment.unset(\"count\");\r",
+													"    pm.environment.unset(\"baseTypeList\");\r",
+													"    pm.environment.unset(\"contentTypeName\");\r",
+													"    pm.environment.unset(\"propertyName\");\r",
+													"    pm.environment.unset(\"displayName\");\r",
+													"    pm.environment.unset(\"helpText\");\r",
+													"    pm.environment.unset(\"hint\");\r",
 													"}"
 												],
 												"type": "text/javascript"
@@ -3623,16 +3624,16 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"if(!pm.variables.has(\"baseTypeList\"))\r",
-													"    pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"if(!pm.environment.has(\"baseTypeList\"))\r",
+													"    pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", count);\r",
+													"    pm.environment.set(\"count\", count);\r",
 													"    \r",
-													"pm.variables.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);"
 												],
 												"type": "text/javascript"
 											}
@@ -3741,18 +3742,18 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// Loop to create new content type\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"5. Create ContentType with with missing hint, groupName, helpText, orderBy\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
-													"    pm.variables.unset(\"baseTypeList\");\r",
+													"    pm.environment.unset(\"count\");\r",
+													"    pm.environment.unset(\"baseTypeList\");\r",
 													"    pm.environment.unset(\"requestData\");\r",
 													"    pm.environment.unset(\"contentTypeGuid\");\r",
 													"}"
@@ -3892,7 +3893,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidBaseType\", getRandomString(32));"
+													"pm.environment.set(\"invalidBaseType\", getRandomString(32));"
 												],
 												"type": "text/javascript"
 											}
@@ -3903,10 +3904,10 @@
 												"exec": [
 													"verifyResponseCode(400);\r",
 													"verifyErrorMessage(\"baseType\", [\r",
-													"        \"There is no base type registered with identifier '\" + pm.variables.get(\"invalidBaseType\") + \"'\"\r",
+													"        \"There is no base type registered with identifier '\" + pm.environment.get(\"invalidBaseType\") + \"'\"\r",
 													"    ]);\r",
 													"\r",
-													"pm.variables.unset(\"invalidBaseType\");"
+													"pm.environment.unset(\"invalidBaseType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -4032,7 +4033,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidName\", getRandomStringIncludeSpecialCharacter(32));"
+													"pm.environment.set(\"invalidName\", getRandomStringIncludeSpecialCharacter(32));"
 												],
 												"type": "text/javascript"
 											}
@@ -4046,7 +4047,7 @@
 													"        \"The field Name must match the regular expression '[a-zA-Z][\\\\w]*'.\"\r",
 													"    ]);\r",
 													"\r",
-													"pm.variables.unset(\"invalidName\");"
+													"pm.environment.unset(\"invalidName\");"
 												],
 												"type": "text/javascript"
 											}
@@ -4080,7 +4081,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidName\", getRandomString(51));"
+													"pm.environment.set(\"invalidName\", getRandomString(51));"
 												],
 												"type": "text/javascript"
 											}
@@ -4094,7 +4095,7 @@
 													"        \"The field Name must be a string or array type with a maximum length of '50'.\"\r",
 													"    ]);\r",
 													"\r",
-													"pm.variables.unset(\"invalidName\");"
+													"pm.environment.unset(\"invalidName\");"
 												],
 												"type": "text/javascript"
 											}
@@ -4128,10 +4129,10 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidPropertyName\", getRandomString(101));\r",
-													"pm.variables.set(\"invalidDisplayName\", getRandomString(256));\r",
-													"pm.variables.set(\"invalidHelpText\", getRandomString(2001));\r",
-													"pm.variables.set(\"invalidHint\", getRandomString(256));"
+													"pm.environment.set(\"invalidPropertyName\", getRandomString(101));\r",
+													"pm.environment.set(\"invalidDisplayName\", getRandomString(256));\r",
+													"pm.environment.set(\"invalidHelpText\", getRandomString(2001));\r",
+													"pm.environment.set(\"invalidHint\", getRandomString(256));"
 												],
 												"type": "text/javascript"
 											}
@@ -4146,10 +4147,10 @@
 													"verifyErrorMessage(\"properties[0].EditSettings.HelpText\", [\"The field HelpText must be a string or array type with a maximum length of '2000'.\"]);\r",
 													"verifyErrorMessage(\"properties[0].EditSettings.Hint\", [\"The field Hint must be a string or array type with a maximum length of '255'.\"]);\r",
 													"\r",
-													"pm.variables.unset(\"invalidPropertyName\");\r",
-													"pm.variables.unset(\"invalidDisplayName\");\r",
-													"pm.variables.unset(\"invalidHelpText\");\r",
-													"pm.variables.unset(\"invalidHint\");"
+													"pm.environment.unset(\"invalidPropertyName\");\r",
+													"pm.environment.unset(\"invalidDisplayName\");\r",
+													"pm.environment.unset(\"invalidHelpText\");\r",
+													"pm.environment.unset(\"invalidHint\");"
 												],
 												"type": "text/javascript"
 											}
@@ -4317,7 +4318,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"propertyName\", getRandomString(10));"
+													"pm.environment.set(\"propertyName\", getRandomString(10));"
 												],
 												"type": "text/javascript"
 											}
@@ -4327,9 +4328,9 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(400);\r",
-													"verifyErrorMessage(pm.variables.get(\"propertyName\"), [\"Multiple properties with name '\" + pm.variables.get(\"propertyName\") + \"' found.\"]);\r",
+													"verifyErrorMessage(pm.environment.get(\"propertyName\"), [\"Multiple properties with name '\" + pm.environment.get(\"propertyName\") + \"' found.\"]);\r",
 													"\r",
-													"pm.variables.unset(\"propertyName\");"
+													"pm.environment.unset(\"propertyName\");"
 												],
 												"type": "text/javascript"
 											}
@@ -4409,8 +4410,8 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"propertyName\", getRandomString(20));\r",
-													"pm.variables.set(\"invalidGroupName\", getRandomString(10));"
+													"pm.environment.set(\"propertyName\", getRandomString(20));\r",
+													"pm.environment.set(\"invalidGroupName\", getRandomString(10));"
 												],
 												"type": "text/javascript"
 											}
@@ -4420,10 +4421,10 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(400);\r",
-													"verifyErrorMessage(pm.variables.get(\"propertyName\"), [\"The group \" + pm.variables.get(\"invalidGroupName\") + \" is not valid.\"]);\r",
+													"verifyErrorMessage(pm.environment.get(\"propertyName\"), [\"The group \" + pm.environment.get(\"invalidGroupName\") + \" is not valid.\"]);\r",
 													"\r",
-													"pm.variables.unset(\"invalidGroupName\");\r",
-													"pm.variables.unset(\"propertyName\");"
+													"pm.environment.unset(\"invalidGroupName\");\r",
+													"pm.environment.unset(\"propertyName\");"
 												],
 												"type": "text/javascript"
 											}
@@ -4479,15 +4480,15 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", 0);\r",
+													"    pm.environment.set(\"count\", 0);\r",
 													"    \r",
-													"pm.environment.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);"
 												],
 												"type": "text/javascript"
 											}
@@ -4683,17 +4684,17 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// process to loop\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"14. Preparation - Create content type for update\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
+													"    pm.environment.unset(\"count\");\r",
 													"    pm.environment.unset(\"baseType\");\r",
 													"    pm.environment.unset(\"editSettings\");\r",
 													"    pm.environment.unset(\"updatedRequestData\");\r",
@@ -4752,15 +4753,15 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", 0);\r",
+													"    pm.environment.set(\"count\", 0);\r",
 													"    \r",
-													"pm.environment.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);"
 												],
 												"type": "text/javascript"
 											}
@@ -4941,17 +4942,17 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// process to loop\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"15. Preparation - Create content type for update\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
+													"    pm.environment.unset(\"count\");\r",
 													"    pm.environment.unset(\"baseType\");\r",
 													"    pm.environment.unset(\"editSettings\");\r",
 													"    pm.environment.unset(\"updatedRequestData\");\r",
@@ -4993,15 +4994,15 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
+													"pm.environment.set(\"baseTypeList\", [\"Page\", \"Block\"]);\r",
 													"\r",
 													"count = 0;\r",
-													"if(pm.variables.has(\"count\"))\r",
-													"    count = parseInt(pm.variables.get(\"count\"));\r",
+													"if(pm.environment.has(\"count\"))\r",
+													"    count = parseInt(pm.environment.get(\"count\"));\r",
 													"else\r",
-													"    pm.variables.set(\"count\", 0);\r",
+													"    pm.environment.set(\"count\", 0);\r",
 													"    \r",
-													"pm.environment.set(\"baseType\", pm.variables.get(\"baseTypeList\")[count]);"
+													"pm.environment.set(\"baseType\", pm.environment.get(\"baseTypeList\")[count]);"
 												],
 												"type": "text/javascript"
 											}
@@ -5115,17 +5116,17 @@
 													"verifyResponseCode(204);\r",
 													"\r",
 													"// process to loop\r",
-													"count = parseInt(pm.variables.get(\"count\"));\r",
-													"baseTypeList = pm.variables.get(\"baseTypeList\");\r",
+													"count = parseInt(pm.environment.get(\"count\"));\r",
+													"baseTypeList = pm.environment.get(\"baseTypeList\");\r",
 													"\r",
 													"if(count < baseTypeList.length - 1)\r",
 													"{\r",
-													"    pm.variables.set(\"count\", count + 1);\r",
+													"    pm.environment.set(\"count\", count + 1);\r",
 													"    postman.setNextRequest(\"16. Create contentType by PUT request\");\r",
 													"}\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"count\");\r",
+													"    pm.environment.unset(\"count\");\r",
 													"    pm.environment.unset(\"baseType\");\r",
 													"    pm.environment.unset(\"updatedRequestData\");\r",
 													"    pm.environment.unset(\"contentTypeGuid\");\r",
@@ -5505,7 +5506,7 @@
 													"            \"The field Description must be a string or array type with a maximum length of '255'.\"\r",
 													"        ])\r",
 													"\r",
-													"pm.variables.unset(\"invalidDescription\");"
+													"pm.environment.unset(\"invalidDescription\");"
 												],
 												"type": "text/javascript"
 											}
@@ -5514,7 +5515,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidDescription\", getRandomString(256));"
+													"pm.environment.set(\"invalidDescription\", getRandomString(256));"
 												],
 												"type": "text/javascript"
 											}
@@ -5572,7 +5573,7 @@
 													"verifyErrorMessage(\"editSettings.DisplayName\", [\r",
 													"            \"The field DisplayName must be a string or array type with a maximum length of '50'.\"\r",
 													"        ])\r",
-													"pm.variables.unset(\"invalidName\");"
+													"pm.environment.unset(\"invalidName\");"
 												],
 												"type": "text/javascript"
 											}
@@ -5581,7 +5582,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidName\", getRandomString(51));"
+													"pm.environment.set(\"invalidName\", getRandomString(51));"
 												],
 												"type": "text/javascript"
 											}
@@ -5648,7 +5649,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidName\", getRandomString(51));"
+													"pm.environment.set(\"invalidName\", getRandomString(51));"
 												],
 												"type": "text/javascript"
 											}
@@ -6104,7 +6105,7 @@
 													"verifyErrorMessage(\"editSettings.Description\", [\r",
 													"            \"The field DisplayName must be a string or array type with a maximum length of '50'.\"\r",
 													"        ])\r",
-													"pm.variables.unset(\"invalidName\");"
+													"pm.environment.unset(\"invalidName\");"
 												],
 												"type": "text/javascript"
 											}
@@ -6113,7 +6114,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidName\", getRandomString(51));"
+													"pm.environment.set(\"invalidName\", getRandomString(51));"
 												],
 												"type": "text/javascript"
 											}
@@ -6181,7 +6182,7 @@
 													"            \"The field Description must be a string or array type with a maximum length of '255'.\"\r",
 													"        ])\r",
 													"\r",
-													"pm.variables.unset(\"invalidDescription\");"
+													"pm.environment.unset(\"invalidDescription\");"
 												],
 												"type": "text/javascript"
 											}
@@ -6190,7 +6191,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidDescription\", getRandomString(256));"
+													"pm.environment.set(\"invalidDescription\", getRandomString(256));"
 												],
 												"type": "text/javascript"
 											}
@@ -6265,7 +6266,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"invalidName\", getRandomString(51));"
+													"pm.environment.set(\"invalidName\", getRandomString(51));"
 												],
 												"type": "text/javascript"
 											}
@@ -8676,7 +8677,7 @@
 													"\t\t\t\t\"hint\": getRandomString(40)\r",
 													"\t\t\t}\r",
 													"\r",
-													"pm.variables.set(\"newEditSettings\", JSON.stringify(newEditSettings));"
+													"pm.environment.set(\"newEditSettings\", JSON.stringify(newEditSettings));"
 												],
 												"type": "text/javascript"
 											}
@@ -8926,7 +8927,7 @@
 													"\t\t\t\t\"sortOrder\": 50,\r",
 													"\t\t\t}\r",
 													"\r",
-													"pm.variables.set(\"newEditSettings\", JSON.stringify(newEditSettings));"
+													"pm.environment.set(\"newEditSettings\", JSON.stringify(newEditSettings));"
 												],
 												"type": "text/javascript"
 											}
@@ -9183,7 +9184,7 @@
 													"\t\"hint\": \"<img onload=\\\"alert(123)\\\" src=\\\"http://goo.gl/NtEiA7\\\" />\"\r",
 													"}\r",
 													"\r",
-													"pm.variables.set(\"newEditSettings\", JSON.stringify(newEditSettings));"
+													"pm.environment.set(\"newEditSettings\", JSON.stringify(newEditSettings));"
 												],
 												"type": "text/javascript"
 											}
@@ -10682,7 +10683,7 @@
 								"type": "text/javascript",
 								"exec": [
 									"var arrBaseType=[\"Page\", \"Block\", \"Video\", \"Image\", \"Media\"];",
-									"pm.variables.set('arrBaseType', arrBaseType);"
+									"pm.environment.set('arrBaseType', arrBaseType);"
 								]
 							}
 						},
@@ -18513,10 +18514,10 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"The property '\" + pm.variables.get(\"propertyName\") + \"' on content type '\" + pm.variables.get(\"contentTypeName\") + \"' has a 'Length' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
+											"verifyErrorDetailMessage(\"The property '\" + pm.environment.get(\"propertyName\") + \"' on content type '\" + pm.environment.get(\"contentTypeName\") + \"' has a 'Length' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
 											"\r",
-											"pm.variables.unset(\"contentTypeName\");\r",
-											"pm.variables.unset(\"propertyName\");"
+											"pm.environment.unset(\"contentTypeName\");\r",
+											"pm.environment.unset(\"propertyName\");"
 										],
 										"type": "text/javascript"
 									}
@@ -18525,8 +18526,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.variables.set(\"contentTypeName\", \"LengthValidationInvalidMinMaxType\");\r",
-											"pm.variables.set(\"propertyName\", \"LengthValidationInvalidMinMaxProperty\");"
+											"pm.environment.set(\"contentTypeName\", \"LengthValidationInvalidMinMaxType\");\r",
+											"pm.environment.set(\"propertyName\", \"LengthValidationInvalidMinMaxProperty\");"
 										],
 										"type": "text/javascript"
 									}
@@ -18568,10 +18569,10 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"The property '\" + pm.variables.get(\"propertyName\") + \"' on content type '\" + pm.variables.get(\"contentTypeName\") + \"' has a 'Length' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
+											"verifyErrorDetailMessage(\"The property '\" + pm.environment.get(\"propertyName\") + \"' on content type '\" + pm.environment.get(\"contentTypeName\") + \"' has a 'Length' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
 											"\r",
-											"pm.variables.unset(\"contentTypeName\");\r",
-											"pm.variables.unset(\"propertyName\");"
+											"pm.environment.unset(\"contentTypeName\");\r",
+											"pm.environment.unset(\"propertyName\");"
 										],
 										"type": "text/javascript"
 									}
@@ -18580,8 +18581,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.variables.set(\"contentTypeName\", \"LengthValidationInvalidMinMaxType\");\r",
-											"pm.variables.set(\"propertyName\", \"LengthValidationInvalidMinMaxProperty\");"
+											"pm.environment.set(\"contentTypeName\", \"LengthValidationInvalidMinMaxType\");\r",
+											"pm.environment.set(\"propertyName\", \"LengthValidationInvalidMinMaxProperty\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20147,10 +20148,10 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"The property '\" + pm.variables.get(\"propertyName\") + \"' on content type '\" + pm.variables.get(\"contentTypeName\") + \"' has a 'Range' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
+											"verifyErrorDetailMessage(\"The property '\" + pm.environment.get(\"propertyName\") + \"' on content type '\" + pm.environment.get(\"contentTypeName\") + \"' has a 'Range' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
 											"\r",
-											"pm.variables.unset(\"contentTypeName\");\r",
-											"pm.variables.unset(\"propertyName\");"
+											"pm.environment.unset(\"contentTypeName\");\r",
+											"pm.environment.unset(\"propertyName\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20159,8 +20160,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.variables.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
-											"pm.variables.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
+											"pm.environment.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
+											"pm.environment.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20202,10 +20203,10 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"The property '\" + pm.variables.get(\"propertyName\") + \"' on content type '\" + pm.variables.get(\"contentTypeName\") + \"' has a 'Range' validation that contains a validation setting 'Maximum' with an invalid format.\");\r",
+											"verifyErrorDetailMessage(\"The property '\" + pm.environment.get(\"propertyName\") + \"' on content type '\" + pm.environment.get(\"contentTypeName\") + \"' has a 'Range' validation that contains a validation setting 'Maximum' with an invalid format.\");\r",
 											"\r",
-											"pm.variables.unset(\"contentTypeName\");\r",
-											"pm.variables.unset(\"propertyName\");"
+											"pm.environment.unset(\"contentTypeName\");\r",
+											"pm.environment.unset(\"propertyName\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20214,8 +20215,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.variables.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
-											"pm.variables.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
+											"pm.environment.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
+											"pm.environment.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20257,10 +20258,10 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"The property '\" + pm.variables.get(\"propertyName\") + \"' on content type '\" + pm.variables.get(\"contentTypeName\") + \"' has a 'ItemRange' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
+											"verifyErrorDetailMessage(\"The property '\" + pm.environment.get(\"propertyName\") + \"' on content type '\" + pm.environment.get(\"contentTypeName\") + \"' has a 'ItemRange' validation that contains a validation setting 'Minimum' with an invalid format.\");\r",
 											"\r",
-											"pm.variables.unset(\"contentTypeName\");\r",
-											"pm.variables.unset(\"propertyName\");"
+											"pm.environment.unset(\"contentTypeName\");\r",
+											"pm.environment.unset(\"propertyName\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20269,8 +20270,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.variables.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
-											"pm.variables.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
+											"pm.environment.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
+											"pm.environment.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20312,10 +20313,10 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorDetailMessage(\"The property '\" + pm.variables.get(\"propertyName\") + \"' on content type '\" + pm.variables.get(\"contentTypeName\") + \"' has a 'ItemRange' validation that contains a validation setting 'Maximum' with an invalid format.\");\r",
+											"verifyErrorDetailMessage(\"The property '\" + pm.environment.get(\"propertyName\") + \"' on content type '\" + pm.environment.get(\"contentTypeName\") + \"' has a 'ItemRange' validation that contains a validation setting 'Maximum' with an invalid format.\");\r",
 											"\r",
-											"pm.variables.unset(\"contentTypeName\");\r",
-											"pm.variables.unset(\"propertyName\");"
+											"pm.environment.unset(\"contentTypeName\");\r",
+											"pm.environment.unset(\"propertyName\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20324,8 +20325,8 @@
 									"listen": "prerequest",
 									"script": {
 										"exec": [
-											"pm.variables.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
-											"pm.variables.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
+											"pm.environment.set(\"contentTypeName\", \"RangeValidationInvalidMinMaxType\");\r",
+											"pm.environment.set(\"propertyName\", \"RangeValidationInvalidMinMaxProperty\");"
 										],
 										"type": "text/javascript"
 									}
@@ -20469,8 +20470,12 @@
 									"script": {
 										"exec": [
 											"// Waiting for CMS-26127",
-											"verifyResponseCode(400);",
-											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+											"if (pm.response.code == 201)",
+											"    verifyResponseCode(201);",
+											"else {",
+											"    verifyResponseCode(400);",
+											"    verifyErrorDetailMessage(\"Pattern should not be null or empty.\");",
+											"}"
 										],
 										"type": "text/javascript"
 									}
@@ -20674,8 +20679,13 @@
 									"script": {
 										"exec": [
 											"// Waiting for bug fixed CMS-26127",
-											"verifyResponseCode(400);",
-											"verifyErrorDetailMessage(\"Pattern should not be null or empty.\");"
+											"if (pm.response.code == 201)",
+											"    verifyResponseCode(201);",
+											"else {",
+											"    verifyResponseCode(400);",
+											"    verifyErrorDetailMessage(\"Pattern should not be null or empty.\");",
+											"}",
+											""
 										],
 										"type": "text/javascript"
 									}
@@ -36988,7 +36998,7 @@
 													"contentTypes = pm.response.json();\r",
 													"genericMediaTypeGuid = \"\";\r",
 													"imageFileTypeGuid = \"\";\r",
-													"myCustomMediaTypeGuid = \"\";\r",
+													"autoTestCustomMediaTypeGuid = \"\";\r",
 													"\r",
 													"for (i = 0; i < contentTypes.length; i++)\r",
 													"    if (contentTypes[i].name === \"GenericMedia\") {\r",
@@ -37003,15 +37013,15 @@
 													"        break;\r",
 													"    }\r",
 													"for (i = 0; i < contentTypes.length; i++)\r",
-													"    if (contentTypes[i].name === \"MyCustomMedia\") {\r",
-													"        myCustomMediaTypeGuid = contentTypes[i].id;\r",
-													"        pm.environment.set(\"myCustomMediaTypeGuid\", contentTypes[i].id);\r",
+													"    if (contentTypes[i].name === \"AutoTestCustomMedia\") {\r",
+													"        autoTestCustomMediaTypeGuid = contentTypes[i].id;\r",
+													"        pm.environment.set(\"autoTestCustomMediaTypeGuid\", contentTypes[i].id);\r",
 													"        break;\r",
 													"    }\r",
 													"\r",
 													"Assert.IsNotNullorEmptyString(\"Verify GenericMedia Type Guid\", genericMediaTypeGuid);\r",
 													"Assert.IsNotNullorEmptyString(\"Verify ImageFile Type Guid\", imageFileTypeGuid);\r",
-													"Assert.IsNotNullorEmptyString(\"Verify MyCustomMedia Type Guid\", myCustomMediaTypeGuid);"
+													"Assert.IsNotNullorEmptyString(\"Verify AutoTestCustomMedia Type Guid\", autoTestCustomMediaTypeGuid);"
 												],
 												"type": "text/javascript"
 											}
@@ -37042,7 +37052,7 @@
 									"response": []
 								},
 								{
-									"name": "PUT to add supportedMediaExtensions to content type for MyCustomeMedia type",
+									"name": "PUT to add supportedMediaExtensions to content type for AutoTestCustomMedia type",
 									"event": [
 										{
 											"listen": "test",
@@ -37093,7 +37103,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"pdf\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"id\": \"{{autoTestCustomMediaTypeGuid}}\",\r\n    \"name\": \"AutoTestCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"pdf\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -37101,12 +37111,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{autoTestCustomMediaTypeGuid}}?allowedUpgrades=major",
 											"host": [
 												"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
 											],
 											"path": [
-												"{{myCustomMediaTypeGuid}}"
+												"{{autoTestCustomMediaTypeGuid}}"
 											],
 											"query": [
 												{
@@ -37192,7 +37202,7 @@
 													"pm.environment.set(\"mediaName\", response.name);\r",
 													"pm.environment.set(\"mediaId\", response.contentLink.id);\r",
 													"\r",
-													"Assert.IsEqual(\"Verify content type\", \"MyCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
+													"Assert.IsEqual(\"Verify content type\", \"AutoTestCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
 													"Assert.IsEqual(\"Verify mime type\", pm.request.headers.get(\"Content-Type\"), response.mimeType.value);"
 												],
 												"type": "text/javascript"
@@ -37300,7 +37310,7 @@
 									"response": []
 								},
 								{
-									"name": "Cleanup - Clear supportedMediaExtensions of MyCustomeMedia type",
+									"name": "Cleanup - Clear supportedMediaExtensions of AutoTestCustomMedia type",
 									"event": [
 										{
 											"listen": "test",
@@ -37347,7 +37357,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"id\": \"{{autoTestCustomMediaTypeGuid}}\",\r\n    \"name\": \"AutoTestCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -37355,12 +37365,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{autoTestCustomMediaTypeGuid}}?allowedUpgrades=major",
 											"host": [
 												"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
 											],
 											"path": [
-												"{{myCustomMediaTypeGuid}}"
+												"{{autoTestCustomMediaTypeGuid}}"
 											],
 											"query": [
 												{
@@ -37795,7 +37805,7 @@
 													"pm.environment.set(\"mediaId\", response.contentLink.id);\r",
 													"\r",
 													"// Create content with old extension will base on media type which doesn't have supportMediaExtentions and MediaDescriptor\r",
-													"Assert.IsEqual(\"Verify content type\", \"MyCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
+													"Assert.IsEqual(\"Verify content type\", \"AutoTestCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
 													"Assert.IsEqual(\"Verify mime type\", pm.request.headers.get(\"Content-Type\"), response.mimeType.value);"
 												],
 												"type": "text/javascript"
@@ -38453,7 +38463,7 @@
 													"pm.environment.set(\"mediaName\", response.name);\r",
 													"pm.environment.set(\"mediaId\", response.contentLink.id);\r",
 													"\r",
-													"Assert.IsEqual(\"Verify content type\", \"MyCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
+													"Assert.IsEqual(\"Verify content type\", \"AutoTestCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
 													"Assert.IsEqual(\"Verify mime type\", pm.request.headers.get(\"Content-Type\"), response.mimeType.value);"
 												],
 												"type": "text/javascript"
@@ -38872,7 +38882,7 @@
 													"pm.environment.set(\"mediaName\", response.name);\r",
 													"pm.environment.set(\"mediaId\", response.contentLink.id);\r",
 													"\r",
-													"Assert.IsEqual(\"Verify content type\", \"MyCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
+													"Assert.IsEqual(\"Verify content type\", \"AutoTestCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
 													"Assert.IsEqual(\"Verify mime type\", pm.request.headers.get(\"Content-Type\"), response.mimeType.value);"
 												],
 												"type": "text/javascript"
@@ -39189,7 +39199,7 @@
 													"pm.environment.set(\"mediaName\", response.name);\r",
 													"pm.environment.set(\"mediaId\", response.contentLink.id);\r",
 													"\r",
-													"Assert.IsEqual(\"Verify content type\", \"MyCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
+													"Assert.IsEqual(\"Verify content type\", \"AutoTestCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
 													"Assert.IsEqual(\"Verify mime type\", pm.request.headers.get(\"Content-Type\"), response.mimeType.value);"
 												],
 												"type": "text/javascript"
@@ -40564,7 +40574,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"tiff\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"id\": \"{{autoTestCustomMediaTypeGuid}}\",\r\n    \"name\": \"AutoTestCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"tiff\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -40572,12 +40582,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{autoTestCustomMediaTypeGuid}}?allowedUpgrades=major",
 											"host": [
 												"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
 											],
 											"path": [
-												"{{myCustomMediaTypeGuid}}"
+												"{{autoTestCustomMediaTypeGuid}}"
 											],
 											"query": [
 												{
@@ -40620,7 +40630,7 @@
 													"verifyResponseCode(201);\r",
 													"response = pm.response.json();\r",
 													"\r",
-													"Assert.IsEqual(\"Verify content type\", \"MyCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
+													"Assert.IsEqual(\"Verify content type\", \"AutoTestCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
 													"Assert.IsNull(\"Verify CustomThumbnail1 property value\", response.customThumbnail1.value);\r",
 													"Assert.IsNotNull(\"Verify CustomThumbnail2 property value\", response.customThumbnail2.value);\r",
 													"Assert.IsNull(\"Verify CustomThumbnail3 property value\", response.customThumbnail3.value);\r",
@@ -40679,7 +40689,7 @@
 													"verifyResponseCode(200);\r",
 													"response = pm.response.json();\r",
 													"\r",
-													"Assert.IsEqual(\"Verify content type\", \"MyCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
+													"Assert.IsEqual(\"Verify content type\", \"AutoTestCustomMedia\", response.contentType[response.contentType.length - 1]);\r",
 													"Assert.IsNull(\"Verify CustomThumbnail1 property value\", response.customThumbnail1.value);\r",
 													"Assert.IsNotNull(\"Verify CustomThumbnail2 property value\", response.customThumbnail2.value);\r",
 													"Assert.IsNull(\"Verify CustomThumbnail3 property value\", response.customThumbnail3.value);\r",
@@ -40769,7 +40779,7 @@
 									"response": []
 								},
 								{
-									"name": "Cleanup - Clear supportedMediaExtensions of MyCustomMedia content type",
+									"name": "Cleanup - Clear supportedMediaExtensions of AutoTestCustomMedia content type",
 									"event": [
 										{
 											"listen": "test",
@@ -40816,7 +40826,7 @@
 										],
 										"body": {
 											"mode": "raw",
-											"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": null,\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+											"raw": "{\r\n    \"id\": \"{{autoTestCustomMediaTypeGuid}}\",\r\n    \"name\": \"AutoTestCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": null,\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
 											"options": {
 												"raw": {
 													"language": "json"
@@ -40824,12 +40834,12 @@
 											}
 										},
 										"url": {
-											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+											"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{autoTestCustomMediaTypeGuid}}?allowedUpgrades=major",
 											"host": [
 												"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
 											],
 											"path": [
-												"{{myCustomMediaTypeGuid}}"
+												"{{autoTestCustomMediaTypeGuid}}"
 											],
 											"query": [
 												{
@@ -43122,7 +43132,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43132,7 +43142,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -43196,7 +43206,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43213,7 +43223,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -43276,7 +43286,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43294,7 +43304,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -43357,7 +43367,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43370,7 +43380,7 @@
 													"\r",
 													"// major change (update property datatype, remove property, update branchSpecific, update content type name)\r",
 													"contentTypeData.properties.shift();\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -43538,7 +43548,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43548,7 +43558,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -43612,7 +43622,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43630,7 +43640,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.2.1\";    \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));\r",
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));\r",
 													"pm.environment.set(\"fromVersion\", contentTypeData.version);"
 												],
 												"type": "text/javascript"
@@ -43694,7 +43704,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43713,7 +43723,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.2.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -43776,7 +43786,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but the save options only allows 'Patch' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43791,7 +43801,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"1.1.3.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -43958,7 +43968,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -43968,7 +43978,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44032,7 +44042,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44049,7 +44059,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44113,7 +44123,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44131,7 +44141,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44194,7 +44204,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'Minor' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44207,7 +44217,7 @@
 													"\r",
 													"// major change (update property datatype, remove property, update branchSpecific, update content type name)\r",
 													"contentTypeData.properties.shift();\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44375,7 +44385,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44385,7 +44395,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44449,7 +44459,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44467,7 +44477,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.2.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));\r",
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));\r",
 													"pm.environment.set(\"fromVersion\", contentTypeData.version);"
 												],
 												"type": "text/javascript"
@@ -44532,7 +44542,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44551,7 +44561,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.2.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));\r",
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));\r",
 													"pm.environment.set(\"fromVersion\", contentTypeData.version);"
 												],
 												"type": "text/javascript"
@@ -44615,7 +44625,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but the save options only allows 'Minor' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44630,7 +44640,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"2.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44797,7 +44807,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44807,7 +44817,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44871,7 +44881,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44888,7 +44898,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -44952,7 +44962,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -44970,7 +44980,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45033,7 +45043,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45046,7 +45056,7 @@
 													"\r",
 													"// major change (update property datatype, remove property, update branchSpecific, update content type name)\r",
 													"contentTypeData.properties.shift();\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45214,7 +45224,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45224,7 +45234,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45288,7 +45298,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45306,7 +45316,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.2.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45370,7 +45380,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45389,7 +45399,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.2.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45452,7 +45462,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45467,7 +45477,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"2.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45634,7 +45644,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45644,7 +45654,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45702,7 +45712,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45719,7 +45729,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45777,7 +45787,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45795,7 +45805,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -45852,7 +45862,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'Minor' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -45865,7 +45875,7 @@
 													"\r",
 													"// major change (update property datatype, remove property, update branchSpecific, update content type name)\r",
 													"contentTypeData.properties.shift();\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46027,7 +46037,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46037,7 +46047,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46094,7 +46104,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but no save options was provided.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46112,7 +46122,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46169,7 +46179,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but no save options was provided.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46188,7 +46198,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46245,7 +46255,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but no save options was provided.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46260,7 +46270,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"0.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46421,7 +46431,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46431,7 +46441,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46495,7 +46505,7 @@
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46512,7 +46522,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46576,7 +46586,7 @@
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Minor', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46594,7 +46604,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46658,7 +46668,7 @@
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name +\"' are 'Major', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46671,7 +46681,7 @@
 													"\r",
 													"// major change (update property datatype, remove property, update branchSpecific, update content type name)\r",
 													"contentTypeData.properties.shift();\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46839,7 +46849,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46849,7 +46859,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46912,7 +46922,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -46930,7 +46940,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.2.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -46993,7 +47003,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Minor', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Minor', but the save options only allows 'None' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47012,7 +47022,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.2.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47075,7 +47085,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData\").name + \"' are 'Major', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[0].version + \"' is 'Major', but the save options only allows 'None' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");\r",
+													"pm.environment.unset(\"contentType\");\r",
 													"\r",
 													"postman.setNextRequest(\"10. Cleanup: Delete the contentType\");"
 												],
@@ -47092,7 +47102,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"2.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47155,7 +47165,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47165,7 +47175,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47228,7 +47238,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47246,7 +47256,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47309,7 +47319,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47328,7 +47338,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47391,7 +47401,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47406,7 +47416,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"0.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47469,7 +47479,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47479,7 +47489,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47543,7 +47553,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47561,7 +47571,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47624,7 +47634,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47643,7 +47653,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47706,7 +47716,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47721,7 +47731,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"0.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47784,7 +47794,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47794,7 +47804,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47858,7 +47868,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47876,7 +47886,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -47940,7 +47950,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -47959,7 +47969,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -48022,7 +48032,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48037,7 +48047,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"0.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -48204,7 +48214,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not valid. The changes are 'Major' which is higher than requested 'Minor'.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48219,7 +48229,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"1.0.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -48282,7 +48292,7 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48292,7 +48302,7 @@
 											"script": {
 												"exec": [
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -48356,7 +48366,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48374,7 +48384,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -48438,7 +48448,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48457,7 +48467,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";                \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -48521,7 +48531,7 @@
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
 													"pm.environment.set(\"contentTypeRequestData\", JSON.parse(request.data).contentTypes[0]);\r",
-													"pm.variables.unset(\"contentType\");"
+													"pm.environment.unset(\"contentType\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48536,7 +48546,7 @@
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.properties[0].branchSpecific = true;\r",
 													"contentTypeData.version = \"0.1.1.1\";  \r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -48709,8 +48719,8 @@
 													"verifyManifestIsAllSuccess();\r",
 													"verifyManifestMessagesInclude(\"Imported 2 content types.\", \"success\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48721,9 +48731,9 @@
 												"exec": [
 													"// Both content types have no change\r",
 													"contentTypeData1 = pm.environment.get(\"contentTypeRequestData1\");\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -48790,8 +48800,8 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48807,11 +48817,11 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"\r",
 													"// Content type with version has no change.\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -48880,8 +48890,8 @@
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData2\").name + \"' are 'Patch', going from '\" + pm.environment.get(\"fromVersion\") + \"' to '\" + JSON.parse(request.data).contentTypes[1].version + \"' is 'Patch', but no save options was provided.\");\r",
 													"\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48892,7 +48902,7 @@
 												"exec": [
 													"// Content type without version has no change.\r",
 													"contentTypeData1 = pm.environment.get(\"contentTypeRequestData1\");\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"\r",
 													"// Content type with version has  a patch change. Version is downgraded at patch level.\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
@@ -48902,7 +48912,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData2.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -48971,8 +48981,8 @@
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -48988,7 +48998,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"\r",
 													"// Content type with version has  a patch change. Version is upgraded at patch level.\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
@@ -48998,7 +49008,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData2.version = \"1.1.2.1\";\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -49067,8 +49077,8 @@
 													"verifyManifestMessagesInclude(\"Import of the manifest section 'ContentTypes' failed. The version transition is not allowed with the provided content type save options. The changes in '\" + pm.environment.get(\"contentTypeRequestData1\").name +\"' are 'Patch', but the save options only allows 'None' changes.\");\r",
 													"\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -49084,7 +49094,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"\r",
 													"// Content type with version has  a patch change. Version is downgraded at patch level.\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
@@ -49094,7 +49104,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData2.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -49162,8 +49172,8 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -49174,9 +49184,9 @@
 												"exec": [
 													"// Both content types have no change\r",
 													"contentTypeData1 = pm.environment.get(\"contentTypeRequestData1\");\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -49243,8 +49253,8 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -49261,7 +49271,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"\r",
 													"// Content type with version has has  a patch change. Version is downgraded at patch level.\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
@@ -49271,7 +49281,7 @@
 													"\t\t\t\t\t\t\"order\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData2.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -49339,8 +49349,8 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -49353,11 +49363,11 @@
 													"contentTypeData1 = pm.environment.get(\"contentTypeRequestData1\");\r",
 													"contentTypeData1.name = contentTypeData1.name + \"_Updated\";\r",
 													"contentTypeData1.properties[0].branchSpecific = true;\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"\r",
 													"// Content type with version has no change.\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -49425,8 +49435,8 @@
 													"verifyResponseCode(200);\r",
 													"verifyManifestIsAllSuccess();\r",
 													"\r",
-													"pm.variables.unset(\"contentType1\");\r",
-													"pm.variables.unset(\"contentType2\");"
+													"pm.environment.unset(\"contentType1\");\r",
+													"pm.environment.unset(\"contentType2\");"
 												],
 												"type": "text/javascript"
 											}
@@ -49437,7 +49447,7 @@
 												"exec": [
 													"// Content type without version has no change.\r",
 													"contentTypeData1 = pm.environment.get(\"contentTypeRequestData1\");\r",
-													"pm.variables.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
+													"pm.environment.set(\"contentType1\", JSON.stringify(contentTypeData1));\r",
 													"\r",
 													"// Content type with version has minor change (update available, add new  property). Version is downgraded at minor level.\r",
 													"contentTypeData2 = pm.environment.get(\"contentTypeRequestData2\");\r",
@@ -49448,7 +49458,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData2.version = \"1.0.1.1\";                \r",
-													"pm.variables.set(\"contentType2\", JSON.stringify(contentTypeData2));"
+													"pm.environment.set(\"contentType2\", JSON.stringify(contentTypeData2));"
 												],
 												"type": "text/javascript"
 											}
@@ -49521,7 +49531,7 @@
 													"    postman.setNextRequest(request.name);\r",
 													"else\r",
 													"{\r",
-													"    pm.variables.unset(\"contentTypeGuid\");\r",
+													"    pm.environment.unset(\"contentTypeGuid\");\r",
 													"    pm.environment.unset(\"contentTypeGuids\");\r",
 													"}"
 												],
@@ -49537,7 +49547,7 @@
 													"console.log(contentTypeGuids);\r",
 													"\r",
 													"contentTypeGuid = contentTypeGuids.shift()\r",
-													"pm.variables.set(\"contentTypeGuid\", contentTypeGuid);\r",
+													"pm.environment.set(\"contentTypeGuid\", contentTypeGuid);\r",
 													"pm.environment.set(\"contentTypeGuids\", contentTypeGuids);"
 												],
 												"type": "text/javascript"
@@ -49643,8 +49653,8 @@
 												"exec": [
 													"verifyResponseCode(400);\r",
 													"\r",
-													"paramList = pm.variables.get(\"paramList\").split(',');\r",
-													"paramValueList = pm.variables.get(\"paramValueList\").split(',');\r",
+													"paramList = pm.environment.get(\"paramList\").split(',');\r",
+													"paramValueList = pm.environment.get(\"paramValueList\").split(',');\r",
 													"paramCount = pm.environment.get(\"paramCount\");\r",
 													"paramValueCount = pm.environment.get(\"paramValueCount\");\r",
 													"\r",
@@ -49667,8 +49677,8 @@
 													"}\r",
 													"\r",
 													"// process the loop\r",
-													"paramList = pm.variables.get(\"paramList\").split(',');\r",
-													"paramValueList = pm.variables.get(\"paramValueList\").split(',');\r",
+													"paramList = pm.environment.get(\"paramList\").split(',');\r",
+													"paramValueList = pm.environment.get(\"paramValueList\").split(',');\r",
 													"paramCount = pm.environment.get(\"paramCount\");\r",
 													"paramValueCount = pm.environment.get(\"paramValueCount\");\r",
 													"\r",
@@ -49689,8 +49699,8 @@
 													"    {\r",
 													"        pm.environment.unset(\"paramCount\");\r",
 													"        pm.environment.unset(\"paramValueCount\");\r",
-													"        pm.variables.unset(\"param\");\r",
-													"        pm.variables.unset(\"paramValue\");\r",
+													"        pm.environment.unset(\"param\");\r",
+													"        pm.environment.unset(\"paramValue\");\r",
 													"    }\r",
 													"}"
 												],
@@ -49701,10 +49711,10 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"pm.variables.set(\"paramList\", \"force,allowedUpgrades\");\r",
-													"pm.variables.set(\"paramValueList\", \"test,123456789\");\r",
-													"paramList = pm.variables.get(\"paramList\").split(',');\r",
-													"paramValueList = pm.variables.get(\"paramValueList\").split(',');\r",
+													"pm.environment.set(\"paramList\", \"force,allowedUpgrades\");\r",
+													"pm.environment.set(\"paramValueList\", \"test,123456789\");\r",
+													"paramList = pm.environment.get(\"paramList\").split(',');\r",
+													"paramValueList = pm.environment.get(\"paramValueList\").split(',');\r",
 													"\r",
 													"if(!pm.environment.has(\"paramCount\"))\r",
 													"{\r",
@@ -49712,11 +49722,11 @@
 													"    pm.environment.set(\"paramValueCount\", 0);\r",
 													"}\r",
 													"\r",
-													"pm.variables.set(\"param\", paramList[parseInt(pm.environment.get(\"paramCount\"))]);\r",
-													"pm.variables.set(\"paramValue\", paramValueList[parseInt(pm.environment.get(\"paramValueCount\"))]);\r",
+													"pm.environment.set(\"param\", paramList[parseInt(pm.environment.get(\"paramCount\"))]);\r",
+													"pm.environment.set(\"paramValue\", paramValueList[parseInt(pm.environment.get(\"paramValueCount\"))]);\r",
 													"\r",
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -50619,7 +50629,7 @@
 													"\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
 													"\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -50692,7 +50702,7 @@
 													"\t\t\t\t\t\t\"sortOrder\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -50766,7 +50776,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -50835,7 +50845,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.version = \"0.1.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -50908,7 +50918,7 @@
 													"\t\t\t\t\t\t\"sortOrder\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"0.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -50982,7 +50992,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51051,7 +51061,7 @@
 													"\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
 													"\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51130,7 +51140,7 @@
 													"\t\t\t\t\t\t\"sortOrder\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51205,7 +51215,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.version = \"0.1.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51285,7 +51295,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51364,7 +51374,7 @@
 													"\t\t\t\t\t\t\"sortOrder\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51444,7 +51454,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51622,7 +51632,7 @@
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
 													"\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51695,7 +51705,7 @@
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
 													"\r",
 													"contentTypeData.version = \"1.0.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51768,7 +51778,7 @@
 													"contentTypeData = pm.environment.get(\"contentTypeRequestData\");\r",
 													"\r",
 													"contentTypeData.version = \"0.0.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -51951,7 +51961,7 @@
 													"\t\t\t\t\t\t\"sortOrder\": 2\r",
 													"\t\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52031,7 +52041,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52106,7 +52116,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.version = \"1.0.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52286,7 +52296,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 1\r",
 													"contentTypeData.version = \"1.1.1.0\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52361,7 +52371,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 1\r",
 													"contentTypeData.version = \"1.1.0.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52441,7 +52451,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.0.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52516,7 +52526,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.version = \"0.1.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52696,7 +52706,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 1\r",
 													"contentTypeData.version = \"1.0.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52776,7 +52786,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"0.1.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -52958,7 +52968,7 @@
 													"\t\t\t\t\t\t\"groupName\": \"Information\",\r",
 													"\t\t\t\t\t\t\"sortOrder\": 2\r",
 													"\t\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53038,7 +53048,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.1.2.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53113,7 +53123,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.version = \"1.2.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53293,7 +53303,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 1\r",
 													"contentTypeData.version = \"1.1.1.2\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53368,7 +53378,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 1\r",
 													"contentTypeData.version = \"1.1.2.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53448,7 +53458,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"1.2.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53523,7 +53533,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"contentTypeData.version = \"2.1.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53702,7 +53712,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 1\r",
 													"contentTypeData.version = \"1.2.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53782,7 +53792,7 @@
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
 													"contentTypeData.version = \"2.1.1.1\";\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -53961,7 +53971,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 1\r",
 													"\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -54034,7 +54044,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -54103,7 +54113,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -54276,7 +54286,7 @@
 													"// patch update property editSettings, update order\r",
 													"contentTypeData.editSettings.sortOrder = 2\r",
 													"\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -54355,7 +54365,7 @@
 													"\t\t\t\t\t\"name\": \"NewProperty\",\r",
 													"\t\t\t\t\t\"dataType\": \"PropertyDate\"\r",
 													"\t\t\t\t};\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -54430,7 +54440,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -54499,7 +54509,7 @@
 													"// major change (change baseType)\r",
 													"contentTypeData.name = contentTypeData.name + \"_Updated\";\r",
 													"\r",
-													"pm.variables.set(\"contentType\", JSON.stringify(contentTypeData));"
+													"pm.environment.set(\"contentType\", JSON.stringify(contentTypeData));"
 												],
 												"type": "text/javascript"
 											}
@@ -54797,11 +54807,11 @@
 					"                if (!lodash.isEqual(expectedValue, actualValue))",
 					"                {",
 					"                    console.log(\"----- expectedValue -----\");",
-					"                    console.log(JSON.stringify(expectedValue));",
-					"                    //console.log(expectedValue);",
+					"                    //console.log(JSON.stringify(expectedValue));",
+					"                    console.log(expectedValue);",
 					"                    console.log(\"----- actualValue -----\");",
-					"                    console.log(JSON.stringify(actualValue));",
-					"                    //console.log(actualValue);",
+					"                    //console.log(JSON.stringify(actualValue));",
+					"                    console.log(actualValue);",
 					"                }",
 					"            }",
 					"            else",
