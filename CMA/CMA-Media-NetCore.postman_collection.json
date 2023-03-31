@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "bc42e1cb-8439-4f44-842c-d98b24ea9720",
+		"_postman_id": "c589cc91-2412-4561-9eb7-8b601ea7215e",
 		"name": "CMA-Media-NetCore",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6850412"
 	},
 	"item": [
 		{
@@ -213,7 +214,7 @@
 											"contentTypes = pm.response.json();\r",
 											"genericMediaTypeGuid = \"\";\r",
 											"imageFileTypeGuid = \"\";\r",
-											"myCustomMediaTypeGuid = \"\";\r",
+											"autoTestCustomMediaTypeGuid = \"\";\r",
 											"\r",
 											"for (i = 0; i < contentTypes.length; i++)\r",
 											"    if (contentTypes[i].name === \"GenericMedia\") {\r",
@@ -228,15 +229,15 @@
 											"        break;\r",
 											"    }\r",
 											"for (i = 0; i < contentTypes.length; i++)\r",
-											"    if (contentTypes[i].name === \"MyCustomMedia\") {\r",
-											"        myCustomMediaTypeGuid = contentTypes[i].id;\r",
-											"        pm.environment.set(\"myCustomMediaTypeGuid\", contentTypes[i].id);\r",
+											"    if (contentTypes[i].name === \"AutoTestCustomMedia\") {\r",
+											"        autoTestCustomMediaTypeGuid = contentTypes[i].id;\r",
+											"        pm.environment.set(\"autoTestCustomMediaTypeGuid\", contentTypes[i].id);\r",
 											"        break;\r",
 											"    }\r",
 											"\r",
 											"Assert.IsNotNullorEmptyString(\"Verify GenericMedia Type Guid\", genericMediaTypeGuid);\r",
 											"Assert.IsNotNullorEmptyString(\"Verify ImageFile Type Guid\", imageFileTypeGuid);\r",
-											"Assert.IsNotNullorEmptyString(\"Verify MyCustomMedia Type Guid\", myCustomMediaTypeGuid);"
+											"Assert.IsNotNullorEmptyString(\"Verify AutoTestCustomMedia Type Guid\", autoTestCustomMediaTypeGuid);"
 										],
 										"type": "text/javascript"
 									}
@@ -267,7 +268,7 @@
 							"response": []
 						},
 						{
-							"name": "PUT to add supportedMediaExtensions to content type for MyCustomeMedia type",
+							"name": "PUT to add supportedMediaExtensions to content type for AutoTestCustomMedia type",
 							"event": [
 								{
 									"listen": "test",
@@ -314,7 +315,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"iv99\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"id\": \"{{autoTestCustomMediaTypeGuid}}\",\r\n    \"name\": \"AutoTestCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"iv99\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -322,12 +323,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{autoTestCustomMediaTypeGuid}}?allowedUpgrades=major",
 									"host": [
 										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
 									],
 									"path": [
-										"{{myCustomMediaTypeGuid}}"
+										"{{autoTestCustomMediaTypeGuid}}"
 									],
 									"query": [
 										{
@@ -484,7 +485,7 @@
 											"//Prepare the mediaList for next step\r",
 											"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 											"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
-											"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
+											"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"AutoTestAllPropertiesMedia\"]);\r",
 											"\r",
 											"pm.environment.set(\"parentCount\", 0);\r",
 											"pm.environment.set(\"mediaCount\", 0);\r",
@@ -1758,7 +1759,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorMessage(\"parent\", [\"The input was not valid.\"]);"
+											"verifyErrorMessage(\"parent\", [\"The value 'invalidParentId' is not valid.\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -7912,7 +7913,7 @@
 													"                pm.environment.set(\"mediaList\", [\"file.doc\",\"file.mp3\"]);\r",
 													"                pm.environment.set(\"updatedMediaList\", [ \"patchedFile.doc\",\"patchedFile.mp3\"]);\r",
 													"                pm.environment.set(\"contentTypeList\", [\"application/msword\",\"audio/mpeg\"]);\r",
-													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"MediaWithAllProperties\"]);\r",
+													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"AutoTestAllPropertiesMedia\"]);\r",
 													"\r",
 													"                pm.environment.set(\"parentCount\", 0);\r",
 													"                pm.environment.set(\"mediaCount\", 0);\r",
@@ -8091,8 +8092,8 @@
 													"Assert.IsEqual(\"Verify mimeType\", pm.environment.get(\"contentTypeList\")[mediaCount], response.mimeType.value);\r",
 													"if(response.thumbnail.value != null)\r",
 													"    Assert.IsTrue(\"Verify thumbnail is changed\", originalData.thumbnail.value.id != response.thumbnail.value.id);\r",
-													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"MediaWithAllProperties\")\r",
-													"    VerifyForMediaWithAllPropertiesContent(response, contentBody);\r",
+													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"AutoTestAllPropertiesMedia\")\r",
+													"    VerifyForAutoTestAllPropertiesMediaContent(response, contentBody);\r",
 													"Assert.IsEqual(\"Verify JSON body\", SortJson(contentBody), response);\r",
 													"\r",
 													"pm.environment.unset(\"originalData\");"
@@ -17116,7 +17117,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -17194,7 +17195,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -17274,7 +17275,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -17349,7 +17350,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -18093,7 +18094,7 @@
 													"                pm.environment.set(\"mediaList\", [\"file.doc\",\"file.mp3\"]);\r",
 													"                pm.environment.set(\"updatedMediaList\", [ \"patchedFile.doc\",\"patchedFile.mp3\"]);\r",
 													"                pm.environment.set(\"contentTypeList\", [\"application/msword\",\"audio/mpeg\"]);\r",
-													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"MediaWithAllProperties\"]);\r",
+													"                pm.environment.set(\"contentContentTypeList\", [\"GenericMedia\",\"AutoTestAllPropertiesMedia\"]);\r",
 													"\r",
 													"                pm.environment.set(\"parentCount\", 0);\r",
 													"                pm.environment.set(\"mediaCount\", 0);\r",
@@ -18190,8 +18191,8 @@
 													"var contentBody = JSON.parse(request.data.content);\r",
 													"UpdateRequestAndResponseBodyAfterPUT(contentBody, response);\r",
 													"\r",
-													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"MediaWithAllProperties\")\r",
-													"    VerifyForMediaWithAllPropertiesContent(response, contentBody);\r",
+													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"AutoTestAllPropertiesMedia\")\r",
+													"    VerifyForAutoTestAllPropertiesMediaContent(response, contentBody);\r",
 													"Assert.IsEqual(\"Verify JSON body\", SortJson(contentBody), SortJson(response));"
 												],
 												"type": "text/javascript"
@@ -18335,8 +18336,8 @@
 													"expectedData.mimeType = response.mimeType;\r",
 													"expectedData.thumbnail = response.thumbnail;\r",
 													"\r",
-													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"MediaWithAllProperties\")\r",
-													"    VerifyForMediaWithAllPropertiesContent(response, expectedData);\r",
+													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"AutoTestAllPropertiesMedia\")\r",
+													"    VerifyForAutoTestAllPropertiesMediaContent(response, expectedData);\r",
 													"Assert.IsEqual(\"Verify patched content\", SortJson(expectedData), SortJson(response));"
 												],
 												"type": "text/javascript"
@@ -25814,7 +25815,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -26461,7 +26462,7 @@
 													"pm.environment.set(\"availableStatusList\", [\"CheckedIn\", \"DelayedPublish\", \"CheckedOut\", \"Rejected\", \"Published\"]);\r",
 													"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 													"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
-													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
+													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"AutoTestAllPropertiesMedia\"]);\r",
 													"\r",
 													"pm.environment.set(\"parentCount\", 0);\r",
 													"pm.environment.set(\"mediaCount\", 0);\r",
@@ -26571,8 +26572,8 @@
 													"    Assert.IsEqual(\"Verify VideoFile previewImage id\", contentBody.previewImage.value.id, response.previewImage.value.id);\r",
 													"    contentBody.previewImage = response.previewImage;\r",
 													"}\r",
-													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"MediaWithAllProperties\")\r",
-													"    VerifyForMediaWithAllPropertiesContent(response, contentBody);\r",
+													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"AutoTestAllPropertiesMedia\")\r",
+													"    VerifyForAutoTestAllPropertiesMediaContent(response, contentBody);\r",
 													"Assert.IsEqual(\"Verify JSON body\", SortJson(contentBody), SortJson(response));\r",
 													"\r",
 													"// Check in case parent is a folder - skip verify the real parent folder\r",
@@ -32895,7 +32896,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -32967,7 +32968,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -33043,7 +33044,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -33122,7 +33123,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"noAPIAccessParentId\")\r",
@@ -33200,7 +33201,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -33276,7 +33277,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -33668,7 +33669,7 @@
 													"pm.environment.set(\"availableStatusList\", [\"CheckedIn\", \"DelayedPublish\", \"CheckedOut\", \"Rejected\", \"Published\"]);\r",
 													"pm.environment.set(\"mediaList\", [\"file.jpg\", \"file.mp4\", \"file.doc\",\"file.mp3\"]);\r",
 													"pm.environment.set(\"contentTypeList\", [\"image/jpeg\", \"video/mp4\", \"application/msword\",\"audio/mpeg\"]);\r",
-													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"MediaWithAllProperties\"]);\r",
+													"pm.environment.set(\"contentContentTypeList\", [\"ImageFile\", \"VideoFile\", \"GenericMedia\",\"AutoTestAllPropertiesMedia\"]);\r",
 													"\r",
 													"pm.environment.set(\"parentCount\", 0);\r",
 													"pm.environment.set(\"mediaCount\", 0);\r",
@@ -33778,8 +33779,8 @@
 													"    Assert.IsEqual(\"Verify VideoFile previewImage id\", contentBody.previewImage.value.id, response.previewImage.value.id);\r",
 													"    contentBody.previewImage = response.previewImage;\r",
 													"}\r",
-													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"MediaWithAllProperties\")\r",
-													"    VerifyForMediaWithAllPropertiesContent(response, contentBody);\r",
+													"if(response.contentType[Object.keys(response.contentType).length - 1] === \"AutoTestAllPropertiesMedia\")\r",
+													"    VerifyForAutoTestAllPropertiesMediaContent(response, contentBody);\r",
 													"Assert.IsEqual(\"Verify JSON body\", SortJson(contentBody), SortJson(response));\r",
 													"\r",
 													"// Check in case parent is a folder - skip verify the real parent folder\r",
@@ -40616,7 +40617,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40691,7 +40692,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40770,7 +40771,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40845,7 +40846,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"parentFolderId\")\r",
@@ -40927,7 +40928,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"noAPIAccessParentId\")\r",
@@ -41008,7 +41009,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -41087,7 +41088,7 @@
 													"    \"name\": \"file.midi\",\r",
 													"    \"contentType\": [\r",
 													"        \"Media\",\r",
-													"        \"MediaWithValidation\"\r",
+													"        \"AutoTestValidationMedia\"\r",
 													"    ],\r",
 													"    \"parentLink\": {\r",
 													"        \"id\": pm.environment.get(\"deniedPageId\")\r",
@@ -41342,7 +41343,7 @@
 					"name": "Cleanup",
 					"item": [
 						{
-							"name": "PUT to clear supportedMediaExtensions to content type for MyCustomeMedia type",
+							"name": "PUT to clear supportedMediaExtensions to content type for AutoTestCustomMedia type",
 							"event": [
 								{
 									"listen": "test",
@@ -41389,7 +41390,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "{\r\n    \"id\": \"{{myCustomMediaTypeGuid}}\",\r\n    \"name\": \"MyCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
+									"raw": "{\r\n    \"id\": \"{{autoTestCustomMediaTypeGuid}}\",\r\n    \"name\": \"AutoTestCustomMedia\",\r\n    \"baseType\": \"Media\",\r\n    \"editSettings\": {\r\n        \"available\": true,\r\n        \"sortOrder\": 0\r\n    },\r\n    \"supportedMediaExtensions\": \"\",\r\n    \"properties\": [\r\n        {\r\n            \"name\": \"Description\",\r\n            \"dataType\": \"PropertyLongString\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"Description\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail1\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail1\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail2\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail2\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail3\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"CustomThumbnail4\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail5\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail3\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": false\r\n            }\r\n        },\r\n        {\r\n            \"name\": \"NewCustomThumbnail6\",\r\n            \"dataType\": \"PropertyBlob\",\r\n            \"branchSpecific\": false,\r\n            \"required\": false,\r\n            \"editSettings\": {\r\n                \"visibility\": \"default\",\r\n                \"displayName\": \"CustomThumbnail4\",\r\n                \"groupName\": \"Information\",\r\n                \"sortOrder\": 0\r\n            },\r\n            \"imageDescriptor\": {\r\n                \"height\": 20,\r\n                \"width\": 20,\r\n                \"pregenerated\": true\r\n            }\r\n        }\r\n    ]\r\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -41397,12 +41398,12 @@
 									}
 								},
 								"url": {
-									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{myCustomMediaTypeGuid}}?allowedUpgrades=major",
+									"raw": "{{cmsUrl}}{{cda_contentTypeEndpoint}}/{{autoTestCustomMediaTypeGuid}}?allowedUpgrades=major",
 									"host": [
 										"{{cmsUrl}}{{cda_contentTypeEndpoint}}"
 									],
 									"path": [
-										"{{myCustomMediaTypeGuid}}"
+										"{{autoTestCustomMediaTypeGuid}}"
 									],
 									"query": [
 										{
@@ -41718,35 +41719,35 @@
 					"};",
 					"",
 					"////////////////////////////////////////////////////////////////",
-					"// Some verification which is only used for MediaWithAllProperties content",
+					"// Some verification which is only used for AutoTestAllPropertiesMedia content",
 					"////////////////////////////////////////////////////////////////",
-					"VerifyForMediaWithAllPropertiesContent = (response, requestBody) => {",
+					"VerifyForAutoTestAllPropertiesMediaContent = (response, requestBody) => {",
 					"    if (response.contentArea1 != undefined) {",
 					"        for (i = 0; i < response.contentArea1.value.length; i++) {",
-					"            Assert.IsEqual(\"Verify MediaWithAllProperties contentArea1 item contentLink id\", requestBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);",
+					"            Assert.IsEqual(\"Verify AutoTestAllPropertiesMedia contentArea1 item contentLink id\", requestBody.contentArea1.value[i].contentLink.id, response.contentArea1.value[i].contentLink.id);",
 					"        }",
 					"        requestBody.contentArea1 = response.contentArea1;",
 					"    }",
 					"    if (response.contentReference1 != undefined) {",
-					"        Assert.IsEqual(\"Verify MediaWithAllProperties contentReference1 id\", requestBody.contentReference1.value.id, response.contentReference1.value.id);",
+					"        Assert.IsEqual(\"Verify AutoTestAllPropertiesMedia contentReference1 id\", requestBody.contentReference1.value.id, response.contentReference1.value.id);",
 					"        requestBody.contentReference1 = response.contentReference1;",
 					"    }",
 					"    if (response.contentReferenceList1 != undefined) {",
 					"        for (i = 0; i < response.contentReferenceList1.value.length; i++) {",
-					"            Assert.IsEqual(\"Verify MediaWithAllProperties contentReferenceList1 id\", requestBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);",
+					"            Assert.IsEqual(\"Verify AutoTestAllPropertiesMedia contentReferenceList1 id\", requestBody.contentReferenceList1.value[i].id, response.contentReferenceList1.value[i].id);",
 					"        }",
 					"        requestBody.contentReferenceList1 = response.contentReferenceList1;",
 					"    }",
 					"    if (response.image1 != undefined) {",
-					"        Assert.IsEqual(\"Verify MediaWithAllProperties image1 id\", requestBody.image1.value.id, response.image1.value.id);",
+					"        Assert.IsEqual(\"Verify AutoTestAllPropertiesMedia image1 id\", requestBody.image1.value.id, response.image1.value.id);",
 					"        requestBody.image1 = response.image1;",
 					"    }",
 					"    if (response.linkItemCollection1 != undefined) {",
 					"        for (i = 0; i < response.linkItemCollection1.value.length; i++) {",
 					"            if (response.linkItemCollection1.value[i].contentLink != undefined) {",
-					"                Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item contentLink id\", requestBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);",
+					"                Assert.IsEqual(\"Verify AutoTestAllPropertiesMedia linkItemCollection1 item contentLink id\", requestBody.linkItemCollection1.value[i].contentLink.id, response.linkItemCollection1.value[i].contentLink.id);",
 					"            } else {",
-					"                Assert.IsEqual(\"Verify MediaWithAllProperties linkItemCollection1 item\", requestBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);",
+					"                Assert.IsEqual(\"Verify AutoTestAllPropertiesMedia linkItemCollection1 item\", requestBody.linkItemCollection1.value[i], response.linkItemCollection1.value[i]);",
 					"            }",
 					"        }",
 					"        requestBody.linkItemCollection1 = response.linkItemCollection1;",

@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "debee294-7f16-40ec-b1db-32abd2ca2190",
+		"_postman_id": "00a04689-c57c-452e-9467-6b6d1e45a51b",
 		"name": "CD-NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21606264"
+		"_exporter_id": "6850412"
 	},
 	"item": [
 		{
@@ -13883,21 +13883,21 @@
 							"script": {
 								"type": "text/javascript",
 								"exec": [
-									"pm.environment.set(\"searchResult_query_2100_search_all\", 122);",
+									"pm.environment.set(\"searchResult_query_2100_search_all\", 126);",
 									"pm.environment.set(\"searchResult_filter_2307_contentType_ne_page\", 21);",
-									"pm.environment.set(\"searchResult_filter_2307_parentLink_id_ne_rootId\", 116);",
-									"pm.environment.set(\"searchResult_filter_2307_name_ne_alloyTrack\", 56);",
-									"pm.environment.set(\"searchResult_filter_2307_contentLink_id_ne_alloyPlanId\", 121);",
-									"pm.environment.set(\"searchResult_filter_2307_category_value_name_ne_Meet\", 118);",
-									"pm.environment.set(\"searchResult_filter_2311_contentLink_gt_100\", 22);",
-									"pm.environment.set(\"searchResult_filter_2311_parentLink_gt_52\", 17);",
-									"pm.environment.set(\"searchResult_filter_2311_created_gt\", 51);",
-									"pm.environment.set(\"searchResult_filter_2311_startPublish_gt\", 84);",
-									"pm.environment.set(\"searchResult_filter_2318_startPublish_ge\", 85);",
-									"pm.environment.set(\"searchResult_filter_2318_created_ge\", 52);",
-									"pm.environment.set(\"searchResult_filter_2318_contentLink_ge_100\", 23);",
-									"pm.environment.set(\"searchResult_filter_2318_parentLink_ge_52\", 17);",
-									"pm.environment.set(\"searchResult_filter_complexFilter1\", 52);"
+									"pm.environment.set(\"searchResult_filter_2307_parentLink_id_ne_rootId\", 120);",
+									"pm.environment.set(\"searchResult_filter_2307_name_ne_alloyTrack\", 57);",
+									"pm.environment.set(\"searchResult_filter_2307_contentLink_id_ne_alloyPlanId\", 125);",
+									"pm.environment.set(\"searchResult_filter_2307_category_value_name_ne_Meet\", 122);",
+									"pm.environment.set(\"searchResult_filter_2311_contentLink_gt_100\", 26);",
+									"pm.environment.set(\"searchResult_filter_2311_parentLink_gt_52\", 18);",
+									"pm.environment.set(\"searchResult_filter_2311_created_gt\", 52);",
+									"pm.environment.set(\"searchResult_filter_2311_startPublish_gt\", 85);",
+									"pm.environment.set(\"searchResult_filter_2318_startPublish_ge\", 86);",
+									"pm.environment.set(\"searchResult_filter_2318_created_ge\", 53);",
+									"pm.environment.set(\"searchResult_filter_2318_contentLink_ge_100\", 27);",
+									"pm.environment.set(\"searchResult_filter_2318_parentLink_ge_52\", 18);",
+									"pm.environment.set(\"searchResult_filter_complexFilter1\", 53);"
 								]
 							}
 						},

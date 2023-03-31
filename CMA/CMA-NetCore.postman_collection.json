@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bb349555-efb9-452a-8ca1-c9f8a1658343",
+		"_postman_id": "6af26b55-2c16-4aa6-8733-a854524522b9",
 		"name": "CMA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6850412"
@@ -58019,7 +58019,6 @@
 													"\r",
 													"pm.environment.unset(\"workId\");\r",
 													"// Cleanup at the end of folder\r",
-													"pm.environment.unset(\"parentGuid\");\r",
 													"pm.environment.unset(\"parentFolderId\");\r",
 													"pm.environment.unset(\"contentStatus\");\r",
 													"pm.environment.unset(\"movedGuid\");\r",
@@ -58101,7 +58100,9 @@
 											"listen": "test",
 											"script": {
 												"exec": [
-													"verifyResponseCode(204);"
+													"verifyResponseCode(204);",
+													"",
+													"pm.environment.unset(\"parentGuid\");"
 												],
 												"type": "text/javascript"
 											}
