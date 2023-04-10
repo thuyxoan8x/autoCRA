@@ -1435,7 +1435,8 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeInternalContentRoots\"]);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeInternalContentRoots\"]);\r",
+											"pm.environment.set(\"DelayCount\", 0);"
 										],
 										"type": "text/javascript"
 									}
@@ -1484,6 +1485,45 @@
 									"path": [
 										"Automation",
 										"SetContentApiOption"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Wait for cache expire - IncludeInternalContentRoots",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var delayCount = pm.environment.get(\"DelayCount\");\r",
+											"if (delayCount < 13) {\r",
+											"    pm.environment.set(\"DelayCount\", delayCount + 1);\r",
+											"    postman.setNextRequest(request.name);\r",
+											"}\r",
+											"else\r",
+											"{\r",
+											"    pm.environment.set(\"DelayCount\", 0);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://postman-echo.com/delay/10",
+									"protocol": "https",
+									"host": [
+										"postman-echo",
+										"com"
+									],
+									"path": [
+										"delay",
+										"10"
 									]
 								}
 							},
@@ -4265,6 +4305,45 @@
 									]
 								},
 								"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+							},
+							"response": []
+						},
+						{
+							"name": "Wait for cache expire - IncludeSiteHosts",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var delayCount = pm.environment.get(\"DelayCount\");\r",
+											"if (delayCount < 13) {\r",
+											"    pm.environment.set(\"DelayCount\", delayCount + 1);\r",
+											"    postman.setNextRequest(request.name);\r",
+											"}\r",
+											"else\r",
+											"{\r",
+											"    pm.environment.set(\"DelayCount\", 0);\r",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://postman-echo.com/delay/10",
+									"protocol": "https",
+									"host": [
+										"postman-echo",
+										"com"
+									],
+									"path": [
+										"delay",
+										"10"
+									]
+								}
 							},
 							"response": []
 						},

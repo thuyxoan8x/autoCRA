@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6af26b55-2c16-4aa6-8733-a854524522b9",
+		"_postman_id": "6ebbd5a5-434c-4f0f-a9ea-46e168d85f8e",
 		"name": "CMA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6850412"
@@ -31353,7 +31353,9 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"Assert.IsTrue(\"Verify message\", pm.response.json().message.startsWith(\"Create site TestSite with start page SecondPage\"));"
+													"Assert.IsTrue(\"Verify message\", pm.response.json().message.startsWith(\"Create site TestSite with start page SecondPage\"));\r",
+													"\r",
+													"pm.environment.set(\"DelayCount\", 0);"
 												],
 												"type": "text/javascript"
 											}
@@ -31400,6 +31402,45 @@
 											]
 										},
 										"description": "Get container page/Block/image/Folder by ID\n1. Status code\n2. Content ID\n3. Content Name\n4. Content Type\n5. Language"
+									},
+									"response": []
+								},
+								{
+									"name": "Wait for cache expire",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var delayCount = pm.environment.get(\"DelayCount\");\r",
+													"if (delayCount < 13) {\r",
+													"    pm.environment.set(\"DelayCount\", delayCount + 1);\r",
+													"    postman.setNextRequest(request.name);\r",
+													"}\r",
+													"else\r",
+													"{\r",
+													"    pm.environment.set(\"DelayCount\", 0);\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "https://postman-echo.com/delay/10",
+											"protocol": "https",
+											"host": [
+												"postman-echo",
+												"com"
+											],
+											"path": [
+												"delay",
+												"10"
+											]
+										}
 									},
 									"response": []
 								},
@@ -49621,7 +49662,7 @@
 											"response": []
 										},
 										{
-											"name": "PUT non master language version with visibleInMenu Copy",
+											"name": "PUT non master language version with visibleInMenu",
 											"event": [
 												{
 													"listen": "test",
@@ -49798,6 +49839,275 @@
 											"response": []
 										}
 									]
+								}
+							]
+						},
+						{
+							"name": "CMS-26109 Prevent contentassets, siteassets, and globalassets from being used as Name in URL",
+							"item": [
+								{
+									"name": "Preparation - Create parent container page",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(201);\r",
+													"\r",
+													"pm.environment.set(\"parentGuid\", pm.response.json().contentLink.guidValue);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n\t\"name\": \"Test Container Page {{$randomInt}}\",\r\n\t\"language\": {\r\n\t\t\"name\": \"en\"\r\n\t},\r\n\t\"startPublish\": \"2020-10-16T09:42:22Z\",\r\n\t\"stopPublish\": null,\r\n\t\"status\": \"published\",\r\n\t\"contentLink\": {},\r\n\t\"parentLink\": {\r\n\t\t\"id\": \"{{testContainerPageId}}\"\r\n\t},\r\n\t\"contentType\": [\r\n\t\t\"Page\",\r\n\t\t\"ContainerPage\"\r\n\t]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Invalid - Create content with routeSegment is one of contentassets siteassets globalassets",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(400);\r",
+													"verifyErrorDetailMessage(\"URL segment should not be one of the reserved ones: contentassets, siteassets, globalassets.\");\r",
+													"\r",
+													"invalidValues = pm.environment.get(\"invalidValues\");\r",
+													"console.log(invalidValues);\r",
+													"if (invalidValues.length > 0)\r",
+													"    postman.setNextRequest(request.name);\r",
+													"else {\r",
+													"    pm.environment.unset(\"invalidValues\");\r",
+													"    pm.environment.unset(\"invalidRouteSegment\");\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"if (pm.environment.has(\"invalidValues\"))",
+													"    invalidValues = pm.environment.get(\"invalidValues\");",
+													"else",
+													"    invalidValues = [\"contentassets\", \"siteassets\", \"globalassets\", \"Contentassets\", \"Siteassets\", \"Globalassets\"];",
+													"",
+													"invalidRouteSegment = invalidValues.shift();",
+													"pm.environment.set(\"invalidRouteSegment\", invalidRouteSegment);",
+													"pm.environment.set(\"invalidValues\", invalidValues);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"InvalidPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"StandardPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"routeSegment\": \"{{invalidRouteSegment}}\",\r\n    \"startPublish\": \"2012-08-15T19:56:18Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create content with routeSegment contains one of contentassets siteassets globalassets",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(201);\r",
+													"Assert.IsEqual(\"Verify content routeSegement\", pm.environment.get(\"validRouteSegment\"), pm.response.json().routeSegment);\r",
+													"\r",
+													"invalidValues = pm.environment.get(\"validValues\");\r",
+													"if (invalidValues.length > 0)\r",
+													"    postman.setNextRequest(request.name);\r",
+													"else {\r",
+													"    pm.environment.unset(\"validValues\");\r",
+													"    pm.environment.unset(\"validRouteSegment\");\r",
+													"}"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"if (pm.environment.has(\"validValues\"))",
+													"    validValues = pm.environment.get(\"validValues\");",
+													"else",
+													"    validValues = [\"contentassets-\" + getRandomString(10), \"siteassets-\" + getRandomString(10), \"globalassets-\" + getRandomString(10),",
+													"    \"Contentassets-\" + getRandomString(10), \"Siteassets-\" + getRandomString(10), \"Globalassets-\" + getRandomString(10),",
+													"    getRandomString(5) + \"contentassets-\" + getRandomString(10), getRandomString(5) + \"siteassets-\" + getRandomString(10), getRandomString(5) + \"globalassets-\" + getRandomString(10),",
+													"    getRandomString(5) + \"Contentassets-\" + getRandomString(10), getRandomString(5) + \"Siteassets-\" + getRandomString(10), getRandomString(5) + \"Globalassets-\" + getRandomString(10),",
+													"    getRandomString(5) + \"contentassets\", getRandomString(5) + \"siteassets\", getRandomString(5) + \"globalassets\",",
+													"    getRandomString(5) + \"Contentassets\", getRandomString(5) + \"Siteassets\", getRandomString(5) + \"Globalassets\"];",
+													"",
+													"validRouteSegment = validValues.shift();",
+													"pm.environment.set(\"validRouteSegment\", validRouteSegment);",
+													"pm.environment.set(\"validValues\", validValues);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"InvalidPage\",\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"contentType\": [\r\n        \"Page\",\r\n        \"StandardPage\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"routeSegment\": \"{{validRouteSegment}}\",\r\n    \"startPublish\": \"2012-08-15T19:56:18Z\",\r\n    \"stopPublish\": null,\r\n    \"status\": \"CheckedOut\",\r\n    \"category\": {\r\n        \"value\": [],\r\n        \"propertyDataType\": \"PropertyCategory\"\r\n    }\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete parent folder content",
+									"event": [
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(204);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											},
+											{
+												"key": "X-Epi-Permanent-Delete",
+												"value": "true",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{parentGuid}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											],
+											"path": [
+												"{{parentGuid}}"
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						}
