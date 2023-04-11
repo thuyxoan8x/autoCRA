@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "6ebbd5a5-434c-4f0f-a9ea-46e168d85f8e",
+		"_postman_id": "1d06d00a-df66-4a8b-affc-9faf7c3bec11",
 		"name": "CMA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "6850412"
@@ -31353,9 +31353,7 @@
 											"script": {
 												"exec": [
 													"verifyResponseCode(200);\r",
-													"Assert.IsTrue(\"Verify message\", pm.response.json().message.startsWith(\"Create site TestSite with start page SecondPage\"));\r",
-													"\r",
-													"pm.environment.set(\"DelayCount\", 0);"
+													"Assert.IsTrue(\"Verify message\", pm.response.json().message.startsWith(\"Create site TestSite with start page SecondPage\"));"
 												],
 												"type": "text/javascript"
 											}
@@ -31412,14 +31410,16 @@
 											"listen": "test",
 											"script": {
 												"exec": [
+													"if (!pm.environment.has(\"DelayCount\"))\r",
+													"    pm.environment.set(\"DelayCount\", 0);\r",
+													"\r",
 													"var delayCount = pm.environment.get(\"DelayCount\");\r",
 													"if (delayCount < 13) {\r",
 													"    pm.environment.set(\"DelayCount\", delayCount + 1);\r",
 													"    postman.setNextRequest(request.name);\r",
 													"}\r",
-													"else\r",
-													"{\r",
-													"    pm.environment.set(\"DelayCount\", 0);\r",
+													"else {\r",
+													"    pm.environment.unset(\"DelayCount\");\r",
 													"}"
 												],
 												"type": "text/javascript"
