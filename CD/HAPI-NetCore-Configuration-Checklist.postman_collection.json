@@ -1435,8 +1435,7 @@
 									"listen": "test",
 									"script": {
 										"exec": [
-											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeInternalContentRoots\"]);\r",
-											"pm.environment.set(\"DelayCount\", 0);"
+											"verifyConfigurationSetting(\"Set ContentApiOption done\", [\"IncludeInternalContentRoots\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -1497,14 +1496,16 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"if (!pm.environment.has(\"DelayCount\"))\r",
+											"    pm.environment.set(\"DelayCount\", 0);\r",
+											"\r",
 											"var delayCount = pm.environment.get(\"DelayCount\");\r",
 											"if (delayCount < 13) {\r",
 											"    pm.environment.set(\"DelayCount\", delayCount + 1);\r",
 											"    postman.setNextRequest(request.name);\r",
 											"}\r",
-											"else\r",
-											"{\r",
-											"    pm.environment.set(\"DelayCount\", 0);\r",
+											"else {\r",
+											"    pm.environment.unset(\"DelayCount\");\r",
 											"}"
 										],
 										"type": "text/javascript"
@@ -4315,14 +4316,16 @@
 									"listen": "test",
 									"script": {
 										"exec": [
+											"if (!pm.environment.has(\"DelayCount\"))\r",
+											"    pm.environment.set(\"DelayCount\", 0);\r",
+											"\r",
 											"var delayCount = pm.environment.get(\"DelayCount\");\r",
 											"if (delayCount < 13) {\r",
 											"    pm.environment.set(\"DelayCount\", delayCount + 1);\r",
 											"    postman.setNextRequest(request.name);\r",
 											"}\r",
-											"else\r",
-											"{\r",
-											"    pm.environment.set(\"DelayCount\", 0);\r",
+											"else {\r",
+											"    pm.environment.unset(\"DelayCount\");\r",
 											"}"
 										],
 										"type": "text/javascript"
