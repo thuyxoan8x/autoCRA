@@ -268,7 +268,7 @@
 							"response": []
 						},
 						{
-							"name": "PUT to add supportedMediaExtensions to content type for AutoTestCustomMedia type",
+							"name": "PUT to add supportedMediaExtensions to content type for MyCustomeMedia type",
 							"event": [
 								{
 									"listen": "test",
@@ -1759,7 +1759,7 @@
 									"script": {
 										"exec": [
 											"verifyResponseCode(400);\r",
-											"verifyErrorMessage(\"parent\", [\"The value 'invalidParentId' is not valid.\"]);"
+											"verifyErrorMessage(\"parent\", [\"The input was not valid.\"]);"
 										],
 										"type": "text/javascript"
 									}
@@ -41343,7 +41343,7 @@
 					"name": "Cleanup",
 					"item": [
 						{
-							"name": "PUT to clear supportedMediaExtensions to content type for AutoTestCustomMedia type",
+							"name": "PUT to clear supportedMediaExtensions to content type for MyCustomeMedia type",
 							"event": [
 								{
 									"listen": "test",
