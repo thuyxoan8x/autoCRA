@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "1d06d00a-df66-4a8b-affc-9faf7c3bec11",
+		"_postman_id": "991b7fa1-aab7-494c-adce-85bff4321f79",
 		"name": "CMA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "6850412"
+		"_exporter_id": "21606264"
 	},
 	"item": [
 		{
@@ -7828,6 +7828,266 @@
 												"key": "Accept",
 												"type": "text",
 												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cdEndpoint}}/content/{{contentId}}",
+											"host": [
+												"{{cmsUrl}}{{cdEndpoint}}"
+											],
+											"path": [
+												"content",
+												"{{contentId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "45. [HAPI-2482] Create new content in master language of content type with property marked both Required and non-CultureSpecific",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(201);\r",
+													"\r",
+													"request = JSON.parse(pm.request.body);\r",
+													"response = pm.response.json();\r",
+													"pm.environment.set(\"contentId\", response.contentLink.id);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"if(!pm.environment.has(\"cma_remainingUrls\"))\r",
+													"{\r",
+													"    pm.environment.set(\"cma_remainingUrls\", [\"?epsremainingpath=value&opt1=123\", \"?epsremainingpath=value&opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
+													"    pm.environment.set(\"cd_remainingUrls\", [\"value?opt1=123\", \"value?opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
+													"}\r",
+													"\r",
+													"cma_remainingUrls = pm.environment.get(\"cma_remainingUrls\");\r",
+													"cma_remainingUrl = cma_remainingUrls.shift();\r",
+													"pm.environment.set(\"cma_remainingUrl\", cma_remainingUrl);\r",
+													"pm.environment.set(\"cma_remainingUrls\", cma_remainingUrls);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"language\": {\r\n        \"name\": \"sv\"\r\n    },\r\n    \"name\": \"Button{{$isoTimestamp}}\",\r\n    \"contentType\": [\r\n        \"Block\",\r\n        \"ButtonBlock\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"buttonText\": {\r\n        \"value\": \"Go to google\"\r\n    },\r\n    \"buttonLink\": {\r\n        \"value\": \"http://google.com.vn/\"\r\n    },\r\n    \"status\": \"Published\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create new content in non-master language",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(201);\r",
+													"\r",
+													"request = JSON.parse(pm.request.body);\r",
+													"response = pm.response.json();\r",
+													"pm.environment.set(\"responseBody\", response);\r",
+													"\r",
+													"Assert.IsEqual(\"buttonText\", undefined, response.buttonText);\r",
+													"Assert.IsEqual(\"buttonLink\", undefined, response.buttonLink);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													"if(!pm.environment.has(\"cma_remainingUrls\"))\r",
+													"{\r",
+													"    pm.environment.set(\"cma_remainingUrls\", [\"?epsremainingpath=value&opt1=123\", \"?epsremainingpath=value&opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
+													"    pm.environment.set(\"cd_remainingUrls\", [\"value?opt1=123\", \"value?opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
+													"}\r",
+													"\r",
+													"cma_remainingUrls = pm.environment.get(\"cma_remainingUrls\");\r",
+													"cma_remainingUrl = cma_remainingUrls.shift();\r",
+													"pm.environment.set(\"cma_remainingUrl\", cma_remainingUrl);\r",
+													"pm.environment.set(\"cma_remainingUrls\", cma_remainingUrls);"
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept-encoding": true,
+											"connection": true,
+											"user-agent": true
+										}
+									},
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept-Language",
+												"type": "text",
+												"value": "",
+												"disabled": true
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"contentLink\": {\r\n        \"id\": {{contentId}}\r\n    },\r\n    \"language\": {\r\n        \"name\": \"en\"\r\n    },\r\n    \"name\": \"Button{{$isoTimestamp}}\",\r\n    \"contentType\": [\r\n        \"Block\",\r\n        \"ButtonBlock\"\r\n    ],\r\n    \"parentLink\": {\r\n        \"guidValue\": \"{{parentGuid}}\"\r\n    },\r\n    \"status\": \"Published\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CMA get content",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(200);\r",
+													"\r",
+													"responseBody = SortJson(pm.response.json());\r",
+													"expectedData = SortJson(pm.environment.get(\"responseBody\"));\r",
+													"\r",
+													"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cmaEndpoint}}/{{contentId}}",
+											"host": [
+												"{{cmsUrl}}{{cmaEndpoint}}"
+											],
+											"path": [
+												"{{contentId}}"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CD get content",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(200);\r",
+													"\r",
+													"responseBody = SortJson(pm.response.json());\r",
+													"\r",
+													"Assert.IsNotNull(\"buttonText\", responseBody.buttonText);\r",
+													"Assert.IsNotNull(\"buttonLink\", responseBody.buttonLink);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"protocolProfileBehavior": {
+										"disabledSystemHeaders": {
+											"accept": true
+										}
+									},
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"type": "text",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en",
+												"type": "text"
 											}
 										],
 										"url": {
