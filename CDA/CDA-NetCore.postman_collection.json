@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "cbe36e2c-d205-457e-a492-bb575264e4c1",
+		"_postman_id": "297830e0-6f12-4828-9359-6fa0b73aeb2f",
 		"name": "CDA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21606264"
@@ -12259,14 +12259,7 @@
 							},
 							"request": {
 								"method": "PUT",
-								"header": [
-									{
-										"key": "",
-										"value": "",
-										"type": "text",
-										"disabled": true
-									}
-								],
+								"header": [],
 								"body": {
 									"mode": "raw",
 									"raw": "{\r\n  \"name\": \"ValidationCaseUpdate{{$randomInt}}{{$randomInt}}\",\r\n  \"baseType\": \"Page\",\r\n  \"properties\": [\r\n    {\r\n      \"name\": \"HeadingUpdate\",\r\n      \"dataType\": \"PropertyString\",\r\n      \"required\": false,\r\n      \"branchSpecific\": false,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"minimum\": 20, \r\n          \"maximum\": 100,\r\n          \"severity\": \"error\",\r\n          \"errorMessage\": \"This is the customized message update. The heading length should be bettween 2 and 100.\"\r\n        },\r\n        {\r\n          \"name\": \"RegularExpression\",\r\n          \"severity\": \"error\",\r\n          \"pattern\": \"^epi[\\\\w ]+\"\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"IntegerList\",\r\n      \"dataType\": \"PropertyIntegerList\",\r\n      \"branchSpecific\": false,\r\n      \"required\": true,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Length\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 20, \r\n          \"maximum\": 100\r\n        },\r\n        {\r\n          \"name\": \"ItemRange\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": 1, \r\n          \"maximum\": 10\r\n        }\r\n      ]\r\n    },\r\n    {\r\n      \"name\": \"EventDateUpdated\",\r\n      \"dataType\": \"PropertyDate\",\r\n      \"branchSpecific\": true,\r\n      \"required\": false,\r\n      \"validation\": [\r\n        {\r\n          \"name\": \"Range\",\r\n          \"severity\": \"error\",\r\n          \"minimum\": \"2020-01-01T00:00:00Z\", \r\n          \"maximum\": \"2022-12-31T00:00:00Z\" \r\n        }\r\n      ]\r\n    }\r\n  ]\r\n}",
@@ -56600,7 +56593,7 @@
 					"                propertyArray[j + 1] = temp; ",
 					"            }",
 					"    obj.properties = propertyArray;",
-					"    SortContentTypeByValidationOrder(obj);",
+					"    SortContentTypeByValidationName(obj);",
 					"    return obj;",
 					"}",
 					"",
@@ -56616,12 +56609,12 @@
 					"                propertyArray[j + 1] = temp; ",
 					"            }",
 					"    obj.properties = propertyArray;",
-					"    SortContentTypeByValidationOrder(obj);",
+					"    SortContentTypeByValidationName(obj);",
 					"    return obj;",
 					"}",
 					"",
 					"// This is to sort validation by name",
-					"SortContentTypeByValidationOrder = (obj) => {",
+					"SortContentTypeByValidationName = (obj) => {",
 					"    var propertyArray = obj.properties;",
 					"    for(k = 0; k < propertyArray.length; k++)",
 					"    {",
@@ -56681,7 +56674,7 @@
 					"            requestBody.properties[i].editSettings = editSettings;",
 					"        if((responseBody.properties[i].validation !== undefined)) {",
 					"            for(j = 0; j < responseBody.properties[i].validation.length; j++) {",
-					"                if (responseBody.properties[i].validation[j].options != undefined) ",
+					"                if (responseBody.properties[i].validation[j].options != undefined)",
 					"                    requestBody.properties[i].validation[j].options = responseBody.properties[i].validation[j].options;",
 					"                if (responseBody.properties[i].validation[j].saved != undefined) ",
 					"                    requestBody.properties[i].validation[j].saved = responseBody.properties[i].validation[j].saved;",
