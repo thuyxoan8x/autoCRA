@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "1a4d739e-5441-45de-bca5-df1d331b7baa",
+		"_postman_id": "b8ddbd7b-ee1a-4372-8215-65349df143b2",
 		"name": "CD-NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -10251,7 +10251,7 @@
 											}
 										],
 										"url": {
-											"raw": "{{cmsUrl}}{{cdEndpoint}}/search/content?query={{deletedPageName}}",
+											"raw": "{{cmsUrl}}{{cdEndpoint}}/search/content?query=TempDeletedPage",
 											"host": [
 												"{{cmsUrl}}{{cdEndpoint}}"
 											],
@@ -10262,7 +10262,7 @@
 											"query": [
 												{
 													"key": "query",
-													"value": "{{deletedPageName}}"
+													"value": "TempDeletedPage"
 												}
 											]
 										}

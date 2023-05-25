@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "991b7fa1-aab7-494c-adce-85bff4321f79",
+		"_postman_id": "97759dfe-a903-43ae-8015-830cfc4a6c30",
 		"name": "CMA-NetCore",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21606264"
@@ -7852,7 +7852,6 @@
 												"exec": [
 													"verifyResponseCode(201);\r",
 													"\r",
-													"request = JSON.parse(pm.request.body);\r",
 													"response = pm.response.json();\r",
 													"pm.environment.set(\"contentId\", response.contentLink.id);"
 												],
@@ -7863,16 +7862,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"if(!pm.environment.has(\"cma_remainingUrls\"))\r",
-													"{\r",
-													"    pm.environment.set(\"cma_remainingUrls\", [\"?epsremainingpath=value&opt1=123\", \"?epsremainingpath=value&opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
-													"    pm.environment.set(\"cd_remainingUrls\", [\"value?opt1=123\", \"value?opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
-													"}\r",
-													"\r",
-													"cma_remainingUrls = pm.environment.get(\"cma_remainingUrls\");\r",
-													"cma_remainingUrl = cma_remainingUrls.shift();\r",
-													"pm.environment.set(\"cma_remainingUrl\", cma_remainingUrl);\r",
-													"pm.environment.set(\"cma_remainingUrls\", cma_remainingUrls);"
+													""
 												],
 												"type": "text/javascript"
 											}
@@ -7922,12 +7912,11 @@
 												"exec": [
 													"verifyResponseCode(201);\r",
 													"\r",
-													"request = JSON.parse(pm.request.body);\r",
 													"response = pm.response.json();\r",
-													"pm.environment.set(\"responseBody\", response);\r",
+													"pm.environment.set(\"createdResponseBody\", response);\r",
 													"\r",
-													"Assert.IsEqual(\"buttonText\", undefined, response.buttonText);\r",
-													"Assert.IsEqual(\"buttonLink\", undefined, response.buttonLink);"
+													"Assert.IsNotFound(\"buttonText\", response.buttonText);\r",
+													"Assert.IsNotFound(\"buttonLink\", response.buttonLink);"
 												],
 												"type": "text/javascript"
 											}
@@ -7936,16 +7925,7 @@
 											"listen": "prerequest",
 											"script": {
 												"exec": [
-													"if(!pm.environment.has(\"cma_remainingUrls\"))\r",
-													"{\r",
-													"    pm.environment.set(\"cma_remainingUrls\", [\"?epsremainingpath=value&opt1=123\", \"?epsremainingpath=value&opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
-													"    pm.environment.set(\"cd_remainingUrls\", [\"value?opt1=123\", \"value?opt1=123&opt2=456\", \"?opt1=123\", \"?opt1=123&opt2=456\"]);\r",
-													"}\r",
-													"\r",
-													"cma_remainingUrls = pm.environment.get(\"cma_remainingUrls\");\r",
-													"cma_remainingUrl = cma_remainingUrls.shift();\r",
-													"pm.environment.set(\"cma_remainingUrl\", cma_remainingUrl);\r",
-													"pm.environment.set(\"cma_remainingUrls\", cma_remainingUrls);"
+													""
 												],
 												"type": "text/javascript"
 											}
@@ -7987,7 +7967,7 @@
 									"response": []
 								},
 								{
-									"name": "CMA get content",
+									"name": "CMA Get content in non master language",
 									"event": [
 										{
 											"listen": "test",
@@ -7996,9 +7976,10 @@
 													"verifyResponseCode(200);\r",
 													"\r",
 													"responseBody = SortJson(pm.response.json());\r",
-													"expectedData = SortJson(pm.environment.get(\"responseBody\"));\r",
+													"expectedData = SortJson(pm.environment.get(\"createdResponseBody\"));\r",
 													"\r",
-													"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);"
+													"Assert.IsEqual(\"Verify get content\", expectedData, responseBody);\r",
+													"pm.environment.unset(\"createdResponseBody\");"
 												],
 												"type": "text/javascript"
 											}
@@ -8045,7 +8026,7 @@
 									"response": []
 								},
 								{
-									"name": "CD get content",
+									"name": "CD Get content in non master language",
 									"event": [
 										{
 											"listen": "test",
@@ -8053,7 +8034,7 @@
 												"exec": [
 													"verifyResponseCode(200);\r",
 													"\r",
-													"responseBody = SortJson(pm.response.json());\r",
+													"responseBody = pm.response.json();\r",
 													"\r",
 													"Assert.IsNotNull(\"buttonText\", responseBody.buttonText);\r",
 													"Assert.IsNotNull(\"buttonLink\", responseBody.buttonLink);"
