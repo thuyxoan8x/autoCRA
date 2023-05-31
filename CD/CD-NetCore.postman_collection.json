@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "00a04689-c57c-452e-9467-6b6d1e45a51b",
+		"_postman_id": "b8ddbd7b-ee1a-4372-8215-65349df143b2",
 		"name": "CD-NetCore",
 		"description": "Requests and scripts for automated testing of all CMS Service APIs: \n_ Content Delivery API (Headless API)\n_ Content Service API\n_ and more later....",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "6850412"
+		"_exporter_id": "21606264"
 	},
 	"item": [
 		{
@@ -10211,6 +10211,63 @@
 										}
 									},
 									"response": []
+								},
+								{
+									"name": "2131: Search deleted content",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(200);",
+													"",
+													"var data = responseData.getRoot();",
+													"verifyMatchingData(\"Total matching\", 0, data.totalMatching);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "sv",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cdEndpoint}}/search/content?query=TempDeletedPage",
+											"host": [
+												"{{cmsUrl}}{{cdEndpoint}}"
+											],
+											"path": [
+												"search",
+												"content"
+											],
+											"query": [
+												{
+													"key": "query",
+													"value": "TempDeletedPage"
+												}
+											]
+										}
+									},
+									"response": []
 								}
 							]
 						},
@@ -13858,6 +13915,63 @@
 												{
 													"key": "filter",
 													"value": "ContentType/any(t:t eq 'ArticlePage') and contains(language/name,'en')"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "2333: Filter - deletedContent",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"verifyResponseCode(200);\r",
+													"\r",
+													"var data = responseData.getRoot();\r",
+													"verifyMatchingData(\"Total matching\", 0, data.totalMatching);"
+												],
+												"type": "text/javascript"
+											}
+										},
+										{
+											"listen": "prerequest",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json"
+											},
+											{
+												"key": "Accept-Language",
+												"value": "en",
+												"disabled": true
+											}
+										],
+										"url": {
+											"raw": "{{cmsUrl}}{{cdEndpoint}}/search/content?filter=contains(name,'{{deletedPageName}}')",
+											"host": [
+												"{{cmsUrl}}{{cdEndpoint}}"
+											],
+											"path": [
+												"search",
+												"content"
+											],
+											"query": [
+												{
+													"key": "filter",
+													"value": "contains(name,'{{deletedPageName}}')"
 												}
 											]
 										}
