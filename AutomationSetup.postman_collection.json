@@ -1,0 +1,86 @@
+{
+	"info": {
+		"_postman_id": "a70d7324-fe38-46a5-8aa0-5e105db46648",
+		"name": "Preparation for hapi automation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21606264"
+	},
+	"item": [
+		{
+			"name": "Setup enviroments",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"response = pm.response.json();\r",
+							"\r",
+							"pm.environment.set(\"cmsUrl\", response.cmsUrl);\r",
+							"pm.environment.set(\"adminUser\", response.adminUser);\r",
+							"pm.environment.set(\"adminPassword\", response.adminPassword);\r",
+							"pm.environment.set(\"forThisSiteId\", response.forThisSiteId);\r",
+							"pm.environment.set(\"testContainerFolderId\", response.testContainerFolderId);\r",
+							"pm.environment.set(\"testContainerPageId\", response.testContainerPageId); \r",
+							"pm.environment.set(\"testContainerPageForThisPageId\", response.testContainerPageForThisPageId); \r",
+							"pm.environment.set(\"deniedPageId\", response.deniedPageId); \r",
+							"pm.environment.set(\"deniedPageWithAssetFolderId\", response.deniedPageWithAssetFolderId); \r",
+							"pm.environment.set(\"deniedAssetFolderId\", response.deniedAssetFolderId); \r",
+							"pm.environment.set(\"draftPageId\", response.draftPageId); \r",
+							"pm.environment.set(\"approvalSequenceParentId\", response.approvalSequenceParentId); \r",
+							"pm.environment.set(\"noPublishedRightParentId\", response.noPublishedRightParentId); \r",
+							"pm.environment.set(\"noPublishedRightParentWithAssetFolderId\", response.noPublishedRightParentWithAssetFolderId); \r",
+							"pm.environment.set(\"noPublishedRightAssetFolderId\", response.noPublishedRightAssetFolderId); \r",
+							"pm.environment.set(\"noAPIAccessParentId\", response.noAPIAccessParentId); \r",
+							"pm.environment.set(\"testBlockId\", response.testBlockId); \r",
+							"pm.environment.set(\"testBlockForThisBlockId\", response.testBlockForThisBlockId);  \r",
+							"pm.environment.set(\"alloyMeetBlobId\", response.alloyMeetBlobId);\r",
+							"pm.environment.set(\"isRunAutomationSetup\", true);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept-Language",
+						"value": "es",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "{{cmsUrl}}/automation/setup",
+					"host": [
+						"{{cmsUrl}}"
+					],
+					"path": [
+						"automation",
+						"setup"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

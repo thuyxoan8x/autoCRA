@@ -1,0 +1,8 @@
+1. Edit file RunScript/RunScripts.bat to correct package versions and workingFolder
+2. Click to run RunScripts.bat file
+3. When it prompt request run indexing job => login site(admin/devLab08@) and run indexing job then typing Y to continue
+4. Take a relax and wait for result in WorkingFolder
+
+Note: 
+On this scripts, CD, CMA are run with token authen and CDA, CMA-Media, CMA-Configuration are run with app authen
+Change it by edit RunScript/BuildAndRunScripts.ps1
