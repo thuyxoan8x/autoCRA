@@ -73,8 +73,8 @@ $content = '
 call newman run "AutomationSetup.postman_collection.json" --env-var "cmsUrl=[cmsUrl]" -e "CMS-NetCore.postman_environment.json" --export-environment "CMS-NetCore.postman_environment.json" 
 
 @echo You need to run indexing schedule job first before run scripts.
-@echo Step 1 - Login with admin/devLab08@
-@echo Step 2 - Run [cmsUrl]/Automation/RunIndexingJob (Or you can run it by tradional way (Go to config > schedule job > find ... > start run)
+@echo Step1 Login with admin/devLab08@
+@echo Step2 Run [cmsUrl]/Automation/RunIndexingJob
 
 :loop
 set /p input="When you finish run indexing job, please type Y to continue (Y/N)?:"
