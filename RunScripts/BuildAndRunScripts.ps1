@@ -100,10 +100,6 @@ call set NODE_OPTIONS=--max_old_space_size=240000
 call newman run "CMA-Media-NetCore.postman_collection.json" --env-var "authType=app" -e "CMS-NetCore.postman_environment.json" --working-dir "[workingDir]" -d "TestData-NetCore.json" -r htmlextra --reporter-htmlextra-title "CMA-Media-NetCore [hapiReleaseVersion] with app auth DXP Test report" --reporter-htmlextra-titleSize 3 --reporter-htmlextra-cmsCoreVersion [cmsCoreVersion] --reporter-htmlextra-cmsUIVersion [cmsUIVersion] --reporter-htmlextra-hapiVersion [hapiVersion] --reporter-htmlextra-findVersion [findVersion] --reporter-htmlextra-cloudVersion [cloudVersion]
 @echo Completed-CMA-Media: %date% %time%
 
-@echo Started-Configuration: %date% %time%
-call newman run "HAPI-NetCore-Configuration-Checklist.postman_collection.json" "authType=token" -e "CMS-NetCore.postman_environment.json" -r htmlextra --reporter-htmlextra-title "Configuration-Checklist [hapiReleaseVersion] DXP Test report" --reporter-htmlextra-titleSize 4 --reporter-htmlextra-cmsCoreVersion [cmsCoreVersion] --reporter-htmlextra-cmsUIVersion [cmsUIVersion] --reporter-htmlextra-hapiVersion [hapiVersion] --reporter-htmlextra-findVersion [findVersion] --reporter-htmlextra-cloudVersion [cloudVersion]
-@echo Complicated-Configuration: %date% %time%
-
 pause
 '
 

@@ -1,7 +1,9 @@
 1. Edit file RunScript/RunScripts.bat to correct package versions and workingFolder
 2. Click to run RunScripts.bat file
-3. When it prompt request run indexing job => login site(admin/devLab08@) and run indexing job then typing Y to continue
-4. Take a relax and wait for result in WorkingFolder
+3. When it prompt request run indexing job => login site(admin/devLab08@) and run indexing job, waiting for job completed then typing Y to continue
+4. Wait for result in WorkingFolder
+5. CMA-Configuration should be run with clean database. Create a new database for site and run scripts for CMA-Configuration with command
+newman run "HAPI-NetCore-Configuration-Checklist.postman_collection.json" "authType=token" -e "CMS-NetCore.postman_environment.json" -r htmlextra --reporter-htmlextra-title "Configuration-Checklist 3.8.1 DXP Test report" --reporter-htmlextra-titleSize 4 --reporter-htmlextra-cmsCoreVersion 12.12.0 --reporter-htmlextra-cmsUIVersion 12.16.0 --reporter-htmlextra-hapiVersion 3.8.1-pre-123 --reporter-htmlextra-findVersion  --reporter-htmlextra-cloudVersion 1.3.2
 
 Note: 
 On this scripts, CD, CMA are run with token authen and CDA, CMA-Media, CMA-Configuration are run with app authen
